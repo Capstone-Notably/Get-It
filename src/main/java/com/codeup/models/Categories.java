@@ -16,14 +16,14 @@ public class Categories {
     private String name;
 
     @Column(nullable = false)
-    private String img_url;
+    private String imgUrl;
 
     @OneToOne
     private Items item;
 
-    public Categories(String name, String img_url, Items item) {
+    public Categories(String name, String imgUrl, Items item) {
         this.name = name;
-        this.img_url = img_url;
+        this.imgUrl = imgUrl;
         this.item = item;
     }
 
@@ -46,12 +46,12 @@ public class Categories {
         this.name = name;
     }
 
-    public String getImg_url() {
-        return img_url;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setImg_url(String img_url) {
-        this.img_url = img_url;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public Items getItem() {

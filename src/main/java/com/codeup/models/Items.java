@@ -13,14 +13,14 @@ public class Items {
     private String name;
 
     @Column(nullable = false)
-    private String img_url;
+    private String imgUrl;
 
     public Items() {
     }
 
-    public Items(String name, String img_url) {
+    public Items(String name, String imgUrl) {
         this.name = name;
-        this.img_url = img_url;
+        this.imgUrl = imgUrl;
     }
 
     public long getId() {
@@ -39,11 +39,11 @@ public class Items {
         this.name = name;
     }
 
-    public String getImg_url() {
-        return img_url;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setImg_url(String img_url) {
-        this.img_url = img_url;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }
