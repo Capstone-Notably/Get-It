@@ -1,0 +1,64 @@
+package com.codeup.models;
+
+import javax.persistence.*;
+import java.util.List;
+
+/**
+ * Created by roxana on 6/28/17.
+ */
+@Entity
+@Table(name = "categories")
+public class Category {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private String imgUrl;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    private List<Item> items;
+
+    public Category(String name, String imgUrl) {
+        this.name = name;
+        this.imgUrl = imgUrl;
+    }
+
+    public Category() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+}

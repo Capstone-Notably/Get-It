@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments::head('List of Items')"></head>
+<body>
+    <nav th:replace="fragments::my-navbar"></nav>
+    <div class="container">
+        <div th:each="item:${items}">
+            <p>Item name: <span th:text="${item.name}" /></p>
+            <img th:src="'/images/items/' + ${item.imgUrl}" />
+        </div>
+    </div>
+    <div th:replace="fragments::scripts"></div>
+</body>
+</html>
