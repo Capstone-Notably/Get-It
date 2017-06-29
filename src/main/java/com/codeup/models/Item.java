@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="items")
-public class Items {
+public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -15,10 +15,14 @@ public class Items {
     @Column(nullable = false)
     private String imgUrl;
 
-    public Items() {
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    public Item() {
     }
 
-    public Items(String name, String imgUrl) {
+    public Item(String name, String imgUrl) {
         this.name = name;
         this.imgUrl = imgUrl;
     }
@@ -45,5 +49,13 @@ public class Items {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

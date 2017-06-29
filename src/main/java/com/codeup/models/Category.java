@@ -1,13 +1,14 @@
 package com.codeup.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by roxana on 6/28/17.
  */
 @Entity
 @Table(name = "categories")
-public class Categories {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -18,16 +19,15 @@ public class Categories {
     @Column(nullable = false)
     private String imgUrl;
 
-    @OneToOne
-    private Items item;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    private List<Item> items;
 
-    public Categories(String name, String imgUrl, Items item) {
+    public Category(String name, String imgUrl) {
         this.name = name;
         this.imgUrl = imgUrl;
-        this.item = item;
     }
 
-    public Categories() {
+    public Category() {
     }
 
     public long getId() {
@@ -54,11 +54,11 @@ public class Categories {
         this.imgUrl = imgUrl;
     }
 
-    public Items getItem() {
-        return item;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setItem(Items item) {
-        this.item = item;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }
