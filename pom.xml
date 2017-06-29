@@ -6,7 +6,7 @@
 	<groupId>com.codeup</groupId>
 	<artifactId>capstone</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>capstone</name>
 	<description>Capstone project </description>
