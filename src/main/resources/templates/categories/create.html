@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments::head('Create Category')"></head>
+<body>
+    <nav th:replace="fragments::my-navbar"></nav>
+    <div class="container">
+        <form th:method="post" th:action="@{/categories/create}" th:object="${categories}" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" th:field="*{name}" value="${categories.name}" />
+            </div>
+            <div class="form-group">
+                <label for="file">Image</label>
+                <input type="file" class="form-control" name="file" id="file" />
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+    <div th:replace="fragments::scripts"></div>
+</body>
+</html>
