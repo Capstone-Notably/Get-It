@@ -36,6 +36,7 @@ public class CategoriesController {
         Iterable<Category> categories = categoriesRepository.findAll();
         model.addAttribute("categories", categories);
         return "testingTables";
+
     }
 
     @GetMapping("/categories/create")
@@ -51,7 +52,5 @@ public class CategoriesController {
         categoriesRepository.save(category);
         return "redirect:/home";
     }
-
-
 
 }

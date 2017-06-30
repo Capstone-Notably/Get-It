@@ -22,6 +22,7 @@ public class Category {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     private List<Item> items;
 
+
     public Category(String name, String imgUrl) {
         this.name = name;
         this.imgUrl = imgUrl;

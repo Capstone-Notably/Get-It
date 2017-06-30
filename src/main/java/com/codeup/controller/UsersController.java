@@ -33,6 +33,7 @@ public class UsersController {
         this.usersRepository = usersRepository;
         this.rolesRepository = rolesRepository;
         this.passwordEncoder = passwordEncoder;
+
     }
 
     @PostMapping("/users/register")
