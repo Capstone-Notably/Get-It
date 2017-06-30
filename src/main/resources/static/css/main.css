@@ -1,0 +1,47 @@
+
+div.search {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+
+div.search.show {
+    opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 420px) and (max-width: 1020px){
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+@media screen and (max-width: 420px){
+
+
+
+
+
+
+
+}

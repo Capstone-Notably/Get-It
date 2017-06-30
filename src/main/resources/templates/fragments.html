@@ -7,9 +7,9 @@
     <title th:text="${title}">Posts App</title>
     <link href="https://fonts.googleapis.com/css?family=Boogaloo|Overlock|Pompiere" rel="stylesheet" />
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css" />
-    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />-->
-    <!--<link rel="stylesheet" href="css/main.css" />-->
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css" />-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/main.css" />
 </head>
 
 <body>
@@ -49,48 +49,26 @@
     <!--</div>&lt;!&ndash; /.container-fluid &ndash;&gt;-->
 <!--</nav>-->
 
-<!--<nav class="navbar" th:fragment="navbar">-->
-    <!--<a href="/" id="brandname">Notably</a>-->
-    <!--<span id="nav-search-group">-->
-        <!--<input id="nav-search-input" type="text" placeholder="Search"/>-->
-        <!--<input class="nav-search-button" type="submit" value="Search"/>-->
-    <!--</span>-->
+    <nav class="navbar" th:fragment="my-navbar">
 
-    <!--&lt;!&ndash; Dropdown Trigger &ndash;&gt;-->
-    <!--<a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>-->
-
-    <!--&lt;!&ndash; Dropdown Structure &ndash;&gt;-->
-    <!--<ul id='dropdown1' class='dropdown-content'>-->
-        <!--<li><a href="#!">Lists</a></li>-->
-        <!--<li><a href="#!"></a></li>-->
-        <!--<li class="divider"></li>-->
-        <!--<li><a href="#!">three</a></li>-->
-        <!--<li><a href="#!"><i class="material-icons">view_module</i>four</a></li>-->
-        <!--<li><a href="#!"><i class="material-icons">cloud</i>five</a></li>-->
-    <!--</ul>-->
-    <!--<span class="nav-links">-->
-        <!--<a sec:authorize="isAuthenticated()" href="/users/profile" id="user-name">Welcome <span sec:authentication="name"></span></a>-->
-        <!--<a href="/posts" class="links">Woofs</a>-->
-        <!--<a sec:authorize="isAuthenticated()" href="/posts/create" class="links">Create Woof</a>-->
-        <!--<a sec:authorize="isAuthenticated()" href="/login" class="links">Logout</a>-->
-        <!--<a sec:authorize="!isAuthenticated()" href="/login" class="links">Login</a>-->
-        <!--<a sec:authorize="!isAuthenticated()" href="/login" class="links">Register</a>-->
-    <!--</span>-->
-<!--</nav>-->
+        <a href="/home" id="nav-brand-name">Stocked</a>
 
 
-<!-- Dropdown Trigger -->
-<a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
+        <div class="search">
+            <input id="nav-search-input" type="text" placeholder="Search"/>
+            <input class="nav-search-button" type="submit" value="Search"/>
+        </div>
 
-<!-- Dropdown Structure -->
-<ul id='dropdown1' class='dropdown-content'>
-    <li><a href="#!">one</a></li>
-    <li><a href="#!">two</a></li>
-    <li class="divider"></li>
-    <li><a href="#!">three</a></li>
-    <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-    <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-</ul>
+
+        <span class="nav-links-right">
+            <a href="#recipes" class="nav-links">Recipes</a>
+            <a href="#categories" class="nav-links">Categories</a>
+            <span class="glyphicon glyphicon-search" aria-hidden="true" id="search-trigger"></span>
+            <span sec:authorize="!isAuthenticated()">Hi, <a href="/login" id="login-nav-link">Login</a>/<a href="/register" id="register-nav-link">Register</a></span>
+            <a sec:authorize="isAuthenticated()" href="/users/profile" id="logged-in-menu">Hi, <span sec:authentication="name"></span></a>
+        </span>
+
+    </nav>
 
 
 
@@ -129,7 +107,7 @@
     <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="js/main.js" />
 </div>
 </body>
