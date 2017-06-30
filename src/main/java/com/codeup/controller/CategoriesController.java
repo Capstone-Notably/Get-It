@@ -36,6 +36,7 @@ public class CategoriesController {
         Iterable<Category> categories = categoriesRepository.findAll();
         model.addAttribute("categories", categories);
         return "index";
+
     }
 
     @GetMapping("/categories/create")
