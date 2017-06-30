@@ -35,7 +35,7 @@ public class CategoriesController {
     public String viewHome(Model model) {
         Iterable<Category> categories = categoriesRepository.findAll();
         model.addAttribute("categories", categories);
-        return "index";
+        return "testingTables";
 
     }
 
