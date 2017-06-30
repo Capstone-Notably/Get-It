@@ -19,13 +19,13 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String phone;
 
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column()
     private String imgUrl;
 
     public User() {
@@ -37,6 +37,15 @@ public class User {
         this.phone = phone;
         this.password = password;
         this.imgUrl = imgUrl;
+    }
+
+    public User(User user) {
+        id = user.id;
+        username = user.username;
+        password = user.password;
+        email = user.email;
+        phone = user.phone;
+        imgUrl = user.imgUrl;
     }
 
     public long getId() {
