@@ -19,13 +19,13 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String phone;
 
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column()
     private String imgUrl;
 
     public User() {

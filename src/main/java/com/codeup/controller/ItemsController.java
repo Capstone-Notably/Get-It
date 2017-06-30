@@ -45,17 +45,7 @@ public class ItemsController {
 
     @PostMapping("/items/create")
     public String saveCategory(@ModelAttribute Item item, @RequestParam(name = "file") MultipartFile uploadedFile, Model model) {
-        String filename = uploadedFile.getOriginalFilename();
-        String filepath = Paths.get(itemsImgPath, filename).toString();
-        File destinationFile = new File(filepath);
-
-        try {
-            uploadedFile.transferTo(destinationFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-            model.addAttribute("message", "Oops! Something went wrong! " + e);
-        }
-
+        String filename = UsersController.transferUploadedFile(uploadedFile, itemsImgPath, model);
         item.setImgUrl(filename);
         itemsRepository.save(item);
         return "redirect:/home";
