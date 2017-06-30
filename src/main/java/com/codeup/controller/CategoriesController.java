@@ -46,20 +46,12 @@ public class CategoriesController {
 
     @PostMapping("/categories/create")
     public String saveCategory(@ModelAttribute Category category, @RequestParam(name = "file") MultipartFile uploadedFile, Model model) {
-        String filename = uploadedFile.getOriginalFilename();
-        String filepath = Paths.get(categoriesImgPath, filename).toString();
-        File destinationFile = new File(filepath);
-
-        try {
-            uploadedFile.transferTo(destinationFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-            model.addAttribute("message", "Oops! Something went wrong! " + e);
-        }
-
+        String filename = UsersController.transferUploadedFile(uploadedFile, categoriesImgPath, model);
         category.setImgUrl(filename);
         categoriesRepository.save(category);
         return "redirect:/home";
     }
+
+
 
 }
