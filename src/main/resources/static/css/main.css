@@ -1,20 +1,74 @@
+/*CSS Reset*/
 
+
+
+
+/*Variables*/
+
+:root {
+    --grey: #DADFE1;
+    --white: #EEEEEE;
+    --d-green: #049372;
+    --l-green: #C8F7C5;
+
+    --logo-font: barricada-pro, serif;
+
+
+}
+
+
+
+
+
+/*Hidden search bar*/
 div.search {
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
 }
 
-
 div.search.show {
     opacity: 1;
 }
+/*//*/
 
 
+.navbar, .nav-links-logged-in, .nav-links-logged-out {
+    border: .5px solid var(--d-green);
+    background-color: var(--white);
+    color: var(--l-green);
+}
 
+#nav-brand-name {
+    font-size: 3em;
+}
 
+body {
+    font-family: barricada-pro, serif;
+    font-size: 3em;
+    font-style: normal;
+    font-weight: 400;
 
+}
 
+.egg-box{
+    width: 100%;
+    height: 30em;
+}
 
+.egg {
+    opacity: 1;
+    width: 25em;
+    height: auto;
+    border-radius: 50%;
+
+}
+
+#1{ background-color: #049372}
+#2{ background-color: yellowgreen}
+#3{ background-color: greenyellow}
+#4{ background-color: var(--l-green)}
+#5{ background-color: plum}
+#6{ background-color: lavender}
 
 
 
