@@ -39,6 +39,15 @@ public class User {
         this.imgUrl = imgUrl;
     }
 
+    public User(User user) {
+        id = user.id;
+        username = user.username;
+        password = user.password;
+        email = user.email;
+        phone = user.phone;
+        imgUrl = user.imgUrl;
+    }
+
     public long getId() {
         return id;
     }
