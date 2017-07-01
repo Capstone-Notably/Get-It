@@ -19,13 +19,17 @@ public class Category {
     @Column(nullable = false)
     private String imgUrl;
 
+    @ManyToOne
+    private User user;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     private List<Item> items;
 
 
-    public Category(String name, String imgUrl) {
+    public Category(String name, String imgUrl, User user) {
         this.name = name;
         this.imgUrl = imgUrl;
+        this.user = user;
     }
 
     public Category() {
@@ -61,5 +65,13 @@ public class Category {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -28,6 +28,9 @@ public class User {
     @Column()
     private String imgUrl;
 
+    @OneToMany(mappedBy = "user")
+    private List<Category> categories;
+
     public User() {
     }
 
@@ -94,5 +97,13 @@ public class User {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 }
