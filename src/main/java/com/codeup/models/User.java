@@ -34,6 +34,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Item> items;
 
+    @OneToMany(mappedBy = "user")
+    private List<UserItem> userItems;
+
     public User() {
     }
 
@@ -108,5 +111,21 @@ public class User {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public List<UserItem> getUserItems() {
+        return userItems;
+    }
+
+    public void setUserItems(List<UserItem> userItems) {
+        this.userItems = userItems;
     }
 }

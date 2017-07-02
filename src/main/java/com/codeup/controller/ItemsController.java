@@ -1,7 +1,7 @@
 package com.codeup.controller;
 
 import com.codeup.models.*;
-import com.codeup.repositories.CustomItemsRepository;
+import com.codeup.repositories.UserItemsRepository;
 import com.codeup.repositories.ItemsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,9 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,15 +20,15 @@ import java.util.List;
 @Controller
 public class ItemsController {
     private final ItemsRepository itemsRepository;
-    private final CustomItemsRepository customItemsRepository;
+    private final UserItemsRepository userItemsRepository;
 
     @Value("${items-img-path}")
     private String itemsImgPath;
 
     @Autowired
-    public ItemsController(ItemsRepository itemsRepository, CustomItemsRepository customItemsRepository) {
+    public ItemsController(ItemsRepository itemsRepository, UserItemsRepository userItemsRepository) {
         this.itemsRepository = itemsRepository;
-        this.customItemsRepository = customItemsRepository;
+        this.userItemsRepository = userItemsRepository;
     }
 
     @GetMapping("/items")
@@ -40,23 +37,20 @@ public class ItemsController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (!principal.equals("anonymousUser")) {
             User user = (User) principal;
-            List<UserItem> userItems = new ArrayList<>();
-//            items = itemsRepository.findByUser_IdAndCategory_Id(user.getId(), category_id);
+            List<CustomItem> customItems = new ArrayList<>();
+            List<UserItem> userItems = userItemsRepository.findByUser_Id(user.getId());
 
-            List<CustomItem> customItems = customItemsRepository.findByUser_Id(user.getId());
-
-            for (CustomItem customItem : customItems) {
-                Item item = itemsRepository.findOne(customItem.getItem().getId());
-                UserItem userItem = new UserItem(item.getName(), item.getImgUrl(), customItem.getPrice(), customItem.getQuantity(), customItem.getBarcode(), customItem.isFavorite());
-                userItems.add(userItem);
+            for (UserItem userItem : userItems) {
+                Item item = itemsRepository.findOne(userItem.getItem().getId());
+                CustomItem customItem = new CustomItem(item.getName(), item.getImgUrl(), userItem.getPrice(), userItem.getQuantity(), userItem.getBarcode(), userItem.isFavorite());
+                customItems.add(customItem);
             }
 
-            model.addAttribute("items", userItems);
+            model.addAttribute("items", customItems);
 
         } else {
             // get the default items using user_id=1 -> admin user
             List<Item> items = itemsRepository.findByUser_IdAndCategory_Id(1, category_id);
-
             model.addAttribute("items", items);
         }
 

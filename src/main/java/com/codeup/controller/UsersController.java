@@ -23,18 +23,18 @@ public class UsersController {
     private RolesRepository rolesRepository;
     private PasswordEncoder passwordEncoder;
     private ItemsRepository itemsRepository;
-    private CustomItemsRepository customItemsRepository;
+    private UserItemsRepository userItemsRepository;
 
     @Value("${users-img-path}")
     private String usersImgPath;
 
     @Autowired
-    public UsersController(UsersRepository usersRepository, RolesRepository rolesRepository, PasswordEncoder passwordEncoder, ItemsRepository itemsRepository, CustomItemsRepository customItemsRepository) {
+    public UsersController(UsersRepository usersRepository, RolesRepository rolesRepository, PasswordEncoder passwordEncoder, ItemsRepository itemsRepository, UserItemsRepository userItemsRepository) {
         this.usersRepository = usersRepository;
         this.rolesRepository = rolesRepository;
         this.passwordEncoder = passwordEncoder;
         this.itemsRepository = itemsRepository;
-        this.customItemsRepository = customItemsRepository;
+        this.userItemsRepository = userItemsRepository;
     }
 
     @PostMapping("/users/register")
@@ -53,10 +53,10 @@ public class UsersController {
         List<Item> items = itemsRepository.findByUser_Id(1);
 
         for (Item item : items) {
-            CustomItem customItem = new CustomItem();
-            customItem.setItem(item);
-            customItem.setUser(user);
-            customItemsRepository.save(customItem);
+            UserItem userItem = new UserItem();
+            userItem.setItem(item);
+            userItem.setUser(user);
+            userItemsRepository.save(userItem);
         }
 
 

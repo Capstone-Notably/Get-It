@@ -1,53 +1,42 @@
 package com.codeup.models;
 
-import javax.persistence.*;
-
 /**
- * Created by roxana on 7/1/17.
+ * Created by roxana on 7/2/17.
  */
-@Entity
-@Table(name = "custom_items")
 public class CustomItem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @Column
+    private String name;
+    private String imgUrl;
     private float price;
-
-    @Column
     private int quantity;
-
-    @Column
     private String barcode;
-
-    @Column
     private boolean favorite;
-
-    @ManyToOne
-    private User user;
-
-    @ManyToOne
-    private Item item;
 
     public CustomItem() {
     }
 
-    public CustomItem(float price, int quantity, String barcode, boolean favorite, User user, Item item) {
+    public CustomItem(String name, String imgUrl, float price, int quantity, String barcode, boolean favorite) {
+        this.name = name;
+        this.imgUrl = imgUrl;
         this.price = price;
         this.quantity = quantity;
         this.barcode = barcode;
         this.favorite = favorite;
-        this.user = user;
-        this.item = item;
     }
 
-    public long getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public float getPrice() {
@@ -80,21 +69,5 @@ public class CustomItem {
 
     public void setFavorite(boolean favorite) {
         this.favorite = favorite;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
     }
 }

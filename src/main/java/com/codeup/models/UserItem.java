@@ -1,42 +1,55 @@
 package com.codeup.models;
 
+import javax.persistence.*;
+
 /**
- * Created by roxana on 7/2/17.
+ * Created by roxana on 7/1/17.
  */
+@Entity
+@Table(name = "users_items")
 public class UserItem {
-    private String name;
-    private String imgUrl;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column
     private float price;
+
+    @Column
     private int quantity;
+
+    @Column
     private String barcode;
+
+    @Column
     private boolean favorite;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
 
     public UserItem() {
     }
 
-    public UserItem(String name, String imgUrl, float price, int quantity, String barcode, boolean favorite) {
-        this.name = name;
-        this.imgUrl = imgUrl;
+    public UserItem(float price, int quantity, String barcode, boolean favorite, User user, Item item) {
         this.price = price;
         this.quantity = quantity;
         this.barcode = barcode;
         this.favorite = favorite;
+        this.user = user;
+        this.item = item;
     }
 
-    public String getName() {
-        return name;
+    public long getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public float getPrice() {
@@ -69,5 +82,21 @@ public class UserItem {
 
     public void setFavorite(boolean favorite) {
         this.favorite = favorite;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 }
