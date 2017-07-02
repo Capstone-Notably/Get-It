@@ -2,19 +2,17 @@ package com.codeup.controller;
 
 import com.codeup.models.*;
 import com.codeup.repositories.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.List;
 
 /**
  * Created by roxana on 6/29/17.
@@ -24,16 +22,19 @@ public class UsersController {
     private final UsersRepository usersRepository;
     private RolesRepository rolesRepository;
     private PasswordEncoder passwordEncoder;
+    private ItemsRepository itemsRepository;
+    private CustomItemsRepository customItemsRepository;
 
     @Value("${users-img-path}")
     private String usersImgPath;
 
     @Autowired
-    public UsersController(UsersRepository usersRepository, RolesRepository rolesRepository, PasswordEncoder passwordEncoder) {
+    public UsersController(UsersRepository usersRepository, RolesRepository rolesRepository, PasswordEncoder passwordEncoder, ItemsRepository itemsRepository, CustomItemsRepository customItemsRepository) {
         this.usersRepository = usersRepository;
         this.rolesRepository = rolesRepository;
         this.passwordEncoder = passwordEncoder;
-
+        this.itemsRepository = itemsRepository;
+        this.customItemsRepository = customItemsRepository;
     }
 
     @PostMapping("/users/register")
@@ -47,6 +48,17 @@ public class UsersController {
         // create a default role for each user ROLE_USER
         UserRole userRole = new UserRole(user.getId(), "ROLE_USER");
         rolesRepository.save(userRole);
+
+        //update item_id and user_id for table custom_items
+        List<Item> items = itemsRepository.findByUser_Id(1);
+
+        for (Item item : items) {
+            CustomItem customItem = new CustomItem();
+            customItem.setItem(item);
+            customItem.setUser(user);
+            customItemsRepository.save(customItem);
+        }
+
 
         return "redirect:/login";
     }

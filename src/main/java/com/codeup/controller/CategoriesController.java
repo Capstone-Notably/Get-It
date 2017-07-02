@@ -37,8 +37,9 @@ public class CategoriesController {
         //get default categories using user_id of admin
         List<Category> categories = categoriesRepository.findByUser_Id(1);
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (user.getId() != 0) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!principal.equals("anonymousUser")) {
+            User user = (User) principal;
             List<Category> customCategories = categoriesRepository.findByUser_Id(user.getId());
             categories.addAll(customCategories);
         }
