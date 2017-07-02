@@ -2,10 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="fragments::head('page-title')"></head>
 <body>
+<div class="home-grid">
+
     <nav th:replace="fragments::my-navbar"></nav>
 
-
-    <div class="container">
+    <div class="container" id="body">
         <!--<div th:each="category: ${categories}">-->
             <!--<p>Category name: <span th:text="${category.name}" /></p>-->
             <!--<img th:src="'/images/categories/' + ${category.imgUrl}" />-->
@@ -21,6 +22,9 @@
             </div>
         </div>
     </div>
-    <div th:replace="fragments::scripts"></div>
+
+    <div class="footer">Footer</div>
+</div>
+<div th:replace="fragments::scripts"></div>
 </body>
 </html>

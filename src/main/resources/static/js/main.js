@@ -13,6 +13,7 @@
 
     $('#search-trigger2').click(function() {
         $('div.search').addClass('show');
+        console.log("test");
     });
 
 })();

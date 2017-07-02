@@ -4,54 +4,70 @@
 <head th:fragment="head(title)">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0 , minimum-scale=1.0, maximum-scale=1.0" />
-    <title th:text="${title}">Stocked</title>
+    <title th:text="${title}">Get It!</title>
     <link href="https://fonts.googleapis.com/css?family=Boogaloo|Overlock|Pompiere" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
-    <script src="https://use.typekit.net/dbs1sgs.js"></script>
-    <script>try{Typekit.load({ async: true });}catch(e){}</script>
-    <script src="https://use.typekit.net/vzp5hvu.js"></script>
-    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <link href="https://fonts.googleapis.com/css?family=Assistant:300|Happy+Monkey|Playfair+Display" rel="stylesheet" />
     <link rel="stylesheet" href="css/main.css" />
 </head>
-
 <body>
 
+Hidden search bar
+<div th:fragment="hidden-search" class="search">
+    <input id="nav-search-input" type="text" placeholder="Search"/>
+    <input class="nav-search-button" type="submit" value="Search"/>
+</div>
+
 <nav class="navbar" th:fragment="my-navbar">
+    <!--<div class="search">-->
+        <!--<input id="nav-search-input" type="text" placeholder="Search"/>-->
+        <!--<input class="nav-search-button" type="submit" value="Search"/>-->
+    <!--</div>-->
+    <!--Left side nav-->
+    <a href="/home" id="nav-brand-name">get it!</a>
 
-    <a href="/home" id="nav-brand-name">Get It!</a>
-
-
-    <div class="search">
-        <input id="nav-search-input" type="text" placeholder="Search"/>
-        <input class="nav-search-button" type="submit" value="Search"/>
-    </div>
-
-
+    <!--Logged out right side nav-->
     <div sec:authorize="!isAuthenticated()" class="nav-links-logged-out">
-        <a href="#recipes" class="nav-links">Recipes</a>
-        <a href="#categories" class="nav-links">Categories</a>
-        <span class="glyphicon glyphicon-search" aria-hidden="true" id="search-trigger"></span>
-        <span><a href="/login" id="login-nav-link">Login</a> / <a href="/register" id="register-nav-link">Register</a></span>
+        <div class="nav-links1">
+            <a href="#recipes" class="nav-recipes">Recipes</a>
+            <a href="#categories" class="nav-categories">Categories</a>
+            <span class="glyphicon glyphicon-search" aria-hidden="true" id="search-trigger"></span>
+        </div>
+        <div class="nav-links2">
+            <a href="/login" id="login-nav-link">Login</a>
+            /
+            <a href="/register" id="register-nav-link">Register</a>
+        </div>
     </div>
 
+    <!--Logged in right side nav-->
     <div sec:authorize="isAuthenticated()" class="nav-links-logged-in">
-        <ul class="">
-            <span class="glyphicon glyphicon-search" aria-hidden="true" id="search-trigger2"></span>
-            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">Hi <span sec:authentication="name">!</span> <span class="caret"></span> </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">Recipes</a></li>
-                    <li><a href="#">Update Profile</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Log out</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
 
+        <div class="nav-icons">
+
+            <span class="glyphicon glyphicon-search" aria-hidden="true" id="search-trigger2"></span>
+            <span id="user-icon" class="glyphicon glyphicon-user" aria-hidden="true"></span>
+
+            <span class="dropdown">
+                <a href="#" class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="false">
+                    <span id="user-hello-hide-mobile-nav">
+                        Hi
+                        <span sec:authentication="name">!</span>
+                    </span>
+                    <span id="hamburger" class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-links" href="#">Categories</a></li>
+                    <li><a class="dropdown-links" href="#">Recipes</a></li>
+                    <li><a class="dropdown-links" href="#">Update Profile</a></li>
+                    <li class="dropdown-links divider" role="separator"></li>
+                    <li><a class="dropdown-links" href="#">Log out</a></li>
+                </ul>
+            </span>
+
+        </div>
+    </div>
 </nav>
 
 
