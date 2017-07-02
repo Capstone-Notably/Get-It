@@ -33,11 +33,15 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hi user! <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">My Posts</a></li>
-                        <li><a href="#">Create a Posts</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Create Item</a></li>
                         <li><a href="#">Update Profile</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">Log out</a></li>
+                        <li>
+                            <form th:action="@{/logout}" th:method="post">
+                                <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+                            </form>
+                        </li>
                     </ul>
                 </li>
             </ul>

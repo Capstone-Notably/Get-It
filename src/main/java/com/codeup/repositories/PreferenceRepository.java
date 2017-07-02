@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PreferenceRepository extends CrudRepository<Preference, Long> {
+    public Preference findByName(String name);
 }
