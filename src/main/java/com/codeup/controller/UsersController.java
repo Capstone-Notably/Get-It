@@ -69,14 +69,20 @@ public class UsersController {
             }
         }
 
-        //update item_id and user_id for table users_items
+        //update table users_items
         List<Item> items = itemsRepository.findByUser_Id(1);
 
         for (Item item : items) {
-            UserItem userItem = new UserItem();
-            userItem.setItem(item);
-            userItem.setUser(user);
-            userItemsRepository.save(userItem);
+            String[] split = item.getPreferences().split(" ");
+            for(int i=0; i<split.length; i++) {
+                if (Integer.parseInt(split[i]) == prefByName.getId()) {
+                    userItemsRepository.save(new UserItem(user, item));
+                }
+            }
+//            UserItem userItem = new UserItem();
+//            userItem.setItem(item);
+//            userItem.setUser(user);
+//            userItemsRepository.save(userItem);
         }
 
         return "redirect:/login";
