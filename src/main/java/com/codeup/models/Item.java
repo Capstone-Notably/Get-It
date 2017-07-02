@@ -24,6 +24,7 @@ public class Item {
     private Preference preference;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Item() {

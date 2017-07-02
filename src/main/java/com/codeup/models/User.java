@@ -16,7 +16,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
 
     @Column(unique = true)
@@ -25,11 +25,14 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column()
+    @Column(nullable = false)
     private String imgUrl;
 
     @OneToMany(mappedBy = "user")
     private List<Category> categories;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserCategory> userCategories;
 
     @OneToMany(mappedBy = "user")
     private List<Item> items;
@@ -127,5 +130,13 @@ public class User {
 
     public void setUserItems(List<UserItem> userItems) {
         this.userItems = userItems;
+    }
+
+    public List<UserCategory> getUserCategories() {
+        return userCategories;
+    }
+
+    public void setUserCategories(List<UserCategory> userCategories) {
+        this.userCategories = userCategories;
     }
 }
