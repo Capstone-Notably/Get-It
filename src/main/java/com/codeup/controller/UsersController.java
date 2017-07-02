@@ -49,7 +49,10 @@ public class UsersController {
         UserRole userRole = new UserRole(user.getId(), "ROLE_USER");
         rolesRepository.save(userRole);
 
-        //update item_id and user_id for table custom_items
+        //update table users_categories
+
+
+        //update item_id and user_id for table users_items
         List<Item> items = itemsRepository.findByUser_Id(1);
 
         for (Item item : items) {

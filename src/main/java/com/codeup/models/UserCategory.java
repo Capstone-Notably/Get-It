@@ -20,12 +20,17 @@ public class UserCategory {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "preference_id")
+    private Preference preference;
+
     public UserCategory() {
     }
 
-    public UserCategory(Category category, User user) {
+    public UserCategory(Category category, User user, Preference preference) {
         this.category = category;
         this.user = user;
+        this.preference = preference;
     }
 
     public long getId() {
@@ -50,5 +55,13 @@ public class UserCategory {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Preference getPreference() {
+        return preference;
+    }
+
+    public void setPreference(Preference preference) {
+        this.preference = preference;
     }
 }
