@@ -31,6 +31,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Category> categories;
 
+    @OneToMany(mappedBy = "user")
+    private List<Item> items;
+
     public User() {
     }
 

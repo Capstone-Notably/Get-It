@@ -19,6 +19,13 @@ public class Item {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @ManyToOne
+    @JoinColumn(name = "preference_id")
+    private Preference preference;
+
+    @ManyToOne
+    private User user;
+
     public Item() {
     }
 
