@@ -1,6 +1,7 @@
 package com.codeup.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by roxana on 7/1/17.
@@ -14,6 +15,9 @@ public class Preference {
 
     @Column(nullable = false)
     private String name;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "preference")
+    List<Item> items;
 
     public Preference(String name) {
         this.name = name;

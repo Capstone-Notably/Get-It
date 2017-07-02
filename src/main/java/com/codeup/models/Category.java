@@ -13,7 +13,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Column(nullable = false)
@@ -24,6 +24,9 @@ public class Category {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     private List<Item> items;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    private List<UserCategory> userCategories;
 
 
     public Category(String name, String imgUrl, User user) {
@@ -73,5 +76,13 @@ public class Category {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<UserCategory> getUserCategories() {
+        return userCategories;
+    }
+
+    public void setUserCategories(List<UserCategory> userCategories) {
+        this.userCategories = userCategories;
     }
 }
