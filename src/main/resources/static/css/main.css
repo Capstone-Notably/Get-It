@@ -31,7 +31,7 @@ ul, li, a {
     grid: "nav"
           "body"
           "footer";
-    grid-template-rows: .4fr minmax(90vh, auto) .5fr;
+    grid-template-rows: 20vh minmax(70vh, auto) 10vh;
     grid-template-columns: 1fr;
 }
 
@@ -152,7 +152,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
 /*/End of Navbar/*/
 
 
-
+/*Body of home page*/
 .container {
     grid-row: body;
     width: 100vw;
@@ -161,12 +161,41 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     background-color: rgba(76, 175, 80, 0.05);
     border: 1px solid black;
 }
+/*/End of home page body/*/
 
 
+/*Footer*/
 .footer {
+    grid-row: footer;
+    display: inline-grid;
+    grid-template-columns: 60vw 40vw;
+    width: 100vw;
     font-family: var(--font1);
-    font-size: 1em;
+    font-size: 2em;
 }
+
+.footer-left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1em;
+}
+
+.footer-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 1em;
+}
+
+#footer-about, #footer-top {
+    margin-right: .3em;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*/End of footer/*/
 
 
 @media screen and (min-width: 420px) and (max-width: 1020px){

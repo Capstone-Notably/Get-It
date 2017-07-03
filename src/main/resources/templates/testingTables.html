@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="fragments::head('page-title')"></head>
 <body>
+
 <div class="home-grid">
 
     <div th:replace="fragments::hidden-search"></div>
@@ -25,8 +26,10 @@
         </div>
     </div>
 
-    <div class="footer">Footer</div>
 </div>
+
+<div th:replace="fragments::my-footer">Footer</div>
+
 <div th:replace="fragments::scripts"></div>
 </body>
 </html>
