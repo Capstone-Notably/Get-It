@@ -49,6 +49,9 @@ public class UsersController {
     public String saveUser(@ModelAttribute User user, @RequestParam(name = "preference") String preference, @RequestParam(name = "file") MultipartFile uploadedFile, Model model) {
         String filename = transferUploadedFile(uploadedFile, usersImgPath, model);
 
+        if(filename.isEmpty()) {
+            filename = "default_user.png";
+        }
         user.setImgUrl(filename);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         usersRepository.save(user);
