@@ -58,7 +58,11 @@
                     <li><a class="dropdown-links" href="#">Recipes</a></li>
                     <li><a class="dropdown-links" href="#">Update Profile</a></li>
                     <li class="dropdown-links divider" role="separator"></li>
-                    <li><a class="dropdown-links" href="#">Log out</a></li>
+                    <li>
+                        <form th:action="@{/logout}" th:method="post">
+                            <button class="btn-link btn dropdown-links" style="margin-top: 8px">Logout</button>
+                        </form>
+                    </li>
                 </ul>
             </span>
         </div>
