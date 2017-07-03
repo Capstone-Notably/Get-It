@@ -26,7 +26,7 @@
             <input type="file" class="form-control" name="file" id="file" />
         </div>
 
-        <input class="menu-in" name="preference" type="hidden" />
+        <input class="menu-in" name="preference" type="text" />
         <div class="btn-group" style="display: block">
             <button type="button" class="menu btn btn-lg dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="caret"></span>
@@ -43,5 +43,18 @@
     </form>
 </div>
 <div th:replace="fragments::scripts"></div>
+<!--<script>-->
+    <!--$('.menu').click(function () {-->
+        <!--$(this).toggleClass('menu-click');-->
+    <!--});-->
+
+    <!--$('.menu-li').click(function (e) {-->
+        <!--e.preventDefault();-->
+        <!--var name = ' <span class="caret"></span> ' + $(this).html();-->
+        <!--$('.menu').html(name);-->
+        <!--$('.menu-in').val($(this).children().html());-->
+        <!--console.log("test")-->
+    <!--});-->
+<!--</script>-->
 </body>
 </html>
