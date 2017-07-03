@@ -36,26 +36,28 @@ public class ItemsController {
     @GetMapping("/items")
     public String viewItems(@RequestParam("category_id") long category_id, Model model) {
 
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (!principal.equals("anonymousUser")) {
-            User user = (User) principal;
-            List<CustomItem> customItems = new ArrayList<>();
-            List<UserItem> userItems = userItemsRepository.findByUser_Id(user.getId());
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if (!principal.equals("anonymousUser")) {
+//            User user = (User) principal;
+//            List<CustomItem> customItems = new ArrayList<>();
+//            List<UserItem> userItems = userItemsRepository.findByUser_IdAndCategory_Id(user.getId(), category_id);
+//
+//            for (UserItem userItem : userItems) {
+//                Item item = itemsRepository.findOne(userItem.getItem().getId());
+//                CustomItem customItem = new CustomItem(item.getName(), item.getImgUrl(), userItem.getPrice(), userItem.getQuantity(), userItem.getBarcode(), userItem.isFavorite());
+//                customItems.add(customItem);
+//            }
+//
+//            model.addAttribute("items", customItems);
+//
+//        } else {
+//            // get the default items using user_id=1 -> admin user
+//            List<Item> items = itemsRepository.findByUser_IdAndCategory_Id(1, category_id);
+//            model.addAttribute("items", items);
+//        }
 
-            for (UserItem userItem : userItems) {
-                Item item = itemsRepository.findOne(userItem.getItem().getId());
-                CustomItem customItem = new CustomItem(item.getName(), item.getImgUrl(), userItem.getPrice(), userItem.getQuantity(), userItem.getBarcode(), userItem.isFavorite());
-                customItems.add(customItem);
-            }
-
-            model.addAttribute("items", customItems);
-
-        } else {
-            // get the default items using user_id=1 -> admin user
-            List<Item> items = itemsRepository.findByUser_IdAndCategory_Id(1, category_id);
-            model.addAttribute("items", items);
-        }
-
+        List<CustomItem> customItems = getItems(itemsRepository, userItemsRepository, category_id);
+        model.addAttribute("items", customItems);
         return "items/index";
     }
 
@@ -82,6 +84,31 @@ public class ItemsController {
         itemsRepository.save(defaultItem);
         userItemsRepository.save(userItem);
         return "redirect:/home";
+    }
+
+    public static List<CustomItem> getItems(ItemsRepository itemsRepository, UserItemsRepository userItemsRepository, long category_id) {
+        List<CustomItem> customItems = new ArrayList<>();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!principal.equals("anonymousUser")) {
+            User user = (User) principal;
+            List<UserItem> userItems = userItemsRepository.findByUser_Id(user.getId());
+
+            for (UserItem userItem : userItems) {
+                Item item = itemsRepository.findOne(userItem.getItem().getId());
+                if(item.getCategory().getId() == category_id) {
+                    CustomItem customItem = new CustomItem(item.getName(), item.getImgUrl(), userItem.getPrice(), userItem.getQuantity(), userItem.getBarcode(), userItem.isFavorite());
+                    customItems.add(customItem);
+                }
+            }
+
+        } else {
+            // get the default items using user_id=1 -> admin user
+            List<Item> items = itemsRepository.findByUser_IdAndCategory_Id(1, category_id);
+            for (Item item : items) {
+                customItems.add(new CustomItem(item.getName(), item.getImgUrl()));
+            }
+        }
+        return customItems;
     }
 
 }

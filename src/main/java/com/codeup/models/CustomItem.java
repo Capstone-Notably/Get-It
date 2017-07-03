@@ -14,6 +14,11 @@ public class CustomItem {
     public CustomItem() {
     }
 
+    public CustomItem(String name, String imgUrl) {
+        this.name = name;
+        this.imgUrl = imgUrl;
+    }
+
     public CustomItem(String name, String imgUrl, float price, int quantity, String barcode, boolean favorite) {
         this.name = name;
         this.imgUrl = imgUrl;
