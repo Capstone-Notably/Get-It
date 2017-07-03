@@ -11,5 +11,7 @@ import java.util.List;
  */
 @Repository
 public interface ItemsRepository  extends CrudRepository<Item, Long>{
-    public Iterable<Item> findByCategory_Id(long category_id);
+    public List<Item> findByCategory_Id(long category_id);
+    public List<Item> findByUser_Id(long user_id);
+    public List<Item> findByUser_IdAndCategory_Id(long user_id, long category_id);
 }

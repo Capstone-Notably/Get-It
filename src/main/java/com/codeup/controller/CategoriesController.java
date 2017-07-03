@@ -1,20 +1,21 @@
 package com.codeup.controller;
 
 import com.codeup.models.Category;
+import com.codeup.models.User;
 import com.codeup.repositories.CategoriesRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.List;
 
 /**
  * Created by roxana on 6/28/17.
@@ -33,7 +34,16 @@ public class CategoriesController {
 
     @GetMapping("/home")
     public String viewHome(Model model) {
-        Iterable<Category> categories = categoriesRepository.findAll();
+        //get default categories using user_id of admin
+        List<Category> categories = categoriesRepository.findByUser_Id(1);
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!principal.equals("anonymousUser")) {
+            User user = (User) principal;
+            List<Category> customCategories = categoriesRepository.findByUser_Id(user.getId());
+            categories.addAll(customCategories);
+        }
+
         model.addAttribute("categories", categories);
         return "testingTables";
 

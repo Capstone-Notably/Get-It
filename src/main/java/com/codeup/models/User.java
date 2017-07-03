@@ -16,7 +16,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
 
     @Column(unique = true)
@@ -25,8 +25,20 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column()
+    @Column(nullable = false)
     private String imgUrl;
+
+    @OneToMany(mappedBy = "user")
+    private List<Category> categories;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserCategory> userCategories;
+
+    @OneToMany(mappedBy = "user")
+    private List<Item> items;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserItem> userItems;
 
     public User() {
     }
@@ -94,5 +106,37 @@ public class User {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public List<UserItem> getUserItems() {
+        return userItems;
+    }
+
+    public void setUserItems(List<UserItem> userItems) {
+        this.userItems = userItems;
+    }
+
+    public List<UserCategory> getUserCategories() {
+        return userCategories;
+    }
+
+    public void setUserCategories(List<UserCategory> userCategories) {
+        this.userCategories = userCategories;
     }
 }
