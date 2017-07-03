@@ -12,4 +12,5 @@ import java.util.List;
 @Repository
 public interface CategoriesRepository extends CrudRepository<Category, Long> {
     public List<Category> findByUser_Id(long user_id);
+    public Category findByName(String name);
 }

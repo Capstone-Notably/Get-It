@@ -19,7 +19,12 @@ public class Category {
     @Column(nullable = false)
     private String imgUrl;
 
+    @Column
+    private String preferences;
+
+
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
@@ -29,9 +34,10 @@ public class Category {
     private List<UserCategory> userCategories;
 
 
-    public Category(String name, String imgUrl, User user) {
+    public Category(String name, String imgUrl, String preferences, User user) {
         this.name = name;
         this.imgUrl = imgUrl;
+        this.preferences = preferences;
         this.user = user;
     }
 
@@ -84,5 +90,13 @@ public class Category {
 
     public void setUserCategories(List<UserCategory> userCategories) {
         this.userCategories = userCategories;
+    }
+
+    public String getPreferences() {
+        return preferences;
+    }
+
+    public void setPreferences(String preferences) {
+        this.preferences = preferences;
     }
 }

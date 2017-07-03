@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments::head('Register')"></head>
+<head th:replace="fragments::head('Register')" />
 <body>
 <nav th:replace="fragments::my-navbar"></nav>
 <div class="container">
@@ -25,6 +25,20 @@
             <label for="file">Image</label>
             <input type="file" class="form-control" name="file" id="file" />
         </div>
+
+        <input class="menu-in" name="preference" type="hidden" />
+        <div class="btn-group" style="display: block">
+            <button type="button" class="menu btn btn-lg dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <div th:each="preference:${preferences}">
+                    <li><a class="menu-li" href="#"><span th:text="${preference.name}" /></a></li>
+                    <li role="separator" class="divider"></li>
+                </div>
+            </ul>
+        </div>
+
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
 </div>

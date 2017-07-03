@@ -17,7 +17,7 @@ public class Preference {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "preference")
-    List<Item> items;
+    private List<UserCategory> userCategories;
 
     public Preference(String name) {
         this.name = name;
@@ -40,5 +40,13 @@ public class Preference {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<UserCategory> getUserCategories() {
+        return userCategories;
+    }
+
+    public void setUserCategories(List<UserCategory> userCategories) {
+        this.userCategories = userCategories;
     }
 }
