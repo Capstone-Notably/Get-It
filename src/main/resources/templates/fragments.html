@@ -13,7 +13,7 @@
 <body>
 
 Hidden search bar
-<div th:fragment="hidden-search" class="search">
+<div class="search">
     <input id="nav-search-input" type="text" placeholder="Search"/>
     <input class="nav-search-button" type="submit" value="Search"/>
 </div>
@@ -24,7 +24,7 @@ Hidden search bar
         <!--<input class="nav-search-button" type="submit" value="Search"/>-->
     <!--</div>-->
     <!--Left side nav-->
-    <a href="/home" id="nav-brand-name">get it!</a>
+    <a href="/home" id="nav-brand-name">Get It!</a>
 
     <!--Logged out right side nav-->
     <div sec:authorize="!isAuthenticated()" class="nav-links-logged-out">
@@ -44,10 +44,10 @@ Hidden search bar
     <div sec:authorize="isAuthenticated()" class="nav-links-logged-in">
 
         <div class="nav-icons">
-
             <span class="glyphicon glyphicon-search" aria-hidden="true" id="search-trigger2"></span>
-            <span id="user-icon" class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        </div>
 
+        <div class="nav-icons">
             <span class="dropdown">
                 <a href="#" class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true"
                    aria-expanded="false">
@@ -65,8 +65,12 @@ Hidden search bar
                     <li><a class="dropdown-links" href="#">Log out</a></li>
                 </ul>
             </span>
-
         </div>
+
+        <div class="nav-icons">
+            <a id="user-icon" href="#"><img src="http://via.placeholder.com/50x50" /></a>
+        </div>
+
     </div>
 </nav>
 
