@@ -45,9 +45,25 @@ public class CategoriesController {
 
     @PostMapping("/categories/create")
     public String saveCategory(@ModelAttribute Category category, @RequestParam(name = "file") MultipartFile uploadedFile, Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String filename = UsersController.transferUploadedFile(uploadedFile, categoriesImgPath, model);
+        Preference preference = userCategoryRepository.findByUser_Id(user.getId()).get(0).getPreference();
+        String strPreference = String.valueOf(preference.getId());
+
+        if(filename.isEmpty()) {
+            filename = "default_category.png";
+        }
+
+        // update categories table
         category.setImgUrl(filename);
+        category.setPreferences(strPreference);
+        category.setUser(user);
         categoriesRepository.save(category);
+
+        // update users_categories table
+        UserCategory userCategory = new UserCategory(category, user, preference);
+        userCategoryRepository.save(userCategory);
+
         return "redirect:/home";
     }
 
