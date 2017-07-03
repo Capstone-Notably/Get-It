@@ -161,6 +161,27 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     background-color: rgba(76, 175, 80, 0.05);
     border: 1px solid black;
 }
+
+.login-body {
+    grid-row: body;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    font-family: var(--font1);
+    font-size: 1em;
+    background-color: rgba(76, 175, 80, 0.05);
+    border: 1px solid black;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
 /*/End of home page body/*/
 
 
@@ -267,5 +288,8 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     }
 
 
+    .footer {
+        font-size: 1em;
+    }
 
 }
