@@ -13,16 +13,12 @@
 <body>
 
 
-<div class="search">
-    <input id="nav-search-input" type="text" placeholder="Search"/>
+<div th:fragment="hidden-search" class="search">
+    <input id="nav-search-input" type="text" placeholder="Enter your search here"/>
     <input class="nav-search-button" type="submit" value="Search"/>
 </div>
 
 <nav class="navbar" th:fragment="my-navbar">
-    <!--<div class="search">-->
-        <!--<input id="nav-search-input" type="text" placeholder="Search"/>-->
-        <!--<input class="nav-search-button" type="submit" value="Search"/>-->
-    <!--</div>-->
     <!--Left side nav-->
     <a href="/home" id="nav-brand-name">Get It<span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
 
@@ -48,7 +44,7 @@
         </div>
 
         <div class="nav-icons">
-            <span class="dropdown">
+            <span class="dropdown" id="dropdown-nav">
                 <a href="#" class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true"
                    aria-expanded="false">
                     <span id="user-hello-hide-mobile-nav">

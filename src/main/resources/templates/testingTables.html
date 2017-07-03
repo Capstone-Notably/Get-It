@@ -4,10 +4,7 @@
 <body>
 <div class="home-grid">
 
-    <div class="search">
-        <input id="nav-search-input" type="text" placeholder="Search"/>
-        <input class="nav-search-button" type="submit" value="Search"/>
-    </div>
+    <div th:replace="fragments::hidden-search"></div>
 
     <nav th:replace="fragments::my-navbar"></nav>
 
