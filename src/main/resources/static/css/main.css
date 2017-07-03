@@ -198,6 +198,10 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
 /*/End of footer/*/
 
 
+
+
+
+
 @media screen and (min-width: 420px) and (max-width: 1020px){
 
 
@@ -207,12 +211,6 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     }
 
 }
-
-
-
-
-
-
 
 
 @media screen and (max-width: 420px){
