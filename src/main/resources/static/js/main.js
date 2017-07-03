@@ -12,12 +12,15 @@
     /*----------------------------------------------------------------------------------------------------------------------
      Register
      ----------------------------------------------------------------------------------------------------------------------*/
+    //assign a default preference to the input
+    var $menu_li = $('.menu-li');
+    $('.menu-in').val($menu_li.children().html());
 
     $('.menu').click(function () {
         $(this).toggleClass('menu-click');
     });
 
-    $('.menu-li').click(function (e) {
+    $menu_li.click(function (e) {
         e.preventDefault();
         var name = ' <span class="caret"></span> ' + $(this).html();
         $('.menu').html(name);
