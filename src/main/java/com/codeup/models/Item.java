@@ -29,9 +29,12 @@ public class Item {
     public Item() {
     }
 
-    public Item(String name, String imgUrl) {
+    public Item(String name, String imgUrl, String preferences, Category category, User user) {
         this.name = name;
         this.imgUrl = imgUrl;
+        this.preferences = preferences;
+        this.category = category;
+        this.user = user;
     }
 
     public long getId() {

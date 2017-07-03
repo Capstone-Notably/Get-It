@@ -26,14 +26,14 @@
             <input type="file" class="form-control" name="file" id="file" />
         </div>
 
-        <input id="pref" name="preference" type="hidden" />
+        <input class="menu-in" name="preference" type="hidden" />
         <div class="btn-group" style="display: block">
             <button type="button" class="menu btn btn-lg dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
                 <div th:each="preference:${preferences}">
-                    <li><a class="preference" href="#"><span th:text="${preference.name}" /></a></li>
+                    <li><a class="menu-li" href="#"><span th:text="${preference.name}" /></a></li>
                     <li role="separator" class="divider"></li>
                 </div>
             </ul>

@@ -1,10 +1,8 @@
 package com.codeup.controller;
 
 import com.codeup.models.*;
-import com.codeup.repositories.UserItemsRepository;
-import com.codeup.repositories.ItemsRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import com.codeup.repositories.*;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,14 +19,18 @@ import java.util.List;
 public class ItemsController {
     private final ItemsRepository itemsRepository;
     private final UserItemsRepository userItemsRepository;
+    private final CategoriesRepository categoriesRepository;
+    private final UserCategoryRepository userCategoryRepository;
 
     @Value("${items-img-path}")
     private String itemsImgPath;
 
     @Autowired
-    public ItemsController(ItemsRepository itemsRepository, UserItemsRepository userItemsRepository) {
+    public ItemsController(ItemsRepository itemsRepository, UserItemsRepository userItemsRepository, CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository) {
         this.itemsRepository = itemsRepository;
         this.userItemsRepository = userItemsRepository;
+        this.categoriesRepository = categoriesRepository;
+        this.userCategoryRepository = userCategoryRepository;
     }
 
     @GetMapping("/items")
@@ -59,15 +61,26 @@ public class ItemsController {
 
     @GetMapping("/items/create")
     public String createItem(Model model) {
-        model.addAttribute("items", new Item());
+        List<Category> categories = CategoriesController.getCategories(categoriesRepository, userCategoryRepository);
+        model.addAttribute("categories", categories);
+        model.addAttribute("item", new CustomItem());
         return "items/create";
     }
 
     @PostMapping("/items/create")
-    public String saveItem(@ModelAttribute Item item, @RequestParam(name = "file") MultipartFile uploadedFile, Model model) {
+    public String saveItem(@ModelAttribute CustomItem item, @RequestParam(name = "file") MultipartFile uploadedFile, @RequestParam(name = "categoryName") String categoryName, Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String filename = UsersController.transferUploadedFile(uploadedFile, itemsImgPath, model);
-        item.setImgUrl(filename);
-        itemsRepository.save(item);
+        Category category = categoriesRepository.findByName(categoryName);
+        String preference = String.valueOf(userCategoryRepository.findByUser_Id(user.getId()).get(0).getPreference().getId());
+
+        if(filename.isEmpty()) {
+            filename = "default_item.png";
+        }
+        Item defaultItem = new Item(item.getName(), filename, preference, category, user);
+        UserItem userItem = new UserItem(item.getPrice(), item.getQuantity(), item.getBarcode(), item.isFavorite(), user, defaultItem);
+        itemsRepository.save(defaultItem);
+        userItemsRepository.save(userItem);
         return "redirect:/home";
     }
 

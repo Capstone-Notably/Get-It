@@ -79,10 +79,6 @@ public class UsersController {
                     userItemsRepository.save(new UserItem(user, item));
                 }
             }
-//            UserItem userItem = new UserItem();
-//            userItem.setItem(item);
-//            userItem.setUser(user);
-//            userItemsRepository.save(userItem);
         }
 
         return "redirect:/login";
