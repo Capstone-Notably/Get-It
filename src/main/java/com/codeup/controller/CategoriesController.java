@@ -31,7 +31,7 @@ public class CategoriesController {
 
     @GetMapping("/home")
     public String viewHome(Model model) {
-        List<Category> categories = getCategories(categoriesRepository, userCategoryRepository);
+        List<Category> categories = findAll(categoriesRepository, userCategoryRepository);
         model.addAttribute("categories", categories);
         return "testingTables";
 
@@ -67,7 +67,7 @@ public class CategoriesController {
         return "redirect:/home";
     }
 
-    public static List<Category> getCategories(CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository) {
+    public static List<Category> findAll(CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository) {
         List<Category> categories = new ArrayList<>();
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 

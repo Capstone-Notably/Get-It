@@ -55,3 +55,22 @@
         $(this).toggleClass('glyphicon-star-empty glyphicon-star');
         $fav.each(function () { this.checked = !this.checked; });
     });
+
+
+    /*----------------------------------------------------------------------------------------------------------------------
+     Groceries Lists
+     ----------------------------------------------------------------------------------------------------------------------*/
+    request = $.ajax({
+        'url': '/items.json'
+    });
+    request.done(function (items) {
+        var availableTags = ["itemName"];
+        var i= 0;
+        items.forEach(function(item) {
+            availableTags[i] = item.name;
+            i++;
+        });
+        $( "#tags" ).autocomplete({
+            source: availableTags
+        });
+    });

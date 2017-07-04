@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments::head('Grocery Lists')"></head>
+<body>
+    <nav th:replace="fragments::my-navbar"></nav>
+    <div class="container">
+        <h1>Groceries Lists</h1>
+        <form th:method="post" th:action="@{/items/search}">
+            <!--<div class="form-group">-->
+                <div class="ui-widget">
+                    <input id="tags" type="text" class="form-control" placeholder="Search" />
+                </div>
+            <!--</div>-->
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <div th:each="list : ${lists}">
+            <a href="#" th:text="${list.name}"></a>
+        </div>
+    </div>
+    <div th:replace="fragments::scripts"></div>
+</body>
+</html>

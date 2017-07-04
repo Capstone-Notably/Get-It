@@ -1,9 +1,6 @@
 package com.codeup.controller;
 
-import com.codeup.models.Category;
-import com.codeup.models.Preference;
-import com.codeup.models.User;
-import com.codeup.repositories.CategoriesRepository;
+import com.codeup.models.*;
 import com.codeup.repositories.PreferenceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

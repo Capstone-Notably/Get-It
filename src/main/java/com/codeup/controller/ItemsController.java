@@ -2,6 +2,7 @@ package com.codeup.controller;
 
 import com.codeup.models.*;
 import com.codeup.repositories.*;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -35,14 +36,14 @@ public class ItemsController {
 
     @GetMapping("/items")
     public String viewItems(@RequestParam("category_id") long category_id, Model model) {
-        List<CustomItem> customItems = getItems(itemsRepository, userItemsRepository, category_id);
+        List<CustomItem> customItems = findByCategory(itemsRepository, userItemsRepository, category_id);
         model.addAttribute("items", customItems);
         return "items/index";
     }
 
     @GetMapping("/items/create")
     public String createItem(Model model) {
-        List<Category> categories = CategoriesController.getCategories(categoriesRepository, userCategoryRepository);
+        List<Category> categories = CategoriesController.findAll(categoriesRepository, userCategoryRepository);
         model.addAttribute("categories", categories);
         model.addAttribute("item", new CustomItem());
         return "items/create";
@@ -65,7 +66,14 @@ public class ItemsController {
         return "redirect:/home";
     }
 
-    public static List<CustomItem> getItems(ItemsRepository itemsRepository, UserItemsRepository userItemsRepository, long category_id) {
+    @GetMapping("/items.json")
+    public @ResponseBody String findItems() {
+        List<CustomItem> items = findByCategory(itemsRepository, userItemsRepository, 1);
+        String json = new Gson().toJson(items);
+        return json;
+    }
+
+    public static List<CustomItem> findByCategory(ItemsRepository itemsRepository, UserItemsRepository userItemsRepository, long category_id) {
         List<CustomItem> customItems = new ArrayList<>();
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (!principal.equals("anonymousUser")) {
