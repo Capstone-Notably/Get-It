@@ -214,13 +214,14 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
 
 
 /*Body of home page*/
-.container {
+.body {
     grid-row: body;
     width: 100vw;
     font-family: var(--font1);
     font-size: 1em;
     background-color: rgba(76, 175, 80, 0.05);
     border: 1px solid black;
+    padding: 1em;
 }
 
 .login-body {
