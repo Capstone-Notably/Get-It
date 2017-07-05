@@ -64,7 +64,7 @@ public class UsersController {
         Preference prefByName = preferenceRepository.findByName(preference);
         List<Category> categories = categoriesRepository.findByUser_Id(1);
         for (Category category : categories) {
-            String[] split = category.getPreferences().split("-");
+            String[] split = category.getPreferences().split(" ");
             for(int i=0; i<split.length; i++) {
                 if (Integer.parseInt(split[i]) == prefByName.getId()) {
                     userCategoryRepository.save(new UserCategory(category, user, prefByName));
