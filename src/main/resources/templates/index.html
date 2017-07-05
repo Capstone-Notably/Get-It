@@ -2,35 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="fragments::head(Posts)" />
 <body>
-<nav th:replace="fragments::my-navbar"></nav>
+<div class="home-grid">
 
-<div class="container">
-    <div sec:authorize="isAuthenticated()">
-        <h1 style="text-align:center;margin-bottom:35px">Welcome <span sec:authentication="name"> user</span>!</h1>
-    </div>
-    <div sec:authorize="hasRole('ROLE_ADMIN')">
-        This content is only shown to administrators.
-    </div>
-    <div sec:authorize="hasRole('ROLE_USER')">
-        This content is only shown to users.
-    </div>
+    <div th:replace="fragments::hidden-search"></div>
+
+    <nav th:replace="fragments::my-navbar"></nav>
+
+    <div class="body">
+        <div sec:authorize="isAuthenticated()">
+            <h1 style="text-align:center;margin-bottom:35px">Welcome <span sec:authentication="name"> user</span>!</h1>
+        </div>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <!--This content is only shown to administrators.-->
+        </div>
+        <div sec:authorize="hasRole('ROLE_USER')">
+            <!--This content is only shown to users.-->
+        </div>
 
 
-    <div class="row">
-        <div th:each="post: ${posts}" class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img class="img-responsive" src="http://via.placeholder.com/250x200" style="max-width:250px; height:200px" />
-                <div class="caption">
-                    <h4 th:text="${post.getTitle()}" style="text-align:center" />
-                    <p><a th:href="@{/posts/show(post_id=${post.getId()})}" class="btn btn-primary btn-block" role="button">Go</a></p>
-                    <p><a th:href="@{/posts/edit(post_id=${post.getId()})}" class="btn btn-primary btn-block" id="edit-post" role="button">Edit</a></p>
-                    <p><a th:href="@{/posts/delete(post_id=${post.getId()})}" class="btn btn-primary btn-block" role="button">Delete</a></p>
+        <div class="row">
+            <div th:each="category:${categories}">
+                <div class="col-sm-6 col-md-4">
+                    <p>Category name: <span th:text="${category.name}" /></p>
+                    <a th:href="@{/items(category_id=${category.id})}"><img th:src="'/images/categories/' + ${category.imgUrl}" class="img-responsive" width="250px" height="200px" /></a>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
+    <div th:replace="fragments::my-footer">Footer</div>
+
+</div>
 <div th:replace="fragments::scripts"></div>
 </body>
 </html>
