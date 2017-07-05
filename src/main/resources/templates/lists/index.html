@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head th:replace="fragments::head('Grocery Lists')"></head>
+<head th:replace="fragments::head('Grocery Lists')">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
 <body>
+    <input type="hidden" id= "csrf-token" th:name="${_csrf.parameterName}" th:content="${_csrf.token}" />
+    <input type="hidden" id= "csrf-header" th:name="${_csrf.parameterName}" th:content="${_csrf.headerName}" />
     <nav th:replace="fragments::my-navbar"></nav>
     <div class="container">
         <h1>Groceries Lists</h1>
-        <form th:method="post" th:action="@{/items/search}">
-            <!--<div class="form-group">-->
+        <form th:method="post">  <!--th:action="@{/lists/items}" -->
+            <div class="form-group">
                 <div class="ui-widget">
                     <input id="tags" type="text" class="form-control" placeholder="Search" />
                 </div>
-            <!--</div>-->
-            <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+            <button id="search-submit" type="submit" class="btn btn-default">Submit</button>
         </form>
         <div th:each="list : ${lists}">
             <a href="#" th:text="${list.name}"></a>
+            <div id="view-items">
+                <div th:each="item : ${items}" class='item-all'>
+                    <div th:if="${item.listId} == ${list.id}" class='item-name'>
+                        <input type='checkbox' value='false' class='item-property' />
+                        <span th:text="${item.name}" class='item-property' />
+                    </div>
+                    <div th:if="${item.listId} == ${list.id}" class='item-img'>
+                        <img th:src="${'/images/items/' + item.imgUrl}" />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div th:replace="fragments::scripts"></div>

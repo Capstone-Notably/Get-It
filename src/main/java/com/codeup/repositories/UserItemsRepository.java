@@ -12,4 +12,5 @@ import java.util.List;
 @Repository
 public interface UserItemsRepository extends CrudRepository<UserItem, Long> {
     public List<UserItem> findByUser_Id(long user_id);
+    public UserItem findByUser_IdAndItem_Id(long user_id, long item_id);
 }

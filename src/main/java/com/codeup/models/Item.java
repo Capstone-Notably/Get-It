@@ -1,6 +1,7 @@
 package com.codeup.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="items")
@@ -25,6 +26,9 @@ public class Item {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "item")
+    private List<ListItem> listItems;
 
     public Item() {
     }

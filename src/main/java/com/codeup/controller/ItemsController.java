@@ -68,7 +68,7 @@ public class ItemsController {
 
     @GetMapping("/items.json")
     public @ResponseBody String findItems() {
-        List<CustomItem> items = findByCategory(itemsRepository, userItemsRepository, 1);
+        List<CustomItem> items = findByUser(itemsRepository, userItemsRepository);
         String json = new Gson().toJson(items);
         return json;
     }
@@ -93,6 +93,22 @@ public class ItemsController {
             List<Item> items = itemsRepository.findByUser_IdAndCategory_Id(1, category_id);
             for (Item item : items) {
                 customItems.add(new CustomItem(item.getName(), item.getImgUrl()));
+            }
+        }
+        return customItems;
+    }
+
+    public static List<CustomItem> findByUser(ItemsRepository itemsRepository, UserItemsRepository userItemsRepository) {
+        List<CustomItem> customItems = new ArrayList<>();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!principal.equals("anonymousUser")) {
+            User user = (User) principal;
+            List<UserItem> userItems = userItemsRepository.findByUser_Id(user.getId());
+
+            for (UserItem userItem : userItems) {
+                Item item = itemsRepository.findOne(userItem.getItem().getId());
+                CustomItem customItem = new CustomItem(item.getName(), item.getImgUrl(), userItem.getPrice(), userItem.getQuantity(), userItem.getBarcode(), userItem.isFavorite());
+                customItems.add(customItem);
             }
         }
         return customItems;

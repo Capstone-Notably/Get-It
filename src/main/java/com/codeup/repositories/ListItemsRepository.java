@@ -1,6 +1,6 @@
 package com.codeup.repositories;
 
-import com.codeup.models.GroceryList;
+import com.codeup.models.ListItem;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +10,6 @@ import java.util.List;
  * Created by roxana on 7/3/17.
  */
 @Repository
-public interface GroceryListsRepository extends CrudRepository<GroceryList, Long> {
-    public List<GroceryList> findAllByUser_Id(long user_id);
+public interface ListItemsRepository extends CrudRepository<ListItem, Long> {
+    public List<ListItem> findByGlist_Id(long glist_id);
 }

@@ -10,6 +10,7 @@ public class CustomItem {
     private int quantity;
     private String barcode;
     private boolean favorite;
+    private long listId;
 
     public CustomItem() {
     }
@@ -26,6 +27,16 @@ public class CustomItem {
         this.quantity = quantity;
         this.barcode = barcode;
         this.favorite = favorite;
+    }
+
+    public CustomItem(String name, String imgUrl, float price, int quantity, String barcode, boolean favorite, long listId) {
+        this.name = name;
+        this.imgUrl = imgUrl;
+        this.price = price;
+        this.quantity = quantity;
+        this.barcode = barcode;
+        this.favorite = favorite;
+        this.listId = listId;
     }
 
     public String getName() {
@@ -74,5 +85,13 @@ public class CustomItem {
 
     public void setFavorite(boolean favorite) {
         this.favorite = favorite;
+    }
+
+    public long getListId() {
+        return listId;
+    }
+
+    public void setListId(long listId) {
+        this.listId = listId;
     }
 }

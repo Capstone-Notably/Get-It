@@ -1,6 +1,7 @@
 package com.codeup.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by roxana on 7/3/17.
@@ -18,6 +19,9 @@ public class GroceryList {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "glist")
+    private List<ListItem> listItems;
 
     public GroceryList() {
     }
