@@ -21,7 +21,7 @@
 
 <nav class="navbar" th:fragment="my-navbar">
     <!--Left side nav-->
-    <a href="/home" id="nav-brand-name">Get It<span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+    <a href="/home" id="nav-brand-name">Get It<span id="nav-check-mark" class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
 
     <!--Logged out right side nav-->
     <div sec:authorize="!isAuthenticated()" class="nav-links-logged-out">
