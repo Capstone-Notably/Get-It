@@ -20,7 +20,7 @@ body { margin:0; padding:0; font-size:100%; line-height:1; display: grid; text-d
 
 }
 
-ul, li, a {
+ul, li, a, a:hover {
     text-decoration: none;
     list-style: none;
     color: black;
@@ -68,7 +68,7 @@ ul, li, a {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    padding-right: .5em;
+    padding-right: 2em;
     font-family: var(--font1);
 
 }
@@ -87,18 +87,15 @@ ul, li, a {
 .nav-icons {
     font-family: var(--font1);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-}
-
-span#nav-check-mark {
-    font-size: 1em;
-    text-decoration: none;
 }
 
 #dropdown-nav {
     display: flex;
     flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #search-trigger2 {
