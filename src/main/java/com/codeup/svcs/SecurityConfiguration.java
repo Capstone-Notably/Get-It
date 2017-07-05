@@ -43,7 +43,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login?logout") // append a query string value
                 .and()
                 .authorizeRequests()
-                .antMatchers("/categories/create", "/items/create") // only authenticated users can create, edit or delete
+                .antMatchers("/categories/create", "/items/create", "/lists") // only authenticated users can create, edit or delete
                 .authenticated()
         ;
     }

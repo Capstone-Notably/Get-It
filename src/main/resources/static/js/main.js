@@ -1,10 +1,6 @@
-/**
- * Created by roxana on 6/25/17.
- */
-
-(function(){
-    "use strict";
-
+/*----------------------------------------------------------------------------------------------------------------------
+     Navbar
+----------------------------------------------------------------------------------------------------------------------*/
 
     $('#search-trigger').click(function() {
         $('div.search').addClass('show');
@@ -16,4 +12,123 @@
         console.log("test");
     });
 
-})();
+/*----------------------------------------------------------------------------------------------------------------------
+     Register
+----------------------------------------------------------------------------------------------------------------------*/
+    //assign a default preference to the input
+    var $menu_li = $('.menu-li');
+    $('.menu-in').val($menu_li.children().html());
+
+    $('.menu').click(function () {
+        $(this).toggleClass('menu-click');
+    });
+
+    $menu_li.click(function (e) {
+        e.preventDefault();
+        var name = ' <span class="caret"></span> ' + $(this).html();
+        $('.menu').html(name);
+        $('.menu-in').val($(this).children().html());
+    });
+
+
+/*----------------------------------------------------------------------------------------------------------------------
+     items/create
+----------------------------------------------------------------------------------------------------------------------*/
+    var $input = $('.qty-input');
+    var $currency = $('.currency');
+    var $fav = $('#fav-input');
+
+    $('.btn-minus').click(function () {
+        if ($input.val() > 0) {
+            $input.val(parseInt($input.val()) - 1);
+        }
+    });
+
+    $('.btn-plus').click(function () {
+        $input.val(parseInt($input.val()) + 1);
+    });
+
+    $currency.maskMoney({prefix:'$ ', allowZero:true});
+
+    $currency.keyup(function() {
+        $('#price-in').val($(this).maskMoney('unmasked')[0]);
+    });
+
+    $('.star').click(function () {
+        $(this).toggleClass('glyphicon-star-empty glyphicon-star');
+        $fav.each(function () { this.checked = !this.checked; });
+    });
+
+
+/*----------------------------------------------------------------------------------------------------------------------
+     Groceries Lists
+----------------------------------------------------------------------------------------------------------------------*/
+    var json, item_json;
+    var $tags = $( "#tags" );
+    var $viewItems = $('#view-items');
+
+    //receive json file from the controller
+    request = $.ajax({
+        'url': '/items.json'
+    });
+    request.done(function (items) {
+        var availableTags = ["itemName"];
+        var i= 0;
+        json = items;
+        items.forEach(function(item) {
+            availableTags[i] = item.name;
+            i++;
+        });
+        $tags.autocomplete({
+            source: availableTags
+        });
+    });
+
+
+    $('#search-submit').click(function (e) {
+        e.preventDefault();
+        if($tags.val() !== "") {
+            var html = $viewItems.html();
+            json.forEach(function(item) {
+                if(item.name === $tags.val()) {
+                    html += "<div class='item-all'>";
+                    html += "<div class='item-name'>";
+                    html += "<input type='checkbox' value='false' class='item-property' />";
+                    html += "<span class='item-property'>" + item.name + "</span>";
+                    html += "</div>";
+                    html += "<div class='item-img'>";
+                    html += "<img src='/images/items/" + item.imgUrl + "'/>";
+                    html += "</div>";
+                    html += "</div>";
+                    item_json = item;
+                }
+            });
+            $viewItems.html(html);
+
+            var token = $('#csrf-token').attr("content");
+            var header = $('#csrf-header').attr("content");
+            console.log(token);
+            console.log(header);
+            console.log(item_json);
+
+            // send json to the controller
+            $.ajax({
+                url:"/lists/items",
+                type:"POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(item_json), //Stringified Json Object
+                async: false,    //Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation
+                cache: false,    //This will force requested pages not to be cached by the browser
+                processData:false, //To avoid making query String instead of JSON
+                beforeSend: function(xhr){
+                    if (header && token) {
+                        xhr.setRequestHeader(header, token);
+                    }
+                }
+            });
+
+            $tags.val("");
+
+        }
+    });
+

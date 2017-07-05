@@ -40,6 +40,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<UserItem> userItems;
 
+    @OneToMany(mappedBy = "user")
+    private List<GroceryList> glists;
+
     public User() {
     }
 
@@ -138,5 +141,13 @@ public class User {
 
     public void setUserCategories(List<UserCategory> userCategories) {
         this.userCategories = userCategories;
+    }
+
+    public List<GroceryList> getGlists() {
+        return glists;
+    }
+
+    public void setGlists(List<GroceryList> glists) {
+        this.glists = glists;
     }
 }

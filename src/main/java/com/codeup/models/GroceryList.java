@@ -4,11 +4,11 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * Created by roxana on 7/1/17.
+ * Created by roxana on 7/3/17.
  */
 @Entity
-@Table(name = "preferences")
-public class Preference {
+@Table(name = "grocery_lists")
+public class GroceryList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -16,14 +16,19 @@ public class Preference {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "preference")
-    private List<UserCategory> userCategories;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public Preference(String name) {
-        this.name = name;
+    @OneToMany(mappedBy = "glist")
+    private List<ListItem> listItems;
+
+    public GroceryList() {
     }
 
-    public Preference() {
+    public GroceryList(String name, User user) {
+        this.name = name;
+        this.user = user;
     }
 
     public long getId() {
@@ -42,11 +47,11 @@ public class Preference {
         this.name = name;
     }
 
-    public List<UserCategory> getUserCategories() {
-        return userCategories;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserCategories(List<UserCategory> userCategories) {
-        this.userCategories = userCategories;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

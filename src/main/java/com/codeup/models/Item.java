@@ -1,6 +1,7 @@
 package com.codeup.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="items")
@@ -15,24 +16,29 @@ public class Item {
     @Column(nullable = false)
     private String imgUrl;
 
+    @Column
+    private String preferences;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
     @ManyToOne
-    @JoinColumn(name = "preference_id")
-    private Preference preference;
-
-    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "item")
+    private List<ListItem> listItems;
 
     public Item() {
     }
 
-    public Item(String name, String imgUrl) {
+    public Item(String name, String imgUrl, String preferences, Category category, User user) {
         this.name = name;
         this.imgUrl = imgUrl;
+        this.preferences = preferences;
+        this.category = category;
+        this.user = user;
     }
 
     public long getId() {
@@ -65,5 +71,21 @@ public class Item {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getPreferences() {
+        return preferences;
+    }
+
+    public void setPreferences(String preferences) {
+        this.preferences = preferences;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
