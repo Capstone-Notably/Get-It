@@ -100,7 +100,7 @@
                     html += "<span class='item-property'>" + item.name + "</span>";
                     html += "</div>";
                     html += "<div class='item-img'>";
-                    html += "<img src='/images/items/" + item.imgUrl + "'/>";
+                    html += "<img src='/uploads/items/" + item.imgUrl + "'/>";
                     html += "</div>";
                     html += "</div>";
                     item_json = item;
