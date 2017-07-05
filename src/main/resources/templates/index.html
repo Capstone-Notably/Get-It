@@ -24,7 +24,7 @@
             <div th:each="category:${categories}">
                 <div id="category" class="col-sm-6 col-md-4">
                     <a id="category-name" th:href="@{/items(category_id=${category.id})}"><span th:text="${category.name}" /></a>
-                    <a id="category-image" th:href="@{/items(category_id=${category.id})}"><img th:src="'/images/categories/' + ${category.imgUrl}" class="img-responsive img-thumbnail" width="250px" height="250px" /></a>
+                    <a id="category-image" th:href="@{/items(category_id=${category.id})}"><img th:src="'/uploads/categories/' + ${category.imgUrl}" class="img-responsive img-thumbnail" width="250px" height="250px" /></a>
                 </div>
             </div>
         </div>
