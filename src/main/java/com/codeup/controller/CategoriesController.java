@@ -33,7 +33,7 @@ public class CategoriesController {
     public String viewHome(Model model) {
         List<Category> categories = findAll(categoriesRepository, userCategoryRepository);
         model.addAttribute("categories", categories);
-        return "testingTables";
+        return "index";
 
     }
 

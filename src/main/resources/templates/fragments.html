@@ -21,7 +21,7 @@
 
 <nav class="navbar" th:fragment="my-navbar">
     <!--Left side nav-->
-    <a href="/home" id="nav-brand-name">Get It<span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+    <a href="/home" id="nav-brand-name">Get It<span id="nav-check-mark" class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
 
     <!--Logged out right side nav-->
     <div sec:authorize="!isAuthenticated()" class="nav-links-logged-out">
@@ -42,19 +42,19 @@
 
         <div class="nav-icons">
             <span class="glyphicon glyphicon-search" aria-hidden="true" id="search-trigger2"></span>
-        </div>
 
-        <div class="nav-icons">
             <span class="dropdown" id="dropdown-nav">
-                <a href="#" class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true"
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                    aria-expanded="false">
                     <span id="user-hello-hide-mobile-nav">
                         Hi
-                        <span sec:authentication="name">!</span>
+                        <span sec:authentication="name"></span>
+                        !
                     </span>
                     <span id="hamburger" class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                    <a id="user-icon" href="#"><img src="http://via.placeholder.com/25x25"/></a>
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu dropdown-menu-right">
                     <li><a class="dropdown-links" href="#">Categories</a></li>
                     <li><a class="dropdown-links" href="#">Recipes</a></li>
                     <li><a class="dropdown-links" href="#">Update Profile</a></li>
@@ -66,15 +66,13 @@
                     </li>
                 </ul>
             </span>
-        </div>
 
-        <div class="nav-icons">
-            <a id="user-icon" href="#"><img src="http://via.placeholder.com/50x50" /></a>
         </div>
 
     </div>
 </nav>
 
+<!--<img th:src="'/images/users/' + ${users.img_url}" style="width: 3em; height: 3em;"/>-->
 
 <form th:fragment="post-form">
     <div class="form-group">
