@@ -6,7 +6,7 @@
     <div class="container">
         <div th:each="item:${items}">
             <p>Item name: <span th:text="${item.name}" /></p>
-            <img th:src="'/images/items/' + ${item.imgUrl}" />
+            <img th:src="'/var/www/get-it.press/uploads/items/' + ${item.imgUrl}" />
         </div>
     </div>
     <div th:replace="fragments::scripts"></div>
