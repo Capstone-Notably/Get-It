@@ -27,7 +27,7 @@
                         <span th:text="${item.name}" class='item-property' />
                     </div>
                     <div th:if="${item.listId} == ${list.id}" class='item-img'>
-                        <img th:src="${'/images/items/' + item.imgUrl}" />
+                        <img th:src="${'/uploads/items/' + item.imgUrl}" />
                     </div>
                 </div>
             </div>
