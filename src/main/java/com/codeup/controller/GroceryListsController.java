@@ -54,8 +54,9 @@ public class GroceryListsController {
     }
 
     @PostMapping("/lists/items")
-    public void saveItem(@RequestBody Item jsonString) {
-        GroceryList glist = groceryListsRepository.findOne((long) 1); // fix this
+    public void saveItem(@RequestBody CustomItem jsonString) {
+        long listId = jsonString.getListId();
+        GroceryList glist = groceryListsRepository.findOne(listId);
         String name = jsonString.getName();
         Item item = itemsRepository.findByName(name);
         ListItem listItem = new ListItem(glist, item);

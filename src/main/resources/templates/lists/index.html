@@ -12,7 +12,7 @@
     <nav th:replace="fragments::my-navbar"></nav>
     <div class="lists-index-body">
         <h1>Groceries Lists</h1>
-        <form th:method="post">  <!--th:action="@{/lists/items}" -->
+        <form th:method="post">
             <div class="form-group">
                 <div class="ui-widget">
                     <input id="tags" type="text" class="form-control" placeholder="Search" />
@@ -35,8 +35,6 @@
             </div>
         </div>
     </div>
-    <div th:replace="fragments::my-footer">Footer</div>
-</div>
     <div th:replace="fragments::scripts"></div>
 </body>
 </html>
