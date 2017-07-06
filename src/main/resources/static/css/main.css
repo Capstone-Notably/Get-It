@@ -11,18 +11,6 @@ body {
     overflow-x: hidden;
 }
 
-body { margin:0; padding:0; line-height:1; display: grid; text-decoration: none }
-
-
-.body {
-    grid-row: body;
-    width: 100vw;
-    font-family: var(--font1);
-    font-size: 1.8em;
-    background-color: rgba(76, 175, 80, 0.05);
-    border: 1px solid black;
-    padding: 1em;
-}
 
 /* ---------------------------------------------------------------------------------------------------------------------
     General Styles
@@ -183,25 +171,26 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
    Login
 ----------------------------------------------------------------------------------------------------------------------*/
 .login-body {
-    grid-row: body;
+    /*grid-row: body;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    width: 30vw;
     font-family: var(--font1);
-    font-size: 1em;
-    background-color: rgba(76, 175, 80, 0.05);
+    /*font-size: 1em;*/
+    background-color: rgba(76, 175, 80, 0.2);
     border: 1px solid var(--l-green);
 }
 
 #login-form {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: stretch;
+    /*justify-content: space-around;*/
+    /*align-items: stretch;*/
     font-family: var(--font1);
     font-size: 2.5em;
+    padding-bottom: 1em;
 }
 
 /*----------------------------------------------------------------------------------------------------------------------
@@ -261,6 +250,10 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     height: 100%;
     justify-content: center;
     align-items: center;
+
+    /* Preserve aspect ratio */
+    min-width: 100%;
+    min-height: 100%;
 
 }
 
@@ -360,6 +353,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     align-items: center;
     width: 100%;
     max-width: 100%;
+    height: 100%;
     font-family: var(--font1);
     font-size: 1em;
     background-color: rgba(76, 175, 80, 0.05);
@@ -369,16 +363,31 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
 }
 
 #create-item-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: stretch;
+    justify-content: center;
+    align-items: center;
     font-family: var(--font1);
     font-size: 2.5em;
 }
 
+.create-rows {
+    justify-content: center;
+    align-items: center;
+    margin: .3em;
+}
+
+.create-rows > input {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: .5em;
+}
+
+#file {
+    font-size: .7em;
+}
+
 .btn-plus {
-    margin-left: 15px;
+    /*margin-left: 15px;*/
 }
 
 .btn-plus, .btn-minus {
@@ -396,7 +405,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
 }
 
 .star {
-    font-size: 45px;
+    font-size: 2em;
     color: yellow;
     cursor: pointer;
 }
