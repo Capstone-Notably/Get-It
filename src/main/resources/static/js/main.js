@@ -106,7 +106,10 @@
                     item_json = item;
                 }
             });
-            $viewItems.html(html);
+
+            if($viewItems.hasClass('active')) {
+                $viewItems.html(html);
+            }
 
             var token = $('#csrf-token').attr("content");
             var header = $('#csrf-header').attr("content");
@@ -138,4 +141,13 @@
 
     $('.ul-tabs li').first().addClass('active');
     $viewItems.first().addClass('in active');
+
+
+    $('.item-all').each(function () {
+        if(!$(this).children().hasClass('item-name')){
+            $(this).hide();
+        }
+    });
+
+
 
