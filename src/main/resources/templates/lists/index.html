@@ -5,10 +5,12 @@
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
+<div class="home grid">
     <input type="hidden" id= "csrf-token" th:name="${_csrf.parameterName}" th:content="${_csrf.token}" />
     <input type="hidden" id= "csrf-header" th:name="${_csrf.parameterName}" th:content="${_csrf.headerName}" />
+    <div th:replace="fragments::hidden-search"></div>
     <nav th:replace="fragments::my-navbar"></nav>
-    <div class="container">
+    <div class="lists-index-body">
         <h1>Groceries Lists</h1>
         <form th:method="post">  <!--th:action="@{/lists/items}" -->
             <div class="form-group">
@@ -33,6 +35,8 @@
             </div>
         </div>
     </div>
+    <div th:replace="fragments::my-footer">Footer</div>
+</div>
     <div th:replace="fragments::scripts"></div>
 </body>
 </html>
