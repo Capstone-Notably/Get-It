@@ -68,7 +68,7 @@
 ----------------------------------------------------------------------------------------------------------------------*/
     var json, item_json;
     var $tags = $( "#tags" );
-    var $viewItems = $('#view-items');
+    var $viewItems = $('.view-items');
 
     //receive json file from the controller
     request = $.ajax({
@@ -134,4 +134,8 @@
 
         }
     });
+
+
+    $('.ul-tabs li').first().addClass('active');
+    $viewItems.first().addClass('in active');
 

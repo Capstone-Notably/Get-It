@@ -1,9 +1,18 @@
 /* ---------------------------------------------------------------------------------------------------------------------
     CSS Reset
 ----------------------------------------------------------------------------------------------------------------------*/
-body { margin:0; padding:0; font-size:100%; line-height:1; display: grid; text-decoration: none }
+body { margin:0; padding:0; line-height:1; display: grid; text-decoration: none }
 
 
+.body {
+    grid-row: body;
+    width: 100vw;
+    font-family: var(--font1);
+    font-size: 1.8em;
+    background-color: rgba(76, 175, 80, 0.05);
+    border: 1px solid black;
+    padding: 1em;
+}
 
 /* ---------------------------------------------------------------------------------------------------------------------
     General Styles
@@ -232,15 +241,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
 
 
 /*Body of home page*/
-.body {
-    grid-row: body;
-    width: 100vw;
-    font-family: var(--font1);
-    font-size: 1em;
-    background-color: rgba(76, 175, 80, 0.05);
-    border: 1px solid black;
-    padding: 1em;
-}
+
 
 .login-body {
     grid-row: body;
@@ -250,7 +251,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     align-items: center;
     width: 100vw;
     font-family: var(--font1);
-    font-size: 1em;
+    font-size: 1.7em;
     background-color: rgba(76, 175, 80, 0.05);
     border: 1px solid black;
 }
@@ -284,9 +285,6 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
 
 }
 
-.categories {
-
-}
 
 #category {
     display: flex;

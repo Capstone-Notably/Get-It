@@ -7,10 +7,10 @@
 <body>
     <input type="hidden" id= "csrf-token" th:name="${_csrf.parameterName}" th:content="${_csrf.token}" />
     <input type="hidden" id= "csrf-header" th:name="${_csrf.parameterName}" th:content="${_csrf.headerName}" />
-    <nav th:replace="fragments::my-navbar"></nav>
+    <!--<nav th:replace="fragments::my-navbar"></nav>-->
     <div class="container">
         <h1>Groceries Lists</h1>
-        <form th:method="post">  <!--th:action="@{/lists/items}" -->
+        <form th:method="post">
             <div class="form-group">
                 <div class="ui-widget">
                     <input id="tags" type="text" class="form-control" placeholder="Search" />
@@ -18,9 +18,13 @@
             </div>
             <button id="search-submit" type="submit" class="btn btn-default">Submit</button>
         </form>
-        <div th:each="list : ${lists}">
-            <a href="#" th:text="${list.name}"></a>
-            <div id="view-items">
+
+        <ul class="nav nav-tabs ul-tabs" >
+            <li th:each="list : ${lists}"><a data-toggle="tab" th:href="'#list' + ${list.id}" th:text="${list.name}" /></li>
+        </ul>
+
+        <div class="tab-content">
+            <div th:each="list : ${lists}" th:id="'list' + ${list.id}" class="tab-pane view-items">
                 <div th:each="item : ${items}" class='item-all'>
                     <div th:if="${item.listId} == ${list.id}" class='item-name'>
                         <input type='checkbox' value='false' class='item-property' />
@@ -32,6 +36,7 @@
                 </div>
             </div>
         </div>
+
     </div>
     <div th:replace="fragments::scripts"></div>
 </body>
