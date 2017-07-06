@@ -282,14 +282,14 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     margin-left: 0;
 }
 
-#category, #recipe {
+.category, .recipe {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#category-name, #recipe-name {
+.category-name, #recipe-name {
     position: absolute;
     font-size: 4em;
     z-index: 1;
@@ -307,8 +307,8 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
 }
 
 .category-image > img {
-    width: 150em;
-    height: 150em;
+    width: 18em;
+    height: 12em;
 }
 
 /*----------------------------------------------------------------------------------------------------------------------
