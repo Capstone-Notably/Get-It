@@ -14,16 +14,6 @@ body {
 body { margin:0; padding:0; line-height:1; display: grid; text-decoration: none }
 
 
-.body {
-    grid-row: body;
-    width: 100vw;
-    font-family: var(--font1);
-    font-size: 1.8em;
-    background-color: rgba(76, 175, 80, 0.05);
-    border: 1px solid black;
-    padding: 1em;
-}
-
 /* ---------------------------------------------------------------------------------------------------------------------
     General Styles
 ----------------------------------------------------------------------------------------------------------------------*/
