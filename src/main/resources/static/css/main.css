@@ -318,25 +318,23 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     grid-template-columns: 60vw 40vw;
     width: 100vw;
     font-family: var(--font1);
-    font-size: 1em;
+    font-size: 1.5em;
 }
 
 .footer-left {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
     padding-left: 1em;
 }
 
 .footer-right {
     display: flex;
     justify-content: flex-end;
-    align-items: center;
     padding-right: 1em;
 }
 
 #footer-about, #footer-top {
-    margin-right: .3em;
+    padding-right: 1em;
     justify-content: center;
     align-items: center;
 }
@@ -356,9 +354,9 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         grid-column: 1;
         display: flex;
         justify-content: flex-start;
-        margin-left: .2em;
+        margin-left: 0;
         align-items: center;
-        font-family: var(--logo);
+        font-family: var(--font1);
         font-size: 2em;
     }
 
@@ -368,21 +366,9 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         flex-direction: row;
         justify-content: flex-end;
         align-items: center;
-        margin-right: .2em;
+        padding-right: .5em;
         font-family: var(--font1);
         font-size: 1em;
-    }
-
-    .nav-links-logged-out {
-        grid-column: 2;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        margin-right: 1em;
-        font-family: var(--font1);
-        font-size: 1em;
-
     }
 
     .nav-icons {
@@ -392,6 +378,25 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         align-items: center;
         padding: .1em;
         font-size: 1em;
+    }
+
+    .nav-links-logged-out {
+        grid-column: 2;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        align-items: center;
+        padding-right: 0;
+        font-family: var(--font1);
+
+    }
+
+    .nav-links {
+        align-items: center;
+        padding-right: 0;
+        font-family: var(--font1);
+        font-size: 1.3em;
+
     }
 
     #hamburger {
@@ -417,7 +422,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
 
     /*Navbar*/
     .navbar {
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 30% 70%;
 
     }
 
@@ -425,9 +430,9 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         grid-column: 1;
         display: flex;
         justify-content: flex-start;
-        margin-left: .2em;
+        padding-left: .5em;
         align-items: center;
-        font-family: var(--logo);
+        font-family: var(--font1);
         font-size: 2em;
     }
 
@@ -437,7 +442,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         flex-direction: row;
         justify-content: flex-end;
         align-items: center;
-        margin-right: .2em;
+        padding-right: .2em;
         font-family: var(--font1);
         font-size: 1em;
     }
@@ -446,21 +451,27 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         grid-column: 2;
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
-        margin-right: 1em;
         font-family: var(--font1);
         font-size: 1em;
-
+        padding-right: 0;
     }
 
     .nav-icons {
         font-family: var(--font1);
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
-        padding: .1em;
-        font-size: 1em;
+        padding: .5em;
+        font-size: 1.3em;
+    }
+
+    .nav-links {
+        align-items: center;
+        font-family: var(--font1);
+        font-size: 1.1em;
+
     }
 
     #user-hello-hide-mobile-nav {
@@ -473,6 +484,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
 
     #hamburger {
         display: inline-flex;
+        font-size: 1.6em;
     }
 
     #nav-search-input, .nav-search-button {
@@ -482,7 +494,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     }
 
     .footer {
-        font-size: .5em;
+        font-size: 1em;
     }
 
 }
