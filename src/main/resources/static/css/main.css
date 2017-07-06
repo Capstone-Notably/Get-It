@@ -436,6 +436,25 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
 }
 
 /*----------------------------------------------------------------------------------------------------------------------
+   Create Categories
+----------------------------------------------------------------------------------------------------------------------*/
+.category-create-body {
+    grid-row: body;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    font-family: var(--font1);
+    font-size: 1em;
+    background-color: rgba(76, 175, 80, 0.05);
+    border: 1px solid var(--l-green);
+    padding: .2em;
+    overflow-x: hidden;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------
    Footer
 ----------------------------------------------------------------------------------------------------------------------*/
 
