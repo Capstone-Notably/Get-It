@@ -91,7 +91,13 @@
     $('#search-submit').click(function (e) {
         e.preventDefault();
         if($tags.val() !== "") {
-            var html = $viewItems.html();
+            var html;
+            $viewItems.each(function () {
+                if($(this).hasClass('active')){
+                    console.log($(this))
+                    html = $(this).html();
+                }
+            });
             json.forEach(function(item) {
                 if(item.name === $tags.val()) {
                     html += "<div class='item-all'>";
@@ -103,13 +109,18 @@
                     html += "<img src='/uploads/items/" + item.imgUrl + "'/>";
                     html += "</div>";
                     html += "</div>";
+
+                    $viewItems.each(function () {
+                        if($(this).hasClass('active')){
+                            item.listId = parseInt($(this).children().val());
+                            $(this).html(html);
+                        }
+                    });
+
                     item_json = item;
                 }
             });
 
-            if($viewItems.hasClass('active')) {
-                $viewItems.html(html);
-            }
 
             var token = $('#csrf-token').attr("content");
             var header = $('#csrf-header').attr("content");

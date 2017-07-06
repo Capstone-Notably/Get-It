@@ -25,6 +25,7 @@
 
         <div class="tab-content">
             <div th:each="list : ${lists}" th:id="'list' + ${list.id}" class="tab-pane view-items">
+                <input type="hidden" th:value="${list.id}" />
                 <div th:each="item : ${items}" class='item-all'>
                     <div th:if="${item.listId} == ${list.id}" class='item-name'>
                         <input type='checkbox' value='false' class='item-property' />
