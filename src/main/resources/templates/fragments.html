@@ -71,15 +71,17 @@
             <span class="glyphicon glyphicon-search" aria-hidden="true" id="search-trigger2"></span>
 
             <span class="dropdown" id="dropdown-nav">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">
-                    <span id="user-hello-hide-mobile-nav">
-                        Hi
-                        <span sec:authentication="name"></span>
-                        !
-                    </span>
-                    <span id="hamburger" class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                    <a id="user-icon" href="#"><img src="http://via.placeholder.com/40x40"/></a>
+                <span id="user-hello-hide-mobile-nav">
+                    Hi
+                    <span sec:authentication="name"></span>
+                    !
+                </span>
+                <span data-toggle="dropdown" role="button" aria-haspopup="true"
+                      aria-expanded="false" id="hamburger"
+                      class="dropdown-toggle glyphicon glyphicon-menu-hamburger" aria-hidden="true">
+                </span>
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="false" id="user-icon" href="#"><img src="http://via.placeholder.com/40x40"/>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li><a class="dropdown-links" href="/lists">My Lists</a></li>
