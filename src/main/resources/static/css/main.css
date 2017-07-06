@@ -300,10 +300,12 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
 
 }
 
-#category-image, #recipe-image {
+.category-image, .recipe-image {
     position: relative;
     font-size: 2em;
     z-index: 0;
+    width: 150em;
+    height: 150em;
 }
 
 /*----------------------------------------------------------------------------------------------------------------------
