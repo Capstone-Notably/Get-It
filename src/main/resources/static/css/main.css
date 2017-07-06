@@ -176,34 +176,6 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     border-radius: 5px;
 }
 
-/*----------------------------------------------------------------------------------------------------------------------
-   Items
-----------------------------------------------------------------------------------------------------------------------*/
-
-/*  Create item  */
-.btn-plus {
-    margin-left: 15px;
-}
-
-.btn-plus, .btn-minus {
-    cursor: pointer;
-}
-
-.qty-price-input {
-    height: 33px;
-    width: 100px;
-    margin-left: 5px;
-    margin-right: 5px;
-    border-top-width: 0;
-    margin-top: 1px;
-    text-align: right;
-}
-
-.star {
-    font-size: 45px;
-    color: yellow;
-    cursor: pointer;
-}
 
 /*----------------------------------------------------------------------------------------------------------------------
    Grocery List
@@ -239,7 +211,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
 /*----------------------------------------------------------------------------------------------------------------------
    Index
 ----------------------------------------------------------------------------------------------------------------------*/
-.body {
+.index-body {
     grid-row: body;
     display: inline-grid;
     grid: "image" "welcome" "categories" "recipes";
@@ -313,6 +285,67 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     position: relative;
     font-size: 2em;
     z-index: 0;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------
+   Item Index
+----------------------------------------------------------------------------------------------------------------------*/
+.items-body {
+    grid-row: body;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    /*align-items: center;*/
+    width: 100%;
+    max-width: 100%;
+    font-family: var(--font1);
+    font-size: 1em;
+    background-color: rgba(76, 175, 80, 0.05);
+    border: 1px solid black;
+    padding: .2em;
+    overflow-x: hidden;
+}
+
+#category-items {
+    display: flex;
+    flex-flow: row wrap;
+    font-family: var(--font1);
+    font-size: 4em;
+    width: 100%;
+    align-self: stretch;
+    border: 1px solid black;
+}
+
+#item-image {
+    align-content: flex-end;
+}
+/*----------------------------------------------------------------------------------------------------------------------
+   Items
+----------------------------------------------------------------------------------------------------------------------*/
+
+/*  Create item  */
+.btn-plus {
+    margin-left: 15px;
+}
+
+.btn-plus, .btn-minus {
+    cursor: pointer;
+}
+
+.qty-price-input {
+    height: 33px;
+    width: 100px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-top-width: 0;
+    margin-top: 1px;
+    text-align: right;
+}
+
+.star {
+    font-size: 45px;
+    color: yellow;
+    cursor: pointer;
 }
 
 /*----------------------------------------------------------------------------------------------------------------------
