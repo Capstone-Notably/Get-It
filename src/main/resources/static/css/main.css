@@ -305,6 +305,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     position: relative;
     font-size: 2em;
     z-index: 0;
+
 }
 
 .category-image > img {
