@@ -26,9 +26,9 @@
     <!--Logged out right side nav-->
     <div sec:authorize="!isAuthenticated()" class="nav-links-logged-out">
         <div class="nav-links">
-            <a href="#recipes" class="nav-recipes">Recipes</a>
+            <a href="/home" class="nav-recipes">Categories</a>
             <span>|</span>
-            <a href="#categories" class="nav-categories">Categories</a>
+            <a href="/home" class="nav-categories">Recipes</a>
         </div>
         <div class="nav-links">
             <a href="/login" id="login-nav-link">Login</a>
@@ -59,8 +59,8 @@
                     <a id="user-icon" href="#"><img src="http://via.placeholder.com/40x40"/></a>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a class="dropdown-links" href="#">Categories</a></li>
-                    <li><a class="dropdown-links" href="#">Recipes</a></li>
+                    <li><a class="dropdown-links" href="/home">Categories</a></li>
+                    <li><a class="dropdown-links" href="/home">Recipes</a></li>
                     <li><a class="dropdown-links" href="#">Update Profile</a></li>
                     <li class="dropdown-links divider" role="separator"></li>
                     <li>
