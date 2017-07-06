@@ -2,13 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="fragments::head('List of Items')"></head>
 <body>
+<div class="home-grid">
+    <div th:replace="fragments::hidden-search"></div>
     <nav th:replace="fragments::my-navbar"></nav>
-    <div class="container">
-        <div th:each="item:${items}">
-            <p>Item name: <span th:text="${item.name}" /></p>
-            <img th:src="'/uploads/items/' + ${item.imgUrl}" />
+    <div class="items-body">
+        <div id="category-items" th:each="item:${items}">
+            <p><span th:text="${item.name}" /></p>
+            <img id="item-image" th:src="'/uploads/items/' + ${item.imgUrl}" />
         </div>
     </div>
+    <div th:replace="fragments::my-footer">Footer</div>
+</div>
     <div th:replace="fragments::scripts"></div>
 </body>
 </html>

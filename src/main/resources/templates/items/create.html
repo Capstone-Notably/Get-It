@@ -2,9 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="fragments::head('Create Item')"></head>
 <body>
+<div class="home-grid">
+    <div th:replace="fragments::hidden-search"></div>
     <nav th:replace="fragments::my-navbar"></nav>
-    <div class="container">
-        <form th:method="post" th:action="@{/items/create}" th:object="${item}" enctype="multipart/form-data">
+    <div class="create-item-body">
+        <form id="create-item-form" th:method="post" th:action="@{/items/create}" th:object="${item}" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Item Name</label>
                 <input type="text" class="form-control" id="name" th:field="*{name}" />
@@ -54,6 +56,9 @@
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
     </div>
+
+    <div th:replace="fragments::my-footer">Footer</div>
+</div>
     <div th:replace="fragments::scripts"></div>
 </body>
 </html>

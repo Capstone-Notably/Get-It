@@ -1,6 +1,15 @@
 /* ---------------------------------------------------------------------------------------------------------------------
     CSS Reset
 ----------------------------------------------------------------------------------------------------------------------*/
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    line-height: 1;
+    display: grid;
+    text-decoration: none;
+    overflow-x: hidden;
+
 body { margin:0; padding:0; line-height:1; display: grid; text-decoration: none }
 
 
@@ -17,13 +26,13 @@ body { margin:0; padding:0; line-height:1; display: grid; text-decoration: none 
 /* ---------------------------------------------------------------------------------------------------------------------
     General Styles
 ----------------------------------------------------------------------------------------------------------------------*/
-/*Variables*/
+/*Global Variables*/
 :root {
     --grey: #DADFE1;
     --white: #EEEEEE;
     --d-green: #049372;
     --l-green: #C8F7C5;
-    --logo: 'Happy Monkey', cursive;
+    /*--logo: 'Happy Monkey', cursive;*/
     --font1: 'Assistant', sans-serif;
     --font2: 'Playfair Display', serif;
 
@@ -36,17 +45,11 @@ ul, li, a, a:hover {
     text-underline: none;
 }
 
-/*a {*/
-    /*text-decoration: none;*/
-/*}*/
-
 /*Grid Layouts*/
 .home-grid {
     display: grid;
-    grid: "nav"
-    "body"
-    "footer";
-    grid-template-rows: 7vh minmax(90vh, auto) 3vh;
+    grid: "nav" "body" "footer";
+    grid-template-rows: auto minmax(87vh, auto) 5%;
     grid-template-columns: 1fr;
 }
 
@@ -58,23 +61,26 @@ ul, li, a, a:hover {
     grid-row: nav;
     display: grid;
     grid-template-columns: 50% 50%;
-    margin: .1em;
+    padding-top: .5em;
+    justify-content: center;
+    align-items: stretch;
+    margin-bottom: .1em;
 }
 
 #nav-brand-name {
     grid-column: 1;
     display: flex;
     justify-content: flex-start;
-    margin-left: .2em;
+    padding-left: 1em;
     align-items: center;
-    font-family: var(--logo);
-    font-size: 2em;
+    font-family: var(--font1);
+    font-size: 5em;
 }
 
-.nav-links-logged-in {
+.nav-links-logged-in, .nav-links-logged-out {
     grid-column: 2;
     display: flex;
-    flex-direction: row;
+    flex-flow: row nowrap;
     justify-content: flex-end;
     align-items: center;
     padding-right: 2em;
@@ -82,14 +88,12 @@ ul, li, a, a:hover {
 
 }
 
-.nav-links-logged-out {
-    grid-column: 2;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-content: flex-end;
+.nav-links {
+    justify-content: center;
     align-items: center;
     padding-right: 1em;
     font-family: var(--font1);
+    font-size: 2em;
 
 }
 
@@ -98,6 +102,7 @@ ul, li, a, a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1.5em;
 }
 
 #dropdown-nav {
@@ -109,21 +114,25 @@ ul, li, a, a:hover {
 
 #search-trigger2 {
     font-size: 1.5em;
+    padding-right: 1em;
 }
 
 #user-hello-hide-mobile-nav {
-    font-size: 2em;
+    font-size: 2.5em;
+    padding-right: 1em;
 }
 
 #user-icon {
-    font-size: 1.5em;
+    padding-right: 1em;
 }
 
 #hamburger {
     display: none;
 }
 
-/*Hidden search bar*/
+/*----------------------------------------------------------------------------------------------------------------------
+   Hidden Search
+----------------------------------------------------------------------------------------------------------------------*/
 div.search {
     grid-row: nav;
     width: 100vw;
@@ -131,58 +140,242 @@ div.search {
     z-index: 0;
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
-
 }
 
 div.search.show {
     display: inline-grid;
     opacity: 1;
     z-index: 2;
-    grid-template-columns: 90vw 10vw;
+    grid: "a b";
+    grid-template-columns: 80% 20%;
     width: 100vw;
     max-width: 100%;
 }
 
 #nav-search-input, .nav-search-button {
-    font-size: 1em;
+    font-size: 1.2em;
     font-family: var(--font1);
     height: 100%;
 }
 
 #nav-search-input {
-    width: 80vw;
+    grid-column: a;
+    width: 87vw;
 }
 
 .nav-search-button {
-    width: 15vw;
+    width: 12vw;
+    grid-column: b;
+    border: hidden;
+    background-color: var(--l-green);
+    font-family: var(--font1);
+
 }
 
 a#nav-brand-name.show, div.nav-links-logged-in.show {
     z-index: 0;
     opacity: 0;
 }
-/*/End of Hidden Search/*/
+
+
+/*----------------------------------------------------------------------------------------------------------------------
+   Login
+----------------------------------------------------------------------------------------------------------------------*/
+.login-body {
+    grid-row: body;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    font-family: var(--font1);
+    font-size: 1em;
+    background-color: rgba(76, 175, 80, 0.05);
+    border: 1px solid var(--l-green);
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+    font-family: var(--font1);
+    font-size: 2.5em;
+}
 
 /*----------------------------------------------------------------------------------------------------------------------
    Register
 ----------------------------------------------------------------------------------------------------------------------*/
+.register-body {
+    grid-row: body;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    font-family: var(--font1);
+    font-size: 1em;
+    background-color: rgba(76, 175, 80, 0.05);
+    border: 1px solid var(--l-green);
+}
+
+#register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .menu {
     font-size: 15px;
     padding-bottom: 0;
     padding-top: 0;
-    border:1px solid #cccccc;
+    border: 1px solid #cccccc;
     text-align: left;
     margin-bottom: 13px;
     border-radius: 5px;
 }
 
+/*----------------------------------------------------------------------------------------------------------------------
+   Index
+----------------------------------------------------------------------------------------------------------------------*/
+.index-body {
+    grid-row: body;
+    display: inline-grid;
+    grid: "image" "welcome" "categories" "recipes";
+    grid-template-rows: 90vh 10em minmax(30em, auto) minmax(30em, auto);
+    width: 100%;
+    max-width: 100%;
+    font-family: var(--font1);
+    font-size: 1em;
+    background-color: rgba(76, 175, 80, 0.05);
+    border: 1px solid var(--l-green);
+    padding: .2em;
+    overflow-x: hidden;
+}
+
+#image {
+    grid-row: image;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#recipe-header, #category-header {
+    display: flex;
+    font-family: var(--font1);
+    justify-content: center;
+    align-items: center;
+}
+
+
+#user-welcome {
+    grid-row: welcome;
+}
+
+.categories {
+    grid-row: categories;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.recipes {
+    grid-row: recipes;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+#category, #recipe {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#category-name, #recipe-name {
+    position: absolute;
+    font-size: 4em;
+    z-index: 1;
+    font-family: var(--font1);
+    font-weight: 600;
+    color: var(--l-green);
+    text-shadow: -4px 3px 0 black;
+
+}
+
+#category-image, #recipe-image {
+    position: relative;
+    font-size: 2em;
+    z-index: 0;
+}
 
 /*----------------------------------------------------------------------------------------------------------------------
-   Items
+   Item Index
 ----------------------------------------------------------------------------------------------------------------------*/
+.items-body {
+    grid-row: body;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    /*align-items: center;*/
+    width: 100%;
+    max-width: 100%;
+    font-family: var(--font1);
+    font-size: 1em;
+    background-color: rgba(76, 175, 80, 0.05);
+    border: 1px solid var(--l-green);
+    padding: .2em;
+    overflow-x: hidden;
+}
 
-/*  Create item  */
+#category-items {
+    display: flex;
+    flex-flow: row wrap;
+    font-family: var(--font1);
+    font-size: 4em;
+    width: 100%;
+    align-self: stretch;
+    border: 1px solid var(--l-green);
+}
+
+#item-image {
+    align-content: flex-end;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------
+   Create Item
+----------------------------------------------------------------------------------------------------------------------*/
+.create-item-body {
+    grid-row: body;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    font-family: var(--font1);
+    font-size: 1em;
+    background-color: rgba(76, 175, 80, 0.05);
+    border: 1px solid var(--l-green);
+    padding: .2em;
+    overflow-x: hidden;
+}
+
+#create-item-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+    font-family: var(--font1);
+    font-size: 2.5em;
+}
+
 .btn-plus {
     margin-left: 15px;
 }
@@ -239,76 +432,6 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
 }
 
 
-
-/*Body of home page*/
-
-
-.login-body {
-    grid-row: body;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    font-family: var(--font1);
-    font-size: 1.7em;
-    background-color: rgba(76, 175, 80, 0.05);
-    border: 1px solid black;
-}
-
-#login-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.register-body {
-    grid-row: body;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    font-family: var(--font1);
-    font-size: 1em;
-    background-color: rgba(76, 175, 80, 0.05);
-    border: 1px solid black;
-}
-
-#register-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-}
-
-
-#category {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#category-name {
-    position: absolute;
-    font-size: 4em;
-    z-index: 1;
-    font-family: var(--font1);
-    font-weight: 600;
-    color: var(--l-green);
-    text-shadow: -4px 3px 0 black;
-}
-
-#category-image {
-    position: relative;
-    font-size: 2em;
-    z-index: 0;
-}
-
 /*----------------------------------------------------------------------------------------------------------------------
    Footer
 ----------------------------------------------------------------------------------------------------------------------*/
@@ -319,35 +442,33 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     grid-template-columns: 60vw 40vw;
     width: 100vw;
     font-family: var(--font1);
-    font-size: 1em;
+    font-size: 1.5em;
+    padding-top: .3em;
 }
 
 .footer-left {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
     padding-left: 1em;
 }
 
 .footer-right {
     display: flex;
     justify-content: flex-end;
-    align-items: center;
     padding-right: 1em;
 }
 
 #footer-about, #footer-top {
-    margin-right: .3em;
+    padding-right: 1em;
     justify-content: center;
     align-items: center;
 }
-
 
 /*----------------------------------------------------------------------------------------------------------------------
    Media Queries
 ----------------------------------------------------------------------------------------------------------------------*/
 
-@media screen and (min-width: 420px) and (max-width: 1020px){
+@media screen and (min-width: 420px) and (max-width: 1020px) {
 
     .navbar {
         grid-template-columns: 50% 50%;
@@ -358,9 +479,9 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         grid-column: 1;
         display: flex;
         justify-content: flex-start;
-        margin-left: .2em;
+        margin-left: 0;
         align-items: center;
-        font-family: var(--logo);
+        font-family: var(--font1);
         font-size: 2em;
     }
 
@@ -370,21 +491,9 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         flex-direction: row;
         justify-content: flex-end;
         align-items: center;
-        margin-right: .2em;
+        padding-right: .5em;
         font-family: var(--font1);
         font-size: 1em;
-    }
-
-    .nav-links-logged-out {
-        grid-column: 2;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        margin-right: 1em;
-        font-family: var(--font1);
-        font-size: 1em;
-
     }
 
     .nav-icons {
@@ -396,10 +505,28 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         font-size: 1em;
     }
 
+    .nav-links-logged-out {
+        grid-column: 2;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        align-items: center;
+        padding-right: 0;
+        font-family: var(--font1);
+
+    }
+
+    .nav-links {
+        align-items: center;
+        padding-right: 0;
+        font-family: var(--font1);
+        font-size: 1.3em;
+
+    }
+
     #hamburger {
         display: inline-flex;
     }
-
 
     #user-hello-hide-mobile-nav {
         display: none;
@@ -416,13 +543,11 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     }
 }
 
+@media screen and (max-width: 420px) {
 
-@media screen and (max-width: 420px){
-
-/*Navbar*/
-
+    /*Navbar*/
     .navbar {
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 30% 70%;
 
     }
 
@@ -430,9 +555,9 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         grid-column: 1;
         display: flex;
         justify-content: flex-start;
-        margin-left: .2em;
+        padding-left: .5em;
         align-items: center;
-        font-family: var(--logo);
+        font-family: var(--font1);
         font-size: 2em;
     }
 
@@ -442,7 +567,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         flex-direction: row;
         justify-content: flex-end;
         align-items: center;
-        margin-right: .2em;
+        padding-right: .2em;
         font-family: var(--font1);
         font-size: 1em;
     }
@@ -451,21 +576,27 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         grid-column: 2;
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
-        margin-right: 1em;
         font-family: var(--font1);
         font-size: 1em;
-
+        padding-right: 0;
     }
 
     .nav-icons {
         font-family: var(--font1);
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
-        padding: .1em;
-        font-size: 1em;
+        padding: .5em;
+        font-size: 1.3em;
+    }
+
+    .nav-links {
+        align-items: center;
+        font-family: var(--font1);
+        font-size: 1.1em;
+
     }
 
     #user-hello-hide-mobile-nav {
@@ -478,6 +609,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
 
     #hamburger {
         display: inline-flex;
+        font-size: 1.6em;
     }
 
     #nav-search-input, .nav-search-button {
@@ -487,7 +619,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     }
 
     .footer {
-        font-size: .5em;
+        font-size: 1em;
     }
 
 }
