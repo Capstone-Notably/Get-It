@@ -179,7 +179,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     font-family: var(--font1);
     font-size: 1em;
     background-color: rgba(76, 175, 80, 0.05);
-    border: 1px solid black;
+    border: 1px solid var(--l-green);
 }
 
 #login-form {
@@ -204,7 +204,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     font-family: var(--font1);
     font-size: 1em;
     background-color: rgba(76, 175, 80, 0.05);
-    border: 1px solid black;
+    border: 1px solid var(--l-green);
 }
 
 #register-form {
