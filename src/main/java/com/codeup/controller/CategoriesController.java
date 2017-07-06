@@ -29,7 +29,7 @@ public class CategoriesController {
         this.userCategoryRepository = userCategoryRepository;
     }
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String viewHome(Model model) {
         List<Category> categories = findAll(categoriesRepository, userCategoryRepository);
         model.addAttribute("categories", categories);
