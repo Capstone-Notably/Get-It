@@ -21,19 +21,22 @@
 
 <nav class="navbar" th:fragment="my-navbar">
     <!--Left side nav-->
-    <a href="/home" id="nav-brand-name">Get It<span id="nav-check-mark" class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+    <a href="/home" id="nav-brand-name">Get It <span id="nav-check-mark" class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
 
     <!--Logged out right side nav-->
     <div sec:authorize="!isAuthenticated()" class="nav-links-logged-out">
-        <div class="nav-links1">
+        <div class="nav-links">
             <a href="#recipes" class="nav-recipes">Recipes</a>
+            <span>|</span>
             <a href="#categories" class="nav-categories">Categories</a>
-            <span class="glyphicon glyphicon-search" aria-hidden="true" id="search-trigger"></span>
         </div>
-        <div class="nav-links2">
+        <div class="nav-links">
             <a href="/login" id="login-nav-link">Login</a>
-            /
+            <span>|</span>
             <a href="/register" id="register-nav-link">Register</a>
+        </div>
+        <div class="nav-links">
+            <span class="glyphicon glyphicon-search" aria-hidden="true" id="search-trigger"></span>
         </div>
     </div>
 

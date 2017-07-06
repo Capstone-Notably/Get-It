@@ -1,9 +1,14 @@
 /* ---------------------------------------------------------------------------------------------------------------------
     CSS Reset
 ----------------------------------------------------------------------------------------------------------------------*/
-body { margin:0; padding:0; font-size:100%; line-height:1; display: grid; text-decoration: none }
-
-
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    line-height: 1;
+    display: grid;
+    text-decoration: none
+}
 
 /* ---------------------------------------------------------------------------------------------------------------------
     General Styles
@@ -28,16 +33,14 @@ ul, li, a, a:hover {
 }
 
 /*a {*/
-    /*text-decoration: none;*/
+/*text-decoration: none;*/
 /*}*/
 
 /*Grid Layouts*/
 .home-grid {
     display: grid;
-    grid: "nav"
-    "body"
-    "footer";
-    grid-template-rows: 10vh minmax(87vh, auto) 3vh;
+    grid: "nav" "body" "footer";
+    grid-template-rows: 10% minmax(87vh, auto) 3%;
     grid-template-columns: 1fr;
 }
 
@@ -56,16 +59,16 @@ ul, li, a, a:hover {
     grid-column: 1;
     display: flex;
     justify-content: flex-start;
-    margin-left: .2em;
+    padding-left: 1em;
     align-items: center;
-    font-family: var(--logo);
-    font-size: 2em;
+    font-family: var(--font1);
+    font-size: 2.5em;
 }
 
 .nav-links-logged-in, .nav-links-logged-out {
     grid-column: 2;
     display: flex;
-    flex-direction: row;
+    flex-flow: row nowrap;
     justify-content: flex-end;
     align-items: center;
     padding-right: 2em;
@@ -73,13 +76,12 @@ ul, li, a, a:hover {
 
 }
 
- .nav-links1, .nav-links2{
-    display: flex;
-    flex-direction: row;
+.nav-links {
     justify-content: center;
     align-items: center;
     padding-right: 1em;
     font-family: var(--font1);
+    font-size: 2em;
 
 }
 
@@ -151,6 +153,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     z-index: 0;
     opacity: 0;
 }
+
 /*/End of Hidden Search/*/
 
 /*----------------------------------------------------------------------------------------------------------------------
@@ -161,12 +164,11 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     font-size: 15px;
     padding-bottom: 0;
     padding-top: 0;
-    border:1px solid #cccccc;
+    border: 1px solid #cccccc;
     text-align: left;
     margin-bottom: 13px;
     border-radius: 5px;
 }
-
 
 /*----------------------------------------------------------------------------------------------------------------------
    Items
@@ -227,8 +229,6 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     align-self: center;
     margin-left: 20px;
 }
-
-
 
 /*Body of home page*/
 .body {
@@ -341,12 +341,11 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     align-items: center;
 }
 
-
 /*----------------------------------------------------------------------------------------------------------------------
    Media Queries
 ----------------------------------------------------------------------------------------------------------------------*/
 
-@media screen and (min-width: 420px) and (max-width: 1020px){
+@media screen and (min-width: 420px) and (max-width: 1020px) {
 
     .navbar {
         grid-template-columns: 50% 50%;
@@ -399,7 +398,6 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         display: inline-flex;
     }
 
-
     #user-hello-hide-mobile-nav {
         display: none;
     }
@@ -415,11 +413,9 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     }
 }
 
+@media screen and (max-width: 420px) {
 
-@media screen and (max-width: 420px){
-
-/*Navbar*/
-
+    /*Navbar*/
     .navbar {
         grid-template-columns: 50% 50%;
 
