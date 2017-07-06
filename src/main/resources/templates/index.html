@@ -9,7 +9,9 @@
     <nav th:replace="fragments::my-navbar"></nav>
 
     <div class="body">
-        <div sec:authorize="isAuthenticated()">
+        <img id="image" src="/img/grocerybags.jpg" class="img-responsive" />
+
+        <div id="user-welcome" sec:authorize="isAuthenticated()">
             <h1 style="text-align:center;margin-bottom:35px">Welcome <span sec:authentication="name"> user</span>!</h1>
         </div>
         <div sec:authorize="hasRole('ROLE_ADMIN')">
@@ -21,10 +23,22 @@
 
 
         <div class="row categories">
+            <h2 id="category-header">Categories</h2>
             <div th:each="category:${categories}">
                 <div id="category" class="col-sm-6 col-md-4">
                     <a id="category-name" th:href="@{/items(category_id=${category.id})}"><span th:text="${category.name}" /></a>
                     <a id="category-image" th:href="@{/items(category_id=${category.id})}"><img th:src="'/uploads/categories/' + ${category.imgUrl}" class="img-responsive img-thumbnail" width="250px" height="250px" /></a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row recipes">
+            <h2 id="recipe-header">Recipes</h2>
+            <div th:each="category:${categories}">
+                <div id="recipe" class="col-sm-6 col-md-4">
+                    <a id="recipe-name" th:href="@{/items(category_id=${category.id})}"><span th:text="${category.name}" /></a>
+                    <a id="recipe-image" th:href="@{/items(category_id=${category.id})}"><img th:src="'/uploads/categories/' + ${category.imgUrl}" class="img-responsive img-thumbnail" width="250px" height="250px" /></a>
                 </div>
             </div>
         </div>
