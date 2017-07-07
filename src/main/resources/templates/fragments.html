@@ -36,6 +36,20 @@
             <a href="/register" id="register-nav-link">Register</a>
         </div>
 
+        <div class="dropdown dropdown-nav">
+            <span data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false"
+                  class="hamburger dropdown-toggle glyphicon glyphicon-menu-hamburger" aria-hidden="true">
+            </span>
+            <ul class="dropdown-menu dropdown-menu-right">
+                <li><a class="dropdown-links" href="/login">Login</a></li>
+                <li><a class="dropdown-links" href="/register">Register</a></li>
+                <li class="dropdown-links divider" role="separator"></li>
+                <li><a class="dropdown-links" href="/">Categories</a></li>
+                <li><a class="dropdown-links" href="/">Recipes</a></li>
+            </ul>
+        </div>
+
         <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
             <div class="modal-dialog modal-sm" role="document">
                 <div class="modal-content login-body">
@@ -70,15 +84,15 @@
         <div class="nav-icons">
             <span class="glyphicon glyphicon-search" aria-hidden="true" id="search-trigger2"></span>
 
-            <span class="dropdown" id="dropdown-nav">
+            <span class="dropdown dropdown-nav">
                 <span id="user-hello-hide-mobile-nav">
                     Hi
                     <span sec:authentication="name"></span>
                     !
                 </span>
                 <span data-toggle="dropdown" role="button" aria-haspopup="true"
-                      aria-expanded="false" id="hamburger"
-                      class="dropdown-toggle glyphicon glyphicon-menu-hamburger" aria-hidden="true">
+                      aria-expanded="false"
+                      class="hamburger dropdown-toggle glyphicon glyphicon-menu-hamburger" aria-hidden="true">
                 </span>
                 <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                    aria-expanded="false" id="user-icon" href="#"><img src="http://via.placeholder.com/40x40"/>
