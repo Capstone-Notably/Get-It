@@ -7,21 +7,35 @@
     <!--<nav th:replace="fragments::my-navbar"></nav>-->
     <div class="items-body">
         <!--<h2 class="category-name"><span th:text="${category.name}" /></h2>-->
-        <div id="category-items" th:each="item:${items}">
+        <div class="category-items" th:each="item:${items}">
             <p class="item-name"><span th:text="${item.name}" /></p>
-            <img class="img-responsive img-thumbnail" id="item-image" th:src="'/uploads/items/' + ${item.imgUrl}" />
+            <img class="img-responsive img-thumbnail item-image" th:src="'/uploads/items/' + ${item.imgUrl}" />
 
-            <div class="item-edit">
-                <span sec:authorize="isAuthenticated()" id="dropdownMenu1" class="glyphicon glyphicon-triangle-bottom dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false" aria-hidden="true">
-                </span>
-                <ul aria-labelledby="dropdownMenu1" class="dropdown-menu dropdown-menu-right">
-                    <li><a class="dropdown-links" href="/">Add to List</a></li>
-                    <li><a class="dropdown-links" href="/">Edit</a></li>
-                    <li><a class="dropdown-links" href="/">Delete</a></li>
-                    <li class="dropdown-links divider" role="separator"></li>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" th:id="'dropdownMenu' + ${item.name}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Dropdown
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" th:attr="aria-labelledby='\'dropdownMenu' + ${item.name} +'\' ' ">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
                 </ul>
             </div>
+
+            <!--<div class="dropdown item-edit">-->
+                <!--<span sec:authorize="isAuthenticated()" id="dropdownMenu1" class="dropdown-toggle glyphicon glyphicon-triangle-bottom" role="button" data-toggle="dropdown" aria-haspopup="true"-->
+                    <!--aria-expanded="false" aria-hidden="true">-->
+                <!--</span>-->
+                <!--<ul aria-labelledby="dropdownMenu1" class="dropdown-menu dropdown-menu-right">-->
+                    <!--<li><a class="dropdown-links" href="/">Add to List</a></li>-->
+                    <!--<li><a class="dropdown-links" href="/">Edit</a></li>-->
+                    <!--<li><a class="dropdown-links" href="/">Delete</a></li>-->
+                    <!--<li class="dropdown-links divider" role="separator"></li>-->
+                <!--</ul>-->
+            <!--</div>-->
 
         </div>
     </div>
