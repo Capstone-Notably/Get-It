@@ -22,7 +22,8 @@ public class CustomItem {
         this.id =id;
     }
 
-    public CustomItem(String name, String imgUrl, float price, int quantity, String barcode, boolean favorite) {
+    public CustomItem(long id, String name, String imgUrl, float price, int quantity, String barcode, boolean favorite) {
+        this.id = id;
         this.name = name;
         this.imgUrl = imgUrl;
         this.price = price;
