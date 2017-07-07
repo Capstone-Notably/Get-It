@@ -3,7 +3,7 @@
 ----------------------------------------------------------------------------------------------------------------------*/
 
 /*----------------------------------------------------------------------------------------------------------------------
- Navbar
+    Navbar
  ----------------------------------------------------------------------------------------------------------------------*/
     $('#search-trigger').click(function() {
         $('div.search').addClass('show');
@@ -33,6 +33,17 @@
         $('.menu-in').val($(this).children().html());
     });
 
+/*----------------------------------------------------------------------------------------------------------------------
+    Index
+ ----------------------------------------------------------------------------------------------------------------------*/
+
+    $("[data-toggle=popover]").popover({
+        html : true,
+        content: function() {
+            var content = $(this).attr("data-popover-content");
+            return $(content).children(".popover-body").html();
+    }
+    });
 
 /*----------------------------------------------------------------------------------------------------------------------
      items/create
@@ -162,21 +173,4 @@
 
 
 
-// $(function(){
-//     $("[data-toggle=popover]").popover({
-//         html : true,
-//         content: function() {
-//             var content = $(this).attr("data-popover-content");
-//             return $(content).children("#category-create").html();
-//         }
-//     });
-// });
 
-
-$("[data-toggle=popover]").popover({
-    html : true,
-    content: function() {
-        var content = $(this).attr("data-popover-content");
-        return $(content).children(".popover-body").html();
-    }
-});
