@@ -2,6 +2,7 @@ package com.codeup.controller;
 
 import com.codeup.models.*;
 import com.codeup.repositories.PreferenceRepository;
+import com.codeup.svcs.TwilioSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,8 +22,14 @@ public class AuthenticationController {
         this.preferenceRepository = preferenceRepository;
     }
 
+    @Autowired
+    TwilioSvc twilioSvc;
+
     @GetMapping("/login")
     public String showLoginForm() {
+
+        twilioSvc.sendMessage("+12104219757","+18304200837","Hello, from Get It and TwilioAPI server");
+
         return "redirect:/";
     }
 

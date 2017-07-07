@@ -2,6 +2,7 @@ package com.codeup.controller;
 
 import com.codeup.models.*;
 import com.codeup.repositories.*;
+import com.codeup.svcs.TwilioSvc;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -48,7 +49,6 @@ public class UsersController {
     @PostMapping("/users/register")
     public String saveUser(@ModelAttribute User user, @RequestParam(name = "preference") String preference, @RequestParam(name = "file") MultipartFile uploadedFile, Model model) {
         String filename = transferUploadedFile(uploadedFile, usersImgPath, model);
-
         if(filename.isEmpty()) {
             filename = "default_user.png";
         }
