@@ -37,6 +37,9 @@ public class UsersController {
     private String usersImgPath;
 
     @Autowired
+    TwilioSvc twilioSvc;
+
+    @Autowired
     public UsersController(UsersRepository usersRepository, RolesRepository rolesRepository, PasswordEncoder passwordEncoder,
                            ItemsRepository itemsRepository, UserItemsRepository userItemsRepository, PreferenceRepository preferenceRepository,
                            CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository,
@@ -100,6 +103,12 @@ public class UsersController {
 
         //update grocery_lists
         groceryListsRepository.save(new GroceryList("My grocery list", user));
+
+        // send a welcome text
+        String message = "Hello " + user.getUsername() + "from Get It";
+
+        twilioSvc.sendMessage("+12104219757","+18304200837",message);
+
 
         return "users/login";
     }

@@ -22,12 +22,8 @@ public class AuthenticationController {
         this.preferenceRepository = preferenceRepository;
     }
 
-    @Autowired
-    TwilioSvc twilioSvc;
-
     @GetMapping("/login")
     public String showLoginForm(Model model) {
-        twilioSvc.sendMessage("+12104219757","+18304200837","Hello, from Get It and TwilioAPI server");
         return "users/login";
     }
 
