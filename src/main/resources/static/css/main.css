@@ -63,7 +63,7 @@ ul, li, a, a:hover {
     padding-left: 1em;
     align-items: center;
     font-family: var(--font1);
-    font-size: 5em;
+    font-size: 4.5em;
 }
 
 .nav-links-logged-in, .nav-links-logged-out {
@@ -82,7 +82,7 @@ ul, li, a, a:hover {
     align-items: center;
     padding-right: 1em;
     font-family: var(--font1);
-    font-size: 2em;
+    font-size: 2.5em;
 
 }
 
@@ -548,7 +548,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         padding-left: .5em;
         align-items: center;
         font-family: var(--font1);
-        font-size: 2.5em;
+        font-size: 3em;
     }
 
     .nav-links-logged-in {
@@ -559,7 +559,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         align-items: center;
         /*padding-right: em;*/
         font-family: var(--font1);
-        font-size: 1em;
+        font-size: 1.5em;
     }
 
     .nav-icons {
@@ -568,7 +568,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         justify-content: space-between;
         align-items: center;
         padding: .1em;
-        font-size: 1em;
+        font-size: 1.5em;
     }
 
     .nav-links-logged-out {
@@ -579,7 +579,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         align-items: center;
         padding-right: .5em;
         font-family: var(--font1);
-
+        font-size: 1.5em;
     }
 
     .nav-links {
@@ -611,13 +611,22 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         font-family: var(--font1);
         height: 100%;
     }
+
+    .register-form {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+        width: 20em;
+        font-size: 2em;
+    }
 }
 
 @media screen and (max-width: 420px) {
 
     /*Navbar*/
     .navbar {
-        grid-template-columns: 30% 70%;
+        grid-template-columns: 50% 50%;
 
     }
 
@@ -628,7 +637,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         padding-left: .5em;
         align-items: center;
         font-family: var(--font1);
-        font-size: 2em;
+        font-size: 3em;
     }
 
     .nav-links-logged-in {
@@ -639,7 +648,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         align-items: center;
         padding-right: .2em;
         font-family: var(--font1);
-        font-size: 1em;
+        font-size: 1.5em;
     }
 
     .nav-links-logged-out {
@@ -649,7 +658,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         justify-content: flex-end;
         align-items: center;
         font-family: var(--font1);
-        font-size: 1em;
+        font-size: 1.5em;
         padding-right: .5em;
     }
 
@@ -659,7 +668,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         justify-content: space-around;
         align-items: center;
         padding: .5em;
-        font-size: 1.3em;
+        /*font-size: 1.3em;*/
     }
 
     .nav-links {
@@ -690,6 +699,15 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     }
 
     .footer {
+        font-size: 1.5em;
+    }
+
+    .register-form {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+        width: 20em;
         font-size: 1.5em;
     }
 
