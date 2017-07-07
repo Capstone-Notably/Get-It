@@ -19,7 +19,7 @@ public class Recipe {
     @Column(nullable = false)
     private String imgUrl;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "Text")
     private String directions;
 
     @Column
