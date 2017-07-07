@@ -211,10 +211,12 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
 
 .form-group input {
     border: 1px solid var(--l-green);
+    font-size: 1em;
 }
 
 .button {
     border: 1px solid var(--l-green);
+    font-size: 1em;
 }
 
 .register-form {
