@@ -101,7 +101,7 @@ public class UsersController {
         //update grocery_lists
         groceryListsRepository.save(new GroceryList("My grocery list", user));
 
-        return "redirect:/";
+        return "users/login";
     }
 
 
