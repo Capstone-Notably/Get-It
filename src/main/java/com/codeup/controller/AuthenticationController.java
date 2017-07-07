@@ -26,11 +26,9 @@ public class AuthenticationController {
     TwilioSvc twilioSvc;
 
     @GetMapping("/login")
-    public String showLoginForm() {
-
+    public String showLoginForm(Model model) {
         twilioSvc.sendMessage("+12104219757","+18304200837","Hello, from Get It and TwilioAPI server");
-
-        return "redirect:/";
+        return "users/login";
     }
 
     @GetMapping("/register")

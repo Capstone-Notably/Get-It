@@ -54,4 +54,12 @@ public class GroceryList {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public List<ListItem> getListItems() {
+        return listItems;
+    }
+
+    public void setListItems(List<ListItem> listItems) {
+        this.listItems = listItems;
+    }
 }

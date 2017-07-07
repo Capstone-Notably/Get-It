@@ -35,14 +35,13 @@
             <span>|</span>
             <a href="/register" id="register-nav-link">Register</a>
         </div>
-
         <div class="dropdown dropdown-nav">
             <span data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false"
                   class="hamburger dropdown-toggle glyphicon glyphicon-menu-hamburger" aria-hidden="true">
             </span>
             <ul class="dropdown-menu dropdown-menu-right">
-                <li><a class="dropdown-links" href="/login">Login</a></li>
+                <li><a class="dropdown-links" data-toggle="modal" data-target="#.bs-example-modal-sm" href="#">Login</a></li>
                 <li><a class="dropdown-links" href="/register">Register</a></li>
                 <li class="dropdown-links divider" role="separator"></li>
                 <li><a class="dropdown-links" href="/">Categories</a></li>
@@ -54,12 +53,20 @@
             <div class="modal-dialog modal-sm" role="document">
                 <div class="modal-content login-body">
                     <h1>Log In</h1>
-                    <div th:if="${param.error}">
-                        Invalid Username and Password.
-                    </div>
-                    <div th:if="${param.logout}">
-                        You have been logged out.
-                    </div>
+                    <!--<div th:if="${param.error}">-->
+                        <!--Invalid Username and Password.-->
+                    <!--</div>-->
+                    <!--<span th:if="${#fields.hasErrors('username')}">-->
+                        <!--<div th:replace="fragments :: validation-alert('username')"/>-->
+                    <!--</span>-->
+                    <!--<span th:if="${#fields.hasErrors('password')}">-->
+                        <!--<div th:replace="fragments :: validation-alert('password')"/>-->
+                    <!--</span>-->
+                    <!--<div th:if="${param.logout}">-->
+                        <!--You have been logged out.-->
+                    <!--</div>-->
+                    <!--
+                    -->
 
                     <form id="login-form" th:action="@{/login}" method="post">
                         <label for="username">Username</label>

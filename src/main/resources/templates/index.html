@@ -11,24 +11,24 @@
     <div class="index-body">
         <img id="image" src="/uploads/others/groceries.jpg" class="img-responsive" />
 
-        <div id="user-welcome" sec:authorize="isAuthenticated()">
-            <h1 style="text-align:center;margin-bottom:35px">Welcome <span sec:authentication="name"> user</span>!</h1>
-        </div>
-        <div sec:authorize="hasRole('ROLE_ADMIN')">
-            <!--This content is only shown to administrators.-->
-        </div>
-        <div sec:authorize="hasRole('ROLE_USER')">
-            <!--This content is only shown to users.-->
-        </div>
+        <!--<div id="user-welcome" sec:authorize="isAuthenticated()">-->
+            <!--<h1 style="text-align:center;margin-bottom:35px">Welcome <span sec:authentication="name"> user</span>!</h1>-->
+        <!--</div>-->
+        <!--<div sec:authorize="hasRole('ROLE_ADMIN')">-->
+            <!--&lt;!&ndash;This content is only shown to administrators.&ndash;&gt;-->
+        <!--</div>-->
+        <!--<div sec:authorize="hasRole('ROLE_USER')">-->
+            <!--&lt;!&ndash;This content is only shown to users.&ndash;&gt;-->
+        <!--</div>-->
 
 
         <div class="row categories">
-            <!--<h2 id="category-header">Categories</h2>-->
-            <h2 id="category-header">Categories <span sec:authorize="isAuthenticated()"
-                                                      class="glyphicon glyphicon-plus add-category" aria-hidden="true"
-                                                      data-container="body" data-toggle="popover"
-                                                      data-placement="bottom" rel="popover"
-                                                      data-popover-content="#category-create" tabindex="0" data-trigger="focus">
+            <h2 id="category-header">Categories
+                <span sec:authorize="isAuthenticated()"
+                class="glyphicon glyphicon-plus add-category" aria-hidden="true"
+                      data-container="body" data-toggle="popover"
+                      data-placement="bottom" rel="popover"
+                      data-popover-content="#category-create" tabindex="0" data-trigger="focus">
             </span>
             </h2>
 
@@ -52,46 +52,31 @@
 
             <div th:each="category:${categories}">
                 <div class="col-sm-6 col-md-4 category">
-                    <a class="category-name" th:href="@{/items(category_id=${category.id})}"><span th:text="${category.name}" /></a>
-                    <a class="category-image" th:href="@{/items(category_id=${category.id})}"><img th:src="'/uploads/categories/' + ${category.imgUrl}" class="img-responsive img-thumbnail" /></a>
+                    <a class="category-name" data-toggle="modal" data-target="#myModal" th:href="@{/items(category_id=${category.id})}"><span th:text="${category.name}" /></a>
+                    <a class="category-image" data-toggle="modal" data-target="#myModal" th:href="@{/items(category_id=${category.id})}"><img th:src="'/uploads/categories/' + ${category.imgUrl}" class="img-responsive img-thumbnail" /></a>
                 </div>
             </div>
         </div>
-
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-            Launch demo modal
-        </button>
 
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
+                <div class="modal-content"></div>
             </div>
         </div>
 
 
-        <!--<div class="row recipes">-->
-            <!--<h2 id="recipe-header">Recipes</h2>-->
-            <!--<div th:each="category:${categories}">-->
-                <!--<div class="col-sm-6 col-md-4 recipe">-->
-                    <!--<a class="recipe-name" th:href="@{/items(category_id=${category.id})}"><span th:text="${category.name}" /></a>-->
-                    <!--<a th:href="@{/items(category_id=${category.id})}"><img th:src="'/uploads/categories/' + ${category.imgUrl}" class="recipe-image img-responsive img-thumbnail" width="250px" height="250px" /></a>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
+
+
+        <div class="row recipes">
+            <h2 id="recipe-header">Recipes</h2>
+            <div th:each="recipe:${recipes}">
+                <div class="col-sm-6 col-md-4 recipe">
+                    <a class="recipe-name" th:href="@{/items(recipe_id=${recipe.id})}"><span th:text="${recipe.name}" /></a>
+                    <a class="recipe-image " th:href="@{/items(recipe_id=${recipe.id})}"><img th:src="'/uploads/recipes/' + ${recipe.imgUrl}" class="img-responsive img-thumbnail" /></a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div th:replace="fragments::my-footer">Footer</div>

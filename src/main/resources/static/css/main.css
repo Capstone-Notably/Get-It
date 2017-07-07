@@ -64,6 +64,14 @@ ul, li, a, a:hover {
     align-items: center;
     font-family: var(--font1);
     font-size: 4.5em;
+
+}
+
+#nav-check-mark {
+    color: var(--l-green);
+    border: .5px solid black;
+    margin-left: .2em;
+    margin-bottom: .1em;
 }
 
 .nav-links-logged-in, .nav-links-logged-out {
@@ -171,14 +179,14 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
    Login
 ----------------------------------------------------------------------------------------------------------------------*/
 .login-body {
-    /*grid-row: body;*/
+    grid-row: body;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 30vw;
     font-family: var(--font1);
-    /*font-size: 1em;*/
+    font-size: 1em;
     background-color: rgba(76, 175, 80, 0.1);
     border: 1px solid var(--l-green);
 }
@@ -187,12 +195,37 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     display: flex;
     flex-direction: column;
     /*justify-content: space-around;*/
-    /*align-items: stretch;*/
+    /*align-items: center;*/
     font-family: var(--font1);
-    font-size: 2.5em;
+    font-size: 3em;
     padding-bottom: 1em;
+
 }
 
+form#login-form {
+    /*border: 1px solid var(--l-green);*/
+    font-size: 3em;
+    color: var(--l-green);
+}
+
+form>input {
+    color: black;
+}
+
+.login-header {
+    color: var(--l-green);
+}
+
+.login-error {
+    color: var(--l-green);
+    font-size: 1em;
+}
+
+.button {
+    border: 1px solid var(--l-green);
+    font-size: 1em;
+    margin-top: .5em;
+}
 /*----------------------------------------------------------------------------------------------------------------------
    Register
 ----------------------------------------------------------------------------------------------------------------------*/
@@ -210,11 +243,6 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
 }
 
 .form-group input {
-    border: 1px solid var(--l-green);
-    font-size: 1em;
-}
-
-.button {
     border: 1px solid var(--l-green);
     font-size: 1em;
 }
@@ -305,7 +333,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     margin-bottom: 3em;
 }
 
-.category-name, #recipe-name {
+.category-name, .recipe-name {
     position: absolute;
     font-size: 4em;
     z-index: 1;
@@ -340,29 +368,53 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     width: 100%;
     max-width: 100%;
     font-family: var(--font1);
-    font-size: 1em;
     background-color: rgba(76, 175, 80, 0.1);
     border: 1px solid var(--l-green);
     padding: .2em;
     overflow-x: hidden;
 }
 
-#category-items {
+.category-items {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     font-family: var(--font1);
-    font-size: 4em;
     width: 100%;
-    align-self: stretch;
     border: 1px solid var(--l-green);
 }
 
-#item-image {
-    align-content: flex-end;
+.item-name {
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 4em;
+}
+
+.item-image {
+    /*justify-content: center;*/
+    align-items: center;
+    width: 6em;
+    height: 6em;
+}
+
+.item-edit {
+    /*padding-left: 2em;*/
+    font-size: 2em;
+    justify-content: center;
+    align-items: stretch;
+    height: 100%;
+}
+
+.caret-size {
+    font-size: 2.5em;
 }
 
 .add-category {
     cursor: pointer;
+}
+
+.category-name {
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    font-size: 4em;
 }
 
 /*----------------------------------------------------------------------------------------------------------------------
