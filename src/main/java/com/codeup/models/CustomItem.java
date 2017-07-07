@@ -4,6 +4,7 @@ package com.codeup.models;
  * Created by roxana on 7/2/17.
  */
 public class CustomItem {
+    private long id;
     private String name;
     private String imgUrl;
     private float price;
@@ -15,9 +16,10 @@ public class CustomItem {
     public CustomItem() {
     }
 
-    public CustomItem(String name, String imgUrl) {
+    public CustomItem(long id, String name, String imgUrl) {
         this.name = name;
         this.imgUrl = imgUrl;
+        this.id =id;
     }
 
     public CustomItem(String name, String imgUrl, float price, int quantity, String barcode, boolean favorite) {
@@ -29,7 +31,8 @@ public class CustomItem {
         this.favorite = favorite;
     }
 
-    public CustomItem(String name, String imgUrl, float price, int quantity, String barcode, boolean favorite, long listId) {
+    public CustomItem(long id, String name, String imgUrl, float price, int quantity, String barcode, boolean favorite, long listId) {
+        this.id = id;
         this.name = name;
         this.imgUrl = imgUrl;
         this.price = price;
@@ -93,5 +96,13 @@ public class CustomItem {
 
     public void setListId(long listId) {
         this.listId = listId;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
