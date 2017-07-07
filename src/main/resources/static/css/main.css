@@ -71,6 +71,7 @@ ul, li, a, a:hover {
     color: var(--l-green);
     border: .5px solid black;
     margin-left: .2em;
+    margin-bottom: .1em;
 }
 
 .nav-links-logged-in, .nav-links-logged-out {
