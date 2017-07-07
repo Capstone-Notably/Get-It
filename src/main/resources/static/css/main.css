@@ -238,7 +238,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     max-width: 100%;
     font-family: var(--font1);
     font-size: 1em;
-    background-color: rgba(76, 175, 80, 0.05);
+    background-color: rgba(113, 173, 190, 0.2);
     border: 1px solid var(--l-green);
     padding: .2em;
     overflow-x: hidden;

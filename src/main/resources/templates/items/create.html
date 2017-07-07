@@ -21,7 +21,7 @@
                 <ul class="dropdown-menu">
                     <div th:each="category:${categories}">
                         <li><a class="menu-li" href="#"><span th:text="${category.name}" /></a></li>
-                        <li role="separator" class="divider"></li>
+                        <li th:if="${categories.size()} != ${category.id}" role="separator" class="divider"></li>
                     </div>
                 </ul>
             </div>

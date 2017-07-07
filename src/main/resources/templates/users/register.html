@@ -38,7 +38,7 @@
                     <ul class="dropdown-menu">
                         <div th:each="preference:${preferences}">
                             <li><a class="menu-li" href="#"><span th:text="${preference.name}"/></a></li>
-                            <li role="separator" class="divider"></li>
+                            <li th:if="${preferences.size()} != ${preference.id}" role="separator" class="divider"></li>
                         </div>
                     </ul>
                 </div>
