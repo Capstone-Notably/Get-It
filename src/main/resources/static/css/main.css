@@ -368,7 +368,6 @@ form>input {
     width: 100%;
     max-width: 100%;
     font-family: var(--font1);
-    font-size: 1em;
     background-color: rgba(76, 175, 80, 0.1);
     border: 1px solid var(--l-green);
     padding: .2em;
@@ -377,20 +376,40 @@ form>input {
 
 #category-items {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     font-family: var(--font1);
-    font-size: 4em;
     width: 100%;
-    align-self: stretch;
     border: 1px solid var(--l-green);
 }
 
+.item-name {
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 4em;
+}
+
 #item-image {
-    align-content: flex-end;
+    /*justify-content: center;*/
+    align-items: center;
+    width: 5em;
+    height: 5em;
+}
+
+.item-edit {
+    padding-left: 1em;
+    font-size: 3em;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .add-category {
     cursor: pointer;
+}
+
+.category-name {
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    font-size: 4em;
 }
 
 /*----------------------------------------------------------------------------------------------------------------------
