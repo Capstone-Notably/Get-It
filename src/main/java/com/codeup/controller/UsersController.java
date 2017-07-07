@@ -29,6 +29,7 @@ public class UsersController {
     private final UserCategoryRepository userCategoryRepository;
     private final RecipesRepository recipesRepository;
     private final UserRecipeRepository userRecipeRepository;
+    private final GroceryListsRepository groceryListsRepository;
 
 
     @Value("${users-img-path}")
@@ -38,7 +39,7 @@ public class UsersController {
     public UsersController(UsersRepository usersRepository, RolesRepository rolesRepository, PasswordEncoder passwordEncoder,
                            ItemsRepository itemsRepository, UserItemsRepository userItemsRepository, PreferenceRepository preferenceRepository,
                            CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository,
-                           RecipesRepository recipesRepository, UserRecipeRepository userRecipeRepository) {
+                           RecipesRepository recipesRepository, UserRecipeRepository userRecipeRepository, GroceryListsRepository groceryListsRepository) {
         this.usersRepository = usersRepository;
         this.rolesRepository = rolesRepository;
         this.passwordEncoder = passwordEncoder;
@@ -49,6 +50,7 @@ public class UsersController {
         this.userCategoryRepository = userCategoryRepository;
         this.recipesRepository = recipesRepository;
         this.userRecipeRepository = userRecipeRepository;
+        this.groceryListsRepository = groceryListsRepository;
     }
 
     @PostMapping("/users/register")
@@ -95,6 +97,9 @@ public class UsersController {
         for (Recipe recipe : recipes) {
            userRecipeRepository.save(new UserRecipe(recipe, user));
         }
+
+        //update grocery_lists
+        groceryListsRepository.save(new GroceryList("My grocery list", user));
 
         return "redirect:/";
     }
