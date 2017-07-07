@@ -1,6 +1,7 @@
 package com.codeup.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by roxana on 7/6/17.
@@ -23,6 +24,13 @@ public class Recipe {
 
     @Column
     private String time;
+
+    @OneToMany(mappedBy = "recipe")
+    private List<RecipeItem> recipeItems;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Recipe() {
     }
@@ -72,5 +80,21 @@ public class Recipe {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public List<RecipeItem> getRecipeItems() {
+        return recipeItems;
+    }
+
+    public void setRecipeItems(List<RecipeItem> recipeItems) {
+        this.recipeItems = recipeItems;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

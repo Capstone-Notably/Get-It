@@ -43,6 +43,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<GroceryList> glists;
 
+    @OneToMany(mappedBy = "user")
+    private List<Recipe> recipes;
+
     public User() {
     }
 
@@ -149,5 +152,13 @@ public class User {
 
     public void setGlists(List<GroceryList> glists) {
         this.glists = glists;
+    }
+
+    public List<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
     }
 }

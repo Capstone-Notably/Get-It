@@ -83,7 +83,7 @@ public class ItemsController {
             for (UserItem userItem : userItems) {
                 Item item = itemsRepository.findOne(userItem.getItem().getId());
                 if(item.getCategory().getId() == category_id) {
-                    CustomItem customItem = new CustomItem(item.getName(), item.getImgUrl(), userItem.getPrice(), userItem.getQuantity(), userItem.getBarcode(), userItem.isFavorite());
+                    CustomItem customItem = new CustomItem(item.getId(), item.getName(), item.getImgUrl(), userItem.getPrice(), userItem.getQuantity(), userItem.getBarcode(), userItem.isFavorite());
                     customItems.add(customItem);
                 }
             }
@@ -92,7 +92,7 @@ public class ItemsController {
             // get the default items using user_id=1 -> admin user
             List<Item> items = itemsRepository.findByUser_IdAndCategory_Id(1, category_id);
             for (Item item : items) {
-                customItems.add(new CustomItem(item.getName(), item.getImgUrl()));
+                customItems.add(new CustomItem(item.getId(), item.getName(), item.getImgUrl()));
             }
         }
         return customItems;
@@ -107,7 +107,7 @@ public class ItemsController {
 
             for (UserItem userItem : userItems) {
                 Item item = itemsRepository.findOne(userItem.getItem().getId());
-                CustomItem customItem = new CustomItem(item.getName(), item.getImgUrl(), userItem.getPrice(), userItem.getQuantity(), userItem.getBarcode(), userItem.isFavorite());
+                CustomItem customItem = new CustomItem(item.getId(), item.getName(), item.getImgUrl(), userItem.getPrice(), userItem.getQuantity(), userItem.getBarcode(), userItem.isFavorite());
                 customItems.add(customItem);
             }
         }
