@@ -179,7 +179,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     width: 30vw;
     font-family: var(--font1);
     /*font-size: 1em;*/
-    background-color: rgba(76, 175, 80, 0.2);
+    background-color: rgba(76, 175, 80, 0.1);
     border: 1px solid var(--l-green);
 }
 
@@ -204,23 +204,33 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     align-items: center;
     width: 100vw;
     font-family: var(--font1);
-    font-size: 1em;
-    background-color: rgba(76, 175, 80, 0.05);
+    /*font-size: 1em;*/
+    background-color: rgba(76, 175, 80, 0.1);
     border: 1px solid var(--l-green);
 }
 
-#register-form {
-    display: flex;
+.form-group input {
+    border: 1px solid var(--l-green);
+}
+
+.button {
+    border: 1px solid var(--l-green);
+}
+
+.register-form {
+    display: inline-flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
+    width: 40em;
+    font-size: 2.5em;
 }
 
 .menu {
-    font-size: 15px;
+    font-size: 1.2em;
     padding-bottom: 0;
     padding-top: 0;
-    border: 1px solid #cccccc;
+    border: 1px solid var(--l-green);
     text-align: left;
     margin-bottom: 13px;
     border-radius: 5px;
@@ -238,7 +248,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     max-width: 100%;
     font-family: var(--font1);
     font-size: 1em;
-    background-color: rgba(113, 173, 190, 0.2);
+    background-color: rgba(76, 175, 80, 0.1);
     border: 1px solid var(--l-green);
     padding: .2em;
     overflow-x: hidden;
@@ -329,7 +339,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     max-width: 100%;
     font-family: var(--font1);
     font-size: 1em;
-    background-color: rgba(76, 175, 80, 0.05);
+    background-color: rgba(76, 175, 80, 0.1);
     border: 1px solid var(--l-green);
     padding: .2em;
     overflow-x: hidden;
@@ -367,7 +377,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     height: 100%;
     font-family: var(--font1);
     font-size: 1em;
-    background-color: rgba(76, 175, 80, 0.05);
+    background-color: rgba(76, 175, 80, 0.1);
     border: 1px solid var(--l-green);
     padding: .2em;
     overflow-x: hidden;
@@ -434,7 +444,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     max-width: 100%;
     font-family: var(--font1);
     font-size: 1em;
-    background-color: rgba(76, 175, 80, 0.05);
+    background-color: rgba(76, 175, 80, 0.1);
     border: 1px solid var(--l-green);
     padding: .2em;
     overflow-x: hidden;
@@ -482,7 +492,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     max-width: 100%;
     font-family: var(--font1);
     font-size: 1em;
-    background-color: rgba(76, 175, 80, 0.05);
+    background-color: rgba(76, 175, 80, .1);
     border: 1px solid var(--l-green);
     padding: .2em;
     overflow-x: hidden;
