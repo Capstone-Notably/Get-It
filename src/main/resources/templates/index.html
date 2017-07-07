@@ -11,24 +11,24 @@
     <div class="index-body">
         <img id="image" src="/uploads/others/groceries.jpg" class="img-responsive" />
 
-        <div id="user-welcome" sec:authorize="isAuthenticated()">
-            <h1 style="text-align:center;margin-bottom:35px">Welcome <span sec:authentication="name"> user</span>!</h1>
-        </div>
-        <div sec:authorize="hasRole('ROLE_ADMIN')">
-            <!--This content is only shown to administrators.-->
-        </div>
-        <div sec:authorize="hasRole('ROLE_USER')">
-            <!--This content is only shown to users.-->
-        </div>
+        <!--<div id="user-welcome" sec:authorize="isAuthenticated()">-->
+            <!--<h1 style="text-align:center;margin-bottom:35px">Welcome <span sec:authentication="name"> user</span>!</h1>-->
+        <!--</div>-->
+        <!--<div sec:authorize="hasRole('ROLE_ADMIN')">-->
+            <!--&lt;!&ndash;This content is only shown to administrators.&ndash;&gt;-->
+        <!--</div>-->
+        <!--<div sec:authorize="hasRole('ROLE_USER')">-->
+            <!--&lt;!&ndash;This content is only shown to users.&ndash;&gt;-->
+        <!--</div>-->
 
 
         <div class="row categories">
-            <!--<h2 id="category-header">Categories</h2>-->
-            <h2 id="category-header">Categories <span sec:authorize="isAuthenticated()"
-                                                      class="glyphicon glyphicon-plus add-category" aria-hidden="true"
-                                                      data-container="body" data-toggle="popover"
-                                                      data-placement="bottom" rel="popover"
-                                                      data-popover-content="#category-create" tabindex="0" data-trigger="focus">
+            <h2 id="category-header">Categories
+                <span sec:authorize="isAuthenticated()"
+                class="glyphicon glyphicon-plus add-category" aria-hidden="true"
+                      data-container="body" data-toggle="popover"
+                      data-placement="bottom" rel="popover"
+                      data-popover-content="#category-create" tabindex="0" data-trigger="focus">
             </span>
             </h2>
 
