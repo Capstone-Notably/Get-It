@@ -374,7 +374,7 @@ form>input {
     overflow-x: hidden;
 }
 
-#category-items {
+.category-items {
     display: flex;
     flex-flow: row nowrap;
     font-family: var(--font1);
@@ -388,7 +388,7 @@ form>input {
     font-size: 4em;
 }
 
-#item-image {
+.item-image {
     /*justify-content: center;*/
     align-items: center;
     width: 5em;
