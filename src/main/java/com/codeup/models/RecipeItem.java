@@ -13,7 +13,7 @@ public class RecipeItem {
     private long id;
 
     @Column
-    private int quantity;
+    private String quantity;
 
     @ManyToOne
     @JoinColumn(name = "recipe_id")
@@ -26,7 +26,7 @@ public class RecipeItem {
     public RecipeItem() {
     }
 
-    public RecipeItem(int quantity, Recipe recipe, Item item) {
+    public RecipeItem(String quantity, Recipe recipe, Item item) {
         this.quantity = quantity;
         this.recipe = recipe;
         this.item = item;
@@ -40,11 +40,11 @@ public class RecipeItem {
         this.id = id;
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 
