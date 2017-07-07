@@ -22,8 +22,8 @@ public class AuthenticationController {
     }
 
     @GetMapping("/login")
-    public String showLoginForm() {
-        return "redirect:/";
+    public String showLoginForm(Model model) {
+        return "users/login";
     }
 
     @GetMapping("/register")

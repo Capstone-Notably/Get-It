@@ -63,7 +63,7 @@ public class ItemsController {
         UserItem userItem = new UserItem(item.getPrice(), item.getQuantity(), item.getBarcode(), item.isFavorite(), user, defaultItem);
         itemsRepository.save(defaultItem);
         userItemsRepository.save(userItem);
-        return "redirect:/home";
+        return "redirect:/";
     }
 
     @GetMapping("/items.json")
