@@ -64,6 +64,13 @@ ul, li, a, a:hover {
     align-items: center;
     font-family: var(--font1);
     font-size: 4.5em;
+
+}
+
+#nav-check-mark {
+    color: var(--l-green);
+    border: .5px solid black;
+    margin-left: .2em;
 }
 
 .nav-links-logged-in, .nav-links-logged-out {
