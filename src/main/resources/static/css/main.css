@@ -391,15 +391,20 @@ form>input {
 .item-image {
     /*justify-content: center;*/
     align-items: center;
-    width: 5em;
-    height: 5em;
+    width: 6em;
+    height: 6em;
 }
 
 .item-edit {
-    padding-left: 1em;
-    font-size: 3em;
-    justify-content: flex-end;
-    align-items: center;
+    /*padding-left: 2em;*/
+    font-size: 2em;
+    justify-content: center;
+    align-items: stretch;
+    height: 100%;
+}
+
+.caret-size {
+    font-size: 2.5em;
 }
 
 .add-category {

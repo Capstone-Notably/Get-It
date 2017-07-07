@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head th:replace="fragments::head('List of Items')"></head>
+<!--<head th:replace="fragments::head('List of Items')"></head>-->
 <body>
 <div class="home-grid">
     <div th:replace="fragments::hidden-search"></div>
@@ -12,11 +12,15 @@
             <img class="img-responsive img-thumbnail item-image" th:src="'/uploads/items/' + ${item.imgUrl}" />
 
             <div class="dropdown">
-                <span sec:authorize="isAuthenticated()" class="glyphicon glyphicon-triangle-bottom dropdown-toggle" type="button" th:id="'dropdownMenu' + ${item.id}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Dropdown
-                    <span class="caret"></span>
-                </span>
-                <ul class="dropdown-menu" th:attr="aria-labelledby='\'dropdownMenu' + ${item.id} +'\''">
+                <button class="btn btn-default dropdown-toggle item-edit" type="button" th:id="'dropdownMenu' + ${item.id}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <span class="caret-size caret"></span>
+                </button>
+
+                <!--<span sec:authorize="isAuthenticated()" class="glyphicon glyphicon-triangle-bottom dropdown-toggle" role="button" th:id="'dropdownMenu' + ${item.id}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+                    <!--&lt;!&ndash;Dropdown&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span class="caret"></span>&ndash;&gt;-->
+                <!--</span>-->
+                <ul class="dropdown-menu dropdown-menu-right" th:attr="aria-labelledby='\'dropdownMenu' + ${item.id} +'\''">
                     <li><a href="#">Add to List</a></li>
                     <li><a href="#">Edit</a></li>
                     <li><a href="#">Delete</a></li>
@@ -25,15 +29,17 @@
                 </ul>
             </div>
 
-            <!--<div class="dropdown item-edit">-->
-                <!--<span sec:authorize="isAuthenticated()" id="dropdownMenu1" class="dropdown-toggle glyphicon glyphicon-triangle-bottom" role="button" data-toggle="dropdown" aria-haspopup="true"-->
-                    <!--aria-expanded="false" aria-hidden="true">-->
-                <!--</span>-->
-                <!--<ul aria-labelledby="dropdownMenu1" class="dropdown-menu dropdown-menu-right">-->
-                    <!--<li><a class="dropdown-links" href="/">Add to List</a></li>-->
-                    <!--<li><a class="dropdown-links" href="/">Edit</a></li>-->
-                    <!--<li><a class="dropdown-links" href="/">Delete</a></li>-->
-                    <!--<li class="dropdown-links divider" role="separator"></li>-->
+            <!--<div class="dropdown">-->
+                <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+                    <!--Dropdown-->
+                    <!--<span class="caret"></span>-->
+                <!--</button>-->
+                <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+                    <!--<li><a href="#">Action</a></li>-->
+                    <!--<li><a href="#">Another action</a></li>-->
+                    <!--<li><a href="#">Something else here</a></li>-->
+                    <!--<li role="separator" class="divider"></li>-->
+                    <!--<li><a href="#">Separated link</a></li>-->
                 <!--</ul>-->
             <!--</div>-->
 
@@ -41,6 +47,6 @@
     </div>
     <!--<div th:replace="fragments::my-footer">Footer</div>-->
 </div>
-    <div th:replace="fragments::scripts"></div>
+
 </body>
 </html>
