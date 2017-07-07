@@ -44,7 +44,7 @@ public class GroceryListsController {
                 long itemId = listItem.getItem().getId();
                 Item item = itemsRepository.findOne(itemId);
                 UserItem userItem = userItemsRepository.findByUser_IdAndItem_Id(user.getId(), itemId);
-                customItems.add(new CustomItem(item.getName(), item.getImgUrl(), userItem.getPrice(), userItem.getQuantity(), userItem.getBarcode(), userItem.isFavorite(), glist.getId()));
+                customItems.add(new CustomItem(item.getId(), item.getName(), item.getImgUrl(), userItem.getPrice(), userItem.getQuantity(), userItem.getBarcode(), userItem.isFavorite(), glist.getId()));
             }
         }
 
