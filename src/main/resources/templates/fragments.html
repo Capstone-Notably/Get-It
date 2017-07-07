@@ -31,7 +31,7 @@
             <a href="/" class="nav-categories">Recipes</a>
         </div>
         <div class="nav-links">
-            <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm" id="login-nav-link">Login</a>
+            <a href="#" data-toggle="modal" data-target="#myModal" id="login-nav-link">Login</a>
             <span>|</span>
             <a href="/register" id="register-nav-link">Register</a>
         </div>
@@ -42,7 +42,7 @@
                   class="hamburger dropdown-toggle glyphicon glyphicon-menu-hamburger" aria-hidden="true">
             </span>
             <ul class="dropdown-menu dropdown-menu-right">
-                <li><a class="dropdown-links" href="/login">Login</a></li>
+                <li><a class="dropdown-links" data-toggle="modal" data-target="#myModal" href="/login">Login</a></li>
                 <li><a class="dropdown-links" href="/register">Register</a></li>
                 <li class="dropdown-links divider" role="separator"></li>
                 <li><a class="dropdown-links" href="/">Categories</a></li>
@@ -50,27 +50,33 @@
             </ul>
         </div>
 
-        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-            <div class="modal-dialog modal-sm" role="document">
-                <div class="modal-content login-body">
-                    <h1>Log In</h1>
-                    <div th:if="${param.error}">
-                        Invalid Username and Password.
-                    </div>
-                    <div th:if="${param.logout}">
-                        You have been logged out.
-                    </div>
-
-                    <form id="login-form" th:action="@{/login}" method="post">
-                        <label for="username">Username</label>
-                        <input id="username" name="username" type="text"/>
-                        <label for="password">Password</label>
-                        <input id="password" name="password" type="password"/>
-                        <input type="submit" value="Log In"/>
-                    </form>
-                </div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content"></div>
             </div>
         </div>
+
+        <!--<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">-->
+            <!--<div class="modal-dialog modal-sm" role="document">-->
+                <!--<div class="modal-content login-body">-->
+                    <!--<h1>Log In</h1>-->
+                    <!--<div th:if="${param.error}">-->
+                        <!--Invalid Username and Password.-->
+                    <!--</div>-->
+                    <!--<div th:if="${param.logout}">-->
+                        <!--You have been logged out.-->
+                    <!--</div>-->
+
+                    <!--<form id="login-form" th:action="@{/login}" method="post">-->
+                        <!--<label for="username">Username</label>-->
+                        <!--<input id="username" name="username" type="text"/>-->
+                        <!--<label for="password">Password</label>-->
+                        <!--<input id="password" name="password" type="password"/>-->
+                        <!--<input type="submit" value="Log In"/>-->
+                    <!--</form>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
 
         <div class="nav-links">
             <span class="glyphicon glyphicon-search" aria-hidden="true" id="search-trigger"></span>

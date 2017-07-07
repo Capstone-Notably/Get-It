@@ -23,7 +23,7 @@ public class AuthenticationController {
 
     @GetMapping("/login")
     public String showLoginForm(Model model) {
-        return "redirect:/";
+        return "users/login";
     }
 
     @GetMapping("/register")

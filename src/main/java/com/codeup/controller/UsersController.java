@@ -84,7 +84,7 @@ public class UsersController {
             }
         }
 
-        return "redirect:/login";
+        return "users/login";
     }
 
 
