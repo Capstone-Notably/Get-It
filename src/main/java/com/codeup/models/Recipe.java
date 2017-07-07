@@ -1,6 +1,7 @@
 package com.codeup.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by roxana on 7/6/17.
@@ -23,6 +24,9 @@ public class Recipe {
 
     @Column
     private String time;
+
+    @OneToMany(mappedBy = "recipe")
+    private List<RecipeItem> recipeItems;
 
     public Recipe() {
     }
