@@ -48,8 +48,6 @@
                 </form>
             </div>
 
-
-
             <div th:each="category:${categories}">
                 <div class="col-sm-6 col-md-4 category">
                     <a class="category-name" data-toggle="modal" data-target="#myModal" th:href="@{/items(category_id=${category.id})}"><span th:text="${category.name}" /></a>
@@ -68,15 +66,15 @@
 
 
 
-        <!--<div class="row recipes">-->
-            <!--<h2 id="recipe-header">Recipes</h2>-->
-            <!--<div th:each="category:${categories}">-->
-                <!--<div class="col-sm-6 col-md-4 recipe">-->
-                    <!--<a class="recipe-name" th:href="@{/items(category_id=${category.id})}"><span th:text="${category.name}" /></a>-->
-                    <!--<a th:href="@{/items(category_id=${category.id})}"><img th:src="'/uploads/categories/' + ${category.imgUrl}" class="recipe-image img-responsive img-thumbnail" width="250px" height="250px" /></a>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
+        <div class="row recipes">
+            <h2 id="recipe-header">Recipes</h2>
+            <div th:each="recipe:${recipes}">
+                <div class="col-sm-6 col-md-4 recipe">
+                    <a class="recipe-name" th:href="@{/items(recipe_id=${recipe.id})}"><span th:text="${recipe.name}" /></a>
+                    <a th:href="@{/items(recipe_id=${recipe.id})}"><img th:src="'/uploads/recipes/' + ${recipe.imgUrl}" class="recipe-image img-responsive img-thumbnail" width="250px" height="250px" /></a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div th:replace="fragments::my-footer">Footer</div>

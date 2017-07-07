@@ -20,13 +20,17 @@ import java.util.List;
 @Controller
 public class UsersController {
     private final UsersRepository usersRepository;
-    private RolesRepository rolesRepository;
-    private PasswordEncoder passwordEncoder;
-    private ItemsRepository itemsRepository;
-    private UserItemsRepository userItemsRepository;
-    private PreferenceRepository preferenceRepository;
-    private CategoriesRepository categoriesRepository;
-    private UserCategoryRepository userCategoryRepository;
+    private final RolesRepository rolesRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final ItemsRepository itemsRepository;
+    private final UserItemsRepository userItemsRepository;
+    private final PreferenceRepository preferenceRepository;
+    private final CategoriesRepository categoriesRepository;
+    private final UserCategoryRepository userCategoryRepository;
+    private final RecipesRepository recipesRepository;
+    private final UserRecipeRepository userRecipeRepository;
+    private final GroceryListsRepository groceryListsRepository;
+
 
     @Value("${users-img-path}")
     private String usersImgPath;
@@ -34,7 +38,8 @@ public class UsersController {
     @Autowired
     public UsersController(UsersRepository usersRepository, RolesRepository rolesRepository, PasswordEncoder passwordEncoder,
                            ItemsRepository itemsRepository, UserItemsRepository userItemsRepository, PreferenceRepository preferenceRepository,
-                           CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository) {
+                           CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository,
+                           RecipesRepository recipesRepository, UserRecipeRepository userRecipeRepository, GroceryListsRepository groceryListsRepository) {
         this.usersRepository = usersRepository;
         this.rolesRepository = rolesRepository;
         this.passwordEncoder = passwordEncoder;
@@ -43,6 +48,9 @@ public class UsersController {
         this.preferenceRepository = preferenceRepository;
         this.categoriesRepository = categoriesRepository;
         this.userCategoryRepository = userCategoryRepository;
+        this.recipesRepository = recipesRepository;
+        this.userRecipeRepository = userRecipeRepository;
+        this.groceryListsRepository = groceryListsRepository;
     }
 
     @PostMapping("/users/register")
@@ -84,7 +92,16 @@ public class UsersController {
             }
         }
 
-        return "redirect:/login";
+        //update table users_recipes
+        List<Recipe> recipes = recipesRepository.findByUser_Id(1);
+        for (Recipe recipe : recipes) {
+           userRecipeRepository.save(new UserRecipe(recipe, user));
+        }
+
+        //update grocery_lists
+        groceryListsRepository.save(new GroceryList("My grocery list", user));
+
+        return "redirect:/";
     }
 
 

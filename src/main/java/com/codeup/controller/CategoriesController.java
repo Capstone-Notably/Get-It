@@ -19,20 +19,28 @@ import java.util.List;
 public class CategoriesController {
     private final CategoriesRepository categoriesRepository;
     private final UserCategoryRepository userCategoryRepository;
+    private final RecipesRepository recipesRepository;
+    private final RecipeItemsRepository recipeItemsRepository;
+    private final UserRecipeRepository userRecipeRepository;
 
     @Value("${categories-img-path}")
     private String categoriesImgPath;
 
     @Autowired
-    public CategoriesController(CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository) {
+    public CategoriesController(CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository, RecipesRepository recipesRepository, RecipeItemsRepository recipeItemsRepository, UserRecipeRepository userRecipeRepository) {
         this.categoriesRepository = categoriesRepository;
         this.userCategoryRepository = userCategoryRepository;
+        this.recipesRepository = recipesRepository;
+        this.recipeItemsRepository = recipeItemsRepository;
+        this.userRecipeRepository = userRecipeRepository;
     }
 
     @GetMapping("/")
     public String viewHome(Model model) {
         List<Category> categories = findAll(categoriesRepository, userCategoryRepository);
+        List<Recipe> recipes = RecipesController.findAll(recipesRepository, userRecipeRepository, recipeItemsRepository);
         model.addAttribute("categories", categories);
+        model.addAttribute("recipes", recipes);
         model.addAttribute("newCategory", new Category());
         return "index";
 
