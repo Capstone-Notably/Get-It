@@ -6,7 +6,7 @@
     <div th:replace="fragments::hidden-search"></div>
     <nav th:replace="fragments::my-navbar"></nav>
     <div class="register-body">
-        <form th:method="post" th:action="@{/users/register}" th:object="${user}" enctype="multipart/form-data">
+        <form class="register-form" th:method="post" th:action="@{/users/register}" th:object="${user}" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" th:field="*{username}"/>
@@ -45,7 +45,7 @@
                 <input class="menu-in" name="preference" type="hidden"/>
             </div>
 
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="button btn btn-default">Submit</button>
         </form>
     </div>
     <div th:replace="fragments::my-footer"></div>
