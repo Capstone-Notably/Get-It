@@ -51,23 +51,23 @@
 
 
             <div th:each="category:${categories}">
-                <div id="category" class="col-sm-6 col-md-4">
-                    <a id="category-name" th:href="@{/items(category_id=${category.id})}"><span th:text="${category.name}" /></a>
-                    <a id="category-image" th:href="@{/items(category_id=${category.id})}"><img th:src="'/uploads/categories/' + ${category.imgUrl}" class="img-responsive img-thumbnail" width="250px" height="250px" /></a>
+                <div class="col-sm-6 col-md-4 category">
+                    <a class="category-name" th:href="@{/items(category_id=${category.id})}"><span th:text="${category.name}" /></a>
+                    <a class="category-image" th:href="@{/items(category_id=${category.id})}"><img th:src="'/uploads/categories/' + ${category.imgUrl}" class="img-responsive img-thumbnail" /></a>
                 </div>
             </div>
         </div>
 
 
-        <div class="row recipes">
-            <h2 id="recipe-header">Recipes</h2>
-            <div th:each="category:${categories}">
-                <div id="recipe" class="col-sm-6 col-md-4">
-                    <a id="recipe-name" th:href="@{/items(category_id=${category.id})}"><span th:text="${category.name}" /></a>
-                    <a id="recipe-image" th:href="@{/items(category_id=${category.id})}"><img th:src="'/uploads/categories/' + ${category.imgUrl}" class="img-responsive img-thumbnail" width="250px" height="250px" /></a>
-                </div>
-            </div>
-        </div>
+        <!--<div class="row recipes">-->
+            <!--<h2 id="recipe-header">Recipes</h2>-->
+            <!--<div th:each="category:${categories}">-->
+                <!--<div class="col-sm-6 col-md-4 recipe">-->
+                    <!--<a class="recipe-name" th:href="@{/items(category_id=${category.id})}"><span th:text="${category.name}" /></a>-->
+                    <!--<a th:href="@{/items(category_id=${category.id})}"><img th:src="'/uploads/categories/' + ${category.imgUrl}" class="recipe-image img-responsive img-thumbnail" width="250px" height="250px" /></a>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 
     <div th:replace="fragments::my-footer">Footer</div>
