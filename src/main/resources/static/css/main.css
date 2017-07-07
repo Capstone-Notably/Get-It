@@ -94,7 +94,7 @@ ul, li, a, a:hover {
     font-size: 1.5em;
 }
 
-#dropdown-nav {
+.dropdown-nav {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -115,7 +115,7 @@ ul, li, a, a:hover {
     padding-right: 1em;
 }
 
-#hamburger {
+.hamburger {
     display: none;
 }
 
@@ -498,7 +498,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     grid-template-columns: 60vw 40vw;
     width: 100vw;
     font-family: var(--font1);
-    font-size: 1.5em;
+    font-size: 2em;
     padding-top: .3em;
 }
 
@@ -535,10 +535,10 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         grid-column: 1;
         display: flex;
         justify-content: flex-start;
-        margin-left: 0;
+        padding-left: .5em;
         align-items: center;
         font-family: var(--font1);
-        font-size: 2em;
+        font-size: 2.5em;
     }
 
     .nav-links-logged-in {
@@ -547,7 +547,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         flex-direction: row;
         justify-content: flex-end;
         align-items: center;
-        padding-right: .5em;
+        /*padding-right: em;*/
         font-family: var(--font1);
         font-size: 1em;
     }
@@ -565,23 +565,27 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         grid-column: 2;
         display: flex;
         flex-flow: row nowrap;
-        justify-content: space-around;
+        justify-content: flex-end;
         align-items: center;
-        padding-right: 0;
+        padding-right: .5em;
         font-family: var(--font1);
 
     }
 
     .nav-links {
-        align-items: center;
-        padding-right: 0;
-        font-family: var(--font1);
-        font-size: 1.3em;
+        /*align-items: center;*/
+        /*padding-right: 0;*/
+        /*font-family: var(--font1);*/
+        /*font-size: 1.5em;*/
+        display: none;
+        justify-content: flex-end;
 
     }
 
-    #hamburger {
+    .hamburger {
         display: inline-flex;
+        font-size: 2em;
+        padding-right: .5em;
     }
 
     #user-hello-hide-mobile-nav {
@@ -636,7 +640,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         align-items: center;
         font-family: var(--font1);
         font-size: 1em;
-        padding-right: 0;
+        padding-right: .5em;
     }
 
     .nav-icons {
@@ -649,10 +653,11 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     }
 
     .nav-links {
-        align-items: center;
-        font-family: var(--font1);
-        font-size: 1.1em;
-
+        /*align-items: center;*/
+        /*font-family: var(--font1);*/
+        /*font-size: 1.1em;*/
+        display: none;
+        justify-content: flex-end;
     }
 
     #user-hello-hide-mobile-nav {
@@ -663,9 +668,9 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
         display: none;
     }
 
-    #hamburger {
+    .hamburger {
         display: inline-flex;
-        font-size: 1.6em;
+        font-size: 2em;
     }
 
     #nav-search-input, .nav-search-button {
@@ -675,7 +680,7 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     }
 
     .footer {
-        font-size: 1em;
+        font-size: 1.5em;
     }
 
 }
