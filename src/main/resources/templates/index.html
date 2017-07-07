@@ -9,7 +9,7 @@
     <nav th:replace="fragments::my-navbar"></nav>
 
     <div class="index-body">
-        <img id="image" src="/img/groceries.jpg" class="img-responsive" />
+        <img id="image" src="/uploads/others/groceries.jpg" class="img-responsive" />
 
         <div id="user-welcome" sec:authorize="isAuthenticated()">
             <h1 style="text-align:center;margin-bottom:35px">Welcome <span sec:authentication="name"> user</span>!</h1>
@@ -23,7 +23,33 @@
 
 
         <div class="row categories">
-            <h2 id="category-header">Categories</h2>
+            <!--<h2 id="category-header">Categories</h2>-->
+            <h2 id="category-header">Categories <span sec:authorize="isAuthenticated()"
+                                                      class="glyphicon glyphicon-plus add-category" aria-hidden="true"
+                                                      data-container="body" data-toggle="popover"
+                                                      data-placement="bottom" rel="popover"
+                                                      data-popover-content="#category-create" tabindex="0" data-trigger="focus">
+            </span>
+            </h2>
+
+
+            <div class="hidden" id="category-create">
+
+                <form class="popover-body" th:method="post" th:action="@{/categories/create}" th:object="${newCategory}" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" th:field="*{name}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="file">Image</label>
+                        <input type="file" class="form-control" name="file" id="file" />
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+
+
+
             <div th:each="category:${categories}">
                 <div id="category" class="col-sm-6 col-md-4">
                     <a id="category-name" th:href="@{/items(category_id=${category.id})}"><span th:text="${category.name}" /></a>

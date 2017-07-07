@@ -21,14 +21,14 @@
 
 <nav class="navbar" th:fragment="my-navbar">
     <!--Left side nav-->
-    <a href="/home" id="nav-brand-name">Get It <span id="nav-check-mark" class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+    <a href="/" id="nav-brand-name">Get It <span id="nav-check-mark" class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
 
     <!--Logged out right side nav-->
     <div sec:authorize="!isAuthenticated()" class="nav-links-logged-out">
         <div class="nav-links">
-            <a href="/home" class="nav-recipes">Categories</a>
+            <a href="/" class="nav-recipes">Categories</a>
             <span>|</span>
-            <a href="/home" class="nav-categories">Recipes</a>
+            <a href="/" class="nav-categories">Recipes</a>
         </div>
         <div class="nav-links">
             <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm" id="login-nav-link">Login</a>
@@ -85,8 +85,8 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li><a class="dropdown-links" href="/lists">My Lists</a></li>
-                    <li><a class="dropdown-links" href="/home">Categories</a></li>
-                    <li><a class="dropdown-links" href="/home">Recipes</a></li>
+                    <li><a class="dropdown-links" href="/">Categories</a></li>
+                    <li><a class="dropdown-links" href="/">Recipes</a></li>
                     <li><a class="dropdown-links" href="#">Update Profile</a></li>
                     <li class="dropdown-links divider" role="separator"></li>
                     <li>

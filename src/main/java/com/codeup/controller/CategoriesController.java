@@ -33,15 +33,16 @@ public class CategoriesController {
     public String viewHome(Model model) {
         List<Category> categories = findAll(categoriesRepository, userCategoryRepository);
         model.addAttribute("categories", categories);
+        model.addAttribute("newCategory", new Category());
         return "index";
 
     }
 
-    @GetMapping("/categories/create")
-    public String createCategory(Model model) {
-        model.addAttribute("categories", new Category());
-        return "categories/create";
-    }
+//    @GetMapping("/categories/create")
+//    public String createCategory(Model model) {
+//        model.addAttribute("categories", new Category());
+//        return "redirect:/";
+//    }
 
     @PostMapping("/categories/create")
     public String saveCategory(@ModelAttribute Category category, @RequestParam(name = "file") MultipartFile uploadedFile, Model model) {
