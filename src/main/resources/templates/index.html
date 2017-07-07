@@ -48,6 +48,8 @@
                 </form>
             </div>
 
+
+
             <div th:each="category:${categories}">
                 <div class="col-sm-6 col-md-4 category">
                     <a class="category-name" data-toggle="modal" data-target="#myModal" th:href="@{/items(category_id=${category.id})}"><span th:text="${category.name}" /></a>
