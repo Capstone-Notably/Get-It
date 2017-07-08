@@ -19,4 +19,36 @@ public class UserGList {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public UserGList() {
+    }
+
+    public UserGList(GroceryList glist, User user) {
+        this.glist = glist;
+        this.user = user;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public GroceryList getGlist() {
+        return glist;
+    }
+
+    public void setGlist(GroceryList glist) {
+        this.glist = glist;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

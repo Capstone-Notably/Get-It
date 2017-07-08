@@ -41,9 +41,6 @@ public class User {
     private List<UserItem> userItems;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<GroceryList> glists;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Recipe> recipes;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -147,14 +144,6 @@ public class User {
 
     public void setUserCategories(List<UserCategory> userCategories) {
         this.userCategories = userCategories;
-    }
-
-    public List<GroceryList> getGlists() {
-        return glists;
-    }
-
-    public void setGlists(List<GroceryList> glists) {
-        this.glists = glists;
     }
 
     public List<Recipe> getRecipes() {

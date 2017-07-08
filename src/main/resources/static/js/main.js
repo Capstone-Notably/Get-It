@@ -103,7 +103,6 @@
             var html;
             $viewItems.each(function () {
                 if($(this).hasClass('active')){
-                    console.log($(this))
                     html = $(this).html();
                 }
             });

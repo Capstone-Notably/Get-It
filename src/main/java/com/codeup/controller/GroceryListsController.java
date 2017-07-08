@@ -20,21 +20,29 @@ public class GroceryListsController {
     private final ItemsRepository itemsRepository;
     private final UserItemsRepository userItemsRepository;
     private final ListItemsRepository listItemsRepository;
+    private final UserGListRepository userGListRepository;
 
     @Autowired
     public GroceryListsController(GroceryListsRepository groceryListsRepository, ItemsRepository itemsRepository,
-                                  UserItemsRepository userItemsRepository, ListItemsRepository listItemsRepository) {
+                                  UserItemsRepository userItemsRepository, ListItemsRepository listItemsRepository,
+                                  UserGListRepository userGListRepository) {
         this.groceryListsRepository = groceryListsRepository;
         this.itemsRepository = itemsRepository;
         this.userItemsRepository = userItemsRepository;
         this.listItemsRepository = listItemsRepository;
+        this.userGListRepository = userGListRepository;
     }
 
     @GetMapping("/lists")
     public String viewLists(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<CustomItem> customItems = new ArrayList<>();
-        List<GroceryList> glists = groceryListsRepository.findAllByUser_Id(user.getId());
+        List<UserGList> userGLists = userGListRepository.findByUser_Id(user.getId());
+        List<GroceryList> glists = new ArrayList<>();
+        for (UserGList userGList : userGLists) {
+            GroceryList glist = groceryListsRepository.findOne(userGList.getGlist().getId());
+            glists.add(glist);
+        }
 
         // get Ids for all the items
         for (GroceryList glist : glists) {
