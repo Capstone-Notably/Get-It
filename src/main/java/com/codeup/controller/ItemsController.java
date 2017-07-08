@@ -34,12 +34,12 @@ public class ItemsController {
         this.userCategoryRepository = userCategoryRepository;
     }
 
-    @GetMapping("/items")
-    public String viewItems(@RequestParam("category_id") long category_id, Model model) {
-        List<CustomItem> customItems = findByCategory(itemsRepository, userItemsRepository, category_id);
-        model.addAttribute("items", customItems);
-        return "items/index";
-    }
+//    @GetMapping("/items")
+//    public String viewItems(@RequestParam("category_id") long category_id, Model model) {
+//        List<CustomItem> customItems = findByCategory(itemsRepository, userItemsRepository, category_id);
+//        model.addAttribute("items", customItems);
+//        return "index";
+//    }
 
     @GetMapping("/items/create")
     public String createItem(Model model) {
@@ -109,6 +109,12 @@ public class ItemsController {
                 Item item = itemsRepository.findOne(userItem.getItem().getId());
                 CustomItem customItem = new CustomItem(item.getId(), item.getName(), item.getImgUrl(), userItem.getPrice(), userItem.getQuantity(), userItem.getBarcode(), userItem.isFavorite());
                 customItems.add(customItem);
+            }
+        }else {
+            // get the default items using user_id=1 -> admin user
+            List<Item> items = (List<Item>) itemsRepository.findAll();
+            for (Item item : items) {
+                customItems.add(new CustomItem(item));
             }
         }
         return customItems;

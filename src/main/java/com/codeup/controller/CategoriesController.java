@@ -22,23 +22,32 @@ public class CategoriesController {
     private final RecipesRepository recipesRepository;
     private final RecipeItemsRepository recipeItemsRepository;
     private final UserRecipeRepository userRecipeRepository;
+    private final ItemsRepository itemsRepository;
+    private final UserItemsRepository userItemsRepository;
 
     @Value("${categories-img-path}")
     private String categoriesImgPath;
 
     @Autowired
-    public CategoriesController(CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository, RecipesRepository recipesRepository, RecipeItemsRepository recipeItemsRepository, UserRecipeRepository userRecipeRepository) {
+    public CategoriesController(CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository,
+                                RecipesRepository recipesRepository, RecipeItemsRepository recipeItemsRepository,
+                                UserRecipeRepository userRecipeRepository, ItemsRepository itemsRepository,
+                                UserItemsRepository userItemsRepository) {
         this.categoriesRepository = categoriesRepository;
         this.userCategoryRepository = userCategoryRepository;
         this.recipesRepository = recipesRepository;
         this.recipeItemsRepository = recipeItemsRepository;
         this.userRecipeRepository = userRecipeRepository;
+        this.itemsRepository = itemsRepository;
+        this.userItemsRepository = userItemsRepository;
     }
 
     @GetMapping("/")
     public String viewHome(Model model) {
         List<Category> categories = findAll(categoriesRepository, userCategoryRepository);
         List<Recipe> recipes = RecipesController.findAll(recipesRepository, userRecipeRepository, recipeItemsRepository);
+        List<CustomItem> customItems = ItemsController.findByUser(itemsRepository, userItemsRepository);
+        model.addAttribute("items", customItems);
         model.addAttribute("categories", categories);
         model.addAttribute("recipes", recipes);
         model.addAttribute("newCategory", new Category());
