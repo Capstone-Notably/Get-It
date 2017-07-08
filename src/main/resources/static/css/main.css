@@ -495,8 +495,8 @@ form>input {
 .lists-index-body {
     grid-row: body;
     display: inline-grid;
-    grid: "header" "lists";
-    grid-template-rows: 5em minmax(25em, auto);
+    grid: "header" "search" "lists";
+    grid-template-rows: 10em 5em minmax(25em, auto);
     width:100%;
     max-width: 100%;
     font-family: var(--font1);
@@ -510,7 +510,26 @@ form>input {
 .grocery-header {
     grid-row: header;
     text-align: center;
+    margin-bottom: 1em;
+    font-size: 6em;
 }
+
+.lists-search {
+    grid-row: search;
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    align-content: center;
+    justify-content: center;
+}
+
+#tags, #search-submit {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 2.8em;
+}
+
 .grocery-lists {
     grid-row: lists;
     padding: 3em;
@@ -522,8 +541,21 @@ form>input {
     font-family: var(--font1);
 }
 
+.tabs {
+    display: flex;
+    flex-flow: row nowrap;
+    font-size: 2em;
+}
+
+.add-grocery-list {
+    float: right;
+    font-size: 2em;
+    text-align: center;
+}
+
 .lists-view {
     border: 3px solid var(--l-green);
+    padding: 3em;
     min-height: 75em;
     max-height: inherit;
 
@@ -539,17 +571,19 @@ form>input {
 .item-name {
     display: flex;
     width: 80%;
+    border-bottom: 2px solid var(--l-green);
 }
 
 .item-img {
     display: inline-block;
     text-align: right;
     width: 20%;
+    border-bottom: 2px solid var(--l-green);
 }
 
 .item-img > img {
-    width: 50px;
-    height: 45px;
+    width: 6em;
+    height: 6em;
 }
 
 .item-property {

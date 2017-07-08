@@ -14,20 +14,26 @@
     <nav th:replace="fragments::my-navbar"></nav>
     <div class="lists-index-body">
         <h1 class="grocery-header">Grocery Lists</h1>
-        <!--<form th:method="post">-->
-            <!--<div class="form-group">-->
-                <!--<div class="ui-widget">-->
-                    <!--<input id="tags" type="text" class="form-control" placeholder="Search"/>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<button id="search-submit" type="submit" class="btn btn-default">Submit</button>-->
-        <!--</form>-->
+        <form th:method="post" class="lists-search">
+            <div class="form-group">
+                <div class="ui-widget">
+                    <input id="tags" type="text" class="form-control" placeholder="Search"/>
+                </div>
+            </div>
+            <button id="search-submit" type="submit" class="btn btn-default">Submit</button>
+        </form>
 
         <div class="grocery-lists">
             <ul class="nav nav-tabs ul-tabs grocery-list-tab">
-                <li th:each="list : ${lists}"><a data-toggle="tab" th:href="'#list' + ${list.id}"
+                <li class="tabs" th:each="list : ${lists}"><a data-toggle="tab" th:href="'#list' + ${list.id}"
                                                  th:text="${list.name}"/>
                 </li>
+                <span sec:authorize="isAuthenticated()"
+                      class="glyphicon glyphicon-plus add-grocery-list" aria-hidden="true"
+                      data-container="body" data-toggle="popover"
+                      data-placement="bottom" rel="popover"
+                      data-popover-content="#grocery-list-create" tabindex="0" data-trigger="focus">
+                </span>
             </ul>
 
             <div class="tab-content lists-view">
@@ -38,8 +44,19 @@
                             <input type='checkbox' value='false' class='item-property'/>
                             <span th:text="${item.name}" class='item-property'/>
                         </div>
-                        <div th:if="${item.listId} == ${list.id}" class='item-img'>
+                        <div th:if="${item.listId} == ${list.id}" class='item-img img-responsive'>
                             <img th:src="${'/uploads/items/' + item.imgUrl}"/>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle item-edit" type="button" th:id="'dropdownMenu' + ${item.id}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span class="caret-size caret"></span>
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-menu-right" th:attr="aria-labelledby='\'dropdownMenu' + ${item.id} +'\''">
+                                <li><a href="#">Share List</a></li>
+                                <li><a href="#">Add Item</a></li>
+                                <li><a href="#">Delete</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
