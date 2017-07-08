@@ -116,11 +116,15 @@ ul, li, a, a:hover {
 
 #user-hello-hide-mobile-nav {
     font-size: 2.5em;
-    padding-right: 1em;
+    padding-right: .5em;
 }
 
 #user-icon {
-    padding-right: 1em;
+    padding-right: .5em;
+}
+.user-icon {
+    max-height: 3em;
+    max-width: 3em;
 }
 
 .hamburger {
