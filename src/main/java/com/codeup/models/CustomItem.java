@@ -12,6 +12,7 @@ public class CustomItem {
     private String barcode;
     private boolean favorite;
     private long listId;
+    private long categoryId;
 
     public CustomItem() {
     }
@@ -20,6 +21,13 @@ public class CustomItem {
         this.name = name;
         this.imgUrl = imgUrl;
         this.id =id;
+    }
+
+    public CustomItem(Item item) {
+        this.id = item.getId();
+        this.name = item.getName();
+        this.imgUrl = item.getImgUrl();
+        this.categoryId = item.getCategory().getId();
     }
 
     public CustomItem(long id, String name, String imgUrl, float price, int quantity, String barcode, boolean favorite) {
@@ -105,5 +113,13 @@ public class CustomItem {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(long categoryId) {
+        this.categoryId = categoryId;
     }
 }
