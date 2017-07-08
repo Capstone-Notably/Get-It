@@ -31,6 +31,7 @@ public class UsersController {
     private final RecipesRepository recipesRepository;
     private final UserRecipeRepository userRecipeRepository;
     private final GroceryListsRepository groceryListsRepository;
+    private final UserGListRepository userGListRepository;
 
 
     @Value("${users-img-path}")
@@ -43,7 +44,8 @@ public class UsersController {
     public UsersController(UsersRepository usersRepository, RolesRepository rolesRepository, PasswordEncoder passwordEncoder,
                            ItemsRepository itemsRepository, UserItemsRepository userItemsRepository, PreferenceRepository preferenceRepository,
                            CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository,
-                           RecipesRepository recipesRepository, UserRecipeRepository userRecipeRepository, GroceryListsRepository groceryListsRepository) {
+                           RecipesRepository recipesRepository, UserRecipeRepository userRecipeRepository,
+                           GroceryListsRepository groceryListsRepository, UserGListRepository userGListRepository) {
         this.usersRepository = usersRepository;
         this.rolesRepository = rolesRepository;
         this.passwordEncoder = passwordEncoder;
@@ -55,6 +57,7 @@ public class UsersController {
         this.recipesRepository = recipesRepository;
         this.userRecipeRepository = userRecipeRepository;
         this.groceryListsRepository = groceryListsRepository;
+        this.userGListRepository = userGListRepository;
     }
 
     @PostMapping("/users/register")
@@ -101,8 +104,9 @@ public class UsersController {
            userRecipeRepository.save(new UserRecipe(recipe, user));
         }
 
-        //update grocery_lists
-        groceryListsRepository.save(new GroceryList("My grocery list", user));
+        //update table users_glists
+        GroceryList savedGlist = groceryListsRepository.save(new GroceryList("My grocery list"));
+        userGListRepository.save(new UserGList(savedGlist, user));
 
         // send a welcome text
         String message = "Hello " + user.getUsername() + "from Get It";

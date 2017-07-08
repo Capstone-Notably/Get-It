@@ -46,12 +46,6 @@ public class CategoriesController {
 
     }
 
-//    @GetMapping("/categories/create")
-//    public String createCategory(Model model) {
-//        model.addAttribute("categories", new Category());
-//        return "redirect:/";
-//    }
-
     @PostMapping("/categories/create")
     public String saveCategory(@ModelAttribute Category category, @RequestParam(name = "file") MultipartFile uploadedFile, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

@@ -5,38 +5,40 @@
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
-<div class="home grid">
-    <input type="hidden" id= "csrf-token" th:name="${_csrf.parameterName}" th:content="${_csrf.token}" />
-    <input type="hidden" id= "csrf-header" th:name="${_csrf.parameterName}" th:content="${_csrf.headerName}" />
-    <div th:replace="fragments::hidden-search"></div>
-    <nav th:replace="fragments::my-navbar"></nav>
-    <div class="lists-index-body">
-        <h1>Groceries Lists</h1>
-        <form th:method="post">
-            <div class="form-group">
-                <div class="ui-widget">
-                    <input id="tags" type="text" class="form-control" placeholder="Search" />
-                </div>
+<input type="hidden" id= "csrf-token" th:name="${_csrf.parameterName}" th:content="${_csrf.token}" />
+<input type="hidden" id= "csrf-header" th:name="${_csrf.parameterName}" th:content="${_csrf.headerName}" />
+<!--<nav th:replace="fragments::my-navbar"></nav>-->
+<div class="container">
+    <h1>Groceries Lists</h1>
+    <form th:method="post">
+        <div class="form-group">
+            <div class="ui-widget">
+                <input id="tags" type="text" class="form-control" placeholder="Search" />
             </div>
-            <button id="search-submit" type="submit" class="btn btn-default">Submit</button>
-        </form>
-        <div th:each="list : ${lists}">
-            <a href="#" th:text="${list.name}"></a>
-            <div id="view-items">
-                <div th:each="item : ${items}" class='item-all'>
-                    <div th:if="${item.listId} == ${list.id}" class='item-name'>
-                        <input type='checkbox' value='false' class='item-property' />
-                        <span th:text="${item.name}" class='item-property' />
-                    </div>
-                    <div th:if="${item.listId} == ${list.id}" class='item-img'>
-                        <img th:src="${'/uploads/items/' + item.imgUrl}" />
-                    </div>
+        </div>
+        <button id="search-submit" type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+    <ul class="nav nav-tabs ul-tabs" >
+        <li th:each="list : ${lists}"><a data-toggle="tab" th:href="'#list' + ${list.id}" th:text="${list.name}" /></li>
+    </ul>
+
+    <div class="tab-content">
+        <div th:each="list : ${lists}" th:id="'list' + ${list.id}" class="tab-pane view-items">
+            <input type="hidden" th:value="${list.id}" />
+            <div th:each="item : ${items}" class='item-all'>
+                <div th:if="${item.listId} == ${list.id}" class='item-name'>
+                    <input type='checkbox' value='false' class='item-property' />
+                    <span th:text="${item.name}" class='item-property' />
+                </div>
+                <div th:if="${item.listId} == ${list.id}" class='item-img'>
+                    <img th:src="${'/uploads/items/' + item.imgUrl}" />
                 </div>
             </div>
         </div>
     </div>
-    <div th:replace="fragments::my-footer">Footer</div>
+    <!--<div th:replace="fragments::my-footer"></div>-->
 </div>
-    <div th:replace="fragments::scripts"></div>
+<div th:replace="fragments::scripts"></div>
 </body>
 </html>

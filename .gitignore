@@ -25,3 +25,4 @@ nbdist/
 
 /target
 **/.DS_Store
+/resources/application.properties
