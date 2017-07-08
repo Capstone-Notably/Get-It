@@ -36,9 +36,11 @@ public class ItemsController {
 
     @GetMapping("/items")
     public String viewItems(@RequestParam("category_id") long category_id, Model model) {
+        long cat = category_id;
         List<CustomItem> customItems = findByCategory(itemsRepository, userItemsRepository, category_id);
         model.addAttribute("items", customItems);
-        return "items/index";
+        model.addAttribute("showItems", true);
+        return "index";
     }
 
     @GetMapping("/items/create")
