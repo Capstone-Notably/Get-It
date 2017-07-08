@@ -52,25 +52,43 @@
 
             <div th:each="category:${categories}">
                 <div class="col-sm-6 col-md-4 category">
-                    <a class="category-name" data-toggle="modal" data-target="#myModal" th:href="@{/items(category_id=${category.id})}"><span th:text="${category.name}" /></a>
-                    <a class="category-image" data-toggle="modal" data-target="#myModal" th:href="@{/items(category_id=${category.id})}"><img th:src="'/uploads/categories/' + ${category.imgUrl}" class="img-responsive img-thumbnail" /></a>
+                    <!--<a class="category-name" data-toggle="modal" data-target="#myModal" href="#"><span th:text="${category.name}" /></a>  <&#45;&#45;th:href="@{/items(category_id=${category.id})}"&ndash;&gt;-->
+                    <a class="category-image" data-toggle="modal" th:href="'#itemModal'+${category.id}"><img th:src="'/uploads/categories/' + ${category.imgUrl}" class="img-responsive img-thumbnail" /></a>
+
+                    <!-- Modal to show items -->
+                    <div class="modal fade" th:id="'itemModal' + ${category.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title"><span th:text="${category.name}" /></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="category-items" th:each="item:${items}">
+                                        <div th:if="${item.categoryId} == ${category.id}">
+                                        <p class="item-name"><span th:text="${item.name}" /></p>
+                                        <img class="img-responsive img-thumbnail item-image" th:src="'/uploads/items/' + ${item.imgUrl}" />
+                                        <div class="dropdown">
+                                            <button class="btn btn-default dropdown-toggle item-edit" type="button" th:id="'dropdownMenu' + ${item.id}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                <span class="caret-size caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-right" th:attr="aria-labelledby='\'dropdownMenu' + ${item.id} +'\''">
+                                                <li><a href="#">Add to List</a></li>
+                                                <li><a href="#">Edit</a></li>
+                                                <li><a href="#">Delete</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#"></a></li>
+                                            </ul>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div th:if="${showItems == true}" class="toggle-modal" data-toggle="modal" data-target="#myModal">
-            text
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    some content
-                </div>
-            </div>
-        </div>
-
 
 
 
