@@ -2,6 +2,7 @@ package com.codeup.controller;
 
 import com.codeup.models.*;
 import com.codeup.repositories.*;
+import com.codeup.svcs.TwilioSvc;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,9 @@ public class UsersController {
     private String usersImgPath;
 
     @Autowired
+    TwilioSvc twilioSvc;
+
+    @Autowired
     public UsersController(UsersRepository usersRepository, RolesRepository rolesRepository, PasswordEncoder passwordEncoder,
                            ItemsRepository itemsRepository, UserItemsRepository userItemsRepository, PreferenceRepository preferenceRepository,
                            CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository,
@@ -56,7 +60,6 @@ public class UsersController {
     @PostMapping("/users/register")
     public String saveUser(@ModelAttribute User user, @RequestParam(name = "preference") String preference, @RequestParam(name = "file") MultipartFile uploadedFile, Model model) {
         String filename = transferUploadedFile(uploadedFile, usersImgPath, model);
-
         if(filename.isEmpty()) {
             filename = "default_user.png";
         }
@@ -100,6 +103,10 @@ public class UsersController {
 
         //update grocery_lists
         groceryListsRepository.save(new GroceryList("My grocery list", user));
+
+        // send a welcome text
+        String message = "Hello " + user.getUsername() + "from Get It";
+        twilioSvc.sendMessage("+12104219757","+18304200837",message);
 
         return "redirect:/login";
     }
