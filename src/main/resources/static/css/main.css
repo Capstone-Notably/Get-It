@@ -490,18 +490,39 @@ form>input {
 ----------------------------------------------------------------------------------------------------------------------*/
 .lists-index-body {
     grid-row: body;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+    display: inline-grid;
+    grid: "header" "lists";
+    grid-template-rows: 5em minmax(25em, auto);
+    width:100%;
     max-width: 100%;
     font-family: var(--font1);
     font-size: 1em;
     background-color: rgba(76, 175, 80, 0.1);
     border: 1px solid var(--l-green);
-    padding: .2em;
+    padding: 1em;
     overflow-x: hidden;
+}
+
+.grocery-header {
+    grid-row: header;
+    text-align: center;
+}
+.grocery-lists {
+    grid-row: lists;
+    padding: 3em;
+    width: inherit;
+}
+
+.grocery-list-tab {
+    font-size: 1.5em;
+    font-family: var(--font1);
+}
+
+.lists-view {
+    border: 3px solid var(--l-green);
+    min-height: 75em;
+    max-height: inherit;
+
 }
 
 .item-all {
