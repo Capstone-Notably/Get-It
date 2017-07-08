@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments::head('Register')" />
+<head th:replace="fragments::head('Login')" />
 <body>
 <div class="home-grid">
     <div th:replace="fragments::hidden-search"></div>
@@ -8,8 +8,6 @@
 
     <div class="modal-content login-body">
         <h1 class="login-header">Log In</h1>
-        <div th:replace="validation-alert('Invalid Username and Password')" class="login-error" th:if="${param.error}">
-        </div>
         <div class="login-error" th:if="${param.logout}">
             You have been logged out.
         </div>
