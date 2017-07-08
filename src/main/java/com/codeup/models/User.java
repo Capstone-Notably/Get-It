@@ -28,23 +28,26 @@ public class User {
     @Column(nullable = false)
     private String imgUrl;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Category> categories;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserCategory> userCategories;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Item> items;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserItem> userItems;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<GroceryList> glists;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Recipe> recipes;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<UserGList> userGLists;
 
     public User() {
     }
@@ -160,5 +163,13 @@ public class User {
 
     public void setRecipes(List<Recipe> recipes) {
         this.recipes = recipes;
+    }
+
+    public List<UserGList> getUserGLists() {
+        return userGLists;
+    }
+
+    public void setUserGLists(List<UserGList> userGLists) {
+        this.userGLists = userGLists;
     }
 }

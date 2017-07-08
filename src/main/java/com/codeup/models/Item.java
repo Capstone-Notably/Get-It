@@ -27,10 +27,10 @@ public class Item {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "item")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
     private List<ListItem> listItems;
 
-    @OneToMany(mappedBy = "item")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
     private List<RecipeItem> recipeItems;
 
     public Item() {

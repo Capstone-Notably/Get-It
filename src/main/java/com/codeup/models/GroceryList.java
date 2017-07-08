@@ -20,8 +20,11 @@ public class GroceryList {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "glist")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "glist")
     private List<ListItem> listItems;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "glist")
+    private List<UserGList> userGLists;
 
     public GroceryList() {
     }
@@ -61,5 +64,13 @@ public class GroceryList {
 
     public void setListItems(List<ListItem> listItems) {
         this.listItems = listItems;
+    }
+
+    public List<UserGList> getUserGLists() {
+        return userGLists;
+    }
+
+    public void setUserGLists(List<UserGList> userGLists) {
+        this.userGLists = userGLists;
     }
 }
