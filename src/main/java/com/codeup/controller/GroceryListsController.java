@@ -16,7 +16,7 @@ import java.util.List;
  * Created by roxana on 7/3/17.
  */
 @Controller
-public class GroceryListsController {
+public class eeeeeGroceryListsController {
     private final GroceryListsRepository groceryListsRepository;
     private final ItemsRepository itemsRepository;
     private final UserItemsRepository userItemsRepository;

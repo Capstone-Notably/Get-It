@@ -1,5 +1,5 @@
 
-application.properties
+eeapplication.properties
 
 ### STS ###
 .apt_generated
@@ -13,7 +13,7 @@ application.properties
 .idea
 *.iws
 *.iml
-*.ipr
+*.ipreeeeeee
 
 ### NetBeans ###
 nbproject/private/
