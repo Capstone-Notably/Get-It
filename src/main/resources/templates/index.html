@@ -11,7 +11,49 @@
     <div class="index-body">
         <img src="/uploads/others/groceries.jpg" class="image img-responsive"/>
 
-        <div class="row categories">
+        <div class="features">
+
+            <h1 class="features-header">Check out our features!</h1>
+
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img class="carousel-image" src="/uploads/others/groceries.jpg" alt="..." />
+                        <!--<div class="carousel-caption">-->
+                            <!--...-->
+                        <!--</div>-->
+                    </div>
+                    <div class="item">
+                        <img class="carousel-image" src="/uploads/others/groceries.jpg" alt="..." />
+                        <!--<div class="carousel-caption">-->
+                            <!--...-->
+                        <!--</div>-->
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+            <p class="features-text">Features!</p>
+        </div>
+
+        <div class="row categories" id="categories">
             <h2 id="category-header">Categories
                 <span sec:authorize="isAuthenticated()"
                       class="glyphicon glyphicon-plus add-category" aria-hidden="true"
@@ -38,9 +80,9 @@
 
             <div th:each="category:${categories}">
                 <div class="col-sm-6 col-md-4 category">
-                    <!--<a class="category-name" data-toggle="modal" data-target="#myModal" href="#"><span th:text="${category.name}" /></a>  <&#45;&#45;th:href="@{/items(category_id=${category.id})}"&ndash;&gt;-->
+                    <span class="category-name" th:text="${category.name}"></span>
                     <a class="category-image" data-toggle="modal" th:href="'#itemModal'+${category.id}"><img
-                            th:src="'/uploads/categories/' + ${category.imgUrl}" class="img-responsive img-thumbnail"/></a>
+                            th:src="'/uploads/categories/' + ${category.imgUrl}" class="img-responsive"/></a>
 
                     <!-- Modal to show items -->
                     <div class="modal fade" th:id="'itemModal' + ${category.id}" tabindex="-1" role="dialog"
@@ -53,12 +95,14 @@
                                     <h4 class="modal-title"><span th:text="${category.name}"/></h4>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="category-items" th:each="item:${items}">
-                                        <div th:if="${item.categoryId} == ${category.id}">
-                                            <p class="item-name"><span th:text="${item.name}"/></p>
+                                    <div th:each="item:${items}">
+                                        <div class="category-items" th:if="${item.categoryId} == ${category.id}">
+                                            <p class="items-name"><span th:text="${item.name}"/></p>
+
                                             <img class="img-responsive img-thumbnail item-image"
                                                  th:src="'/uploads/items/' + ${item.imgUrl}"/>
-                                            <div class="dropdown">
+
+                                            <div class="dropdown" sec:authorize="!isAuthenticated()">
                                                 <button class="btn btn-default dropdown-toggle item-edit" type="button"
                                                         th:id="'dropdownMenu' + ${item.id}" data-toggle="dropdown"
                                                         aria-haspopup="true" aria-expanded="true">
@@ -69,8 +113,6 @@
                                                     <li><a href="#">Add to List</a></li>
                                                     <li><a href="#">Edit</a></li>
                                                     <li><a href="#">Delete</a></li>
-                                                    <li role="separator" class="divider"></li>
-                                                    <li><a href="#"></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -83,13 +125,66 @@
             </div>
         </div>
 
-        <div class="row recipes">
-            <h2 id="recipe-header">Recipes</h2>
+        <div class="row recipes" id="recipes">
+            <h2 id="recipe-header">Recipes
+                <span sec:authorize="isAuthenticated()"
+                      class="glyphicon glyphicon-plus add-recipe" aria-hidden="true"
+                      data-container="body" data-toggle="popover"
+                      data-placement="bottom" rel="popover"
+                      data-popover-content="#category-create" tabindex="0" data-trigger="focus">
+            </span>
+                <div class="hidden" id="recipe-create">
+                    <form class="popover-body" th:method="post" th:action="@{/categories/create}"
+                          th:object="${newCategory}"
+                          enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" th:field="*{name}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="file">Image</label>
+                            <input type="file" class="form-control" name="file" id="file"/>
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+            </h2>
+
             <div th:each="recipe:${recipes}">
                 <div class="col-sm-6 col-md-4 recipe">
                     <a class="recipe-name" th:href="@{/items(recipe_id=${recipe.id})}"><span th:text="${recipe.name}"/></a>
-                    <a class="recipe-image " th:href="@{/items(recipe_id=${recipe.id})}"><img
-                            th:src="'/uploads/recipes/' + ${recipe.imgUrl}" class="img-responsive img-thumbnail"/></a>
+                    <a class="recipe-image" data-toggle="modal" th:href="'#recipeModal'+${recipe.id}"><img
+                            th:src="'/uploads/recipes/' + ${recipe.imgUrl}" class="img-responsive"/></a>
+
+
+                    <!-- Modal to show recipe details -->
+                    <div class="modal fade" th:id="'recipeModal' + ${recipe.id}" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title"><span th:text="${recipe.name}"/></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div th:if="${recipe.id} == ${recipe.id}" th:each="recipe:${recipes}">
+                                        <div class="recipe-items">
+                                            <p class="recipe-name"><span th:text="${recipe.name}"/></p>
+
+                                            <img class="img-responsive img-thumbnail item-image"
+                                                 th:src="'/uploads/recipes/' + ${recipe.imgUrl}"/>
+
+                                            <div>
+                                                <p><span th:text="${recipe.directions}"/></p>
+                                                <p><span th:text="${recipe.time}"/></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -100,3 +195,5 @@
 <div th:replace="fragments::scripts"></div>
 </body>
 </html>
+
+

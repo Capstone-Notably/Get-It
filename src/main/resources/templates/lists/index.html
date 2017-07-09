@@ -13,16 +13,17 @@
     <div th:replace="fragments::hidden-search"></div>
     <nav th:replace="fragments::my-navbar"></nav>
     <div class="lists-index-body">
-        <h1 class="grocery-header">Grocery Lists</h1>
+        <div class="grocery-header">
+        <h1 class="grocery-title">Grocery Lists</h1>
         <form th:method="post" class="lists-search">
             <div class="form-group">
                 <div class="ui-widget">
                     <input id="tags" type="text" class="form-control" placeholder="Search item"/>
                 </div>
             </div>
-            <button id="search-submit" type="submit" class="btn btn-default">Submit</button>
+            <button id="search-submit" type="submit" class="">Add to List</button>
         </form>
-
+        </div>
         <div class="grocery-lists">
             <ul class="nav nav-tabs ul-tabs grocery-list-tab">
                 <li class="tabs" th:each="list : ${lists}">

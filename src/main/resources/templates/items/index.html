@@ -11,15 +11,11 @@
             <p class="item-name"><span th:text="${item.name}" /></p>
             <img class="img-responsive img-thumbnail item-image" th:src="'/uploads/items/' + ${item.imgUrl}" />
 
-            <div class="dropdown">
+            <div sec:authorize="!isAuthenticated()" class="dropdown">
                 <button class="btn btn-default dropdown-toggle item-edit" type="button" th:id="'dropdownMenu' + ${item.id}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     <span class="caret-size caret"></span>
                 </button>
 
-                <!--<span sec:authorize="isAuthenticated()" class="glyphicon glyphicon-triangle-bottom dropdown-toggle" role="button" th:id="'dropdownMenu' + ${item.id}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
-                    <!--&lt;!&ndash;Dropdown&ndash;&gt;-->
-                    <!--&lt;!&ndash;<span class="caret"></span>&ndash;&gt;-->
-                <!--</span>-->
                 <ul class="dropdown-menu dropdown-menu-right" th:attr="aria-labelledby='\'dropdownMenu' + ${item.id} +'\''">
                     <li><a href="#">Add to List</a></li>
                     <li><a href="#">Edit</a></li>
@@ -29,23 +25,8 @@
                 </ul>
             </div>
 
-            <!--<div class="dropdown">-->
-                <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
-                    <!--Dropdown-->
-                    <!--<span class="caret"></span>-->
-                <!--</button>-->
-                <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
-                    <!--<li><a href="#">Action</a></li>-->
-                    <!--<li><a href="#">Another action</a></li>-->
-                    <!--<li><a href="#">Something else here</a></li>-->
-                    <!--<li role="separator" class="divider"></li>-->
-                    <!--<li><a href="#">Separated link</a></li>-->
-                <!--</ul>-->
-            <!--</div>-->
-
         </div>
     </div>
-    <!--<div th:replace="fragments::my-footer">Footer</div>-->
 </div>
 
 </body>

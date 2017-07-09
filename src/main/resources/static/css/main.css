@@ -42,6 +42,13 @@ ul, li, a, a:hover {
     grid-template-columns: 1fr;
 }
 
+.s {
+    width: 20em;
+    height: 20em;
+    border: .5px solid black;
+}
+
+
 /*----------------------------------------------------------------------------------------------------------------------
    Navbar
 ----------------------------------------------------------------------------------------------------------------------*/
@@ -276,8 +283,8 @@ form>input {
 .index-body {
     grid-row: body;
     display: inline-grid;
-    grid: "image" "welcome" "categories" "recipes";
-    grid-template-rows: 90vh 10em minmax(30em, auto) minmax(30em, auto);
+    grid: "image" "features" "categories" "recipes";
+    grid-template-rows: 95vh 85em minmax(30em, auto) minmax(30em, auto);
     width: 100%;
     max-width: 100%;
     font-family: var(--font1);
@@ -290,6 +297,8 @@ form>input {
 
 .image {
     grid-row: image;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
     justify-content: center;
@@ -306,11 +315,37 @@ form>input {
     font-family: var(--font1);
     justify-content: center;
     align-items: center;
+    font-size: 5em;
+    height: 3em;
+    background-color: rgba(76, 175, 80, 0.5);
+
 }
 
 
-#user-welcome {
-    grid-row: welcome;
+.features {
+    grid-row: features;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    font-family: inherit;
+}
+.features-header {
+    font-size: 5em;
+}
+
+.features-text {
+    font-size: 3em;
+}
+
+.carousel-inner {
+    height: 100%;
+}
+
+.carousel-image {
+    height: 100%;
 }
 
 .categories {
@@ -332,69 +367,100 @@ form>input {
 .category, .recipe {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     margin-bottom: 3em;
+    margin-top: 2em;
 }
 
-.category-name, .recipe-name {
+span.category-name, a.recipe-name {
     position: absolute;
     font-size: 4em;
     z-index: 1;
     font-family: var(--font1);
     font-weight: 600;
-    color: var(--l-green);
-    text-shadow: -4px 3px 0 black;
-
+    color: black;
+    /*text-shadow: -4px 3px 0 black;*/
+    background-color: rgba(76, 175, 80, 0.6);
+    bottom: .5em;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .category-image, .recipe-image {
     position: relative;
     font-size: 2em;
     z-index: 0;
-
+    border: .5px solid black;
 }
 
-.category-image > img {
+.category-image > img, .recipe-image > img {
     width: 18em;
     height: 12em;
 }
 
 /*----------------------------------------------------------------------------------------------------------------------
-   Item Index
+   Create Categories/ Recipes
 ----------------------------------------------------------------------------------------------------------------------*/
-.items-body {
+.category-create, .recipe-create {
     grid-row: body;
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    /*align-items: center;*/
+    align-items: center;
     width: 100%;
     max-width: 100%;
     font-family: var(--font1);
-    background-color: rgba(76, 175, 80, 0.1);
+    font-size: 1em;
+    background-color: rgba(76, 175, 80, .1);
     border: 1px solid var(--l-green);
-    padding: .2em;
-    overflow-x: hidden;
+
 }
+
+.add-category, .add-recipe {
+    cursor: pointer;
+    font-size: .8em;
+    margin-left: .5em;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------
+   Item Index
+----------------------------------------------------------------------------------------------------------------------*/
+/*.items-body {*/
+    /*grid-row: body;*/
+    /*display: flex;*/
+    /*flex-flow: column wrap;*/
+    /*justify-content: center;*/
+    /*!*align-items: center;*!*/
+    /*width: 100%;*/
+    /*max-width: 100%;*/
+    /*font-family: var(--font1);*/
+    /*background-color: rgba(76, 175, 80, 0.1);*/
+    /*border: 1px solid var(--l-green);*/
+    /*overflow-x: hidden;*/
+/*}*/
 
 .category-items {
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
     font-family: var(--font1);
     width: 100%;
-    border: 1px solid var(--l-green);
+    /*border-bottom: 1px solid var(--l-green);*/
 }
 
-.item-name {
+.items-name {
     justify-content: flex-start;
     align-items: center;
     font-size: 4em;
+    width: 80%;
 }
 
 .item-image {
-    /*justify-content: center;*/
-    align-items: center;
+    justify-content: flex-end;
+    float: right;
     width: 6em;
     height: 6em;
 }
@@ -402,17 +468,13 @@ form>input {
 .item-edit {
     /*padding-left: 2em;*/
     font-size: 2em;
-    justify-content: center;
-    align-items: stretch;
+    /*justify-content: center;*/
+    /*align-items: stretch;*/
     height: 100%;
 }
 
 .caret-size {
     font-size: 2.5em;
-}
-
-.add-category {
-    cursor: pointer;
 }
 
 .category-name {
@@ -495,8 +557,9 @@ form>input {
 .lists-index-body {
     grid-row: body;
     display: inline-grid;
-    grid: "header" "search" "lists";
-    grid-template-rows: 10em 5em minmax(25em, auto);
+    grid: "header" "lists";
+    grid-template-rows: 20em minmax(25em, auto);
+    grid-row-gap: .5em;
     width:100%;
     max-width: 100%;
     font-family: var(--font1);
@@ -510,29 +573,44 @@ form>input {
 .grocery-header {
     grid-row: header;
     text-align: center;
-    font-size: 6em;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
     background-color: rgba(76, 175, 80, 0.5);
     width: 100vw;
+    height: 100%;
+    margin-top: 2.5em;
+}
+
+.grocery-title {
+    font-size: 6em;
+
 }
 
 .lists-search {
-    grid-row: search;
-    display: flex;
+    /*display: flex;*/
     flex-flow: row nowrap;
     width: 100%;
-    align-content: center;
+    align-items: center;
     justify-content: center;
+}
+
+#tags, #search-submit {
+    justify-content: center;
+    height: 1.3em;
+    font-size: 2.7em;
+    border: 1px solid var(--l-green);
+    align-items: center;
 }
 
 #tags {
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    font-size: 2.7em;
+    width: 50%;
 }
 
-#search-submit {
-
+div.ui-widget {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .grocery-lists {
@@ -585,6 +663,8 @@ form>input {
     display: flex;
     width: 80%;
     border-bottom: 2px solid var(--l-green);
+    margin-bottom: 0;
+    font-size: 3em;
 }
 
 .item-img {
@@ -604,25 +684,6 @@ form>input {
     margin-left: 20px;
 }
 
-
-/*----------------------------------------------------------------------------------------------------------------------
-   Create Categories
-----------------------------------------------------------------------------------------------------------------------*/
-.category-create-body {
-    grid-row: body;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 100%;
-    font-family: var(--font1);
-    font-size: 1em;
-    background-color: rgba(76, 175, 80, .1);
-    border: 1px solid var(--l-green);
-    padding: .2em;
-    overflow-x: hidden;
-}
 
 /*----------------------------------------------------------------------------------------------------------------------
    Footer
