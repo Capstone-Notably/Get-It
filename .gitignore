@@ -25,5 +25,6 @@ nbdist/
 
 /target
 **/.DS_Store
-notes.md
+/resources/application.properties
+
 
