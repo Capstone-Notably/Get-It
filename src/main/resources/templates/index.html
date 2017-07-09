@@ -11,17 +11,6 @@
     <div class="index-body">
         <img src="/uploads/others/groceries.jpg" class="image img-responsive"/>
 
-        <!--<div id="user-welcome" sec:authorize="isAuthenticated()">-->
-        <!--<h1 style="text-align:center;margin-bottom:35px">Welcome <span sec:authentication="name"> user</span>!</h1>-->
-        <!--</div>-->
-        <!--<div sec:authorize="hasRole('ROLE_ADMIN')">-->
-        <!--&lt;!&ndash;This content is only shown to administrators.&ndash;&gt;-->
-        <!--</div>-->
-        <!--<div sec:authorize="hasRole('ROLE_USER')">-->
-        <!--&lt;!&ndash;This content is only shown to users.&ndash;&gt;-->
-        <!--</div>-->
-
-
         <div class="row categories">
             <h2 id="category-header">Categories
                 <span sec:authorize="isAuthenticated()"
@@ -32,9 +21,7 @@
             </span>
             </h2>
 
-
             <div class="hidden" id="category-create">
-
                 <form class="popover-body" th:method="post" th:action="@{/categories/create}" th:object="${newCategory}"
                       enctype="multipart/form-data">
                     <div class="form-group">
@@ -48,7 +35,6 @@
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
             </div>
-
 
             <div th:each="category:${categories}">
                 <div class="col-sm-6 col-md-4 category">
@@ -97,7 +83,6 @@
             </div>
         </div>
 
-
         <div class="row recipes">
             <h2 id="recipe-header">Recipes</h2>
             <div th:each="recipe:${recipes}">
@@ -111,7 +96,6 @@
     </div>
 
     <div th:replace="fragments::my-footer">Footer</div>
-
 </div>
 <div th:replace="fragments::scripts"></div>
 </body>
