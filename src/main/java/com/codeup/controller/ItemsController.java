@@ -83,7 +83,7 @@ public class ItemsController {
             for (UserItem userItem : userItems) {
                 Item item = itemsRepository.findOne(userItem.getItem().getId());
                 if(item.getCategory().getId() == category_id) {
-                    CustomItem customItem = new CustomItem(item.getId(), item.getName(), item.getImgUrl(), userItem.getPrice(), userItem.getQuantity(), userItem.getBarcode(), userItem.isFavorite());
+                    CustomItem customItem = new CustomItem(item, userItem);
                     customItems.add(customItem);
                 }
             }
@@ -107,7 +107,7 @@ public class ItemsController {
 
             for (UserItem userItem : userItems) {
                 Item item = itemsRepository.findOne(userItem.getItem().getId());
-                CustomItem customItem = new CustomItem(item.getId(), item.getName(), item.getImgUrl(), userItem.getPrice(), userItem.getQuantity(), userItem.getBarcode(), userItem.isFavorite());
+                CustomItem customItem = new CustomItem(item, userItem);
                 customItems.add(customItem);
             }
         }else {
