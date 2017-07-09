@@ -637,6 +637,7 @@ div.ui-widget {
     font-size: 2em;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .lists-view {
@@ -649,6 +650,7 @@ div.ui-widget {
 .caret-size-lists {
     font-size: 1em;
     margin-bottom: .5em;
+    cursor: pointer;
 }
 
 .item-all {
