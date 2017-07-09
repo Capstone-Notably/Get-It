@@ -25,8 +25,8 @@
 
         <div class="grocery-lists">
             <ul class="nav nav-tabs ul-tabs grocery-list-tab">
-                <li class="tabs" th:each="list : ${lists}"><a data-toggle="tab" th:href="'#list' + ${list.id}"
-                                                 th:text="${list.name}"/>
+                <li class="tabs" th:each="list : ${lists}">
+                    <a data-toggle="tab" th:href="'#list' + ${list.id}" th:text="${list.name}" />
                 </li>
                 <span sec:authorize="isAuthenticated()"
                       class="glyphicon glyphicon-plus add-grocery-list" aria-hidden="true"
@@ -38,6 +38,18 @@
 
             <div class="tab-content lists-view">
                 <div th:each="list : ${lists}" th:id="'list' + ${list.id}" class="tab-pane view-items">
+                     <span class="dropdown">
+                    <span class="dropdown-toggle item-edit" type="button" th:id="'dropdownMenu' + ${list.id}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span class="caret-size-lists glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+                    </span>
+
+                    <ul class="dropdown-menu" th:attr="aria-labelledby='\'dropdownMenu' + ${list.id} +'\''">
+                        <li><a href="#">Share List</a></li>
+                        <li><a href="#">Add Item</a></li>
+                        <li><a href="#">Remove Item</a></li>
+                        <li><a href="#">Delete List</a></li>
+                    </ul>
+                </span>
                     <input type="hidden" th:value="${list.id}"/>
                     <div th:each="item : ${items}" class='item-all'>
                         <div th:if="${item.listId} == ${list.id}" class='item-name'>
@@ -47,18 +59,8 @@
                         <div th:if="${item.listId} == ${list.id}" class='item-img img-responsive'>
                             <img th:src="${'/uploads/items/' + item.imgUrl}"/>
                         </div>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle item-edit" type="button" th:id="'dropdownMenu' + ${item.id}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <span class="caret-size caret"></span>
-                            </button>
-
-                            <ul class="dropdown-menu dropdown-menu-right" th:attr="aria-labelledby='\'dropdownMenu' + ${item.id} +'\''">
-                                <li><a href="#">Share List</a></li>
-                                <li><a href="#">Add Item</a></li>
-                                <li><a href="#">Delete</a></li>
-                            </ul>
-                        </div>
                     </div>
+
                 </div>
             </div>
         </div>

@@ -503,15 +503,16 @@ form>input {
     font-size: 1em;
     background-color: rgba(76, 175, 80, 0.1);
     border: 1px solid var(--l-green);
-    padding: 1em;
+    padding: 0;
     overflow-x: hidden;
 }
 
 .grocery-header {
     grid-row: header;
     text-align: center;
-    margin-bottom: 1em;
     font-size: 6em;
+    background-color: rgba(76, 175, 80, 0.5);
+    width: 100vw;
 }
 
 .lists-search {
@@ -523,11 +524,15 @@ form>input {
     justify-content: center;
 }
 
-#tags, #search-submit {
+#tags {
     justify-content: center;
     align-items: center;
     height: 100%;
-    font-size: 2.8em;
+    font-size: 2.7em;
+}
+
+#search-submit {
+
 }
 
 .grocery-lists {
@@ -549,8 +554,10 @@ form>input {
 
 .add-grocery-list {
     float: right;
+    line-height: 200%;
     font-size: 2em;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .lists-view {
@@ -558,7 +565,11 @@ form>input {
     padding: 3em;
     min-height: 75em;
     max-height: inherit;
+}
 
+.caret-size-lists {
+    font-size: 1em;
+    margin-bottom: .5em;
 }
 
 .item-all {
@@ -733,6 +744,47 @@ form>input {
         width: 20em;
         font-size: 2em;
     }
+
+    .grocery-header {
+        font-size: 4em;
+    }
+
+    .grocery-list-tab {
+        font-size: 1em;
+        font-family: var(--font1);
+    }
+
+    .tabs {
+        display: flex;
+        flex-flow: row nowrap;
+        font-size: 2em;
+    }
+
+    .item-name {
+        display: flex;
+        width: 80%;
+        border-bottom: 2px solid var(--l-green);
+    }
+
+    .item-img {
+        display: inline-block;
+        text-align: right;
+        width: 20%;
+        border-bottom: 2px solid var(--l-green);
+    }
+
+    .item-img > img {
+        width: 4em;
+        height: 4em;
+    }
+
+    .lists-index-body {
+        padding: 0;
+    }
+
+    #tags {
+        font-size: 2.5em;
+    }
 }
 
 @media screen and (max-width: 420px) {
@@ -824,4 +876,49 @@ form>input {
         font-size: 1.5em;
     }
 
+    .grocery-header {
+        font-size: 4em;
+    }
+
+    .grocery-list-tab {
+        font-size: 1em;
+        font-family: var(--font1);
+    }
+
+    .tabs {
+        display: flex;
+        flex-flow: row nowrap;
+        font-size: 1.3em;
+    }
+
+    .item-name {
+        display: flex;
+        width: 80%;
+        border-bottom: 2px solid var(--l-green);
+        font-size: 2em;
+    }
+
+    .item-img {
+        display: inline-block;
+        text-align: right;
+        width: 20%;
+        border-bottom: 2px solid var(--l-green);
+    }
+
+    .item-img > img {
+        width: 3em;
+        height: 3em;
+    }
+
+    .grocery-header {
+        margin-left: 0;
+    }
+
+    .lists-index-body {
+        padding: 0;
+    }
+
+    #tags {
+        font-size: 2.5em;
+    }
 }
