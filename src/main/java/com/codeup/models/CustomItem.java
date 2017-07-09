@@ -30,14 +30,15 @@ public class CustomItem {
         this.categoryId = item.getCategory().getId();
     }
 
-    public CustomItem(long id, String name, String imgUrl, float price, int quantity, String barcode, boolean favorite) {
-        this.id = id;
-        this.name = name;
-        this.imgUrl = imgUrl;
-        this.price = price;
-        this.quantity = quantity;
-        this.barcode = barcode;
-        this.favorite = favorite;
+    public CustomItem(Item item, UserItem userItem) {
+        this.id = item.getId();
+        this.name = item.getName();
+        this.imgUrl = item.getImgUrl();
+        this.categoryId = item.getCategory().getId();
+        this.price = userItem.getPrice();
+        this.quantity = userItem.getQuantity();
+        this.barcode = userItem.getBarcode();
+        this.favorite = userItem.isFavorite();
     }
 
     public CustomItem(long id, String name, String imgUrl, float price, int quantity, String barcode, boolean favorite, long listId) {
