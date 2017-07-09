@@ -2,6 +2,7 @@ package com.codeup.controller;
 
 import com.codeup.models.*;
 import com.codeup.repositories.*;
+import com.codeup.svcs.TwilioSvc;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -21,16 +22,20 @@ public class GroceryListsController {
     private final UserItemsRepository userItemsRepository;
     private final ListItemsRepository listItemsRepository;
     private final UserGListRepository userGListRepository;
+    private final UsersRepository usersRepository;
+    private final TwilioSvc twilioSvc;
 
     @Autowired
     public GroceryListsController(GroceryListsRepository groceryListsRepository, ItemsRepository itemsRepository,
                                   UserItemsRepository userItemsRepository, ListItemsRepository listItemsRepository,
-                                  UserGListRepository userGListRepository) {
+                                  UserGListRepository userGListRepository, TwilioSvc twilioSvc, UsersRepository usersRepository) {
         this.groceryListsRepository = groceryListsRepository;
         this.itemsRepository = itemsRepository;
         this.userItemsRepository = userItemsRepository;
         this.listItemsRepository = listItemsRepository;
         this.userGListRepository = userGListRepository;
+        this.twilioSvc = twilioSvc;
+        this.usersRepository = usersRepository;
     }
 
     @GetMapping("/lists")
@@ -69,6 +74,21 @@ public class GroceryListsController {
         Item item = itemsRepository.findByName(name);
         ListItem listItem = new ListItem(glist, item);
         listItemsRepository.save(listItem);
+    }
+
+    @PostMapping("/list/share")
+    public String shareList(@RequestParam("phone") String phone, @RequestParam("listId") long listId) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        GroceryList glist = groceryListsRepository.findOne(listId);
+
+        //share list
+        User user1 = usersRepository.findByPhone(phone);
+        userGListRepository.save(new UserGList(glist, user1));
+
+        // send text to share list
+//        String message = user.getUsername() + "wants to share \"" + glist.getName() + "\" with you";
+//        twilioSvc.sendMessage(phone,"+12103611945",message);
+        return "redirect:/lists";
     }
 
 }

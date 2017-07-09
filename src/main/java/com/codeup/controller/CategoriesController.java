@@ -76,7 +76,7 @@ public class CategoriesController {
         UserCategory userCategory = new UserCategory(category, user, preference);
         userCategoryRepository.save(userCategory);
 
-        return "redirect:/home";
+        return "redirect:/";
     }
 
     public static List<Category> findAll(CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository) {
