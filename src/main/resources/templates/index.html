@@ -152,7 +152,7 @@
 
             <div th:each="recipe:${recipes}">
                 <div class="col-sm-6 col-md-4 recipe">
-                    <a class="recipe-name" th:href="@{/items(recipe_id=${recipe.id})}"><span th:text="${recipe.name}"/></a>
+                    <span class="recipe-name" th:text="${recipe.name}"></span>
                     <a class="recipe-image" data-toggle="modal" th:href="'#recipeModal'+${recipe.id}"><img
                             th:src="'/uploads/recipes/' + ${recipe.imgUrl}" class="img-responsive"/></a>
 
@@ -168,8 +168,8 @@
                                     <h4 class="modal-title"><span th:text="${recipe.name}"/></h4>
                                 </div>
                                 <div class="modal-body">
-                                    <div th:if="${recipe.id} == ${recipe.id}" th:each="recipe:${recipes}">
-                                        <div class="recipe-items">
+                                    <div th:each="recipe:${recipes}">
+                                        <div class="recipe-items" th:if="${recipe.id} == ${recipe.id}">
                                             <p class="recipe-name"><span th:text="${recipe.name}"/></p>
 
                                             <img class="img-responsive img-thumbnail item-image"

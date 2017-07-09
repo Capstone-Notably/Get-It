@@ -373,12 +373,13 @@ form>input {
     margin-top: 2em;
 }
 
-span.category-name, a.recipe-name {
+span.category-name, span.recipe-name {
     position: absolute;
-    font-size: 4em;
+    font-size: 5em;
     z-index: 1;
     font-family: var(--font1);
-    font-weight: 600;
+    font-weight: 800;
+    font-stretch: extra-expanded;
     color: black;
     /*text-shadow: -4px 3px 0 black;*/
     background-color: rgba(76, 175, 80, 0.6);
@@ -700,7 +701,16 @@ div.ui-widget {
 .footer-left {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     padding-left: 1em;
+}
+
+#footer-copyright, #footer-love {
+    padding-left: 1em;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
 }
 
 .footer-right {
@@ -713,6 +723,8 @@ div.ui-widget {
     padding-right: 1em;
     justify-content: center;
     align-items: center;
+    height: 100%;
+
 }
 
 /*----------------------------------------------------------------------------------------------------------------------
