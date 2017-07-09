@@ -428,38 +428,39 @@ span.category-name, a.recipe-name {
 /*----------------------------------------------------------------------------------------------------------------------
    Item Index
 ----------------------------------------------------------------------------------------------------------------------*/
-.items-body {
-    grid-row: body;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    /*align-items: center;*/
-    width: 100%;
-    max-width: 100%;
-    font-family: var(--font1);
-    background-color: rgba(76, 175, 80, 0.1);
-    border: 1px solid var(--l-green);
-    padding: .2em;
-    overflow-x: hidden;
-}
+/*.items-body {*/
+    /*grid-row: body;*/
+    /*display: flex;*/
+    /*flex-flow: column wrap;*/
+    /*justify-content: center;*/
+    /*!*align-items: center;*!*/
+    /*width: 100%;*/
+    /*max-width: 100%;*/
+    /*font-family: var(--font1);*/
+    /*background-color: rgba(76, 175, 80, 0.1);*/
+    /*border: 1px solid var(--l-green);*/
+    /*overflow-x: hidden;*/
+/*}*/
 
 .category-items {
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
     font-family: var(--font1);
     width: 100%;
-    border: 1px solid var(--l-green);
+    /*border-bottom: 1px solid var(--l-green);*/
 }
 
-.item-name {
+.items-name {
     justify-content: flex-start;
     align-items: center;
     font-size: 4em;
+    width: 80%;
 }
 
 .item-image {
-    /*justify-content: center;*/
-    align-items: center;
+    justify-content: flex-end;
+    float: right;
     width: 6em;
     height: 6em;
 }
@@ -467,8 +468,8 @@ span.category-name, a.recipe-name {
 .item-edit {
     /*padding-left: 2em;*/
     font-size: 2em;
-    justify-content: center;
-    align-items: stretch;
+    /*justify-content: center;*/
+    /*align-items: stretch;*/
     height: 100%;
 }
 
@@ -556,8 +557,9 @@ span.category-name, a.recipe-name {
 .lists-index-body {
     grid-row: body;
     display: inline-grid;
-    grid: "header" "search" "lists";
-    grid-template-rows: 10em 5em minmax(25em, auto);
+    grid: "header" "lists";
+    grid-template-rows: 20em minmax(25em, auto);
+    grid-row-gap: .5em;
     width:100%;
     max-width: 100%;
     font-family: var(--font1);
@@ -571,29 +573,44 @@ span.category-name, a.recipe-name {
 .grocery-header {
     grid-row: header;
     text-align: center;
-    font-size: 6em;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
     background-color: rgba(76, 175, 80, 0.5);
     width: 100vw;
+    height: 100%;
+    margin-top: 2.5em;
+}
+
+.grocery-title {
+    font-size: 6em;
+
 }
 
 .lists-search {
-    grid-row: search;
-    display: flex;
+    /*display: flex;*/
     flex-flow: row nowrap;
     width: 100%;
-    align-content: center;
+    align-items: center;
     justify-content: center;
+}
+
+#tags, #search-submit {
+    justify-content: center;
+    height: 1.3em;
+    font-size: 2.7em;
+    border: 1px solid var(--l-green);
+    align-items: center;
 }
 
 #tags {
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    font-size: 2.7em;
+    width: 50%;
 }
 
-#search-submit {
-
+div.ui-widget {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .grocery-lists {
@@ -644,6 +661,8 @@ span.category-name, a.recipe-name {
     display: flex;
     width: 80%;
     border-bottom: 2px solid var(--l-green);
+    margin-bottom: 0;
+    font-size: 3em;
 }
 
 .item-img {

@@ -95,12 +95,14 @@
                                     <h4 class="modal-title"><span th:text="${category.name}"/></h4>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="category-items" th:each="item:${items}">
-                                        <div th:if="${item.categoryId} == ${category.id}">
-                                            <p class="item-name"><span th:text="${item.name}"/></p>
+                                    <div th:each="item:${items}">
+                                        <div class="category-items" th:if="${item.categoryId} == ${category.id}">
+                                            <p class="items-name"><span th:text="${item.name}"/></p>
+
                                             <img class="img-responsive img-thumbnail item-image"
                                                  th:src="'/uploads/items/' + ${item.imgUrl}"/>
-                                            <div class="dropdown">
+
+                                            <div class="dropdown" sec:authorize="!isAuthenticated()">
                                                 <button class="btn btn-default dropdown-toggle item-edit" type="button"
                                                         th:id="'dropdownMenu' + ${item.id}" data-toggle="dropdown"
                                                         aria-haspopup="true" aria-expanded="true">
@@ -111,8 +113,6 @@
                                                     <li><a href="#">Add to List</a></li>
                                                     <li><a href="#">Edit</a></li>
                                                     <li><a href="#">Delete</a></li>
-                                                    <li role="separator" class="divider"></li>
-                                                    <li><a href="#"></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -153,8 +153,38 @@
             <div th:each="recipe:${recipes}">
                 <div class="col-sm-6 col-md-4 recipe">
                     <a class="recipe-name" th:href="@{/items(recipe_id=${recipe.id})}"><span th:text="${recipe.name}"/></a>
-                    <a class="recipe-image " th:href="@{/items(recipe_id=${recipe.id})}"><img
+                    <a class="recipe-image" data-toggle="modal" th:href="'#recipeModal'+${recipe.id}"><img
                             th:src="'/uploads/recipes/' + ${recipe.imgUrl}" class="img-responsive"/></a>
+
+
+                    <!-- Modal to show recipe details -->
+                    <div class="modal fade" th:id="'recipeModal' + ${recipe.id}" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title"><span th:text="${recipe.name}"/></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div th:if="${recipe.id} == ${recipe.id}" th:each="recipe:${recipes}">
+                                        <div class="recipe-items">
+                                            <p class="recipe-name"><span th:text="${recipe.name}"/></p>
+
+                                            <img class="img-responsive img-thumbnail item-image"
+                                                 th:src="'/uploads/recipes/' + ${recipe.imgUrl}"/>
+
+                                            <div>
+                                                <p><span th:text="${recipe.directions}"/></p>
+                                                <p><span th:text="${recipe.time}"/></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
