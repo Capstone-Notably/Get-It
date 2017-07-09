@@ -42,6 +42,13 @@ ul, li, a, a:hover {
     grid-template-columns: 1fr;
 }
 
+.s {
+    width: 20em;
+    height: 20em;
+    border: .5px solid black;
+}
+
+
 /*----------------------------------------------------------------------------------------------------------------------
    Navbar
 ----------------------------------------------------------------------------------------------------------------------*/
@@ -276,8 +283,8 @@ form>input {
 .index-body {
     grid-row: body;
     display: inline-grid;
-    grid: "image" "welcome" "categories" "recipes";
-    grid-template-rows: 90vh 10em minmax(30em, auto) minmax(30em, auto);
+    grid: "image" "features" "categories" "recipes";
+    grid-template-rows: 95vh 85em minmax(30em, auto) minmax(30em, auto);
     width: 100%;
     max-width: 100%;
     font-family: var(--font1);
@@ -290,6 +297,8 @@ form>input {
 
 .image {
     grid-row: image;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
     justify-content: center;
@@ -313,8 +322,30 @@ form>input {
 }
 
 
-#user-welcome {
-    grid-row: welcome;
+.features {
+    grid-row: features;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    font-family: inherit;
+}
+.features-header {
+    font-size: 5em;
+}
+
+.features-text {
+    font-size: 3em;
+}
+
+.carousel-inner {
+    height: 100%;
+}
+
+.carousel-image {
+    height: 100%;
 }
 
 .categories {
@@ -352,18 +383,46 @@ span.category-name, a.recipe-name {
     /*text-shadow: -4px 3px 0 black;*/
     background-color: rgba(76, 175, 80, 0.6);
     bottom: .5em;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .category-image, .recipe-image {
     position: relative;
     font-size: 2em;
     z-index: 0;
+    border: .5px solid black;
+}
+
+.category-image > img, .recipe-image > img {
+    width: 18em;
+    height: 12em;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------
+   Create Categories/ Recipes
+----------------------------------------------------------------------------------------------------------------------*/
+.category-create, .recipe-create {
+    grid-row: body;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    font-family: var(--font1);
+    font-size: 1em;
+    background-color: rgba(76, 175, 80, .1);
+    border: 1px solid var(--l-green);
 
 }
 
-.category-image > img {
-    width: 18em;
-    height: 12em;
+.add-category, .add-recipe {
+    cursor: pointer;
+    font-size: .8em;
+    margin-left: .5em;
 }
 
 /*----------------------------------------------------------------------------------------------------------------------
@@ -415,10 +474,6 @@ span.category-name, a.recipe-name {
 
 .caret-size {
     font-size: 2.5em;
-}
-
-.add-category {
-    cursor: pointer;
 }
 
 .category-name {
@@ -608,25 +663,6 @@ span.category-name, a.recipe-name {
     margin-left: 20px;
 }
 
-
-/*----------------------------------------------------------------------------------------------------------------------
-   Create Categories
-----------------------------------------------------------------------------------------------------------------------*/
-.category-create-body {
-    grid-row: body;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 100%;
-    font-family: var(--font1);
-    font-size: 1em;
-    background-color: rgba(76, 175, 80, .1);
-    border: 1px solid var(--l-green);
-    padding: .2em;
-    overflow-x: hidden;
-}
 
 /*----------------------------------------------------------------------------------------------------------------------
    Footer

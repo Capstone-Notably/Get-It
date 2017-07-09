@@ -26,9 +26,9 @@
     <!--Logged out right side nav-->
     <div sec:authorize="!isAuthenticated()" class="nav-links-logged-out">
         <div class="nav-links">
-            <a href="/" class="nav-recipes">Categories</a>
+            <a href="#categories" class="nav-recipes">Categories</a>
             <span>|</span>
-            <a href="/" class="nav-categories">Recipes</a>
+            <a href="#recipes" class="nav-categories">Recipes</a>
         </div>
         <div class="nav-links">
             <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm" id="login-nav-link">Login</a>
@@ -44,8 +44,8 @@
                 <li><a class="dropdown-links" data-toggle="modal" data-target="#.bs-example-modal-sm" href="#">Login</a></li>
                 <li><a class="dropdown-links" href="/register">Register</a></li>
                 <li class="dropdown-links divider" role="separator"></li>
-                <li><a class="dropdown-links" href="/">Categories</a></li>
-                <li><a class="dropdown-links" href="/">Recipes</a></li>
+                <li><a class="dropdown-links" href="#categories">Categories</a></li>
+                <li><a class="dropdown-links" href="#recipes">Recipes</a></li>
             </ul>
         </div>
 
@@ -94,8 +94,7 @@
             <span class="dropdown dropdown-nav">
                 <span id="user-hello-hide-mobile-nav">
                     Hi
-                    <span sec:authentication="name"></span>
-                    !
+                    <span sec:authentication="name"></span>!
                 </span>
                 <span data-toggle="dropdown" role="button" aria-haspopup="true"
                       aria-expanded="false"
@@ -107,8 +106,8 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li><a class="dropdown-links" href="/lists">My Lists</a></li>
-                    <li><a class="dropdown-links" href="/">Categories</a></li>
-                    <li><a class="dropdown-links" href="/">Recipes</a></li>
+                    <li><a class="dropdown-links" href="#categories">Categories</a></li>
+                    <li><a class="dropdown-links" href="#recipes">Recipes</a></li>
                     <li><a class="dropdown-links" href="#">Update Profile</a></li>
                     <li class="dropdown-links divider" role="separator"></li>
                     <li>
