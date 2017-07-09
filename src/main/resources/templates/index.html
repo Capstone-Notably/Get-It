@@ -38,7 +38,7 @@
 
             <div th:each="category:${categories}">
                 <div class="col-sm-6 col-md-4 category">
-                    <!--<a class="category-name" data-toggle="modal" data-target="#myModal" href="#"><span th:text="${category.name}" /></a>  <&#45;&#45;th:href="@{/items(category_id=${category.id})}"&ndash;&gt;-->
+                    <span class="category-name" th:text="${category.name}"></span>
                     <a class="category-image" data-toggle="modal" th:href="'#itemModal'+${category.id}"><img
                             th:src="'/uploads/categories/' + ${category.imgUrl}" class="img-responsive img-thumbnail"/></a>
 
@@ -100,3 +100,5 @@
 <div th:replace="fragments::scripts"></div>
 </body>
 </html>
+
+

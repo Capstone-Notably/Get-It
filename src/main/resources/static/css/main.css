@@ -306,6 +306,10 @@ form>input {
     font-family: var(--font1);
     justify-content: center;
     align-items: center;
+    font-size: 5em;
+    height: 3em;
+    background-color: rgba(76, 175, 80, 0.5);
+
 }
 
 
@@ -332,20 +336,22 @@ form>input {
 .category, .recipe {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     margin-bottom: 3em;
+    margin-top: 2em;
 }
 
-.category-name, .recipe-name {
+span.category-name, a.recipe-name {
     position: absolute;
     font-size: 4em;
     z-index: 1;
     font-family: var(--font1);
     font-weight: 600;
-    color: var(--l-green);
-    text-shadow: -4px 3px 0 black;
-
+    color: black;
+    /*text-shadow: -4px 3px 0 black;*/
+    background-color: rgba(76, 175, 80, 0.6);
+    bottom: .5em;
 }
 
 .category-image, .recipe-image {
