@@ -29,12 +29,18 @@
                 <li class="tabs" th:each="list : ${lists}">
                     <a data-toggle="tab" th:href="'#list' + ${list.id}" th:text="${list.name}"/>
                 </li>
-                <span sec:authorize="isAuthenticated()"
-                      class="glyphicon glyphicon-plus add-grocery-list" aria-hidden="true"
-                      data-container="body" data-toggle="popover"
-                      data-placement="bottom" rel="popover"
-                      data-popover-content="#grocery-list-create" tabindex="0" data-trigger="focus">
-                </span>
+                <a id="popover-list" class="glyphicon glyphicon-plus add-grocery-list" data-placement="left" href="#"></a>
+                <div id="popover-content" class="hide">
+                    <form th:method="post" th:action="@{/list/create}">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" placeholder="Enter List Name &hellip;" />
+                        </div>
+                        <div class="btn-ok-cancel">
+                            <button class="btn btn-danger glyphicon glyphicon-remove btn-cancel"></button>
+                            <button type="submit" class="btn btn-success glyphicon glyphicon-ok"></button>
+                        </div>
+                    </form>
+                </div>
             </ul>
 
             <div class="tab-content lists-view">
@@ -88,5 +94,11 @@
     <div th:replace="fragments::my-footer"></div>
 </div>
 <div th:replace="fragments::scripts"></div>
+<script>
+//    $('.btn-cancel').click(function () {
+//        console.log("test");
+//        $('[data-original-title]').popover('hide');
+//    });
+</script>
 </body>
 </html>

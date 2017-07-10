@@ -108,9 +108,9 @@ public class UsersController {
         GroceryList savedGlist = groceryListsRepository.save(new GroceryList("My grocery list"));
         userGListRepository.save(new UserGList(savedGlist, user));
 
-        // send a welcome text
-        String message = "Hello " + user.getUsername() + "from Get It";
-        twilioSvc.sendMessage("+12103746625","+18304200837",message);
+//        // send a welcome text
+//        String message = "Hello " + user.getUsername() + "from Get It";
+//        twilioSvc.sendMessage("+12103746625","+18304200837",message);
 
         return "redirect:/login";
     }
