@@ -6,6 +6,7 @@
     <div th:replace="fragments::hidden-search"></div>
     <nav th:replace="fragments::my-navbar"></nav>
     <div class="register-body">
+        <h1 class="register-header">Get Started and Get It!</h1>
         <form class="register-form" th:method="post" th:action="@{/users/register}" th:object="${user}" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="username">Username</label>
@@ -47,6 +48,9 @@
 
             <button type="submit" class="button btn btn-default">Submit</button>
         </form>
+        <div>
+            <img src="/uploads/others/cart-icon.png" class="img-responsive cart-icon" />
+        </div>
     </div>
     <div th:replace="fragments::my-footer"></div>
 </div>

@@ -11,5 +11,4 @@ import java.util.List;
  */
 @Repository
 public interface GroceryListsRepository extends CrudRepository<GroceryList, Long> {
-    public List<GroceryList> findAllByUser_Id(long user_id);
 }

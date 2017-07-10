@@ -2,6 +2,7 @@ package com.codeup.controller;
 
 import com.codeup.models.*;
 import com.codeup.repositories.*;
+import com.codeup.svcs.TwilioSvc;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,21 +21,31 @@ import java.util.List;
 @Controller
 public class UsersController {
     private final UsersRepository usersRepository;
-    private RolesRepository rolesRepository;
-    private PasswordEncoder passwordEncoder;
-    private ItemsRepository itemsRepository;
-    private UserItemsRepository userItemsRepository;
-    private PreferenceRepository preferenceRepository;
-    private CategoriesRepository categoriesRepository;
-    private UserCategoryRepository userCategoryRepository;
+    private final RolesRepository rolesRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final ItemsRepository itemsRepository;
+    private final UserItemsRepository userItemsRepository;
+    private final PreferenceRepository preferenceRepository;
+    private final CategoriesRepository categoriesRepository;
+    private final UserCategoryRepository userCategoryRepository;
+    private final RecipesRepository recipesRepository;
+    private final UserRecipeRepository userRecipeRepository;
+    private final GroceryListsRepository groceryListsRepository;
+    private final UserGListRepository userGListRepository;
+
 
     @Value("${users-img-path}")
     private String usersImgPath;
 
     @Autowired
+    TwilioSvc twilioSvc;
+
+    @Autowired
     public UsersController(UsersRepository usersRepository, RolesRepository rolesRepository, PasswordEncoder passwordEncoder,
                            ItemsRepository itemsRepository, UserItemsRepository userItemsRepository, PreferenceRepository preferenceRepository,
-                           CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository) {
+                           CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository,
+                           RecipesRepository recipesRepository, UserRecipeRepository userRecipeRepository,
+                           GroceryListsRepository groceryListsRepository, UserGListRepository userGListRepository) {
         this.usersRepository = usersRepository;
         this.rolesRepository = rolesRepository;
         this.passwordEncoder = passwordEncoder;
@@ -43,12 +54,15 @@ public class UsersController {
         this.preferenceRepository = preferenceRepository;
         this.categoriesRepository = categoriesRepository;
         this.userCategoryRepository = userCategoryRepository;
+        this.recipesRepository = recipesRepository;
+        this.userRecipeRepository = userRecipeRepository;
+        this.groceryListsRepository = groceryListsRepository;
+        this.userGListRepository = userGListRepository;
     }
 
     @PostMapping("/users/register")
     public String saveUser(@ModelAttribute User user, @RequestParam(name = "preference") String preference, @RequestParam(name = "file") MultipartFile uploadedFile, Model model) {
         String filename = transferUploadedFile(uploadedFile, usersImgPath, model);
-
         if(filename.isEmpty()) {
             filename = "default_user.png";
         }
@@ -84,7 +98,31 @@ public class UsersController {
             }
         }
 
-        return "redirect:/";
+        //update table users_recipes
+        List<Recipe> recipes = recipesRepository.findByUser_Id(1);
+        for (Recipe recipe : recipes) {
+           userRecipeRepository.save(new UserRecipe(recipe, user));
+        }
+
+        //update table users_glists
+        GroceryList savedGlist = groceryListsRepository.save(new GroceryList("My grocery list"));
+        userGListRepository.save(new UserGList(savedGlist, user));
+
+//        // send a welcome text
+//        String message = "Hello " + user.getUsername() + "from Get It";
+//        twilioSvc.sendMessage("+12104219757","+18304200837",message);
+
+        return "redirect:/login";
+    }
+
+    @GetMapping("/about")
+    public String about() {
+        return "about";
+    }
+
+    @GetMapping("/users/profile")
+    public String profile() {
+        return "users/profile";
     }
 
 

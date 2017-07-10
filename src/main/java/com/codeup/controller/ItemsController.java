@@ -34,12 +34,12 @@ public class ItemsController {
         this.userCategoryRepository = userCategoryRepository;
     }
 
-    @GetMapping("/items")
-    public String viewItems(@RequestParam("category_id") long category_id, Model model) {
-        List<CustomItem> customItems = findByCategory(itemsRepository, userItemsRepository, category_id);
-        model.addAttribute("items", customItems);
-        return "items/index";
-    }
+//    @GetMapping("/items")
+//    public String viewItems(@RequestParam("category_id") long category_id, Model model) {
+//        List<CustomItem> customItems = findByCategory(itemsRepository, userItemsRepository, category_id);
+//        model.addAttribute("items", customItems);
+//        return "index";
+//    }
 
     @GetMapping("/items/create")
     public String createItem(Model model) {
@@ -63,7 +63,7 @@ public class ItemsController {
         UserItem userItem = new UserItem(item.getPrice(), item.getQuantity(), item.getBarcode(), item.isFavorite(), user, defaultItem);
         itemsRepository.save(defaultItem);
         userItemsRepository.save(userItem);
-        return "redirect:/home";
+        return "redirect:/";
     }
 
     @GetMapping("/items.json")
@@ -83,7 +83,7 @@ public class ItemsController {
             for (UserItem userItem : userItems) {
                 Item item = itemsRepository.findOne(userItem.getItem().getId());
                 if(item.getCategory().getId() == category_id) {
-                    CustomItem customItem = new CustomItem(item.getName(), item.getImgUrl(), userItem.getPrice(), userItem.getQuantity(), userItem.getBarcode(), userItem.isFavorite());
+                    CustomItem customItem = new CustomItem(item, userItem);
                     customItems.add(customItem);
                 }
             }
@@ -92,7 +92,7 @@ public class ItemsController {
             // get the default items using user_id=1 -> admin user
             List<Item> items = itemsRepository.findByUser_IdAndCategory_Id(1, category_id);
             for (Item item : items) {
-                customItems.add(new CustomItem(item.getName(), item.getImgUrl()));
+                customItems.add(new CustomItem(item.getId(), item.getName(), item.getImgUrl()));
             }
         }
         return customItems;
@@ -107,8 +107,14 @@ public class ItemsController {
 
             for (UserItem userItem : userItems) {
                 Item item = itemsRepository.findOne(userItem.getItem().getId());
-                CustomItem customItem = new CustomItem(item.getName(), item.getImgUrl(), userItem.getPrice(), userItem.getQuantity(), userItem.getBarcode(), userItem.isFavorite());
+                CustomItem customItem = new CustomItem(item, userItem);
                 customItems.add(customItem);
+            }
+        }else {
+            // get the default items using user_id=1 -> admin user
+            List<Item> items = (List<Item>) itemsRepository.findAll();
+            for (Item item : items) {
+                customItems.add(new CustomItem(item));
             }
         }
         return customItems;

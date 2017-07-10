@@ -5,38 +5,97 @@
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
-<div class="home grid">
-    <input type="hidden" id= "csrf-token" th:name="${_csrf.parameterName}" th:content="${_csrf.token}" />
-    <input type="hidden" id= "csrf-header" th:name="${_csrf.parameterName}" th:content="${_csrf.headerName}" />
+
+<input type="hidden" id="csrf-token" th:name="${_csrf.parameterName}" th:content="${_csrf.token}"/>
+<input type="hidden" id="csrf-header" th:name="${_csrf.parameterName}" th:content="${_csrf.headerName}"/>
+
+<div class="home-grid">
     <div th:replace="fragments::hidden-search"></div>
     <nav th:replace="fragments::my-navbar"></nav>
     <div class="lists-index-body">
-        <h1>Groceries Lists</h1>
-        <form th:method="post">
+        <div class="grocery-header">
+        <h1 class="grocery-title">Grocery Lists</h1>
+        <form th:method="post" class="lists-search">
             <div class="form-group">
                 <div class="ui-widget">
-                    <input id="tags" type="text" class="form-control" placeholder="Search" />
+                    <input id="tags" type="text" class="form-control" placeholder="Search item"/>
                 </div>
             </div>
-            <button id="search-submit" type="submit" class="btn btn-default">Submit</button>
+            <button id="search-submit" type="submit" class="">Add to List</button>
         </form>
-        <div th:each="list : ${lists}">
-            <a href="#" th:text="${list.name}"></a>
-            <div id="view-items">
-                <div th:each="item : ${items}" class='item-all'>
-                    <div th:if="${item.listId} == ${list.id}" class='item-name'>
-                        <input type='checkbox' value='false' class='item-property' />
-                        <span th:text="${item.name}" class='item-property' />
+        </div>
+        <div class="grocery-lists">
+            <ul class="nav nav-tabs ul-tabs grocery-list-tab">
+                <li class="tabs" th:each="list : ${lists}">
+                    <a data-toggle="tab" th:href="'#list' + ${list.id}" th:text="${list.name}"/>
+                </li>
+                <span id="popover-list" class="glyphicon glyphicon-plus add-grocery-list" data-placement="left" ></span>
+                <div id="popover-content" class="hide">
+                    <form th:method="post" th:action="@{/list/create}">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" placeholder="Enter List Name &hellip;" />
+                        </div>
+                        <div class="btn-ok-cancel">
+                            <button class="btn btn-danger glyphicon glyphicon-remove btn-cancel"></button>
+                            <button type="submit" class="btn btn-success glyphicon glyphicon-ok"></button>
+                        </div>
+                    </form>
+                </div>
+            </ul>
+            <div class="tab-content lists-view">
+                <div th:each="list : ${lists}" th:id="'list' + ${list.id}" class="tab-pane view-items">
+                    <input type="hidden" th:value="${list.id}"/> <!-- don't move from this position-->
+                    <span class="dropdown">
+                        <span class="dropdown-toggle item-edit" type="button" th:id="'dropdownMenu' + ${list.id}"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret-size-lists glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+                        </span>
+
+                        <ul class="dropdown-menu" th:attr="aria-labelledby='\'dropdownMenu' + ${list.id} +'\''">
+                            <li><a data-toggle="modal" th:href="'#shareModal'+${list.id}">Share List</a></li>
+                            <li><a th:href="@{/list/delete(list_id=${list.id})}">Delete List</a></li>
+                        </ul>
+                    </span>
+
+                    <div th:each="item : ${items}" class='item-all'>
+                        <div th:if="${item.listId} == ${list.id}" class='item-name'>
+                            <input type='checkbox' value='false' class='item-property'/>
+                            <span th:text="${item.name}" class='item-property'/>
+                        </div>
+                        <div th:if="${item.listId} == ${list.id}" class='item-img img-responsive'>
+                            <img th:src="${'/uploads/items/' + item.imgUrl}"/>
+                        </div>
                     </div>
-                    <div th:if="${item.listId} == ${list.id}" class='item-img'>
-                        <img th:src="${'/uploads/items/' + item.imgUrl}" />
+
+                    <div class="modal fade" th:id="'shareModal'+${list.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Share List</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form th:action="@{/list/share}" th:method="post">
+                                        <input name="phone" type="text" placeholder="Phone number to share with" />
+                                        <input name="listId" type="hidden" th:value="${list.id}" />
+                                        <button type="submit" class="button btn btn-success btn-block">SEND INVITES</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div th:replace="fragments::my-footer">Footer</div>
+    <div th:replace="fragments::my-footer"></div>
 </div>
-    <div th:replace="fragments::scripts"></div>
+<div th:replace="fragments::scripts"></div>
+<script>
+//    $('.btn-cancel').click(function () {
+//        console.log("test");
+//        $('[data-original-title]').popover('hide');
+//    });
+</script>
 </body>
 </html>

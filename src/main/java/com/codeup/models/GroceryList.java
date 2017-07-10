@@ -16,19 +16,17 @@ public class GroceryList {
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @OneToMany(mappedBy = "glist")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "glist")
     private List<ListItem> listItems;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "glist")
+    private List<UserGList> userGLists;
 
     public GroceryList() {
     }
 
-    public GroceryList(String name, User user) {
+    public GroceryList(String name) {
         this.name = name;
-        this.user = user;
     }
 
     public long getId() {
@@ -47,11 +45,19 @@ public class GroceryList {
         this.name = name;
     }
 
-    public User getUser() {
-        return user;
+    public List<ListItem> getListItems() {
+        return listItems;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setListItems(List<ListItem> listItems) {
+        this.listItems = listItems;
+    }
+
+    public List<UserGList> getUserGLists() {
+        return userGLists;
+    }
+
+    public void setUserGLists(List<UserGList> userGLists) {
+        this.userGLists = userGLists;
     }
 }

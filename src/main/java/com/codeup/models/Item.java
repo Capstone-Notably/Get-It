@@ -27,8 +27,11 @@ public class Item {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "item")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
     private List<ListItem> listItems;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
+    private List<RecipeItem> recipeItems;
 
     public Item() {
     }
@@ -87,5 +90,21 @@ public class Item {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<ListItem> getListItems() {
+        return listItems;
+    }
+
+    public void setListItems(List<ListItem> listItems) {
+        this.listItems = listItems;
+    }
+
+    public List<RecipeItem> getRecipeItems() {
+        return recipeItems;
+    }
+
+    public void setRecipeItems(List<RecipeItem> recipeItems) {
+        this.recipeItems = recipeItems;
     }
 }

@@ -4,6 +4,7 @@ package com.codeup.models;
  * Created by roxana on 7/2/17.
  */
 public class CustomItem {
+    private long id;
     private String name;
     private String imgUrl;
     private float price;
@@ -11,25 +12,46 @@ public class CustomItem {
     private String barcode;
     private boolean favorite;
     private long listId;
+    private long categoryId;
+    private long recipeId;
 
     public CustomItem() {
     }
 
-    public CustomItem(String name, String imgUrl) {
+    public CustomItem(long id, String name, String imgUrl) {
         this.name = name;
         this.imgUrl = imgUrl;
+        this.id =id;
     }
 
-    public CustomItem(String name, String imgUrl, float price, int quantity, String barcode, boolean favorite) {
-        this.name = name;
-        this.imgUrl = imgUrl;
-        this.price = price;
-        this.quantity = quantity;
-        this.barcode = barcode;
-        this.favorite = favorite;
+    public CustomItem(Item item) {
+        this.id = item.getId();
+        this.name = item.getName();
+        this.imgUrl = item.getImgUrl();
+        this.categoryId = item.getCategory().getId();
     }
 
-    public CustomItem(String name, String imgUrl, float price, int quantity, String barcode, boolean favorite, long listId) {
+    public CustomItem(Item item, long recipeId) {
+        this.id = item.getId();
+        this.name = item.getName();
+        this.imgUrl = item.getImgUrl();
+        this.categoryId = item.getCategory().getId();
+        this.recipeId = recipeId;
+    }
+
+    public CustomItem(Item item, UserItem userItem) {
+        this.id = item.getId();
+        this.name = item.getName();
+        this.imgUrl = item.getImgUrl();
+        this.categoryId = item.getCategory().getId();
+        this.price = userItem.getPrice();
+        this.quantity = userItem.getQuantity();
+        this.barcode = userItem.getBarcode();
+        this.favorite = userItem.isFavorite();
+    }
+
+    public CustomItem(long id, String name, String imgUrl, float price, int quantity, String barcode, boolean favorite, long listId) {
+        this.id = id;
         this.name = name;
         this.imgUrl = imgUrl;
         this.price = price;
@@ -93,5 +115,29 @@ public class CustomItem {
 
     public void setListId(long listId) {
         this.listId = listId;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public long getRecipeId() {
+        return recipeId;
+    }
+
+    public void setRecipeId(long recipeId) {
+        this.recipeId = recipeId;
     }
 }
