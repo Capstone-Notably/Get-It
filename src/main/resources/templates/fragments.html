@@ -50,8 +50,8 @@
         </div>
 
         <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-            <div class="modal-dialog modal-sm" role="document">
-                <div class="modal-content login-body">
+            <div class="login-modal modal-dialog modal-sm" role="document">
+                <div class="modal-content login-modal-body">
                     <h1>Log In</h1>
                     <!--<div th:if="${param.error}">-->
                         <!--Invalid Username and Password.-->
@@ -73,7 +73,7 @@
                         <input id="username" name="username" type="text"/>
                         <label for="password">Password</label>
                         <input id="password" name="password" type="password"/>
-                        <input type="submit" value="Log In"/>
+                        <input class="button" type="submit" value="Log In"/>
                     </form>
                 </div>
             </div>
