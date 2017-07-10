@@ -738,6 +738,64 @@ div.ui-widget {
     justify-content: space-between;
 }
 
+/*----------------------------------------------------------------------------------------------------------------------
+   User Profile
+----------------------------------------------------------------------------------------------------------------------*/
+.user-profile-body {
+    grid-row: body;
+    background-color: var(--bannergreen);
+    border-bottom: 1em solid var(--accentcolor);
+    border-top: 1em solid var(--accentcolor);
+    display: inline-grid;
+    grid: "header" "info" "profile";
+    grid-template-rows: 15em 1fr 2fr;
+}
+
+.account-details {
+    grid-row: header;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("/uploads/others/wood-board.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: 1em solid var(--accentcolor);
+}
+
+.profile-header {
+    font-size: 5em;
+    text-align: center;
+    font-family: var(--font1);
+}
+
+.users-info {
+    grid-row: info;
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.user-profile-image {
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.user-account-details {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font1);
+    font-size: 3em;
+}
+
+.user-profile {
+    grid-row: profile;
+}
 
 /*----------------------------------------------------------------------------------------------------------------------
    Footer
