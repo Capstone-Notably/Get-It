@@ -492,7 +492,7 @@ span.category-name, span.recipe-name {
 .items-name {
     justify-content: flex-start;
     align-items: center;
-    font-size: 4em;
+    font-size: 3em;
     width: 80%;
 }
 
@@ -504,16 +504,71 @@ span.category-name, span.recipe-name {
 }
 
 .item-edit {
-    font-size: 2em;
-    height: 100%;
+    font-size: 3em;
+    display: inline-flex;
+    width: 1.5em;
+    height: 1.5em;
+    background-color: var(--bannergreen);
+    margin-left: .5em;
+    box-shadow: none;
+    border: 1px solid var(--accentcolor);
+    justify-content: center;
 }
 
 .caret-size {
-    font-size: 2.5em;
+    font-size: 3em;
+    text-align: center;
+}
+
+.category-title {
+    font-family: var(--font1);
+    font-size: 3em;
 }
 
 .category-name {
     font-size: 4em;
+}
+/*----------------------------------------------------------------------------------------------------------------------
+   Recipe Details
+----------------------------------------------------------------------------------------------------------------------*/
+.modal-content {
+    border: 1px solid var(--bannergreen);
+    border-radius: 0;
+}
+
+.recipe-title {
+    font-family: var(--font1);
+    font-size: 3em;
+}
+
+.recipe-body {
+    display: flex;
+    flex-flow: column;
+    font-family: var(--font1);
+    width: 100%;
+}
+
+.recipe-details {
+    padding:1em;
+}
+
+.recipe-directions {
+    font-family: var(--font1);
+    font-size: 2em;
+}
+
+.recipe-time {
+    font-family: var(--font1);
+    font-size: 2em;
+}
+
+.recipe-items {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    font-family: var(--font1);
+    width: 100%;
+    border-bottom: 1px solid var(--bannergreen);
 }
 
 /*----------------------------------------------------------------------------------------------------------------------
