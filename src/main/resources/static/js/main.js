@@ -176,8 +176,14 @@
     });
 
     $('.btn-cancel').click(function () {
-        console.log("test");
         $('[data-original-title]').popover('hide');
+    });
+
+    $('#popover-list').popover({
+        html : true,
+        content: function() {
+            return $("#popover-content").html();
+        }
     });
 
 
