@@ -441,6 +441,18 @@ span.category-name, span.recipe-name {
     height: 12em;
 }
 
+.create-categories {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+#categories-name {
+    height: 2.1em;
+    font-size: 1.2em;
+    margin-right: 10px;
+}
+
 /*----------------------------------------------------------------------------------------------------------------------
    Create Categories/ Recipes
 ----------------------------------------------------------------------------------------------------------------------*/

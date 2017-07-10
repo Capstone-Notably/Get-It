@@ -61,26 +61,26 @@
 
         <div class="row categories" id="categories">
             <h2 id="category-header">Categories
-                <span sec:authorize="isAuthenticated()"
-                      class="glyphicon glyphicon-plus add-category" aria-hidden="true"
-                      data-container="body" data-toggle="popover"
-                      data-placement="bottom" rel="popover"
-                      data-popover-content="#category-create" tabindex="0" data-trigger="focus">
-                </span>
+                <!--<span sec:authorize="isAuthenticated()"-->
+                      <!--class="glyphicon glyphicon-plus add-category" aria-hidden="true"-->
+                      <!--data-container="body" data-toggle="popover"-->
+                      <!--data-placement="bottom" rel="popover"-->
+                      <!--data-popover-content="#category-create" tabindex="0" >-->
+                <!--</span>-->
+                <span sec:authorize="isAuthenticated()" id="popover-category" class="glyphicon glyphicon-plus add-category" data-placement="bottom" ></span>
             </h2>
 
-            <div class="hidden" id="category-create">
-                <form class="popover-body" th:method="post" th:action="@{/categories/create}" th:object="${newCategory}"
-                      enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" th:field="*{name}"/>
+            <div id="popover-content" class="hide">
+                <form class="popover-body" th:method="post" th:action="@{/categories/create}" enctype="multipart/form-data">
+                    <div class="create-categories">
+                        <input type="text" id="categories-name" name="name" placeholder="Enter Category Name &hellip;" />
+                        <label for="img-file" class="btn btn-success glyphicon glyphicon-picture"></label>
+                        <input id="img-file" type="file" name="file" style="visibility:hidden"  />
                     </div>
-                    <div class="form-group">
-                        <label for="file">Image</label>
-                        <input type="file" class="form-control" name="file" id="file"/>
+                    <div class="btn-ok-cancel">
+                        <button class="btn btn-danger glyphicon glyphicon-remove btn-cancel-create"></button>
+                        <button type="submit" class="btn btn-success glyphicon glyphicon-ok"></button>
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
                 </form>
             </div>
 

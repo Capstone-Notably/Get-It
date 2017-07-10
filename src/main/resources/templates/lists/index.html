@@ -18,7 +18,7 @@
         <form th:method="post" class="lists-search">
             <div class="form-group">
                 <div class="ui-widget">
-                    <input id="tags" type="text" class="form-control" placeholder="Search"/>
+                    <input id="tags" type="text" class="form-control" placeholder="Search item"/>
                 </div>
             </div>
             <button id="search-submit" type="submit" class="">Add to List</button>
@@ -29,7 +29,7 @@
                 <li class="tabs" th:each="list : ${lists}">
                     <a data-toggle="tab" th:href="'#list' + ${list.id}" th:text="${list.name}"/>
                 </li>
-                <a id="popover-list" class="glyphicon glyphicon-plus add-grocery-list" data-placement="left" href="#"></a>
+                <span id="popover-list" class="glyphicon glyphicon-plus add-grocery-list" data-placement="left" ></span>
                 <div id="popover-content" class="hide">
                     <form th:method="post" th:action="@{/list/create}">
                         <div class="form-group">
