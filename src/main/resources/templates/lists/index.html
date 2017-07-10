@@ -42,7 +42,6 @@
                     </form>
                 </div>
             </ul>
-
             <div class="tab-content lists-view">
                 <div th:each="list : ${lists}" th:id="'list' + ${list.id}" class="tab-pane view-items">
                     <input type="hidden" th:value="${list.id}"/> <!-- don't move from this position-->
