@@ -116,7 +116,6 @@
         });
     });
 
-
     $('#search-submit').click(function (e) {
         e.preventDefault();
         if($tags.val() !== "") {
@@ -282,6 +281,31 @@
     Quagga.onDetected(function(result) {
         if (result.codeResult.code){
             $('#scanner_input').val(result.codeResult.code);
+
+            //add item to list
+            // json.forEach(function(item) {
+            //     if(item.barcode === result.codeResult.code) {
+            //         html += "<div class='item-all'>";
+            //         html += "<div class='item-name'>";
+            //         html += "<input type='checkbox' value='false' class='item-property' />";
+            //         html += "<span class='item-property'>" + item.name + "</span>";
+            //         html += "</div>";
+            //         html += "<div class='item-img'>";
+            //         html += "<img src='/uploads/items/" + item.imgUrl + "'/>";
+            //         html += "</div>";
+            //         html += "</div>";
+            //
+            //         $viewItems.each(function () {
+            //             if($(this).hasClass('active')){
+            //                 item.listId = parseInt($(this).children().val());
+            //                 $(this).html(html);
+            //             }
+            //         });
+            //
+            //         item_json = item;
+            //     }
+            // });
+
             Quagga.stop();
             setTimeout(function(){ $('#livestream_scanner').modal('hide'); }, 1000);
         }

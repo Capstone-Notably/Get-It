@@ -618,8 +618,7 @@ span.category-name, span.recipe-name {
     height: 100%;
     /*margin-top: 2.5em;*/
     margin-right: 0;
-    z-index: 1;
-
+    /*z-index: 1;*/
 }
 
 .grocery-title {
