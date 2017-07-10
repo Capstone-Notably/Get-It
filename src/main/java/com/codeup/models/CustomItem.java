@@ -13,6 +13,7 @@ public class CustomItem {
     private boolean favorite;
     private long listId;
     private long categoryId;
+    private long recipeId;
 
     public CustomItem() {
     }
@@ -28,6 +29,14 @@ public class CustomItem {
         this.name = item.getName();
         this.imgUrl = item.getImgUrl();
         this.categoryId = item.getCategory().getId();
+    }
+
+    public CustomItem(Item item, long recipeId) {
+        this.id = item.getId();
+        this.name = item.getName();
+        this.imgUrl = item.getImgUrl();
+        this.categoryId = item.getCategory().getId();
+        this.recipeId = recipeId;
     }
 
     public CustomItem(Item item, UserItem userItem) {
@@ -122,5 +131,13 @@ public class CustomItem {
 
     public void setCategoryId(long categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public long getRecipeId() {
+        return recipeId;
+    }
+
+    public void setRecipeId(long recipeId) {
+        this.recipeId = recipeId;
     }
 }
