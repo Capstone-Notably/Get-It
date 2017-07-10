@@ -719,7 +719,6 @@ div.ui-widget {
     width: 100vw;
     margin-right: 0;
     background-color: var(--bannergreen);
-    z-index: 0;
     padding-right: 4.5em;
 }
 
