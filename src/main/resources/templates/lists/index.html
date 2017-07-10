@@ -53,9 +53,7 @@
 
                         <ul class="dropdown-menu" th:attr="aria-labelledby='\'dropdownMenu' + ${list.id} +'\''">
                             <li><a data-toggle="modal" th:href="'#shareModal'+${list.id}">Share List</a></li>
-                            <li><a href="#">Add Item</a></li>
-                            <li><a href="#">Remove Item</a></li>
-                            <li><a href="#">Delete List</a></li>
+                            <li><a th:href="@{/list/delete(list_id=${list.id})}">Delete List</a></li>
                         </ul>
                     </span>
 
