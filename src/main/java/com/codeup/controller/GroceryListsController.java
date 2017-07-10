@@ -93,9 +93,11 @@ public class GroceryListsController {
 
     @PostMapping("/list/create")
     public String saveList(@RequestParam("name") String name) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        GroceryList glist = groceryListsRepository.save(new GroceryList(name));
-        userGListRepository.save(new UserGList(glist, user));
+        if(!name.isEmpty()) {
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            GroceryList glist = groceryListsRepository.save(new GroceryList(name));
+            userGListRepository.save(new UserGList(glist, user));
+        }
         return "redirect:/lists";
     }
 
