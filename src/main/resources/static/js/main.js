@@ -175,4 +175,9 @@
         }
     });
 
+    $('.btn-cancel').click(function () {
+        console.log("test");
+        $('[data-original-title]').popover('hide');
+    });
+
 

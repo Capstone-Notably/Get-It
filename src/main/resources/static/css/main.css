@@ -684,6 +684,11 @@ div.ui-widget {
     margin-left: 20px;
 }
 
+.btn-ok-cancel {
+    display: flex;
+    justify-content: space-between;
+}
+
 
 /*----------------------------------------------------------------------------------------------------------------------
    Footer
