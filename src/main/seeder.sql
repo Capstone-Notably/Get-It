@@ -12,8 +12,8 @@ insert into categories (user_id, name, img_url, preferences) VALUES(1, 'Househol
 insert into categories (user_id, name, img_url, preferences) VALUES(1, 'Specialty','9speciatly.jpg','1 2 3');
 insert into categories (user_id, name, img_url, preferences) VALUES(1, 'Custom','10custom.jpg','1 2 3');
 
---items1
--- -------------------------------------------
+--items
+-- --------------------------------------------------------------------------------------------
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('fruitBasic.jpg', 'fruit',1,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('vegetablesBasic.jpg', 'vegetables',1,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('apples.jpg', 'apples',1,1,'1 2 3');
@@ -26,8 +26,6 @@ insert into items ( img_url, name, category_id, user_id, preferences) VALUES('ga
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('lemons.jpg', 'lemons',1,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('lettuce.jpeg', 'lettuce',1,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('spinach.jpeg', 'spinach',1,1,'1 2 3');
--- items2
-
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('bagels.jpeg', 'bagels',2,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('bread.jpg', 'bread',2,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('cereal.jpeg', 'cereal',2,1,'1 2');
@@ -38,8 +36,6 @@ insert into items ( img_url, name, category_id, user_id, preferences) VALUES('ri
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('rolls.jpeg', 'rolls',2,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('spaghetti.jpeg', 'spaghetti',2,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('torillas.jpeg', 'tortillas',2,1,'1 2');
-
--- items3
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('butter.jpeg', 'butter',3,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('cheese.jpg', 'cheese',3,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('cheeseDip.jpeg', 'cheese dip',3,1,'1 2');
@@ -51,8 +47,6 @@ insert into items ( img_url, name, category_id, user_id, preferences) VALUES('pa
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('sourCream.jpeg', 'sour cream',3,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('soyMilk.jpeg', 'soy milk',3,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('yogurt.jpeg', 'yogurt',3,1,'1 2');
-
--- items4
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('bacon.jpeg', 'bacon',4,1,'1');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('beef.jpg', 'beef',4,1,'1');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('beefGround.jpeg', 'ground beef',4,1,'1');
@@ -64,8 +58,6 @@ insert into items ( img_url, name, category_id, user_id, preferences) VALUES('po
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('salmon_boneless_skinless.jpeg', 'salmon boneless skinless',4,1,'1');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('shrimp.jpeg', 'shrimp',4,1,'1');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('tuna.jpeg', 'tuna',4,1,'1');
-
---items5
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('basil_organic.jpeg', 'basil organic',5,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('canGoods.jpeg', 'can goods',5,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('canTomatoes.jpg', 'can tomatoes',5,1,'1 2 3');
@@ -83,8 +75,6 @@ insert into items ( img_url, name, category_id, user_id, preferences) VALUES('pe
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('salt.jpeg', 'salt',5,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('seasoningSalt.jpeg', 'seasoning salt',5,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('spices.jpg', 'spices',5,1,'1 2 3');
-
---items6
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('cake.jpeg', 'cake',6,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('candy.jpeg', 'candy',6,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('chips.jpeg', 'chips',6,1,'1 2 3');
@@ -95,8 +85,6 @@ insert into items ( img_url, name, category_id, user_id, preferences) VALUES('je
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('pretzels.jpeg', 'pretzels',6,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('riceCakes.jpeg', 'rice cakes',6,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('snacksBasic.jpeg', 'snacks',6,1,'1 2 3');
-
---items7
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('beverageBasic.jpeg', 'beverages',7,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('beer.jpeg', 'beer',7,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('bottledWater.jpeg', 'bottled water',7,1,'1 2 3');
@@ -108,8 +96,6 @@ insert into items ( img_url, name, category_id, user_id, preferences) VALUES('so
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('sportsDrink.jpeg', 'sports drink',7,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('tea.jpeg', 'tea',7,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('wine.jpeg', 'wine',7,1,'1 2 3');
-
---items8
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('batteries.jpeg', 'batteries',8,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('catFood.jpeg', 'cat food',8,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('catLitter.jpeg', 'cat litter',8,1,'1 2 3');
@@ -120,8 +106,6 @@ insert into items ( img_url, name, category_id, user_id, preferences) VALUES('li
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('shampoo.jpeg', 'shampoo',8,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('soap.jpeg', 'soap',8,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('sponges.jpeg', 'sponges',8,1,'1 2 3');
-
---items9
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('soyMilk.jpeg', 'soy milk',9,1,'2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('coconutMilk.jpeg', 'coconut milk',9,1,'2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('veganCheese.jpeg', 'vegan cheese',9,1,'2 3');
@@ -134,13 +118,14 @@ insert into items ( img_url, name, category_id, user_id, preferences) VALUES('co
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('nonDairyCreamer.jpeg', 'non-dairy creamer',9,1,'2 3');
 
 --recipes
+-------------------------------------------------------------------------------------
 insert into recipes (name, directions, img_url, time, user_id) VALUES('Roasted Broccoli with Parmesan', 'How to Make It:  1. Place broccoli and garlic into baking pan. Drizzle with oil and toss.  2. Bake at 450°, stirring occasionally, 20 to 25 minutes or until lightly browned. Sprinkle with salt, pepper, and cheese.','1_roasted_broccoli_cauliflower.jpg','Bake: 25 minutes.',1);
 insert into recipes (name, directions, img_url, time, user_id) VALUES('Lemon Pepper Chicken', 'How to Make It:  1. Combine all ingredients except chicken in a large ziplock bag.  2. Add chicken to the bag. Seal it shut and chill it in the fridge for half an hour.  3. Heat a grill to medium high. Cook chicken on grill and monitor internal temperature. ','2_lemon_pepper_chicken.jpg','Cook: Until internal temp is 165 degrees F.',1);
 insert into recipes (name, directions, img_url, time, user_id) VALUES('Tomato Basil Salmon', 'How to Make It: 1. Preheat oven to 375 degrees F. 2. Line a baking sheet with aluminum foil and spray with nonstick cooking spray.  3. Place the salmon fillets onto the foil, sprinkle with basil, top with tomato slices, drizzle with olive oil, and sprinkle with the Parmesan cheese.  4. Bake in the preheated oven until the salmon is opaque in the center, and the Parmesan cheese is lightly browned on top.  5. Serve with a side of sauteed spinach. ','3_tomato_basil_salmon.jpg','Cook for approx. 20 minutes.',1);
 insert into recipes (name, directions, img_url, time, user_id) VALUES('Cilantro Lime Rice - Vegan', 'How to Make It:  1. Combine the rice, chicken broth, salt and ground cumin in a large saucepan or skillet. Bring to a boil over medium-high heat. Cover with lid then reduce heat to medium-low. Let simmer 20 minutes. 2. Remove from heat, but keep lid on. Let stand with lid on for 10 minutes. Remove lid and add in lime juice and chopped cilantro. Fluff with a fork and serve warm.','4_cilantro_lime_rice_vegan.jpg','Cook for approx. 30 minutes',1);
 insert into recipes (name, directions, img_url, time, user_id) VALUES('Garlic Chicken', 'How to Make It: 1. Melt butter in a large skillet over medium high heat. 2. Add chicken and sprinkle with garlic powder, seasoning salt and onion powder. 3. Saute approx. 10 to 15 minutes on each side, or until chicken is cooked through and juices run clear.','5_garlic_chicken.jpg','Cook for approx. 25 minutes.',1);
 
---how to make
+--recipe_items
 insert into recipe_items (recipe_id, quantity, item_id) VALUES(1,'2 cups',7);
 insert into recipe_items (recipe_id, quantity, item_id) VALUES(1,'5 cloves',9);
 insert into recipe_items (recipe_id, quantity, item_id) VALUES(1,'1 tbsp.',55);
