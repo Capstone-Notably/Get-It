@@ -41,13 +41,6 @@ ul, li, a, a:hover {
     grid-template-columns: 1fr;
 }
 
-.s {
-    width: 20em;
-    height: 20em;
-    border: .5px solid black;
-}
-
-
 /*----------------------------------------------------------------------------------------------------------------------
    Navbar
 ----------------------------------------------------------------------------------------------------------------------*/
@@ -202,6 +195,11 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
     border: 1px solid var(--accentcolor);
 }
 
+.login-home {
+    background-image: url("/uploads/others/market.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .login-modal-body {
     /*grid-row: body;*/
     display: flex;
@@ -618,7 +616,7 @@ span.category-name, span.recipe-name {
     height: 100%;
     /*margin-top: 2.5em;*/
     margin-right: 0;
-    z-index: 1;
+    /*z-index: 1;*/
 
 }
 
@@ -663,10 +661,11 @@ div.ui-widget {
 .grocery-lists {
     grid-row: lists;
     padding: 3em;
-    width: inherit;
+    width: 100vw;
     margin-right: 0;
     background-color: var(--bannergreen);
     z-index: 0;
+    padding-right: 4.5em;
 }
 
 .grocery-list-tab {
