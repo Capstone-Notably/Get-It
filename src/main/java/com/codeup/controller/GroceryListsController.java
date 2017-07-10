@@ -101,4 +101,14 @@ public class GroceryListsController {
         return "redirect:/lists";
     }
 
+    @GetMapping("/list/delete")
+    public String deleteList(@RequestParam("list_id") long list_id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        GroceryList glist = groceryListsRepository.findOne(list_id);
+        UserGList user_glist = userGListRepository.findByUser_IdAndGlist_Id(user.getId(), glist.getId());
+        userGListRepository.delete(user_glist.getId());
+        groceryListsRepository.delete(list_id);
+        return "redirect:/lists";
+    }
+
 }
