@@ -45,36 +45,43 @@ public class CategoriesController {
     @GetMapping("/")
     public String viewHome(Model model) {
         List<Category> categories = findAll(categoriesRepository, userCategoryRepository);
-        List<Recipe> recipes = RecipesController.findAll(recipesRepository, userRecipeRepository, recipeItemsRepository);
+        List<Recipe> recipes = RecipesController.findAll(recipesRepository, userRecipeRepository);
+        List<CustomItem> recipeItems = RecipesController.findAllItems(recipesRepository, userRecipeRepository, recipeItemsRepository, itemsRepository);
         List<CustomItem> customItems = ItemsController.findByUser(itemsRepository, userItemsRepository);
         model.addAttribute("items", customItems);
         model.addAttribute("categories", categories);
         model.addAttribute("recipes", recipes);
+        model.addAttribute("recipeItems", recipeItems);
         model.addAttribute("newCategory", new Category());
+        model.addAttribute("newRecipe", new Recipe());
         return "index";
 
     }
 
     @PostMapping("/categories/create")
-    public String saveCategory(@ModelAttribute Category category, @RequestParam(name = "file") MultipartFile uploadedFile, Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String filename = UsersController.transferUploadedFile(uploadedFile, categoriesImgPath, model);
-        Preference preference = userCategoryRepository.findByUser_Id(user.getId()).get(0).getPreference();
-        String strPreference = String.valueOf(preference.getId());
+    public String saveCategory(@ModelAttribute Category category, @RequestParam(name = "name") String name,  @RequestParam(name = "file") MultipartFile uploadedFile, Model model) {
 
-        if(filename.isEmpty()) {
-            filename = "default_category.png";
+        if(!name.isEmpty()) {
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            String filename = UsersController.transferUploadedFile(uploadedFile, categoriesImgPath, model);
+            Preference preference = userCategoryRepository.findByUser_Id(user.getId()).get(0).getPreference();
+            String strPreference = String.valueOf(preference.getId());
+
+            if (filename.isEmpty()) {
+                filename = "category_default.png";
+            }
+
+            // update categories table
+            category.setName(name);
+            category.setImgUrl(filename);
+            category.setPreferences(strPreference);
+            category.setUser(user);
+            categoriesRepository.save(category);
+
+            // update users_categories table
+            UserCategory userCategory = new UserCategory(category, user, preference);
+            userCategoryRepository.save(userCategory);
         }
-
-        // update categories table
-        category.setImgUrl(filename);
-        category.setPreferences(strPreference);
-        category.setUser(user);
-        categoriesRepository.save(category);
-
-        // update users_categories table
-        UserCategory userCategory = new UserCategory(category, user, preference);
-        userCategoryRepository.save(userCategory);
 
         return "redirect:/";
     }

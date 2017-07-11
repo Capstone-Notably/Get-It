@@ -87,7 +87,27 @@ public class eeeeeGroceryListsController {
 
         // send text to share list
 //        String message = user.getUsername() + "wants to share \"" + glist.getName() + "\" with you";
-//        twilioSvc.sendMessage(phone,"+12103611945",message);
+//        twilioSvc.sendMessage(phone,"+18304200837",message);
+        return "redirect:/lists";
+    }
+
+    @PostMapping("/list/create")
+    public String saveList(@RequestParam("name") String name) {
+        if(!name.isEmpty()) {
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            GroceryList glist = groceryListsRepository.save(new GroceryList(name));
+            userGListRepository.save(new UserGList(glist, user));
+        }
+        return "redirect:/lists";
+    }
+
+    @GetMapping("/list/delete")
+    public String deleteList(@RequestParam("list_id") long list_id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        GroceryList glist = groceryListsRepository.findOne(list_id);
+        UserGList user_glist = userGListRepository.findByUser_IdAndGlist_Id(user.getId(), glist.getId());
+        userGListRepository.delete(user_glist.getId());
+        groceryListsRepository.delete(list_id);
         return "redirect:/lists";
     }
 

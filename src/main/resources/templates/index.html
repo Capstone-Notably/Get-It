@@ -9,7 +9,7 @@
     <nav th:replace="fragments::my-navbar"></nav>
 
     <div class="index-body">
-        <img src="/uploads/others/groceries.jpg" class="image img-responsive"/>
+        <div class="image"/>
 
         <div class="features">
 
@@ -26,15 +26,21 @@
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
-                        <img class="carousel-image" src="/uploads/others/groceries.jpg" alt="..." />
+                        <img class="carousel-image img-responsive" src="/uploads/others/groceries.jpg" alt="..." />
                         <!--<div class="carousel-caption">-->
                             <!--...-->
                         <!--</div>-->
                     </div>
                     <div class="item">
-                        <img class="carousel-image" src="/uploads/others/groceries.jpg" alt="..." />
+                        <img class="carousel-image img-responsive" src="/uploads/others/basket.jpg" alt="..." />
                         <!--<div class="carousel-caption">-->
                             <!--...-->
+                        <!--</div>-->
+                    </div>
+                    <div class="item">
+                        <img class="carousel-image img-responsive" src="/uploads/others/veggies.jpg" alt="..." />
+                        <!--<div class="carousel-caption">-->
+                        <!--...-->
                         <!--</div>-->
                     </div>
                 </div>
@@ -55,26 +61,20 @@
 
         <div class="row categories" id="categories">
             <h2 id="category-header">Categories
-                <span sec:authorize="isAuthenticated()"
-                      class="glyphicon glyphicon-plus add-category" aria-hidden="true"
-                      data-container="body" data-toggle="popover"
-                      data-placement="bottom" rel="popover"
-                      data-popover-content="#category-create" tabindex="0" data-trigger="focus">
-            </span>
+                <span sec:authorize="isAuthenticated()" id="popover-category" class="glyphicon glyphicon-plus add-category" data-placement="bottom" ></span>
             </h2>
 
-            <div class="hidden" id="category-create">
-                <form class="popover-body" th:method="post" th:action="@{/categories/create}" th:object="${newCategory}"
-                      enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" th:field="*{name}"/>
+            <div id="popover-content" class="hide">
+                <form class="popover-body" th:method="post" th:action="@{/categories/create}" enctype="multipart/form-data">
+                    <div class="create-categories">
+                        <input type="text" id="categories-name" name="name" placeholder="Enter Category Name &hellip;" />
+                        <label for="img-file" class="btn btn-success glyphicon glyphicon-picture"></label>
+                        <input id="img-file" type="file" name="file" style="visibility:hidden"  />
                     </div>
-                    <div class="form-group">
-                        <label for="file">Image</label>
-                        <input type="file" class="form-control" name="file" id="file"/>
+                    <div class="btn-ok-cancel">
+                        <button class="btn btn-danger glyphicon glyphicon-remove btn-cancel-create"></button>
+                        <button type="submit" class="btn btn-success glyphicon glyphicon-ok"></button>
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
                 </form>
             </div>
 
@@ -92,7 +92,7 @@
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                             aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title"><span th:text="${category.name}"/></h4>
+                                    <h4 class="category-title"><span th:text="${category.name}"/></h4>
                                 </div>
                                 <div class="modal-body">
                                     <div th:each="item:${items}">
@@ -102,14 +102,14 @@
                                             <img class="img-responsive img-thumbnail item-image"
                                                  th:src="'/uploads/items/' + ${item.imgUrl}"/>
 
-                                            <div class="dropdown" sec:authorize="!isAuthenticated()">
-                                                <button class="btn btn-default dropdown-toggle item-edit" type="button"
-                                                        th:id="'dropdownMenu' + ${item.id}" data-toggle="dropdown"
+                                            <div class="dropdown" sec:authorize="isAuthenticated()">
+                                                <button class="dropdown-toggle item-edit" type="button"
+                                                        th:id="'category-items' + ${item.id}" data-toggle="dropdown"
                                                         aria-haspopup="true" aria-expanded="true">
                                                     <span class="caret-size caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-right"
-                                                    th:attr="aria-labelledby='\'dropdownMenu' + ${item.id} +'\''">
+                                                    th:attr="aria-labelledby='\'category-items' + ${item.id} +'\''">
                                                     <li><a href="#">Add to List</a></li>
                                                     <li><a href="#">Edit</a></li>
                                                     <li><a href="#">Delete</a></li>
@@ -134,8 +134,8 @@
                       data-popover-content="#category-create" tabindex="0" data-trigger="focus">
             </span>
                 <div class="hidden" id="recipe-create">
-                    <form class="popover-body" th:method="post" th:action="@{/categories/create}"
-                          th:object="${newCategory}"
+                    <form class="popover-body" th:method="post" th:action="@{/recipies/create}"
+                          th:object="${newRecipe}"
                           enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -152,7 +152,7 @@
 
             <div th:each="recipe:${recipes}">
                 <div class="col-sm-6 col-md-4 recipe">
-                    <a class="recipe-name" th:href="@{/items(recipe_id=${recipe.id})}"><span th:text="${recipe.name}"/></a>
+                    <span class="recipe-name" th:text="${recipe.name}"></span>
                     <a class="recipe-image" data-toggle="modal" th:href="'#recipeModal'+${recipe.id}"><img
                             th:src="'/uploads/recipes/' + ${recipe.imgUrl}" class="img-responsive"/></a>
 
@@ -165,19 +165,33 @@
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                             aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title"><span th:text="${recipe.name}"/></h4>
+                                    <h4 class="recipe-title">
+                                        <span th:text="${recipe.name}"/>
+                                    </h4>
                                 </div>
-                                <div class="modal-body">
-                                    <div th:if="${recipe.id} == ${recipe.id}" th:each="recipe:${recipes}">
-                                        <div class="recipe-items">
-                                            <p class="recipe-name"><span th:text="${recipe.name}"/></p>
+                                <div class="recipe-body">
+                                    <div class="recipe-details">
+                                        <p class="recipe-directions"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span th:text="${recipe.directions}"/></p>
+                                        <p class="recipe-time"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span th:text="${recipe.time}"/></p>
+                                    </div>
+                                    <div th:each="recipeItem:${recipeItems}">
+                                        <div class="recipe-items" th:if="${recipeItem.recipeId} == ${recipe.id}">
+                                            <p class="items-name"><span th:text="${recipeItem.name}"/></p>
+                                            <img class="img-responsive item-image"
+                                                 th:src="'/uploads/items/' + ${recipeItem.imgUrl}"/>
+                                            <div class="dropdown" sec:authorize="isAuthenticated()">
+                                                <button class="dropdown-toggle item-edit" type="button"
+                                                        th:id="'recipe-items' + ${recipeItem.id}" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="true">
+                                                    <span class="caret-size caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-right"
+                                                    th:attr="aria-labelledby='\'recipe-items' + ${recipeItem.id} +'\''">
+                                                    <li><a href="#">Add to List</a></li>
+                                                    <li><a href="#">Edit</a></li>
+                                                    <li><a href="#">Delete</a></li>
 
-                                            <img class="img-responsive img-thumbnail item-image"
-                                                 th:src="'/uploads/recipes/' + ${recipe.imgUrl}"/>
-
-                                            <div>
-                                                <p><span th:text="${recipe.directions}"/></p>
-                                                <p><span th:text="${recipe.time}"/></p>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -188,6 +202,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     <div th:replace="fragments::my-footer">Footer</div>

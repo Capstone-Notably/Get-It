@@ -12,4 +12,5 @@ import java.util.List;
 @Repository
 public interface UserGListRepository extends CrudRepository<UserGList, Long> {
     public List<UserGList> findByUser_Id(long user_id);
+    public UserGList findByUser_IdAndGlist_Id(long user_id, long grocery_id);
 }

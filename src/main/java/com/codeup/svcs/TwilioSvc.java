@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 @Service("twilioSvc")
 public class TwilioSvc {
     @Value("${twilio-account-sid}")
-    private final String accountSID = "AC4ccab2cf6031270b5583c283dc9364c1"; // Your Acct SID from www.twilio.com/user/account;
+    private String accountSID;
 
     @Value("${twilio-auth-token}")
-    private String authToken = "9f02b78fba66e39220e0d7523b087ebd"; // Your Auth Token from www.twilio.com/user/account;
+    private String authToken;
 
     public void sendMessage(String toPhone, String fromPhone, String text){
         Twilio.init(accountSID, authToken);

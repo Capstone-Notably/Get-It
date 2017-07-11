@@ -19,7 +19,7 @@
     <input class="nav-search-button" type="submit" value="Search"/>
 </div>
 
-<nav class="navbar" th:fragment="my-navbar">
+<nav class="navbar" th:fragment="my-navbar" id="top">
     <!--Left side nav-->
     <a href="/" id="nav-brand-name">Get It <span id="nav-check-mark" class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
 
@@ -50,8 +50,8 @@
         </div>
 
         <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-            <div class="modal-dialog modal-sm" role="document">
-                <div class="modal-content login-body">
+            <div class="login-modal modal-dialog modal-sm" role="document">
+                <div class="modal-content login-modal-body">
                     <h1>Log In</h1>
                     <!--<div th:if="${param.error}">-->
                         <!--Invalid Username and Password.-->
@@ -73,7 +73,7 @@
                         <input id="username" name="username" type="text"/>
                         <label for="password">Password</label>
                         <input id="password" name="password" type="password"/>
-                        <input type="submit" value="Log In"/>
+                        <input class="button" type="submit" value="Log In"/>
                     </form>
                 </div>
             </div>
@@ -108,7 +108,7 @@
                     <li><a class="dropdown-links" href="/lists">My Lists</a></li>
                     <li><a class="dropdown-links" href="#categories">Categories</a></li>
                     <li><a class="dropdown-links" href="#recipes">Recipes</a></li>
-                    <li><a class="dropdown-links" href="#">Update Profile</a></li>
+                    <li><a class="dropdown-links" href="/users/profile">Update Profile</a></li>
                     <li class="dropdown-links divider" role="separator"></li>
                     <li>
                         <form th:action="@{/logout}" th:method="post">
@@ -155,11 +155,12 @@
 
 <div th:fragment="my-footer" class="footer">
     <div class="footer-left">
-        <p id="footer-copyright">Copyright Get It! 2017</p>
+        <p id="footer-copyright">2017 Get It!</p>
+        <!--<p id="footer-love">Made with <span class="glyphicon glyphicon-heart"></span></p>-->
     </div>
     <div class="footer-right">
         <a href="/about" id="footer-about">About</a>
-        <a href="top"><span id="footer-top" class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></a>
+        <a href="#top"><span id="footer-top" class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></a>
     </div>
 </div>
 

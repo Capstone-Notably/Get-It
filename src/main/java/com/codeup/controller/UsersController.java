@@ -108,11 +108,21 @@ public class UsersController {
         GroceryList savedGlist = groceryListsRepository.save(new GroceryList("My grocery list"));
         userGListRepository.save(new UserGList(savedGlist, user));
 
-        // send a welcome text
-        String message = "Hello " + user.getUsername() + "from Get It";
-        twilioSvc.sendMessage("+12103746625","+18304200837",message);
+//        // send a welcome text
+//        String message = "Hello " + user.getUsername() + "from Get It";
+//        twilioSvc.sendMessage("+12104219757","+18304200837",message);
 
         return "redirect:/login";
+    }
+
+    @GetMapping("/about")
+    public String about() {
+        return "about";
+    }
+
+    @GetMapping("/users/profile")
+    public String profile() {
+        return "users/profile";
     }
 
 
