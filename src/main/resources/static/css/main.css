@@ -370,7 +370,7 @@ h1.register-header {
     align-items: center;
     font-size: 8em;
     height: 2em;
-    background-color: var(--bannergreen);
+    background-color: var(--green);
     color: black;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
@@ -437,7 +437,7 @@ span.category-name, span.recipe-name {
     font-size: 4em;
     z-index: 1;
     font-family: var(--font1);
-    font-weight: 500;
+    font-weight: 800;
     color: black;
     background-color: var(--bannergreen);
     bottom: .5em;
