@@ -90,9 +90,12 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                            aria-hidden="true">&times;</span></button>
-                                    <h4 class="category-title"><span th:text="${category.name}"/></h4>
+                                    <h4 class="category-title">
+                                        <span th:text="${category.name}"/>
+                                    </h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
                                 <div class="modal-body">
                                     <div th:each="item:${items}">
@@ -163,35 +166,42 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                            aria-hidden="true">&times;</span></button>
                                     <h4 class="recipe-title">
                                         <span th:text="${recipe.name}"/>
                                     </h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
                                 <div class="recipe-body">
                                     <div class="recipe-details">
-                                        <p class="recipe-directions"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span th:text="${recipe.directions}"/></p>
-                                        <p class="recipe-time"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span th:text="${recipe.time}"/></p>
-                                    </div>
-                                    <div th:each="recipeItem:${recipeItems}">
-                                        <div class="recipe-items" th:if="${recipeItem.recipeId} == ${recipe.id}">
-                                            <p class="items-name"><span th:text="${recipeItem.name}"/></p>
-                                            <img class="img-responsive item-image"
-                                                 th:src="'/uploads/items/' + ${recipeItem.imgUrl}"/>
-                                            <div class="dropdown" sec:authorize="isAuthenticated()">
-                                                <button class="dropdown-toggle item-edit" type="button"
-                                                        th:id="'recipe-items' + ${recipeItem.id}" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="true">
-                                                    <span class="caret-size caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-menu-right"
-                                                    th:attr="aria-labelledby='\'recipe-items' + ${recipeItem.id} +'\''">
-                                                    <li><a href="#">Add to List</a></li>
-                                                    <li><a href="#">Edit</a></li>
-                                                    <li><a href="#">Delete</a></li>
 
-                                                </ul>
+                                        <span class="recipe-icon glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                                        <p class="recipe-directions"><span th:text="${recipe.directions}"/></p>
+                                        <span class="recipe-icon glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                                        <p class="recipe-time"><span th:text="${recipe.time}"/></p>
+
+                                    </div>
+                                    <div class="recipe-flex">
+                                        <div class="" th:each="recipeItem:${recipeItems}">
+                                            <div class="recipe-items" th:if="${recipeItem.recipeId} == ${recipe.id}">
+                                                <p class="recipe-items-name"><span th:text="${recipeItem.name}"/></p>
+                                                <img class="img-responsive img-thumbnail recipe-item-image"
+                                                     th:src="'/uploads/items/' + ${recipeItem.imgUrl}"/>
+                                                <div class="dropdown" sec:authorize="isAuthenticated()">
+                                                    <button class="dropdown-toggle item-edit" type="button"
+                                                            th:id="'recipe-items' + ${recipeItem.id}"
+                                                            data-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="true">
+                                                        <span class="caret-size caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-right"
+                                                        th:attr="aria-labelledby='\'recipe-items' + ${recipeItem.id} +'\''">
+                                                        <li><a href="#">Add to List</a></li>
+                                                        <li><a href="#">Edit</a></li>
+                                                        <li><a href="#">Delete</a></li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
