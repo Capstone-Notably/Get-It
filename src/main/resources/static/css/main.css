@@ -880,10 +880,28 @@ div.ui-widget {
     max-height: inherit;
 }
 
+.list-total {
+    display: flex;
+    align-self: flex-end;
+    justify-content: center;
+    align-content: flex-end;
+    font-size: 4em;
+    font-family: var(--font1);
+    margin: 3em;
+}
+
+p.total {
+    display: inline-flex;
+    align-self: flex-end;
+}
+
 .caret-size-lists {
-    font-size: 1em;
     /*margin-bottom: .5em;*/
     cursor: pointer;
+    font-size: 3em;
+    text-align: center;
+    align-self: center;
+    align-content: center;
 }
 
 .item-all {
@@ -901,6 +919,10 @@ div.ui-widget {
     font-size: 3em;
 }
 
+.item-clicked {
+    text-decoration: line-through;
+}
+
 .item-img {
     display: inline-block;
     text-align: right;
@@ -916,6 +938,35 @@ div.ui-widget {
 .item-property {
     align-self: center;
     margin-left: 20px;
+}
+
+.item-price, .item-quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5em;
+    border-bottom: 2px solid var(--accentcolor);
+    width: 10%;
+}
+
+.price, .quantity {
+    text-align: center;
+    font-family: var(--font1);
+}
+
+.btn {
+    border-radius: 0;
+}
+
+.quantity {
+    margin-left: .2em;
+}
+
+.glist-item {
+    display: inline-flex;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn-ok-cancel {
