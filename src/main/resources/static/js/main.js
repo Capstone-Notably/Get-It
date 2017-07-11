@@ -94,9 +94,31 @@
 /*----------------------------------------------------------------------------------------------------------------------
      Groceries Lists
 ----------------------------------------------------------------------------------------------------------------------*/
-    var json, item_json;
+    var json, item_json, item_barcode_json;
     var $tags = $( "#tags" );
     var $viewItems = $('.view-items');
+    var $scannerInput = $('#scanner_input');
+
+    function sendJsonToController(item_json) {
+        var token = $('#csrf-token').attr("content");
+        var header = $('#csrf-header').attr("content");
+
+        // send json to the controller
+        $.ajax({
+            url:"/lists/items",
+            type:"POST",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(item_json), //Stringified Json Object
+            async: false,    //Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation
+            cache: false,    //This will force requested pages not to be cached by the browser
+            processData:false, //To avoid making query String instead of JSON
+            beforeSend: function(xhr){
+                if (header && token) {
+                    xhr.setRequestHeader(header, token);
+                }
+            }
+        });
+    }
 
     //receive json file from the controller
     request = $.ajax({
@@ -115,66 +137,42 @@
         });
     });
 
+$('#search-submit').click(function (e) {
+    e.preventDefault();
+    if($tags.val() !== "") {
+        var html;
+        $viewItems.each(function () {
+            if($(this).hasClass('active')){
+                html = $(this).html();
+            }
+        });
+        json.forEach(function(item) {
+            if(item.name === $tags.val()) {
+                html += "<div class='item-all'>";
+                html += "<div class='item-name'>";
+                html += "<input type='checkbox' value='false' class='item-property' />";
+                html += "<span class='item-property'>" + item.name + "</span>";
+                html += "</div>";
+                html += "<div class='item-img'>";
+                html += "<img src='/uploads/items/" + item.imgUrl + "'/>";
+                html += "</div>";
+                html += "</div>";
 
-    $('#search-submit').click(function (e) {
-        e.preventDefault();
-        if($tags.val() !== "") {
-            var html;
-            $viewItems.each(function () {
-                if($(this).hasClass('active')){
-                    html = $(this).html();
-                }
-            });
-            json.forEach(function(item) {
-                if(item.name === $tags.val()) {
-                    html += "<div class='item-all'>";
-                    html += "<div class='item-name'>";
-                    html += "<input type='checkbox' value='false' class='item-property' />";
-                    html += "<span class='item-property'>" + item.name + "</span>";
-                    html += "</div>";
-                    html += "<div class='item-img'>";
-                    html += "<img src='/uploads/items/" + item.imgUrl + "'/>";
-                    html += "</div>";
-                    html += "</div>";
-
-                    $viewItems.each(function () {
-                        if($(this).hasClass('active')){
-                            item.listId = parseInt($(this).children().val());
-                            $(this).html(html);
-                        }
-                    });
-
-                    item_json = item;
-                }
-            });
-
-
-            var token = $('#csrf-token').attr("content");
-            var header = $('#csrf-header').attr("content");
-            console.log(token);
-            console.log(header);
-            console.log(item_json);
-
-            // send json to the controller
-            $.ajax({
-                url:"/lists/items",
-                type:"POST",
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify(item_json), //Stringified Json Object
-                async: false,    //Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation
-                cache: false,    //This will force requested pages not to be cached by the browser
-                processData:false, //To avoid making query String instead of JSON
-                beforeSend: function(xhr){
-                    if (header && token) {
-                        xhr.setRequestHeader(header, token);
+                $viewItems.each(function () {
+                    if($(this).hasClass('active')){
+                        item.listId = parseInt($(this).children().val());
+                        $(this).html(html);
                     }
-                }
-            });
+                });
 
-            $tags.val("");
+                item_json = item;
+            }
+        });
 
-        }
-    });
+        sendJsonToController(item_json);
+        $tags.val("");
+    }
+});
 
 
     $('.ul-tabs li').first().addClass('active');
@@ -198,6 +196,145 @@
         }
     });
 
+
+    // Scan a barcode
+    // Create the QuaggaJS config object for the live stream
+    var liveStreamConfig = {
+        inputStream: {
+            type : "LiveStream",
+            constraints: {
+                width: {min: 640},
+                height: {min: 480},
+                aspectRatio: {min: 1, max: 100},
+                facingMode: "environment" // or "user" for the front camera
+            }
+        },
+        locator: {
+            patchSize: "medium",
+            halfSample: true
+        },
+        numOfWorkers: (navigator.hardwareConcurrency ? navigator.hardwareConcurrency : 4),
+        decoder: {
+            "readers":[
+                {"format":"ean_reader","config":{}}
+            ]
+        },
+        locate: true
+    };
+    // The fallback to the file API requires a different inputStream option.
+    // The rest is the same
+    var fileConfig = $.extend(
+        {},
+        liveStreamConfig,
+        {
+            inputStream: {
+                size: 800
+            }
+        }
+    );
+    // Start the live stream scanner when the modal opens
+    $('#livestream_scanner').on('shown.bs.modal', function (e) {
+        Quagga.init(
+            liveStreamConfig,
+            function(err) {
+                if (err) {
+                    $('#livestream_scanner .modal-body .error').html('<div class="alert alert-danger"><strong><i class="fa fa-exclamation-triangle"></i> '+err.name+'</strong>: '+err.message+'</div>');
+                    Quagga.stop();
+                    return;
+                }
+                Quagga.start();
+            }
+        );
+    });
+
+    // Make sure, QuaggaJS draws frames an lines around possible
+    // barcodes on the live stream
+    Quagga.onProcessed(function(result) {
+        var drawingCtx = Quagga.canvas.ctx.overlay,
+            drawingCanvas = Quagga.canvas.dom.overlay;
+
+        if (result) {
+            if (result.boxes) {
+                drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
+                result.boxes.filter(function (box) {
+                    return box !== result.box;
+                }).forEach(function (box) {
+                    Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
+                });
+            }
+
+            if (result.box) {
+                Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "#00F", lineWidth: 2});
+            }
+
+            if (result.codeResult && result.codeResult.code) {
+                Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
+            }
+        }
+    });
+
+    // Once a barcode had been read successfully, stop quagga and
+    // close the modal after 1 second to let the user notice where
+    // the barcode had actually been found.
+    Quagga.onDetected(function(result) {
+        if (result.codeResult.code){
+            $scannerInput.val(result.codeResult.code);
+            Quagga.stop();
+            setTimeout(function(){ $('#livestream_scanner').modal('hide'); }, 1000);
+        }
+    });
+
+    // Stop quagga in any case, when the modal is closed
+    $('#livestream_scanner').on('hide.bs.modal', function(){
+        if (Quagga){
+            Quagga.stop();
+            adddItem($scannerInput);
+        }
+    });
+
+    // Call Quagga.decodeSingle() for every file selected in the
+    // file input
+    $("#livestream_scanner input:file").on("change", function(e) {
+        if (e.target.files && e.target.files.length) {
+            Quagga.decodeSingle($.extend({}, fileConfig, {src: URL.createObjectURL(e.target.files[0])}), function(result) {alert(result.codeResult.code);});
+        }
+    });
+
+    $('video').css('width', '100%');
+
+
+    function adddItem($input) {
+        var html;
+        $viewItems.each(function () {
+            if($(this).hasClass('active')){
+                html = $(this).html();
+            }
+        });
+        json.forEach(function(item) {
+            if(item.barcode === $input.val()) {
+                html += "<div class='item-all'>";
+                html += "<div class='item-name'>";
+                html += "<input type='checkbox' value='false' class='item-property' />";
+                html += "<span class='item-property'>" + item.name + "</span>";
+                html += "</div>";
+                html += "<div class='item-img'>";
+                html += "<img src='/uploads/items/" + item.imgUrl + "'/>";
+                html += "</div>";
+                html += "</div>";
+
+                $viewItems.each(function () {
+                    if($(this).hasClass('active')){
+                        item.listId = parseInt($(this).children().val());
+                        $(this).html(html);
+                    }
+                });
+
+                item_barcode_json = item;
+            }
+        });
+        console.log(item_barcode_json);
+        sendJsonToController(item_barcode_json);
+    }
 
 
 

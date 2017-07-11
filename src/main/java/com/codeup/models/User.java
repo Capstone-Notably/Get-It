@@ -1,5 +1,7 @@
 package com.codeup.models;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class User {
     private long id;
 
     @Column(nullable = false, unique = true)
+    @NotBlank(message = "You must provide username")
     private String username;
 
     @Column(unique = true)
