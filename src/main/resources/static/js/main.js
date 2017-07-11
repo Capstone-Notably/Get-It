@@ -98,6 +98,28 @@
     var json, item_json;
     var $tags = $( "#tags" );
     var $viewItems = $('.view-items');
+    var $scannerInput = $('#scanner_input');
+
+    // function sendJsonToController() {
+    //     var token = $('#csrf-token').attr("content");
+    //     var header = $('#csrf-header').attr("content");
+    //
+    //     // send json to the controller
+    //     $.ajax({
+    //         url:"/lists/items",
+    //         type:"POST",
+    //         contentType: "application/json; charset=utf-8",
+    //         data: JSON.stringify(item_json), //Stringified Json Object
+    //         async: false,    //Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation
+    //         cache: false,    //This will force requested pages not to be cached by the browser
+    //         processData:false, //To avoid making query String instead of JSON
+    //         beforeSend: function(xhr){
+    //             if (header && token) {
+    //                 xhr.setRequestHeader(header, token);
+    //             }
+    //         }
+    //     });
+    // }
 
     //receive json file from the controller
     request = $.ajax({
@@ -147,7 +169,6 @@
                     item_json = item;
                 }
             });
-
 
             var token = $('#csrf-token').attr("content");
             var header = $('#csrf-header').attr("content");
@@ -276,36 +297,11 @@
     });
 
     // Once a barcode had been read successfully, stop quagga and
-    // close the modal after a second to let the user notice where
+    // close the modal after 1 second to let the user notice where
     // the barcode had actually been found.
     Quagga.onDetected(function(result) {
         if (result.codeResult.code){
-            $('#scanner_input').val(result.codeResult.code);
-
-            //add item to list
-            // json.forEach(function(item) {
-            //     if(item.barcode === result.codeResult.code) {
-            //         html += "<div class='item-all'>";
-            //         html += "<div class='item-name'>";
-            //         html += "<input type='checkbox' value='false' class='item-property' />";
-            //         html += "<span class='item-property'>" + item.name + "</span>";
-            //         html += "</div>";
-            //         html += "<div class='item-img'>";
-            //         html += "<img src='/uploads/items/" + item.imgUrl + "'/>";
-            //         html += "</div>";
-            //         html += "</div>";
-            //
-            //         $viewItems.each(function () {
-            //             if($(this).hasClass('active')){
-            //                 item.listId = parseInt($(this).children().val());
-            //                 $(this).html(html);
-            //             }
-            //         });
-            //
-            //         item_json = item;
-            //     }
-            // });
-
+            $scannerInput.val(result.codeResult.code);
             Quagga.stop();
             setTimeout(function(){ $('#livestream_scanner').modal('hide'); }, 1000);
         }
@@ -315,6 +311,7 @@
     $('#livestream_scanner').on('hide.bs.modal', function(){
         if (Quagga){
             Quagga.stop();
+            adddItem($scannerInput);
         }
     });
 
@@ -326,6 +323,40 @@
         }
     });
 
+    $('video').css('width', '100%');
+
+
+    function adddItem($input) {
+        var html;
+        $viewItems.each(function () {
+            if($(this).hasClass('active')){
+                html = $(this).html();
+            }
+        });
+        json.forEach(function(item) {
+            if(item.barcode === $input.val()) {
+                html += "<div class='item-all'>";
+                html += "<div class='item-name'>";
+                html += "<input type='checkbox' value='false' class='item-property' />";
+                html += "<span class='item-property'>" + item.name + "</span>";
+                html += "</div>";
+                html += "<div class='item-img'>";
+                html += "<img src='/uploads/items/" + item.imgUrl + "'/>";
+                html += "</div>";
+                html += "</div>";
+
+                $viewItems.each(function () {
+                    if($(this).hasClass('active')){
+                        item.listId = parseInt($(this).children().val());
+                        $(this).html(html);
+                    }
+                });
+
+                item_json = item;
+            }
+        });
+        console.log(item_json);
+    }
 
 
 

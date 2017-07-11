@@ -16,20 +16,20 @@
         <div class="grocery-header">
         <h1 class="grocery-title">Grocery Lists</h1>
         <form th:method="post" class="lists-search">
-            <div class="form-group">
+            <div id="lists-search-items">
                 <div class="ui-widget">
                     <input id="tags" type="text" class="form-control" placeholder="Search item"/>
-                    <span class="input-group-btn">
-                        <span class="btn btn-success glyphicon glyphicon-barcode" type="button" data-toggle="modal" data-target="#livestream_scanner">
-                            <i class="fa fa-barcode"></i>
-                        </span>
-                    </span>
                 </div>
+                <button type="submit" class="btn btn-success glyphicon glyphicon-ok"></button>
+                <span class="input-group-btn">
+                    <span id="barcode" class="btn btn-primary glyphicon glyphicon-barcode" type="button" data-toggle="modal" data-target="#livestream_scanner">
+                        <i class="fa fa-barcode"></i>
+                    </span>
+                </span>
             </div>
-            <button id="search-submit" type="submit" class="">Add to List</button>
         </form>
             
-        <input id="scanner_input" name="barcode" class="form-control" type="text" />
+        <input id="scanner_input" type="hidden" />
 
         <div class="modal" id="livestream_scanner">
             <div class="modal-dialog">
@@ -40,17 +40,17 @@
                         </button>
                         <h4 class="modal-title">Barcode Scanner</h4>
                     </div>
-                    <div class="modal-body" style="position: static">
+                    <div class="modal-body" >
                         <div id="interactive" class="viewport"></div>
                         <div class="error"></div>
                     </div>
-                    <div class="modal-footer">
-                        <label class="btn btn-default pull-left">
-                            <i class="fa fa-camera"></i> Use camera app
-                            <input type="file" accept="image/*;capture=camera" capture="camera" class="hidden" />
-                        </label>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                    </div>
+                    <!--<div class="modal-footer">-->
+                        <!--<label class="btn btn-default pull-left">-->
+                            <!--<i class="fa fa-camera"></i> Use camera app-->
+                            <!--<input type="file" accept="image/*;capture=camera" capture="camera" class="hidden" />-->
+                        <!--</label>-->
+                        <!--<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>-->
+                    <!--</div>-->
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->

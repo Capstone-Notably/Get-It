@@ -691,19 +691,29 @@ span.category-name, span.recipe-name {
 
 #tags, #search-submit {
     justify-content: center;
-    height: 1.3em;
+    /*height: 1.3em;*/
     font-size: 2.7em;
     border: 1px solid var(--accentcolor);
     align-items: center;
 }
 
-#search-submit {
-    background-color: var(--accentcolor);
-    padding-bottom: .5em;
+#barcode {
+    margin-left: 5px;
 }
 
-#tags {
-    width: 50%;
+/*#search-submit {*/
+    /*background-color: var(--accentcolor);*/
+    /*padding-bottom: .5em;*/
+/*}*/
+
+/*#tags {*/
+    /*width: 50%;*/
+/*}*/
+
+
+#lists-search-items {
+    display: flex;
+    justify-content: center;
 }
 
 div.ui-widget {
@@ -790,6 +800,21 @@ div.ui-widget {
 .btn-ok-cancel {
     display: flex;
     justify-content: space-between;
+}
+
+video {
+    width: 100%;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+}
+
+#interactive {
+    position: relative;
 }
 
 /*----------------------------------------------------------------------------------------------------------------------
@@ -1097,12 +1122,6 @@ div.ui-widget {
 
     .grocery-title {
         font-size: 1.2em;
-    }
-
-    #search-submit {
-        height: 1.5em;
-        font-size: .5em;
-        padding: 0;
     }
 
     #tags {
