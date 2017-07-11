@@ -195,23 +195,29 @@
                                                             aria-haspopup="true" aria-expanded="true">
                                                         <span class="caret-size caret"></span>
                                                     </button>
-                                                    <ul class="dropdown-menu dropdown-menu-right"
-                                                        th:attr="aria-labelledby='\'recipe-items' + ${recipeItem.id} +'\''">
+                                                    <ul class="dropdown-menu dropdown-menu-right "
+                                                        th:attr="aria-labelledby='\'recipe-items' + ${recipeItem.id} +'\''" >
                                                         <!--<li><a href="@{/items/addToList(item_id=${recipeItem.id})}">Add to List</a></li>-->
                                                         <li>
-                                                            <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseLists" aria-expanded="false" aria-controls="collapseExample">
-                                                                Add to List
-                                                            </a>
-                                                            <div class="collapse" id="collapseLists">
-                                                                <div class="well">
-                                                                    <div class="radio">
-                                                                        <label><input type="radio" name="optradio" th:text=""></label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            <a role="button" data-toggle="collapse" th:href="'#collapseLists' + ${recipeItem.id}" aria-controls="collapseExample">Add to List</a>
                                                         </li>
                                                         <li><a href="#">Delete</a></li>
                                                     </ul>
+
+                                                    <div class="collapse" th:id="'collapseLists' + ${recipeItem.id}">
+                                                        <h4 class="category-title">Select grocery list</h4>
+                                                        <div class="well">
+                                                            <form class="popover-body" th:method="post" th:action="@{/items/addToList}">
+                                                                <div class="radio">
+                                                                    <label th:each="groceryList : ${groceryLists}">
+                                                                        <input type="radio" name="glist_id" th:value="${groceryList.id}" th:text="${groceryList.name}" />
+                                                                        <input type="text" name="item_id" th:value="${recipeItem.id}" />
+                                                                    </label>
+                                                                </div>
+                                                                <button type="submit" class="btn btn-success"> SEND</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

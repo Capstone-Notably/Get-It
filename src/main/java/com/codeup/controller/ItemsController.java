@@ -22,16 +22,21 @@ public class ItemsController {
     private final UserItemsRepository userItemsRepository;
     private final CategoriesRepository categoriesRepository;
     private final UserCategoryRepository userCategoryRepository;
+    private final ListItemsRepository listItemsRepository;
+    private final GroceryListsRepository groceryListsRepository;
 
     @Value("${items-img-path}")
     private String itemsImgPath;
 
     @Autowired
-    public ItemsController(ItemsRepository itemsRepository, UserItemsRepository userItemsRepository, CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository) {
+    public ItemsController(ItemsRepository itemsRepository, UserItemsRepository userItemsRepository, CategoriesRepository categoriesRepository,
+                           UserCategoryRepository userCategoryRepository, ListItemsRepository listItemsRepository, GroceryListsRepository groceryListsRepository) {
         this.itemsRepository = itemsRepository;
         this.userItemsRepository = userItemsRepository;
         this.categoriesRepository = categoriesRepository;
         this.userCategoryRepository = userCategoryRepository;
+        this.listItemsRepository = listItemsRepository;
+        this.groceryListsRepository = groceryListsRepository;
     }
 
     @GetMapping("/items/create")
@@ -66,8 +71,11 @@ public class ItemsController {
         return json;
     }
 
-    @GetMapping("/items/addToList")
-    public String save(@RequestParam("item_id") long item_id) {
+    @PostMapping("/items/addToList")
+    public String addToList(@RequestParam("item_id") long item_id, @RequestParam("glist_id") long glist_id) {
+        GroceryList glist = groceryListsRepository.findOne(glist_id);
+        Item item = itemsRepository.findOne(item_id);
+        listItemsRepository.save(new ListItem(glist, item));
         return "redirect:/";
     }
 

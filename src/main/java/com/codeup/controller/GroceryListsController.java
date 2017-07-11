@@ -112,14 +112,23 @@ public class GroceryListsController {
     }
 
     public static List<GroceryList> groceryLists(GroceryListsRepository groceryListsRepository, UserGListRepository userGListRepository) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<UserGList> userGLists = userGListRepository.findByUser_Id(user.getId());
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<GroceryList> glists = new ArrayList<>();
-        for (UserGList userGList : userGLists) {
-            GroceryList glist = groceryListsRepository.findOne(userGList.getGlist().getId());
-            glists.add(glist);
-        }
 
+        if (!principal.equals("anonymousUser")) {
+            User user = (User) principal;
+            List<UserGList> userGLists = userGListRepository.findByUser_Id(user.getId());
+            for (UserGList userGList : userGLists) {
+                GroceryList glist = groceryListsRepository.findOne(userGList.getGlist().getId());
+                glists.add(glist);
+            }
+        } else {
+            List<UserGList> userGLists = userGListRepository.findByUser_Id((long) 1);
+            for (UserGList userGList : userGLists) {
+                GroceryList glist = groceryListsRepository.findOne(userGList.getGlist().getId());
+                glists.add(glist);
+            }
+        }
         return glists;
     }
 
