@@ -45,12 +45,15 @@ public class CategoriesController {
     @GetMapping("/")
     public String viewHome(Model model) {
         List<Category> categories = findAll(categoriesRepository, userCategoryRepository);
-        List<Recipe> recipes = RecipesController.findAll(recipesRepository, userRecipeRepository, recipeItemsRepository);
+        List<Recipe> recipes = RecipesController.findAll(recipesRepository, userRecipeRepository);
+        List<CustomItem> recipeItems = RecipesController.findAllItems(recipesRepository, userRecipeRepository, recipeItemsRepository, itemsRepository);
         List<CustomItem> customItems = ItemsController.findByUser(itemsRepository, userItemsRepository);
         model.addAttribute("items", customItems);
         model.addAttribute("categories", categories);
         model.addAttribute("recipes", recipes);
+        model.addAttribute("recipeItems", recipeItems);
         model.addAttribute("newCategory", new Category());
+        model.addAttribute("newRecipe", new Recipe());
         return "index";
 
     }

@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -32,20 +34,18 @@ public class UsersController {
     private final UserRecipeRepository userRecipeRepository;
     private final GroceryListsRepository groceryListsRepository;
     private final UserGListRepository userGListRepository;
+    private final TwilioSvc twilioSvc;
 
 
     @Value("${users-img-path}")
     private String usersImgPath;
 
     @Autowired
-    TwilioSvc twilioSvc;
-
-    @Autowired
     public UsersController(UsersRepository usersRepository, RolesRepository rolesRepository, PasswordEncoder passwordEncoder,
                            ItemsRepository itemsRepository, UserItemsRepository userItemsRepository, PreferenceRepository preferenceRepository,
                            CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository,
                            RecipesRepository recipesRepository, UserRecipeRepository userRecipeRepository,
-                           GroceryListsRepository groceryListsRepository, UserGListRepository userGListRepository) {
+                           GroceryListsRepository groceryListsRepository, UserGListRepository userGListRepository, TwilioSvc twilioSvc) {
         this.usersRepository = usersRepository;
         this.rolesRepository = rolesRepository;
         this.passwordEncoder = passwordEncoder;
@@ -58,10 +58,19 @@ public class UsersController {
         this.userRecipeRepository = userRecipeRepository;
         this.groceryListsRepository = groceryListsRepository;
         this.userGListRepository = userGListRepository;
+        this.twilioSvc = twilioSvc;
     }
 
     @PostMapping("/users/register")
-    public String saveUser(@ModelAttribute User user, @RequestParam(name = "preference") String preference, @RequestParam(name = "file") MultipartFile uploadedFile, Model model) {
+    public String saveUser(@Valid User user, Errors validation, @RequestParam(name = "preference") String preference,
+                           @RequestParam(name = "file") MultipartFile uploadedFile, Model model) {
+
+        if (validation.hasErrors()) {
+            model.addAttribute("errors", validation);
+            model.addAttribute("user", user);
+            return "users/register";
+        }
+
         String filename = transferUploadedFile(uploadedFile, usersImgPath, model);
         if(filename.isEmpty()) {
             filename = "default_user.png";
@@ -110,9 +119,19 @@ public class UsersController {
 
 //        // send a welcome text
 //        String message = "Hello " + user.getUsername() + "from Get It";
-//        twilioSvc.sendMessage("+12103746625","+18304200837",message);
+//        twilioSvc.sendMessage("+12104219757","+18304200837",message);
 
         return "redirect:/login";
+    }
+
+    @GetMapping("/about")
+    public String about() {
+        return "about";
+    }
+
+    @GetMapping("/users/profile")
+    public String profile() {
+        return "users/profile";
     }
 
 

@@ -73,7 +73,6 @@
                     </form>
                 </div>
             </ul>
-
             <div class="tab-content lists-view">
                 <div th:each="list : ${lists}" th:id="'list' + ${list.id}" class="tab-pane view-items">
                     <input type="hidden" th:value="${list.id}"/> <!-- don't move from this position-->
@@ -85,9 +84,7 @@
 
                         <ul class="dropdown-menu" th:attr="aria-labelledby='\'dropdownMenu' + ${list.id} +'\''">
                             <li><a data-toggle="modal" th:href="'#shareModal'+${list.id}">Share List</a></li>
-                            <li><a href="#">Add Item</a></li>
-                            <li><a href="#">Remove Item</a></li>
-                            <li><a href="#">Delete List</a></li>
+                            <li><a th:href="@{/list/delete(list_id=${list.id})}">Delete List</a></li>
                         </ul>
                     </span>
 

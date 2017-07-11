@@ -5,7 +5,27 @@
 <div class="home-grid">
     <div th:replace="fragments::hidden-search"></div>
     <nav th:replace="fragments::my-navbar"></nav>
-    <div>
+    <div class="user-profile-body">
+
+        <div class="account-details">
+            <h2 class="profile-header">Profile Details</h2>
+        </div>
+
+
+        <div class="users-info">
+            <div class="user-profile-image">
+                <img class="" th:src="'/uploads/users/' + ${#authentication.principal.imgUrl}"/>
+            </div>
+            <div class="user-account-details">
+                <p>Username: <span class="" th:text="${#authentication.principal.username}"/></p>
+                <p>Email: <span class="" th:text="${#authentication.principal.email}"/></p>
+                <p>Phone: <span class="" th:text="${#authentication.principal.phone}"/></p>
+            </div>
+        </div>
+
+        <div class="user-profile">
+
+        </div>
 
     </div>
     <div th:replace="fragments::my-footer"></div>
