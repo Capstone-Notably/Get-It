@@ -205,13 +205,14 @@
                                                     </ul>
 
                                                     <div class="collapse" th:id="'collapseLists' + ${recipeItem.id}">
-                                                        <h4 class="category-title">Select grocery list</h4>
                                                         <div class="well">
+                                                            <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                            <strong>Select grocery list</strong>
                                                             <form class="popover-body" th:method="post" th:action="@{/items/addToList}">
                                                                 <div class="radio">
                                                                     <label th:each="groceryList : ${groceryLists}">
                                                                         <input type="radio" name="glist_id" th:value="${groceryList.id}" th:text="${groceryList.name}" />
-                                                                        <input type="text" name="item_id" th:value="${recipeItem.id}" />
+                                                                        <input type="hidden" name="item_id" th:value="${recipeItem.id}" />
                                                                     </label>
                                                                 </div>
                                                                 <button type="submit" class="btn btn-success"> SEND</button>

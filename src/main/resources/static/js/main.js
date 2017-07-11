@@ -27,16 +27,6 @@
         $('#popover-category').popover('hide');
     });
 
-    // $('.collapse-lists').click(function () {
-    //     $(this).attr("aria-expanded", !$(this).attr());
-    //     if ($(this).attr("aria-expanded") === true) {
-    //         $(this).attr("data-toggle", "dropdown");
-    //     } else {
-    //         $(this).removeAttr("data-toggle");
-    //     }
-    //     $(this).parent().toggleClass('open');
-    // });
-
 /*----------------------------------------------------------------------------------------------------------------------
     Login
  ----------------------------------------------------------------------------------------------------------------------*/
