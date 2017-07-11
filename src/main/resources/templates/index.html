@@ -195,12 +195,30 @@
                                                             aria-haspopup="true" aria-expanded="true">
                                                         <span class="caret-size caret"></span>
                                                     </button>
-                                                    <ul class="dropdown-menu dropdown-menu-right"
-                                                        th:attr="aria-labelledby='\'recipe-items' + ${recipeItem.id} +'\''">
-                                                        <li><a href="#">Add to List</a></li>
-                                                        <li><a href="#">Edit</a></li>
+                                                    <ul class="dropdown-menu dropdown-menu-right "
+                                                        th:attr="aria-labelledby='\'recipe-items' + ${recipeItem.id} +'\''" >
+                                                        <!--<li><a href="@{/items/addToList(item_id=${recipeItem.id})}">Add to List</a></li>-->
+                                                        <li>
+                                                            <a role="button" data-toggle="collapse" th:href="'#collapseLists' + ${recipeItem.id}" aria-controls="collapseExample">Add to List</a>
+                                                        </li>
                                                         <li><a href="#">Delete</a></li>
                                                     </ul>
+
+                                                    <div class="collapse" th:id="'collapseLists' + ${recipeItem.id}">
+                                                        <div class="well">
+                                                            <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                            <strong>Select grocery list</strong>
+                                                            <form class="popover-body" th:method="post" th:action="@{/items/addToList}">
+                                                                <div class="radio">
+                                                                    <label th:each="groceryList : ${groceryLists}">
+                                                                        <input type="radio" name="glist_id" th:value="${groceryList.id}" th:text="${groceryList.name}" />
+                                                                        <input type="hidden" name="item_id" th:value="${recipeItem.id}" />
+                                                                    </label>
+                                                                </div>
+                                                                <button type="submit" class="btn btn-success"> SEND</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

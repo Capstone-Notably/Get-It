@@ -22,24 +22,22 @@ public class ItemsController {
     private final UserItemsRepository userItemsRepository;
     private final CategoriesRepository categoriesRepository;
     private final UserCategoryRepository userCategoryRepository;
+    private final ListItemsRepository listItemsRepository;
+    private final GroceryListsRepository groceryListsRepository;
 
     @Value("${items-img-path}")
     private String itemsImgPath;
 
     @Autowired
-    public ItemsController(ItemsRepository itemsRepository, UserItemsRepository userItemsRepository, CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository) {
+    public ItemsController(ItemsRepository itemsRepository, UserItemsRepository userItemsRepository, CategoriesRepository categoriesRepository,
+                           UserCategoryRepository userCategoryRepository, ListItemsRepository listItemsRepository, GroceryListsRepository groceryListsRepository) {
         this.itemsRepository = itemsRepository;
         this.userItemsRepository = userItemsRepository;
         this.categoriesRepository = categoriesRepository;
         this.userCategoryRepository = userCategoryRepository;
+        this.listItemsRepository = listItemsRepository;
+        this.groceryListsRepository = groceryListsRepository;
     }
-
-//    @GetMapping("/items")
-//    public String viewItems(@RequestParam("category_id") long category_id, Model model) {
-//        List<CustomItem> customItems = findByCategory(itemsRepository, userItemsRepository, category_id);
-//        model.addAttribute("items", customItems);
-//        return "index";
-//    }
 
     @GetMapping("/items/create")
     public String createItem(Model model) {
@@ -50,7 +48,7 @@ public class ItemsController {
     }
 
     @PostMapping("/items/create")
-    public String saveItem(@ModelAttribute CustomItem item, @RequestParam(name = "file") MultipartFile uploadedFile, @RequestParam(name = "categoryName") String categoryName, Model model) {
+    public String createItem(@ModelAttribute CustomItem item, @RequestParam(name = "file") MultipartFile uploadedFile, @RequestParam(name = "categoryName") String categoryName, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String filename = UsersController.transferUploadedFile(uploadedFile, itemsImgPath, model);
         Category category = categoriesRepository.findByName(categoryName);
@@ -71,6 +69,14 @@ public class ItemsController {
         List<CustomItem> items = findByUser(itemsRepository, userItemsRepository);
         String json = new Gson().toJson(items);
         return json;
+    }
+
+    @PostMapping("/items/addToList")
+    public String addToList(@RequestParam("item_id") long item_id, @RequestParam("glist_id") long glist_id) {
+        GroceryList glist = groceryListsRepository.findOne(glist_id);
+        Item item = itemsRepository.findOne(item_id);
+        listItemsRepository.save(new ListItem(glist, item));
+        return "redirect:/";
     }
 
     public static List<CustomItem> findByCategory(ItemsRepository itemsRepository, UserItemsRepository userItemsRepository, long category_id) {
