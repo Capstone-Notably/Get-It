@@ -881,7 +881,7 @@ div.ui-widget {
 
 .caret-size-lists {
     font-size: 1em;
-    margin-bottom: .5em;
+    /*margin-bottom: .5em;*/
     cursor: pointer;
 }
 
@@ -937,6 +937,19 @@ canvas {
     position: relative;
 }
 
+.share-title {
+    width: 90%;
+    text-align: left;
+}
+
+.share-number-input {
+    width: 100%;
+    font-size: 2em;
+}
+
+#invites {
+    color: black;
+}
 /*----------------------------------------------------------------------------------------------------------------------
    User Profile
 ----------------------------------------------------------------------------------------------------------------------*/
