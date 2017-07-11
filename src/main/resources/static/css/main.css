@@ -442,6 +442,7 @@ span.category-name, span.recipe-name {
     background-color: var(--bannergreen);
     bottom: .5em;
     width: 80%;
+    max-width: 80%;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -1123,6 +1124,13 @@ canvas {
    Media Queries
 ----------------------------------------------------------------------------------------------------------------------*/
 
+@media screen and (min-width: 2560px) {
+    span.category-name, span.recipe-name {
+        width: 50%;
+    }
+}
+
+
 @media screen and (min-width: 420px) and (max-width: 1020px) {
 
     .navbar {
@@ -1260,6 +1268,10 @@ canvas {
     #tags {
         height: 1.5em;
         font-size: .5em;
+    }
+
+    span.category-name, span.recipe-name {
+        width: 50%;
     }
 }
 
@@ -1410,5 +1422,9 @@ canvas {
     #tags {
         height: 1.5em;
         font-size: .5em;
+    }
+
+    span.category-name, span.recipe-name {
+        width: 50%;
     }
 }
