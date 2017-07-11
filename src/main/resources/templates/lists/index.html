@@ -79,7 +79,7 @@
                     <span class="dropdown">
                         <span class="dropdown-toggle item-edit" type="button" th:id="'dropdownMenu' + ${list.id}"
                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <span class="caret-size-lists glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+                            <span class="caret-size-lists caret" aria-hidden="true"></span>
                         </span>
 
                         <ul class="dropdown-menu" th:attr="aria-labelledby='\'dropdownMenu' + ${list.id} +'\''">
@@ -91,10 +91,29 @@
                     <div th:each="item : ${items}" class='item-all'>
                         <div th:if="${item.listId} == ${list.id}" class='item-name'>
                             <input type='checkbox' value='false' class='item-property'/>
-                            <span th:text="${item.name}" class='item-property'/>
+                            <span th:text="${item.name}" class='item-property property-name' />
+                        </div>
+                        <div th:if="${item.listId} == ${list.id}" class="item-price">
+                            $<span th:if="${item.price} > 0" th:text="${item.price}" class="price" />
+                        </div>
+                        <div th:if="${item.listId} == ${list.id}" class="item-quantity">
+                            Quantity:  <span th:if="${item.quantity} > 0" th:text="${item.quantity}" class="quantity"></span>
                         </div>
                         <div th:if="${item.listId} == ${list.id}" class='item-img img-responsive'>
                             <img th:src="${'/uploads/items/' + item.imgUrl}"/>
+                        </div>
+
+                        <div th:if="${item.listId} == ${list.id}" class="glist-item dropdown">
+                            <button class="btn btn-default dropdown-toggle item-edit" type="button" th:id="'dropdownMenu' + ${item.id}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span class="caret-size caret"></span>
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-menu-right" th:attr="aria-labelledby='\'dropdownMenu' + ${item.id} +'\''">
+                                <li><a href="#">Edit</a></li>
+                                <li><a href="#">Delete</a></li>
+                                <li><a href="#">Set Price</a></li>
+                                <li><a href="#">Set Quantity</a></li>
+                            </ul>
                         </div>
                     </div>
 
@@ -115,6 +134,11 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="list-total">
+                        <p class="total">Total: $<span class="calculated-total"></span></p>
+                    </div>
+
                 </div>
             </div>
         </div>

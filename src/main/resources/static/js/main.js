@@ -338,6 +338,25 @@ $('#search-submit').click(function (e) {
     }
 
 
+    $('.item-property').click(function(){
+        $(this).next().toggleClass('item-clicked');
+    });
 
 
+    var $prices = $('.price');
+    var $qty = $('.quantity');
 
+    function addListTotal() {
+        var price = 0, i=0;
+        var quantity = [];
+
+        $prices.each(function () {
+            quantity = parseInt($qty[i].innerText);
+            price += parseFloat($(this).text()) * quantity;
+            console.log(quantity)
+            i++;
+        });
+        $('.calculated-total').html(price);
+    }
+
+    addListTotal();
