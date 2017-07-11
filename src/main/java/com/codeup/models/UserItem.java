@@ -49,6 +49,14 @@ public class UserItem {
         this.item = item;
     }
 
+    public UserItem(User user, Item item, int quantity) {
+        this.user = user;
+        this.item = item;
+        this.quantity = quantity;
+    }
+
+
+
     public long getId() {
         return id;
     }
