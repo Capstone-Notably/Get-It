@@ -111,4 +111,16 @@ public class GroceryListsController {
         return "redirect:/lists";
     }
 
+    public static List<GroceryList> groceryLists(GroceryListsRepository groceryListsRepository, UserGListRepository userGListRepository) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<UserGList> userGLists = userGListRepository.findByUser_Id(user.getId());
+        List<GroceryList> glists = new ArrayList<>();
+        for (UserGList userGList : userGLists) {
+            GroceryList glist = groceryListsRepository.findOne(userGList.getGlist().getId());
+            glists.add(glist);
+        }
+
+        return glists;
+    }
+
 }
