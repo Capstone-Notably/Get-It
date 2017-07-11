@@ -138,64 +138,65 @@
         });
     });
 
-    $('#search-submit').click(function (e) {
-        e.preventDefault();
-        if($tags.val() !== "") {
-            var html;
-            $viewItems.each(function () {
-                if($(this).hasClass('active')){
-                    html = $(this).html();
-                }
-            });
-            json.forEach(function(item) {
-                if(item.name === $tags.val()) {
-                    html += "<div class='item-all'>";
-                    html += "<div class='item-name'>";
-                    html += "<input type='checkbox' value='false' class='item-property' />";
-                    html += "<span class='item-property'>" + item.name + "</span>";
-                    html += "</div>";
-                    html += "<div class='item-img'>";
-                    html += "<img src='/uploads/items/" + item.imgUrl + "'/>";
-                    html += "</div>";
-                    html += "</div>";
+$('#search-submit').click(function (e) {
+    e.preventDefault();
+    if($tags.val() !== "") {
+        var html;
+        $viewItems.each(function () {
+            if($(this).hasClass('active')){
+                html = $(this).html();
+            }
+        });
+        json.forEach(function(item) {
+            if(item.name === $tags.val()) {
+                html += "<div class='item-all'>";
+                html += "<div class='item-name'>";
+                html += "<input type='checkbox' value='false' class='item-property' />";
+                html += "<span class='item-property'>" + item.name + "</span>";
+                html += "</div>";
+                html += "<div class='item-img'>";
+                html += "<img src='/uploads/items/" + item.imgUrl + "'/>";
+                html += "</div>";
+                html += "</div>";
 
-                    $viewItems.each(function () {
-                        if($(this).hasClass('active')){
-                            item.listId = parseInt($(this).children().val());
-                            $(this).html(html);
-                        }
-                    });
-
-                    item_json = item;
-                }
-            });
-
-            var token = $('#csrf-token').attr("content");
-            var header = $('#csrf-header').attr("content");
-            console.log(token);
-            console.log(header);
-            console.log(item_json);
-
-            // send json to the controller
-            $.ajax({
-                url:"/lists/items",
-                type:"POST",
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify(item_json), //Stringified Json Object
-                async: false,    //Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation
-                cache: false,    //This will force requested pages not to be cached by the browser
-                processData:false, //To avoid making query String instead of JSON
-                beforeSend: function(xhr){
-                    if (header && token) {
-                        xhr.setRequestHeader(header, token);
+                $viewItems.each(function () {
+                    if($(this).hasClass('active')){
+                        item.listId = parseInt($(this).children().val());
+                        $(this).html(html);
                     }
+                });
+
+                item_json = item;
+            }
+        });
+
+
+        var token = $('#csrf-token').attr("content");
+        var header = $('#csrf-header').attr("content");
+        console.log(token);
+        console.log(header);
+        console.log(item_json);
+
+        // send json to the controller
+        $.ajax({
+            url:"/lists/items",
+            type:"POST",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(item_json), //Stringified Json Object
+            async: false,    //Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation
+            cache: false,    //This will force requested pages not to be cached by the browser
+            processData:false, //To avoid making query String instead of JSON
+            beforeSend: function(xhr){
+                if (header && token) {
+                    xhr.setRequestHeader(header, token);
                 }
-            });
+            }
+        });
 
-            $tags.val("");
+        $tags.val("");
 
-        }
-    });
+    }
+});
 
 
     $('.ul-tabs li').first().addClass('active');
