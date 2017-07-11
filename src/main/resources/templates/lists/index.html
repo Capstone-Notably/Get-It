@@ -16,13 +16,44 @@
         <div class="grocery-header">
         <h1 class="grocery-title">Grocery Lists</h1>
         <form th:method="post" class="lists-search">
-            <div class="form-group">
+            <div id="lists-search-items">
                 <div class="ui-widget">
                     <input id="tags" type="text" class="form-control" placeholder="Search item"/>
                 </div>
+                <button id="search-submit" type="submit" class="btn btn-success glyphicon glyphicon-ok"></button>
+                <span class="input-group-btn">
+                    <span id="barcode" class="btn btn-primary glyphicon glyphicon-barcode" type="button" data-toggle="modal" data-target="#livestream_scanner">
+                        <i class="fa fa-barcode"></i>
+                    </span>
+                </span>
             </div>
-            <button id="search-submit" type="submit" class="">Add to List</button>
         </form>
+            
+        <input id="scanner_input" type="hidden" />
+
+        <div class="modal" id="livestream_scanner">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Barcode Scanner</h4>
+                    </div>
+                    <div class="modal-body" >
+                        <div id="interactive" class="viewport"></div>
+                        <div class="error"></div>
+                    </div>
+                    <!--<div class="modal-footer">-->
+                        <!--<label class="btn btn-default pull-left">-->
+                            <!--<i class="fa fa-camera"></i> Use camera app-->
+                            <!--<input type="file" accept="image/*;capture=camera" capture="camera" class="hidden" />-->
+                        <!--</label>-->
+                        <!--<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>-->
+                    <!--</div>-->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
         </div>
         <div class="grocery-lists">
             <ul class="nav nav-tabs ul-tabs grocery-list-tab">
@@ -91,11 +122,5 @@
     <div th:replace="fragments::my-footer"></div>
 </div>
 <div th:replace="fragments::scripts"></div>
-<script>
-//    $('.btn-cancel').click(function () {
-//        console.log("test");
-//        $('[data-original-title]').popover('hide');
-//    });
-</script>
 </body>
 </html>
