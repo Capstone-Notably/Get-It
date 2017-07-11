@@ -102,14 +102,14 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
+                                    <h4 class="share-title modal-title" id="myModalLabel">Share List</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Share List</h4>
                                 </div>
                                 <div class="modal-body">
                                     <form th:action="@{/list/share}" th:method="post">
-                                        <input name="phone" type="text" placeholder="Phone number to share with" />
+                                        <input class="share-number-input" name="phone" type="text" placeholder="Phone number to share with (+12107775555)" />
                                         <input name="listId" type="hidden" th:value="${list.id}" />
-                                        <button type="submit" class="button btn btn-success btn-block">SEND INVITES</button>
+                                        <button type="submit" id="invites" class="button btn btn-success btn-block">SEND INVITES</button>
                                     </form>
                                 </div>
                             </div>
