@@ -689,7 +689,7 @@ span.category-name, span.recipe-name {
     margin-right: 0;
 }
 
-#tags, #search-submit {
+#tags {
     justify-content: center;
     /*height: 1.3em;*/
     font-size: 2.7em;
