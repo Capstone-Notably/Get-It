@@ -181,25 +181,32 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
 /*----------------------------------------------------------------------------------------------------------------------
    Login
 ----------------------------------------------------------------------------------------------------------------------*/
-.login-body {
+
+.login-home {
     grid-row: body;
+    background-image: url("/uploads/others/market.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.modal-content.login-body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 39.3vw;
+    width: 100%;
     font-family: var(--font1);
     font-size: 1em;
     color: #000;
     background-color: var(--bannergreen);
     border: 1px solid var(--accentcolor);
+    margin: 0;
+    top: 15em;
 }
 
-.login-home {
-    background-image: url("/uploads/others/market.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 .login-modal-body {
     /*grid-row: body;*/
     display: flex;
@@ -233,19 +240,32 @@ a#nav-brand-name.show, div.nav-links-logged-in.show {
 
 }
 
+div.modal-body {
+    background-color: var(--bannergreen);
+}
+
 form#login-form {
-    /*border: 1px solid var(--l-green);*/
+    border: 1px solid var(--accentcolor);
     font-size: 3em;
     color: black;
+    background-color: var(--green);
+    padding: 3%;
 }
 
 form>input {
     color: black;
+    width: 80%;
+}
+
+div.modal-header {
+    display: flex;
+    text-align: center;
 }
 
 .login-header {
-    color: black;
-    font-size: 2em;
+    color: var(--accentcolor);
+    font-size: 4em;
+    font-weight: 700;
 }
 
 .login-error {
