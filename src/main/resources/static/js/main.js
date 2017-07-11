@@ -95,31 +95,31 @@
 /*----------------------------------------------------------------------------------------------------------------------
      Groceries Lists
 ----------------------------------------------------------------------------------------------------------------------*/
-    var json, item_json;
+    var json, item_json, item_barcode_json;
     var $tags = $( "#tags" );
     var $viewItems = $('.view-items');
     var $scannerInput = $('#scanner_input');
 
-    // function sendJsonToController() {
-    //     var token = $('#csrf-token').attr("content");
-    //     var header = $('#csrf-header').attr("content");
-    //
-    //     // send json to the controller
-    //     $.ajax({
-    //         url:"/lists/items",
-    //         type:"POST",
-    //         contentType: "application/json; charset=utf-8",
-    //         data: JSON.stringify(item_json), //Stringified Json Object
-    //         async: false,    //Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation
-    //         cache: false,    //This will force requested pages not to be cached by the browser
-    //         processData:false, //To avoid making query String instead of JSON
-    //         beforeSend: function(xhr){
-    //             if (header && token) {
-    //                 xhr.setRequestHeader(header, token);
-    //             }
-    //         }
-    //     });
-    // }
+    function sendJsonToController(item_json) {
+        var token = $('#csrf-token').attr("content");
+        var header = $('#csrf-header').attr("content");
+
+        // send json to the controller
+        $.ajax({
+            url:"/lists/items",
+            type:"POST",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(item_json), //Stringified Json Object
+            async: false,    //Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation
+            cache: false,    //This will force requested pages not to be cached by the browser
+            processData:false, //To avoid making query String instead of JSON
+            beforeSend: function(xhr){
+                if (header && token) {
+                    xhr.setRequestHeader(header, token);
+                }
+            }
+        });
+    }
 
     //receive json file from the controller
     request = $.ajax({
@@ -170,31 +170,8 @@ $('#search-submit').click(function (e) {
             }
         });
 
-
-        var token = $('#csrf-token').attr("content");
-        var header = $('#csrf-header').attr("content");
-        console.log(token);
-        console.log(header);
-        console.log(item_json);
-
-        // send json to the controller
-        $.ajax({
-            url:"/lists/items",
-            type:"POST",
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(item_json), //Stringified Json Object
-            async: false,    //Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation
-            cache: false,    //This will force requested pages not to be cached by the browser
-            processData:false, //To avoid making query String instead of JSON
-            beforeSend: function(xhr){
-                if (header && token) {
-                    xhr.setRequestHeader(header, token);
-                }
-            }
-        });
-
+        sendJsonToController(item_json);
         $tags.val("");
-
     }
 });
 
@@ -353,10 +330,11 @@ $('#search-submit').click(function (e) {
                     }
                 });
 
-                item_json = item;
+                item_barcode_json = item;
             }
         });
-        console.log(item_json);
+        console.log(item_barcode_json);
+        sendJsonToController(item_barcode_json);
     }
 
 
