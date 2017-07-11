@@ -157,6 +157,17 @@ $('#search-submit').click(function (e) {
                 html += "<div class='item-img'>";
                 html += "<img src='/uploads/items/" + item.imgUrl + "'/>";
                 html += "</div>";
+                html += "<div class='glist-item dropdown'>";
+                html += "<button class='btn btn-default dropdown-toggle item-edit' type='button' id='dropdownMenu" + item.id + "' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true'>";
+                html += "<span class='caret-size caret'></span>";
+                html += "</button>";
+                html += "<ul class='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenu'" + item.id + "'>";
+                html += "<li><a href='#'>Edit</a></li>";
+                html += '<li><a href="#">Delete</a></li>';
+                html += '<li><a href="#">Set Price</a></li>';
+                html += '<li><a href="#">Set Quantity</a></li>';
+                html += '</ul>';
+                html += "</div>";
                 html += "</div>";
 
                 $viewItems.each(function () {
