@@ -197,8 +197,19 @@
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-right"
                                                         th:attr="aria-labelledby='\'recipe-items' + ${recipeItem.id} +'\''">
-                                                        <li><a href="#">Add to List</a></li>
-                                                        <li><a href="#">Edit</a></li>
+                                                        <!--<li><a href="@{/items/addToList(item_id=${recipeItem.id})}">Add to List</a></li>-->
+                                                        <li>
+                                                            <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseLists" aria-expanded="false" aria-controls="collapseExample">
+                                                                Add to List
+                                                            </a>
+                                                            <div class="collapse" id="collapseLists">
+                                                                <div class="well">
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" name="optradio" th:text=""></label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
                                                         <li><a href="#">Delete</a></li>
                                                     </ul>
                                                 </div>

@@ -24,6 +24,8 @@ public class CategoriesController {
     private final UserRecipeRepository userRecipeRepository;
     private final ItemsRepository itemsRepository;
     private final UserItemsRepository userItemsRepository;
+    private final UserGListRepository userGListRepository;
+    private final GroceryListsRepository groceryListsRepository;
 
     @Value("${categories-img-path}")
     private String categoriesImgPath;
@@ -32,7 +34,8 @@ public class CategoriesController {
     public CategoriesController(CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository,
                                 RecipesRepository recipesRepository, RecipeItemsRepository recipeItemsRepository,
                                 UserRecipeRepository userRecipeRepository, ItemsRepository itemsRepository,
-                                UserItemsRepository userItemsRepository) {
+                                UserItemsRepository userItemsRepository, UserGListRepository userGListRepository,
+                                GroceryListsRepository groceryListsRepository) {
         this.categoriesRepository = categoriesRepository;
         this.userCategoryRepository = userCategoryRepository;
         this.recipesRepository = recipesRepository;
@@ -40,6 +43,8 @@ public class CategoriesController {
         this.userRecipeRepository = userRecipeRepository;
         this.itemsRepository = itemsRepository;
         this.userItemsRepository = userItemsRepository;
+        this.userGListRepository = userGListRepository;
+        this.groceryListsRepository = groceryListsRepository;
     }
 
     @GetMapping("/")
@@ -48,12 +53,14 @@ public class CategoriesController {
         List<Recipe> recipes = RecipesController.findAll(recipesRepository, userRecipeRepository);
         List<CustomItem> recipeItems = RecipesController.findAllItems(recipesRepository, userRecipeRepository, recipeItemsRepository, itemsRepository);
         List<CustomItem> customItems = ItemsController.findByUser(itemsRepository, userItemsRepository);
+        List<GroceryList> groceryLists = GroceryListsController.groceryLists(groceryListsRepository, userGListRepository);
         model.addAttribute("items", customItems);
         model.addAttribute("categories", categories);
         model.addAttribute("recipes", recipes);
         model.addAttribute("recipeItems", recipeItems);
         model.addAttribute("newCategory", new Category());
         model.addAttribute("newRecipe", new Recipe());
+        model.addAttribute("groceryLists", groceryLists);
         return "index";
 
     }

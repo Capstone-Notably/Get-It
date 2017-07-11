@@ -34,13 +34,6 @@ public class ItemsController {
         this.userCategoryRepository = userCategoryRepository;
     }
 
-//    @GetMapping("/items")
-//    public String viewItems(@RequestParam("category_id") long category_id, Model model) {
-//        List<CustomItem> customItems = findByCategory(itemsRepository, userItemsRepository, category_id);
-//        model.addAttribute("items", customItems);
-//        return "index";
-//    }
-
     @GetMapping("/items/create")
     public String createItem(Model model) {
         List<Category> categories = CategoriesController.findAll(categoriesRepository, userCategoryRepository);
@@ -50,7 +43,7 @@ public class ItemsController {
     }
 
     @PostMapping("/items/create")
-    public String saveItem(@ModelAttribute CustomItem item, @RequestParam(name = "file") MultipartFile uploadedFile, @RequestParam(name = "categoryName") String categoryName, Model model) {
+    public String createItem(@ModelAttribute CustomItem item, @RequestParam(name = "file") MultipartFile uploadedFile, @RequestParam(name = "categoryName") String categoryName, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String filename = UsersController.transferUploadedFile(uploadedFile, itemsImgPath, model);
         Category category = categoriesRepository.findByName(categoryName);
@@ -71,6 +64,11 @@ public class ItemsController {
         List<CustomItem> items = findByUser(itemsRepository, userItemsRepository);
         String json = new Gson().toJson(items);
         return json;
+    }
+
+    @GetMapping("/items/addToList")
+    public String save(@RequestParam("item_id") long item_id) {
+        return "redirect:/";
     }
 
     public static List<CustomItem> findByCategory(ItemsRepository itemsRepository, UserItemsRepository userItemsRepository, long category_id) {
