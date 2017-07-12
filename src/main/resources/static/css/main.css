@@ -240,7 +240,7 @@ div.modal-content.login-body {
 
 }
 
-div.modal-body {
+.modal-login-body {
     background-color: var(--bannergreen);
 }
 
@@ -257,7 +257,7 @@ form>input {
     width: 80%;
 }
 
-div.modal-header {
+.div-header-login {
     display: flex;
     text-align: center;
 }
