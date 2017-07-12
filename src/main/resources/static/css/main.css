@@ -240,7 +240,7 @@ div.modal-content.login-body {
 
 }
 
-div.modal-body {
+.modal-login-body {
     background-color: var(--bannergreen);
 }
 
@@ -257,7 +257,7 @@ form>input {
     width: 80%;
 }
 
-div.modal-header {
+.div-header-login {
     display: flex;
     text-align: center;
 }
@@ -829,7 +829,7 @@ label#pic-label {
     /*margin-left: 15px;*/
 }
 
-.btn-plus, .btn-minus {
+.btn-plus, .btn-minus, .btn-minus-qty, .btn-plus-qty {
     cursor: pointer;
 }
 
@@ -911,14 +911,15 @@ label#pic-label {
     margin-left: 5px;
 }
 
-/*#search-submit {*/
-    /*background-color: var(--accentcolor);*/
-    /*padding-bottom: .5em;*/
-/*}*/
-
-/*#tags {*/
-    /*width: 50%;*/
-/*}*/
+.item-list-qty {
+    height: 33px;
+    width: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-top-width: 0;
+    margin-top: 1px;
+    text-align: right;
+}
 
 
 #lists-search-items {
@@ -1000,9 +1001,17 @@ p.total {
     margin-bottom: 10px;
 }
 
+.item-price-qty {
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+    text-align: right;
+    border-bottom: 2px solid var(--accentcolor);
+}
+
 .item-name {
     display: flex;
-    width: 80%;
+    width: 50%;
     border-bottom: 2px solid var(--accentcolor);
     margin-bottom: 0;
     font-size: 3em;
@@ -1015,7 +1024,7 @@ p.total {
 .item-img {
     display: inline-block;
     text-align: right;
-    width: 20%;
+    width: 10%;
     border-bottom: 2px solid var(--accentcolor);
 }
 
@@ -1034,13 +1043,50 @@ p.total {
     justify-content: center;
     align-items: center;
     font-size: 2.5em;
-    border-bottom: 2px solid var(--accentcolor);
     width: 10%;
+}
+
+.modal-price-input, .modal-input-qty {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.modal-price-input > input {
+    font-size: 3em;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.modal-input-qty > input  {
+    font-size: 3em;
+    width: 40%;
+    margin-right: 3%;
+    align-items: center;
+    align-self: center;
+}
+
+.modal-input-qty > div {
+    font-size: 3em;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-modal-cancel {
+    margin-left: 5px;
+}
+
+.btn-modal-ok {
+    margin-right: 5px;
 }
 
 .price, .quantity {
     text-align: center;
     font-family: var(--font1);
+}
+
+.dropdown-price-qty {
+    display: none;
 }
 
 .btn {
@@ -1579,5 +1625,15 @@ canvas {
 
     span.category-name, span.recipe-name {
         width: 50%;
+    }
+}
+
+@media screen and (max-width: 870px) {
+    .item-price-qty {
+        display: none;
+    }
+
+    .dropdown-price-qty {
+        display: block;
     }
 }
