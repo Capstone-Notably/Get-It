@@ -13,7 +13,7 @@ eeapplication.properties
 .idea
 *.iws
 *.iml
-*.ipreeeeeee
+*.ipr
 
 ### NetBeans ###
 nbproject/private/

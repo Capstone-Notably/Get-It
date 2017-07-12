@@ -200,6 +200,7 @@
                 }
             }
         });
+
     }
 
     //receive json file from the controller
@@ -222,6 +223,17 @@
 
 $('#search-submit').click(function (e) {
     e.preventDefault();
+    // $('.item-property').off("click");
+    // $('.item-property').on("click", itemClick);
+    // $money = $('.currency');
+    // $money.on('change', currencyFormatting);
+    //
+    // $money.maskMoney({prefix:'$ ', allowZero:true});
+    //
+    // $money.keyup(function() {
+    //     $('#price-in').val($(this).maskMoney('unmasked')[0]);
+    // });
+
     if($tags.val() !== "") {
         var html;
         $viewItems.each(function () {
@@ -243,6 +255,16 @@ $('#search-submit').click(function (e) {
                 item_json = item;
             }
         });
+        $('.item-property').off("click");
+        $('.item-property').on("click", itemClick);
+        $money = $('.currency');
+        $money.on('change', currencyFormatting);
+
+        $money.maskMoney({prefix:'$ ', allowZero:true});
+
+        $money.keyup(function() {
+            $('#price-in').val($(this).maskMoney('unmasked')[0]);
+        });
 
         sendJsonToController(item_json, "/lists/items");
         $tags.val("");
@@ -250,7 +272,9 @@ $('#search-submit').click(function (e) {
 });
 
     //update price in database
-    $currency.change(function () {
+    $currency.on('change', currencyFormatting);
+
+    function currencyFormatting() {
         var item_id = parseInt($(this).attr("data-item"));
         var price = $(this).maskMoney('unmasked')[0];
         json.forEach(function(item) {
@@ -260,7 +284,7 @@ $('#search-submit').click(function (e) {
                 console.log(item);
             }
         });
-    });
+    }
 
     //update qty in database
     function updateQty($qty_input) {
@@ -315,7 +339,9 @@ $('#search-submit').click(function (e) {
     });
 
     //Checkout
-    $('.item-property').click(function(){
+    $('.item-property').on('click', itemClick);
+
+    function itemClick(){
         var $inputPrice = $(this).parent().next().children().children();
         var qty = parseInt($inputPrice.parent().next().children().val());
         // console.log($inputQty.val());
@@ -336,7 +362,7 @@ $('#search-submit').click(function (e) {
             $btnsQty.fadeIn().css("background-color", "#bbd366");
         }
         $total.html(currentTotal.toFixed(2));
-    });
+    };
 
 
     // Scan a barcode
