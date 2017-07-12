@@ -97,11 +97,8 @@
                             <div class="item-price-qty">
                                 <div class="item-price">
                                     <input type="text" th:attr="data-item=${item.id}" class="qty-price-input currency price" th:value="'$ ' +${item.price} " />
-                                    <!--$<span th:if="${item.price} > 0" th:text="${item.price}" class="price" />-->
                                 </div>
                                 <div class="item-quantity">
-                                    <!--Qty:  <span th:if="${item.quantity} > 0" th:text="${item.quantity}" class="quantity"></span>-->
-                                    <!-- Don't move from here-->
                                     <input type="text" th:attr="data-itemqty=${item.id}" class="item-list-qty" th:value="${item.quantity}" />
                                     <div>
                                         <div class="glyphicon glyphicon-plus glyphicon-plus-minus btn-plus-qty" />

@@ -318,18 +318,20 @@ $('#search-submit').click(function (e) {
     //Checkout
     $('.item-property').click(function(){
         var $inputPrice = $(this).parent().next().children().children();
+        var qty = parseInt($inputPrice.parent().next().children().val());
+        // console.log($inputQty.val());
         var price = $inputPrice.maskMoney('unmasked')[0];
         var $total = $('.calculated-total');
         var currentTotal = parseFloat($total.html());
         var $btnsQty = $inputPrice.parent().next().children().next();
         $(this).next().toggleClass('item-clicked');
         if($(this).next().hasClass('item-clicked')) {
-            currentTotal += price;
+            currentTotal += price * qty;
             //disable inputs price and qty
             $inputPrice.prop( "disabled", true ).css("background-color", "lightgrey");
             $btnsQty.fadeOut().css("background-color", "#bbd366");
         } else {
-            currentTotal -= price;
+            currentTotal -= price * qty;
             //disable inputs price and qty
             $inputPrice.prop( "disabled", false ).css("background-color", "white");
             $btnsQty.fadeIn().css("background-color", "#bbd366");
