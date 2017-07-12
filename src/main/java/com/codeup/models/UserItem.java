@@ -13,7 +13,7 @@ public class UserItem {
     private long id;
 
     @Column
-    private float price;
+    private double price;
 
     @Column
     private int quantity;
@@ -35,7 +35,7 @@ public class UserItem {
     public UserItem() {
     }
 
-    public UserItem(float price, int quantity, String barcode, boolean favorite, User user, Item item) {
+    public UserItem(double price, int quantity, String barcode, boolean favorite, User user, Item item) {
         this.price = price;
         this.quantity = quantity;
         this.barcode = barcode;
@@ -49,10 +49,11 @@ public class UserItem {
         this.item = item;
     }
 
-    public UserItem(User user, Item item, int quantity) {
+    public UserItem(User user, Item item, int quantity, double price) {
         this.user = user;
         this.item = item;
         this.quantity = quantity;
+        this.price = price;
     }
 
 
@@ -65,11 +66,11 @@ public class UserItem {
         this.id = id;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

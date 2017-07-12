@@ -102,7 +102,7 @@ public class UsersController {
             String[] split = item.getPreferences().split(" ");
             for(int i=0; i<split.length; i++) {
                 if (Integer.parseInt(split[i]) == prefByName.getId()) {
-                    userItemsRepository.save(new UserItem(user, item, 1));
+                    userItemsRepository.save(new UserItem(user, item, 1, 0.00));
                 }
             }
         }
