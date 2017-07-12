@@ -110,7 +110,7 @@
         html += "</div>";
         html += '<div class="item-price-qty">';
         html += '<div class="item-price">';
-        html += '<input type="text" class="qty-price-input currency price" data-item="' + item.id + '" value="$ ' + item.price.toFixed(2) + '" />';
+        html += '<input type="text" data-item="' + item.id + '" class="qty-price-input currency price" value="$ ' + item.price.toFixed(2) + '" />';
         html += "</div>";
         html += '<div class="item-quantity">';
         html += '<input type="text" class="item-list-qty" data-itemqty="' + item.id + '" value="' + item.quantity + '" />';
