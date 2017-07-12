@@ -85,6 +85,15 @@ public class GroceryListsController {
         userItemsRepository.save(userItem);
     }
 
+    @PostMapping("/lists/items/setQty")
+    public void setItemQty(@RequestBody CustomItem jsonString) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long item_id = jsonString.getId();
+        UserItem userItem = userItemsRepository.findByUser_IdAndItem_Id(user.getId(), item_id);
+        userItem.setQuantity(jsonString.getQuantity());
+        userItemsRepository.save(userItem);
+    }
+
     @PostMapping("/list/share")
     public String shareList(@RequestParam("phone") String phone, @RequestParam("listId") long listId) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

@@ -100,8 +100,8 @@
                             </div>
                             <div class="item-quantity">
                                 <!--Qty:  <span th:if="${item.quantity} > 0" th:text="${item.quantity}" class="quantity"></span>-->
-
-                                <input type="text" class="item-list-qty" th:value="${item.quantity}" />
+                                <!-- Don't move from here-->
+                                <input type="text" th:attr="data-itemqty=${item.id}" class="item-list-qty" th:value="${item.quantity}" />
                                 <div>
                                     <div class="glyphicon glyphicon-plus glyphicon-plus-minus btn-plus-qty" />
                                     <div class="glyphicon glyphicon-minus glyphicon-plus-minus btn-minus-qty" />

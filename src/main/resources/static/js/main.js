@@ -99,6 +99,7 @@
     var $tags = $( "#tags" );
     var $viewItems = $('.view-items');
     var $scannerInput = $('#scanner_input');
+    var $itemQty = $('.item-list-qty');
 
     function addItemToView(item) {
         var html = 0;
@@ -196,29 +197,54 @@ $('#search-submit').click(function (e) {
     //update price in database
     $currency.change(function () {
         var item_id = parseInt($(this).attr("data-item"));
-        var item_json;
         var price = $(this).maskMoney('unmasked')[0];
         json.forEach(function(item) {
             if(item.id === item_id) {
-                item_json = item;
-                item_json.price = price;
-                sendJsonToController(item_json, "/lists/items/setPrice");
-                console.log(item_json);
+                item.price = price;
+                sendJsonToController(item, "/lists/items/setPrice");
+                console.log(item);
             }
         });
     });
 
+    //update qty in database
+    // $itemQty.change(function () {
+    //     var item_id = parseInt($(this).attr("data-itemqty"));
+    //     console.log(item_id);
+    //     var qty = $(this).val();
+    //     json.forEach(function(item) {
+    //         if(item.id === item_id) {
+    //             item.qty = qty;
+    //             // sendJsonToController(item, "/lists/items/setQty");
+    //             console.log(item);
+    //         }
+    //     });
+    // });
+
+
+    function updateQty($qty_input) {
+        var item_id = parseInt($qty_input.attr("data-itemqty"));
+        json.forEach(function(item) {
+            if(item.id === item_id) {
+                item.quantity = $qty_input.val();
+                sendJsonToController(item, "/lists/items/setQty");
+                console.log(item);
+            }
+        });
+    }
 
     $('.btn-minus-qty').click(function () {
         var $qty_input = $(this).parent().parent().children();
         if ($qty_input.val() > 1) {
             $qty_input.val(parseInt($qty_input.val()) - 1);
         }
+        updateQty($qty_input);
     });
 
     $('.btn-plus-qty').click(function () {
         var $qty_input = $(this).parent().parent().children();
         $qty_input.val(parseInt($qty_input.val()) + 1);
+        updateQty($qty_input);
     });
 
 
