@@ -559,6 +559,10 @@ span.category-name, span.recipe-name {
     border-radius: 0;
 }
 
+div.recipe-flex {
+
+}
+
 .recipe-title {
     font-family: var(--font1);
     font-size: 3em;
@@ -627,6 +631,62 @@ span.category-name, span.recipe-name {
     height: 6em;
 }
 
+div.collapse.in {
+    z-index: 2;
+    position: relative;
+}
+
+div.well {
+    background-color: var(--accentcolor);
+    border-radius: 0;
+    padding: 1em;
+    width: 20vw;
+    height: auto;
+    margin-bottom: 0;
+    z-index: 3;
+    position: absolute;
+    /*top: 40%;*/
+    display: grid;
+    grid: "a b" "c c";
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 20% 80%;
+}
+
+button.close {
+    grid-row: 1;
+    grid-column: 2;
+    grid-area: b;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+strong.select {
+    grid-row: 1;
+    grid-column: 1;
+    grid-area: a;
+    text-align: center;
+    font-family: var(--font1);
+    font-size: 2em;
+}
+
+form.popover-body {
+    grid-area: c;
+    grid-row: 2;
+    /*grid-column-start: 0;*/
+    /*grid-column-end: -0;*/
+    display: flex;
+    justify-content: space-around;
+
+    align-items: center;
+    font-family: var(--font1);
+    font-size: 1.5em;
+}
+
+div.radio {
+    display: flex;
+    flex-direction: column;
+}
 /*----------------------------------------------------------------------------------------------------------------------
    Create Item
 ----------------------------------------------------------------------------------------------------------------------*/
