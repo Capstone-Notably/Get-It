@@ -100,6 +100,31 @@
     var $viewItems = $('.view-items');
     var $scannerInput = $('#scanner_input');
 
+    function addItem() {
+        var html = 0;
+        html += "<div class='item-all'>";
+        html += "<div class='item-name'>";
+        html += "<input type='checkbox' value='false' class='item-property' />";
+        html += "<span class='item-property'>" + item.name + "</span>";
+        html += "</div>";
+        html += "<div class='item-img'>";
+        html += "<img src='/uploads/items/" + item.imgUrl + "'/>";
+        html += "</div>";
+        html += "<div class='glist-item dropdown'>";
+        html += "<button class='btn btn-default dropdown-toggle item-edit' type='button' id='dropdownMenu" + item.id + "' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true'>";
+        html += "<span class='caret-size caret'></span>";
+        html += "</button>";
+        html += "<ul class='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenu'" + item.id + "'>";
+        html += "<li><a href='#'>Edit</a></li>";
+        html += '<li><a href="#">Delete</a></li>';
+        html += '<li><a href="#">Set Price</a></li>';
+        html += '<li><a href="#">Set Quantity</a></li>';
+        html += '</ul>';
+        html += "</div>";
+        html += "</div>";
+        return html;
+    }
+
     function sendJsonToController(item_json) {
         var token = $('#csrf-token').attr("content");
         var header = $('#csrf-header').attr("content");
@@ -149,26 +174,7 @@ $('#search-submit').click(function (e) {
         });
         json.forEach(function(item) {
             if(item.name === $tags.val()) {
-                html += "<div class='item-all'>";
-                html += "<div class='item-name'>";
-                html += "<input type='checkbox' value='false' class='item-property' />";
-                html += "<span class='item-property'>" + item.name + "</span>";
-                html += "</div>";
-                html += "<div class='item-img'>";
-                html += "<img src='/uploads/items/" + item.imgUrl + "'/>";
-                html += "</div>";
-                html += "<div class='glist-item dropdown'>";
-                html += "<button class='btn btn-default dropdown-toggle item-edit' type='button' id='dropdownMenu" + item.id + "' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true'>";
-                html += "<span class='caret-size caret'></span>";
-                html += "</button>";
-                html += "<ul class='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenu'" + item.id + "'>";
-                html += "<li><a href='#'>Edit</a></li>";
-                html += '<li><a href="#">Delete</a></li>';
-                html += '<li><a href="#">Set Price</a></li>';
-                html += '<li><a href="#">Set Quantity</a></li>';
-                html += '</ul>';
-                html += "</div>";
-                html += "</div>";
+                html += adddItem();
 
                 $viewItems.each(function () {
                     if($(this).hasClass('active')){
@@ -185,6 +191,10 @@ $('#search-submit').click(function (e) {
         $tags.val("");
     }
 });
+
+    $('.currency').change(function () {
+        console.log("test");
+    });
 
 
     $('.ul-tabs li').first().addClass('active');

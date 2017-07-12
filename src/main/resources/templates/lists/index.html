@@ -95,10 +95,11 @@
                                 <span th:text="${item.name}" class='item-property property-name' />
                             </div>
                             <div class="item-price">
-                                $<span th:if="${item.price} > 0" th:text="${item.price}" class="price" />
+                                <input type="text" class="qty-price-input currency price" th:value="'$ ' +${item.price} " />
+                                <!--$<span th:if="${item.price} > 0" th:text="${item.price}" class="price" />-->
                             </div>
                             <div class="item-quantity">
-                                Quantity:  <span th:if="${item.quantity} > 0" th:text="${item.quantity}" class="quantity"></span>
+                                Qty:  <span th:if="${item.quantity} > 0" th:text="${item.quantity}" class="quantity"></span>
                             </div>
                             <div class='item-img img-responsive'>
                                 <img th:src="${'/uploads/items/' + item.imgUrl}"/>
@@ -143,6 +144,8 @@
         <div class="list-total">
             <p class="total">Total: $<span class="calculated-total"></span></p>
         </div>
+
+        <!--<input type="text" class="qty-price-input currency" />-->
     </div>
     <div th:replace="fragments::my-footer"></div>
 </div>
