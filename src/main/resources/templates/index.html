@@ -9,11 +9,14 @@
     <nav th:replace="fragments::my-navbar"></nav>
 
     <div class="index-body">
-        <div class="image"/>
+        <div class="image">
+            <h1 class="hero-text1">Organized, simplified and built around the essentials!</h1>
+            <h1 class="hero-text2">Forget the pen and paper and just <strong id="brand">Get It!</strong> </h1>
+        </div>
 
         <div class="features">
 
-            <h1 class="features-header">Check out our features!</h1>
+            <h1 class="features-header">Intuitive, User-Friendly and Sharable.<br/> Always on-hand!</h1>
 
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
@@ -56,7 +59,7 @@
                 </a>
             </div>
 
-            <p class="features-text">Features!</p>
+            <p class="features-text">Start with built-in, common items and recipes, <br/> customize your own database based on YOUR dietary preferences.</p>
         </div>
 
         <div class="row categories" id="categories">
@@ -211,7 +214,7 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
 
-                                                            <strong class="select">Select grocery list</strong>
+                                                            <strong class="select">Select Grocery List</strong>
 
                                                             <form class="popover-body" th:method="post" th:action="@{/items/addToList}">
 

@@ -352,7 +352,7 @@ h1.register-header {
     flex-direction: column;
     width: 100%;
     height: 100%;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background-image: url("/uploads/others/market.jpg");
     background-size: cover;
@@ -360,7 +360,35 @@ h1.register-header {
     /* Preserve aspect ratio */
     min-width: 100%;
     min-height: 100%;
+    z-index: 1;
+    position: relative;
+}
 
+.hero-text1, .hero-text2 {
+    z-index: 2;
+    position: relative;
+    font-family: var(--font1);
+    color: var(--accentcolor);
+    font-size: 5em;
+    width: auto;
+    height: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bannergreen);
+}
+
+.hero-text1 {
+    top: 10%;
+}
+
+.hero-text2 {
+    bottom: 10%;
+}
+
+#brand {
+    font-size: 3em;
+    color: var(--accentcolor);
 }
 
 #recipe-header, #category-header {
@@ -639,7 +667,7 @@ div.collapse.in {
 }
 
 div.well {
-    background-color: var(--accentcolor);
+    background-color: white;
     border-radius: 0;
     padding: 1em;
     width: 20vw;

@@ -353,10 +353,19 @@ $('#search-submit').click(function (e) {
         $prices.each(function () {
             quantity = parseInt($qty[i].innerText);
             price += parseFloat($(this).text()) * quantity;
-            console.log(quantity)
+            console.log(quantity);
             i++;
         });
         $('.calculated-total').html(price);
     }
 
     addListTotal();
+
+
+    $('.hero-text1').hide();
+    $('.hero-text2').hide();
+    $('.hero-text1').delay(2500).fadeIn(2000);
+    $('.hero-text2').delay(4000).fadeIn(2000);
+
+
+    // $('.hero-text2').animate({right: '+= 150%'}).delay(3200).fadeIn(2000);
