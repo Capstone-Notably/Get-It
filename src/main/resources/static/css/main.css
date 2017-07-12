@@ -900,15 +900,16 @@ label#pic-label {
 }
 
 #tags {
+    grid-row: 1;
+    grid-column: 1;
     justify-content: center;
     /*height: 1.3em;*/
-    font-size: 2.7em;
+    font-size: 2.8em;
     border: 1px solid var(--accentcolor);
     align-items: center;
-}
-
-#barcode {
-    margin-left: 5px;
+    border-radius: 0;
+    z-index: 4;
+    position: relative;
 }
 
 .item-list-qty {
@@ -923,8 +924,38 @@ label#pic-label {
 
 
 #lists-search-items {
-    display: flex;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
     justify-content: center;
+    align-items: center;
+}
+
+/*.input-group-btn {*/
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+
+/*}*/
+
+#barcode, #add-item-button {
+    grid-row: 2;
+    margin-left: 2.8em;
+    margin-top: 1em;
+    z-index: 0;
+    position: relative;
+}
+
+.glist-btn-text {
+    font-family: var(--font1);
+    color: var(--accentcolor);
+    font-size: 1.5em;
+}
+
+#search-submit {
+    grid-row: 1;
+    grid-column: 2;
+    /*height: 75%;*/
+    /*top: .45em;*/
 }
 
 div.ui-widget {
@@ -932,6 +963,8 @@ div.ui-widget {
     align-items: center;
     justify-content: center;
     margin-right: 0;
+    z-index: 3;
+    position: relative;
 }
 
 .grocery-lists {
@@ -977,7 +1010,11 @@ div.ui-widget {
     align-content: flex-end;
     font-size: 4em;
     font-family: var(--font1);
-    margin: 3em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    background-color: var(--maincolor);
+    border-top: .5em solid var(--accentcolor);
+    border-bottom: .5em solid var(--accentcolor);
 }
 
 p.total {
@@ -1169,8 +1206,9 @@ canvas {
 
 .users-info {
     grid-row: info;
-    display: inline-grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .user-profile-image {
@@ -1179,7 +1217,12 @@ canvas {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
 
+.user-image-profile {
+    height: 20em;
+    width: auto;
+    z-index: 2;
 }
 
 .user-account-details {
@@ -1190,6 +1233,7 @@ canvas {
     align-items: center;
     font-family: var(--font1);
     font-size: 3em;
+    text-align: center;
 }
 
 .user-profile {
@@ -1613,6 +1657,7 @@ canvas {
     }
 
     #search-submit {
+        grid-row: 1;
         height: 1.5em;
         font-size: .5em;
         padding: 0;
