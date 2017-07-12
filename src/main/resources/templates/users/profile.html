@@ -14,7 +14,7 @@
 
         <div class="users-info">
             <div class="user-profile-image">
-                <img class="" th:src="'/uploads/users/' + ${#authentication.principal.imgUrl}"/>
+                <img class="img-responsive user-image-profile" th:src="'/uploads/users/' + ${#authentication.principal.imgUrl}"/>
             </div>
             <div class="user-account-details">
                 <p>Username: <span class="" th:text="${#authentication.principal.username}"/></p>
