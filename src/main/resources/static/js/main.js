@@ -99,14 +99,96 @@
     var $tags = $( "#tags" );
     var $viewItems = $('.view-items');
     var $scannerInput = $('#scanner_input');
+    var $itemQty = $('.item-list-qty');
 
-    function sendJsonToController(item_json) {
+    function addItemToView(item) {
+        var html = 0;
+        html += "<div class='item-all'>";
+        html += "<div class='item-name'>";
+        html += "<input type='checkbox' value='false' class='item-property' />";
+        html += "<span class='item-property'>" + item.name + "</span>";
+        html += "</div>";
+        html += '<div class="item-price-qty">';
+        html += '<div class="item-price">';
+        html += '<input type="text" data-item="' + item.id + '" class="qty-price-input currency price" value="$ ' + item.price.toFixed(2) + '" />';
+        html += "</div>";
+        html += '<div class="item-quantity">';
+        html += '<input type="text" class="item-list-qty" data-itemqty="' + item.id + '" value="' + item.quantity + '" />';
+        html += '<div>';
+        html += '<div class="glyphicon glyphicon-plus glyphicon-plus-minus btn-plus-qty" />';
+        html += '<div class="glyphicon glyphicon-minus glyphicon-plus-minus btn-minus-qty" />';
+        html += "</div>";
+        html += "</div>";
+        html += "</div>";
+        html += "<div class='item-img'>";
+        html += "<img src='/uploads/items/" + item.imgUrl + "'/>";
+        html += "</div>";
+        html += "<div class='glist-item dropdown'>";
+        html += "<button class='btn btn-default dropdown-toggle item-edit' type='button' id='dropdownMenu" + item.id + "' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true'>";
+        html += "<span class='caret-size caret'></span>";
+        html += "</button>";
+        html += "<ul class='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenu'" + item.id + "'>";
+        html += "<li><a href='#'>Edit</a></li>";
+        html += '<li><a href="#">Delete</a></li>';
+        html += '<li class="dropdown-price-qty"><a data-toggle="modal" href="#itemSetPrice' + item.id + '">Set Price</a></li>';
+        html += '<li class="dropdown-price-qty"><a data-toggle="modal" href="#itemSetQty' + item.id + '">Set Quantity</a></li>';
+        html += '</ul>';
+        html += "</div>";
+        html += "</div>";
+
+        html += '<div class="modal fade" id="itemSetPrice' + item.id +'" tabindex="-1" role="dialog" aria-labelledby="modalPrice">';
+        html += '<div class="modal-dialog modal-sm" role="document">';
+        html += '<div class="modal-content">';
+        html += '<div class="modal-header">';
+        html += '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+        html += '<h4 class="modal-title" id="modalPrice">Enter Item Price</h4>';
+        html += '</div>';
+        html += '<div class="modal-body">';
+        html += '<div class="modal-price-input">';
+        html += '<input type="text" class="qty-price-input currency price" data-item="' + item.id +'" value="' + item.price.toFixed(2) + '" />';
+        html += '</div>';
+        html += '<div class="btn-ok-cancel">';
+        html += '<button class="btn btn-danger glyphicon glyphicon-remove btn-modal-cancel" data-dismiss="modal"></button>';
+        html += '<button type="submit" class="btn btn-success glyphicon glyphicon-ok btn-modal-ok" data-dismiss="modal"></button>';
+        html += "</div>";
+        html += "</div>";
+        html += "</div>";
+        html += "</div>";
+        html += "</div>";
+
+        html += '<div class="modal fade" id="itemSetQty' + item.id +'" tabindex="-1" role="dialog" aria-labelledby="modalQty">';
+        html += '<div class="modal-dialog modal-sm" role="document">';
+        html += '<div class="modal-content">';
+        html += '<div class="modal-header">';
+        html += '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+        html += '<h4 class="modal-title" id="modalQty">Enter Item Price</h4>';
+        html += '</div>';
+        html += '<div class="modal-body">';
+        html += '<div class="modal-input-qty">';
+        html += '<input type="text" class="item-list-qty" data-itemqty="' + item.id + '" value="' + item.quantity + '" />';
+        html += '<div>';
+        html += '<div class="glyphicon glyphicon-plus glyphicon-plus-minus btn-plus-qty" />';
+        html += '<div class="glyphicon glyphicon-minus glyphicon-plus-minus btn-minus-qty" />';
+        html += '</div>';
+        html += '</div>';
+        html += '<div class="btn-ok-cancel">';
+        html += '<button class="btn btn-danger glyphicon glyphicon-remove btn-modal-cancel" data-dismiss="modal"></button>';
+        html += '<button type="submit" class="btn btn-success glyphicon glyphicon-ok btn-modal-ok" data-dismiss="modal"></button>';
+        html += "</div>";
+        html += "</div>";
+        html += "</div>";
+        html += "</div>";
+        html += "</div>";
+        return html;
+    }
+
+    function sendJsonToController(item_json, url) {
         var token = $('#csrf-token').attr("content");
         var header = $('#csrf-header').attr("content");
 
         // send json to the controller
         $.ajax({
-            url:"/lists/items",
+            url: url,
             type:"POST",
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(item_json), //Stringified Json Object
@@ -136,6 +218,7 @@
         $tags.autocomplete({
             source: availableTags
         });
+        // console.log(json[0]);
     });
 
 $('#search-submit').click(function (e) {
@@ -149,15 +232,7 @@ $('#search-submit').click(function (e) {
         });
         json.forEach(function(item) {
             if(item.name === $tags.val()) {
-                html += "<div class='item-all'>";
-                html += "<div class='item-name'>";
-                html += "<input type='checkbox' value='false' class='item-property' />";
-                html += "<span class='item-property'>" + item.name + "</span>";
-                html += "</div>";
-                html += "<div class='item-img'>";
-                html += "<img src='/uploads/items/" + item.imgUrl + "'/>";
-                html += "</div>";
-                html += "</div>";
+                html += addItemToView(item);
 
                 $viewItems.each(function () {
                     if($(this).hasClass('active')){
@@ -170,10 +245,49 @@ $('#search-submit').click(function (e) {
             }
         });
 
-        sendJsonToController(item_json);
+        sendJsonToController(item_json, "/lists/items");
         $tags.val("");
     }
 });
+
+    //update price in database
+    $currency.change(function () {
+        var item_id = parseInt($(this).attr("data-item"));
+        var price = $(this).maskMoney('unmasked')[0];
+        json.forEach(function(item) {
+            if(item.id === item_id) {
+                item.price = price;
+                sendJsonToController(item, "/lists/items/setPrice");
+                console.log(item);
+            }
+        });
+    });
+
+    //update qty in database
+    function updateQty($qty_input) {
+        var item_id = parseInt($qty_input.attr("data-itemqty"));
+        json.forEach(function(item) {
+            if(item.id === item_id) {
+                item.quantity = $qty_input.val();
+                sendJsonToController(item, "/lists/items/setQty");
+                console.log(item);
+            }
+        });
+    }
+
+    $('.btn-minus-qty').click(function () {
+        var $qty_input = $(this).parent().parent().children();
+        if ($qty_input.val() > 1) {
+            $qty_input.val(parseInt($qty_input.val()) - 1);
+        }
+        updateQty($qty_input);
+    });
+
+    $('.btn-plus-qty').click(function () {
+        var $qty_input = $(this).parent().parent().children();
+        $qty_input.val(parseInt($qty_input.val()) + 1);
+        updateQty($qty_input);
+    });
 
 
     $('.ul-tabs li').first().addClass('active');
@@ -195,6 +309,34 @@ $('#search-submit').click(function (e) {
         content: function() {
             return $("#popover-content").html();
         }
+    });
+
+    $('btn-modal-cancel').click(function () {
+
+    });
+
+    //Checkout
+    $('.item-property').click(function(){
+        var $inputPrice = $(this).parent().next().children().children();
+        var qty = parseInt($inputPrice.parent().next().children().val());
+        // console.log($inputQty.val());
+        var price = $inputPrice.maskMoney('unmasked')[0];
+        var $total = $('.calculated-total');
+        var currentTotal = parseFloat($total.html());
+        var $btnsQty = $inputPrice.parent().next().children().next();
+        $(this).next().toggleClass('item-clicked');
+        if($(this).next().hasClass('item-clicked')) {
+            currentTotal += price * qty;
+            //disable inputs price and qty
+            $inputPrice.prop( "disabled", true ).css("background-color", "lightgrey");
+            $btnsQty.fadeOut().css("background-color", "#bbd366");
+        } else {
+            currentTotal -= price * qty;
+            //disable inputs price and qty
+            $inputPrice.prop( "disabled", false ).css("background-color", "white");
+            $btnsQty.fadeIn().css("background-color", "#bbd366");
+        }
+        $total.html(currentTotal.toFixed(2));
     });
 
 
@@ -313,16 +455,7 @@ $('#search-submit').click(function (e) {
         });
         json.forEach(function(item) {
             if(item.barcode === $input.val()) {
-                html += "<div class='item-all'>";
-                html += "<div class='item-name'>";
-                html += "<input type='checkbox' value='false' class='item-property' />";
-                html += "<span class='item-property'>" + item.name + "</span>";
-                html += "</div>";
-                html += "<div class='item-img'>";
-                html += "<img src='/uploads/items/" + item.imgUrl + "'/>";
-                html += "</div>";
-                html += "</div>";
-
+                html += addItemToView(item);
                 $viewItems.each(function () {
                     if($(this).hasClass('active')){
                         item.listId = parseInt($(this).children().val());
@@ -334,29 +467,8 @@ $('#search-submit').click(function (e) {
             }
         });
         console.log(item_barcode_json);
-        sendJsonToController(item_barcode_json);
+        sendJsonToController(item_barcode_json, "/lists/items");
     }
 
 
-    $('.item-property').click(function(){
-        $(this).next().toggleClass('item-clicked');
-    });
 
-
-    var $prices = $('.price');
-    var $qty = $('.quantity');
-
-    function addListTotal() {
-        var price = 0, i=0;
-        var quantity = [];
-
-        $prices.each(function () {
-            quantity = parseInt($qty[i].innerText);
-            price += parseFloat($(this).text()) * quantity;
-            console.log(quantity)
-            i++;
-        });
-        $('.calculated-total').html(price);
-    }
-
-    addListTotal();
