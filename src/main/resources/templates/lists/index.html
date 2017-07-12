@@ -99,7 +99,14 @@
                                 <!--$<span th:if="${item.price} > 0" th:text="${item.price}" class="price" />-->
                             </div>
                             <div class="item-quantity">
-                                Qty:  <span th:if="${item.quantity} > 0" th:text="${item.quantity}" class="quantity"></span>
+                                <!--Qty:  <span th:if="${item.quantity} > 0" th:text="${item.quantity}" class="quantity"></span>-->
+
+                                <input type="text" class="item-list-qty" th:value="${item.quantity}" />
+                                <div>
+                                    <div class="glyphicon glyphicon-plus glyphicon-plus-minus btn-plus-qty" />
+                                    <div class="glyphicon glyphicon-minus glyphicon-plus-minus btn-minus-qty" />
+                                </div>
+
                             </div>
                             <div class='item-img img-responsive'>
                                 <img th:src="${'/uploads/items/' + item.imgUrl}"/>

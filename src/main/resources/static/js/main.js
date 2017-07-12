@@ -67,7 +67,7 @@
      items/create
 ----------------------------------------------------------------------------------------------------------------------*/
     var $input = $('.qty-input');
-var $currency = $('.currency');
+    var $currency = $('.currency');
     var $fav = $('#fav-input');
 
     $('.btn-minus').click(function () {
@@ -206,6 +206,19 @@ $('#search-submit').click(function (e) {
                 console.log(item_json);
             }
         });
+    });
+
+
+    $('.btn-minus-qty').click(function () {
+        var $qty_input = $(this).parent().parent().children();
+        if ($qty_input.val() > 1) {
+            $qty_input.val(parseInt($qty_input.val()) - 1);
+        }
+    });
+
+    $('.btn-plus-qty').click(function () {
+        var $qty_input = $(this).parent().parent().children();
+        $qty_input.val(parseInt($qty_input.val()) + 1);
     });
 
 
