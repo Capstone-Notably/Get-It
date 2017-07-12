@@ -24,11 +24,14 @@ public class GroceryListsController {
     private final UserGListRepository userGListRepository;
     private final UsersRepository usersRepository;
     private final TwilioSvc twilioSvc;
+    private final CategoriesRepository categoriesRepository;
+    private final UserCategoryRepository userCategoryRepository;
 
     @Autowired
     public GroceryListsController(GroceryListsRepository groceryListsRepository, ItemsRepository itemsRepository,
                                   UserItemsRepository userItemsRepository, ListItemsRepository listItemsRepository,
-                                  UserGListRepository userGListRepository, TwilioSvc twilioSvc, UsersRepository usersRepository) {
+                                  UserGListRepository userGListRepository, TwilioSvc twilioSvc, UsersRepository usersRepository,
+                                  CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository) {
         this.groceryListsRepository = groceryListsRepository;
         this.itemsRepository = itemsRepository;
         this.userItemsRepository = userItemsRepository;
@@ -36,6 +39,8 @@ public class GroceryListsController {
         this.userGListRepository = userGListRepository;
         this.twilioSvc = twilioSvc;
         this.usersRepository = usersRepository;
+        this.categoriesRepository = categoriesRepository;
+        this.userCategoryRepository = userCategoryRepository;
     }
 
     @GetMapping("/lists")
@@ -63,6 +68,7 @@ public class GroceryListsController {
 
         model.addAttribute("items", customItems);
         model.addAttribute("lists", glists);
+        model.addAttribute("newItem", new CustomItem());
         return "lists/index";
     }
 
@@ -74,6 +80,21 @@ public class GroceryListsController {
         Item item = itemsRepository.findByName(name);
         ListItem listItem = new ListItem(glist, item);
         listItemsRepository.save(listItem);
+    }
+
+    @GetMapping ("/list/items/edit")
+    public String editItem(@RequestParam("item_id") long item_id, Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Item item = itemsRepository.findOne(item_id);
+        UserItem userItem = userItemsRepository.findByUser_IdAndItem_Id(user.getId(), item_id);
+        CustomItem customItem = new CustomItem(item, userItem);
+        List<Category> categories = CategoriesController.findAll(categoriesRepository, userCategoryRepository);
+        Category category = categoriesRepository.findOne(customItem.getCategoryId());
+        model.addAttribute("newItem", customItem);
+        model.addAttribute("categories", categories);
+        model.addAttribute("categoryName", category.getName());
+
+        return "items/create";
     }
 
     @PostMapping("/lists/items/setPrice")
