@@ -271,6 +271,47 @@ $('#search-submit').click(function (e) {
 
     });
 
+    //Checkout
+    $('.item-property').click(function(){
+        var $inputPrice = $(this).parent().next().children().children();
+        var price = $inputPrice.maskMoney('unmasked')[0];
+        var $total = $('.calculated-total');
+        var currentTotal = parseFloat($total.html());
+        var $btnsQty = $inputPrice.parent().next().children().next();
+        $(this).next().toggleClass('item-clicked');
+        if($(this).next().hasClass('item-clicked')) {
+            currentTotal += price;
+            //disable inputs price and qty
+            $inputPrice.prop( "disabled", true ).css("background-color", "lightgrey");
+            $btnsQty.fadeOut().css("background-color", "#bbd366");
+        } else {
+            currentTotal -= price;
+            //disable inputs price and qty
+            $inputPrice.prop( "disabled", false ).css("background-color", "white");
+            $btnsQty.fadeIn().css("background-color", "#bbd366");
+        }
+        $total.html(currentTotal.toFixed(2));
+    });
+
+
+    // var $prices = $('.price');
+    // var $qty = $('.quantity');
+    //
+    // function addListTotal() {
+    //     var price = 0, i=0;
+    //     var quantity = [];
+    //
+    //     $prices.each(function () {
+    //         quantity = parseInt($qty[i].innerText);
+    //         price += parseFloat($(this).text()) * quantity;
+    //         console.log(quantity);
+    //         i++;
+    //     });
+    //     $('.calculated-total').html(price);
+    // }
+    //
+    // addListTotal();
+
 
     // Scan a barcode
     // Create the QuaggaJS config object for the live stream
@@ -403,25 +444,4 @@ $('#search-submit').click(function (e) {
     }
 
 
-    $('.item-property').click(function(){
-        $(this).next().toggleClass('item-clicked');
-    });
 
-
-    var $prices = $('.price');
-    var $qty = $('.quantity');
-
-    function addListTotal() {
-        var price = 0, i=0;
-        var quantity = [];
-
-        $prices.each(function () {
-            quantity = parseInt($qty[i].innerText);
-            price += parseFloat($(this).text()) * quantity;
-            console.log(quantity)
-            i++;
-        });
-        $('.calculated-total').html(price);
-    }
-
-    addListTotal();
