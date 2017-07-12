@@ -19,13 +19,16 @@ public class User {
     @NotBlank(message = "You must provide username")
     private String username;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
+    @NotBlank(message = "You must provide an email")
     private String email;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
+    @NotBlank(message = "You must provide a phone number")
     private String phone;
 
     @Column(nullable = false)
+    @NotBlank(message = "You must provide a password")
     private String password;
 
     @Column(nullable = false)

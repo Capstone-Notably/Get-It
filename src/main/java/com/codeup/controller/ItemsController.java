@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Controller
 public class ItemsController {
-    private feinal ItemsRepository itemsRepository;
+    private final ItemsRepository itemsRepository;
     private final UserItemsRepository userItemsRepository;
     private final CategoriesRepository categoriesRepository;
     private final UserCategoryRepository userCategoryRepository;
