@@ -130,8 +130,8 @@
         html += "<ul class='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenu'" + item.id + "'>";
         html += "<li><a href='#'>Edit</a></li>";
         html += '<li><a href="#">Delete</a></li>';
-        html += '<li class="dropdown-price-qty"><a href="#">Set Price</a></li>';
-        html += '<li class="dropdown-price-qty"><a href="#">Set Quantity</a></li>';
+        html += '<li class="dropdown-price-qty"><a data-toggle="modal" href="#itemSetPrice' + ${item.id} + '">Set Price</a></li>';
+        html += '<li class="dropdown-price-qty"><a data-toggle="modal" href="#itemSetQty' + ${item.id} + '">Set Quantity</a></li>';
         html += '</ul>';
         html += "</div>";
         html += "</div>";
@@ -292,25 +292,6 @@ $('#search-submit').click(function (e) {
         }
         $total.html(currentTotal.toFixed(2));
     });
-
-
-    // var $prices = $('.price');
-    // var $qty = $('.quantity');
-    //
-    // function addListTotal() {
-    //     var price = 0, i=0;
-    //     var quantity = [];
-    //
-    //     $prices.each(function () {
-    //         quantity = parseInt($qty[i].innerText);
-    //         price += parseFloat($(this).text()) * quantity;
-    //         console.log(quantity);
-    //         i++;
-    //     });
-    //     $('.calculated-total').html(price);
-    // }
-    //
-    // addListTotal();
 
 
     // Scan a barcode
