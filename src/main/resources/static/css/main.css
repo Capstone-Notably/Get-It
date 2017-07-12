@@ -240,7 +240,7 @@ div.modal-content.login-body {
 
 }
 
-div.modal-body {
+.modal-login-body {
     background-color: var(--bannergreen);
 }
 
@@ -257,7 +257,7 @@ form>input {
     width: 80%;
 }
 
-div.modal-header {
+.div-header-login {
     display: flex;
     text-align: center;
 }
@@ -352,7 +352,7 @@ h1.register-header {
     flex-direction: column;
     width: 100%;
     height: 100%;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background-image: url("/uploads/others/market.jpg");
     background-size: cover;
@@ -360,7 +360,35 @@ h1.register-header {
     /* Preserve aspect ratio */
     min-width: 100%;
     min-height: 100%;
+    z-index: 1;
+    position: relative;
+}
 
+.hero-text1, .hero-text2 {
+    z-index: 2;
+    position: relative;
+    font-family: var(--font1);
+    color: var(--accentcolor);
+    font-size: 5em;
+    width: auto;
+    height: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bannergreen);
+}
+
+.hero-text1 {
+    top: 10%;
+}
+
+.hero-text2 {
+    bottom: 10%;
+}
+
+#brand {
+    font-size: 3em;
+    color: var(--accentcolor);
 }
 
 #recipe-header, #category-header {
@@ -559,6 +587,10 @@ span.category-name, span.recipe-name {
     border-radius: 0;
 }
 
+div.recipe-flex {
+
+}
+
 .recipe-title {
     font-family: var(--font1);
     font-size: 3em;
@@ -577,8 +609,9 @@ span.category-name, span.recipe-name {
 .recipe-details {
     padding:1em;
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: auto auto;
     grid-template-columns: 10% 90%;
+    background-color: white;
 }
 
 .recipe-icon {
@@ -599,6 +632,7 @@ span.category-name, span.recipe-name {
     text-align: justify;
     grid-row: 2;
     grid-column: 2;
+    height: auto;
 }
 
 .recipe-flex {
@@ -627,6 +661,61 @@ span.category-name, span.recipe-name {
     height: 6em;
 }
 
+div.collapse.in {
+    z-index: 2;
+    position: relative;
+}
+
+div.well {
+    background-color: white;
+    border-radius: 0;
+    padding: 1em;
+    width: 20vw;
+    height: auto;
+    margin-bottom: 0;
+    z-index: 3;
+    position: absolute;
+    /*top: 40%;*/
+    display: grid;
+    grid: "a b" "c c";
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 20% 80%;
+}
+
+button.close {
+    grid-row: 1;
+    grid-column: 2;
+    grid-area: b;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+strong.select {
+    grid-row: 1;
+    grid-column: 1;
+    grid-area: a;
+    text-align: center;
+    font-family: var(--font1);
+    font-size: 2em;
+}
+
+form.popover-body {
+    grid-area: c;
+    grid-row: 2;
+    /*grid-column-start: 0;*/
+    /*grid-column-end: -0;*/
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: var(--font1);
+    font-size: 1.5em;
+}
+
+div.radio {
+    display: flex;
+    flex-direction: column;
+}
 /*----------------------------------------------------------------------------------------------------------------------
    Create Item
 ----------------------------------------------------------------------------------------------------------------------*/
@@ -740,7 +829,7 @@ label#pic-label {
     /*margin-left: 15px;*/
 }
 
-.btn-plus, .btn-minus {
+.btn-plus, .btn-minus, .btn-minus-qty, .btn-plus-qty {
     cursor: pointer;
 }
 
@@ -822,14 +911,15 @@ label#pic-label {
     margin-left: 5px;
 }
 
-/*#search-submit {*/
-    /*background-color: var(--accentcolor);*/
-    /*padding-bottom: .5em;*/
-/*}*/
-
-/*#tags {*/
-    /*width: 50%;*/
-/*}*/
+.item-list-qty {
+    height: 33px;
+    width: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-top-width: 0;
+    margin-top: 1px;
+    text-align: right;
+}
 
 
 #lists-search-items {
@@ -911,9 +1001,17 @@ p.total {
     margin-bottom: 10px;
 }
 
+.item-price-qty {
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+    text-align: right;
+    border-bottom: 2px solid var(--accentcolor);
+}
+
 .item-name {
     display: flex;
-    width: 80%;
+    width: 50%;
     border-bottom: 2px solid var(--accentcolor);
     margin-bottom: 0;
     font-size: 3em;
@@ -926,7 +1024,7 @@ p.total {
 .item-img {
     display: inline-block;
     text-align: right;
-    width: 20%;
+    width: 10%;
     border-bottom: 2px solid var(--accentcolor);
 }
 
@@ -945,13 +1043,50 @@ p.total {
     justify-content: center;
     align-items: center;
     font-size: 2.5em;
-    border-bottom: 2px solid var(--accentcolor);
     width: 10%;
+}
+
+.modal-price-input, .modal-input-qty {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.modal-price-input > input {
+    font-size: 3em;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.modal-input-qty > input  {
+    font-size: 3em;
+    width: 40%;
+    margin-right: 3%;
+    align-items: center;
+    align-self: center;
+}
+
+.modal-input-qty > div {
+    font-size: 3em;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-modal-cancel {
+    margin-left: 5px;
+}
+
+.btn-modal-ok {
+    margin-right: 5px;
 }
 
 .price, .quantity {
     text-align: center;
     font-family: var(--font1);
+}
+
+.dropdown-price-qty {
+    display: none;
 }
 
 .btn {
@@ -1490,5 +1625,15 @@ canvas {
 
     span.category-name, span.recipe-name {
         width: 50%;
+    }
+}
+
+@media screen and (max-width: 870px) {
+    .item-price-qty {
+        display: none;
+    }
+
+    .dropdown-price-qty {
+        display: block;
     }
 }

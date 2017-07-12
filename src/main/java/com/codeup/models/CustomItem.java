@@ -7,7 +7,7 @@ public class CustomItem {
     private long id;
     private String name;
     private String imgUrl;
-    private float price;
+    private double price;
     private int quantity;
     private String barcode;
     private boolean favorite;
@@ -50,7 +50,7 @@ public class CustomItem {
         this.favorite = userItem.isFavorite();
     }
 
-    public CustomItem(long id, String name, String imgUrl, float price, int quantity, String barcode, boolean favorite, long listId) {
+    public CustomItem(long id, String name, String imgUrl, double price, int quantity, String barcode, boolean favorite, long listId) {
         this.id = id;
         this.name = name;
         this.imgUrl = imgUrl;
@@ -77,11 +77,11 @@ public class CustomItem {
         this.imgUrl = imgUrl;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
