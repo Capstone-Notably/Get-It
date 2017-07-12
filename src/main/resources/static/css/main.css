@@ -908,6 +908,8 @@ label#pic-label {
     border: 1px solid var(--accentcolor);
     align-items: center;
     border-radius: 0;
+    z-index: 4;
+    position: relative;
 }
 
 .item-list-qty {
@@ -939,6 +941,8 @@ label#pic-label {
     grid-row: 2;
     margin-left: 2.8em;
     margin-top: 1em;
+    z-index: 0;
+    position: relative;
 }
 
 .glist-btn-text {
@@ -959,6 +963,8 @@ div.ui-widget {
     align-items: center;
     justify-content: center;
     margin-right: 0;
+    z-index: 3;
+    position: relative;
 }
 
 .grocery-lists {
