@@ -9,11 +9,14 @@
     <nav th:replace="fragments::my-navbar"></nav>
 
     <div class="index-body">
-        <div class="image"/>
+        <div class="image">
+            <h1 class="hero-text1">Organized, simplified and built around the essentials!</h1>
+            <h1 class="hero-text2">Forget the pen and paper and just <strong id="brand">Get It!</strong> </h1>
+        </div>
 
         <div class="features">
 
-            <h1 class="features-header">Check out our features!</h1>
+            <h1 class="features-header">Intuitive, User-Friendly and Sharable.<br/> Always on-hand!</h1>
 
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
@@ -56,7 +59,7 @@
                 </a>
             </div>
 
-            <p class="features-text">Features!</p>
+            <p class="features-text">Start with built-in, common items and recipes, <br/> customize your own database based on YOUR dietary preferences.</p>
         </div>
 
         <div class="row categories" id="categories">
@@ -195,7 +198,7 @@
                                                             aria-haspopup="true" aria-expanded="true">
                                                         <span class="caret-size caret"></span>
                                                     </button>
-                                                    <ul class="dropdown-menu dropdown-menu-right "
+                                                    <ul class="dropdown-menu dropdown-menu"
                                                         th:attr="aria-labelledby='\'recipe-items' + ${recipeItem.id} +'\''" >
                                                         <!--<li><a href="@{/items/addToList(item_id=${recipeItem.id})}">Add to List</a></li>-->
                                                         <li>
@@ -206,19 +209,27 @@
 
                                                     <div class="collapse" th:id="'collapseLists' + ${recipeItem.id}">
                                                         <div class="well">
-                                                            <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <strong>Select grocery list</strong>
+
+                                                            <button type="button" class="close" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+
+                                                            <strong class="select">Select Grocery List</strong>
+
                                                             <form class="popover-body" th:method="post" th:action="@{/items/addToList}">
+
                                                                 <div class="radio">
                                                                     <label th:each="groceryList : ${groceryLists}">
                                                                         <input type="radio" name="glist_id" th:value="${groceryList.id}" th:text="${groceryList.name}" />
                                                                         <input type="hidden" name="item_id" th:value="${recipeItem.id}" />
                                                                     </label>
                                                                 </div>
-                                                                <button type="submit" class="btn btn-success"> SEND</button>
+
+                                                                <button type="submit" class="btn btn-success">SEND</button>
                                                             </form>
                                                         </div>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>

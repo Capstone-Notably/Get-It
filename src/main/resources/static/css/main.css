@@ -352,7 +352,7 @@ h1.register-header {
     flex-direction: column;
     width: 100%;
     height: 100%;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background-image: url("/uploads/others/market.jpg");
     background-size: cover;
@@ -360,7 +360,35 @@ h1.register-header {
     /* Preserve aspect ratio */
     min-width: 100%;
     min-height: 100%;
+    z-index: 1;
+    position: relative;
+}
 
+.hero-text1, .hero-text2 {
+    z-index: 2;
+    position: relative;
+    font-family: var(--font1);
+    color: var(--accentcolor);
+    font-size: 5em;
+    width: auto;
+    height: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bannergreen);
+}
+
+.hero-text1 {
+    top: 10%;
+}
+
+.hero-text2 {
+    bottom: 10%;
+}
+
+#brand {
+    font-size: 3em;
+    color: var(--accentcolor);
 }
 
 #recipe-header, #category-header {
@@ -559,6 +587,10 @@ span.category-name, span.recipe-name {
     border-radius: 0;
 }
 
+div.recipe-flex {
+
+}
+
 .recipe-title {
     font-family: var(--font1);
     font-size: 3em;
@@ -577,8 +609,9 @@ span.category-name, span.recipe-name {
 .recipe-details {
     padding:1em;
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: auto auto;
     grid-template-columns: 10% 90%;
+    background-color: white;
 }
 
 .recipe-icon {
@@ -599,6 +632,7 @@ span.category-name, span.recipe-name {
     text-align: justify;
     grid-row: 2;
     grid-column: 2;
+    height: auto;
 }
 
 .recipe-flex {
@@ -627,6 +661,61 @@ span.category-name, span.recipe-name {
     height: 6em;
 }
 
+div.collapse.in {
+    z-index: 2;
+    position: relative;
+}
+
+div.well {
+    background-color: white;
+    border-radius: 0;
+    padding: 1em;
+    width: 20vw;
+    height: auto;
+    margin-bottom: 0;
+    z-index: 3;
+    position: absolute;
+    /*top: 40%;*/
+    display: grid;
+    grid: "a b" "c c";
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 20% 80%;
+}
+
+button.close {
+    grid-row: 1;
+    grid-column: 2;
+    grid-area: b;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+strong.select {
+    grid-row: 1;
+    grid-column: 1;
+    grid-area: a;
+    text-align: center;
+    font-family: var(--font1);
+    font-size: 2em;
+}
+
+form.popover-body {
+    grid-area: c;
+    grid-row: 2;
+    /*grid-column-start: 0;*/
+    /*grid-column-end: -0;*/
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: var(--font1);
+    font-size: 1.5em;
+}
+
+div.radio {
+    display: flex;
+    flex-direction: column;
+}
 /*----------------------------------------------------------------------------------------------------------------------
    Create Item
 ----------------------------------------------------------------------------------------------------------------------*/
