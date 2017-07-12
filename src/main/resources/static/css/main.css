@@ -1005,7 +1005,9 @@ div.ui-widget {
     font-size: 4em;
     font-family: var(--font1);
     padding-bottom: 1em;
-    background-color: var(--bannergreen);
+    padding-top: 1em;
+    background-color: var(--maincolor);
+    border-top: .5em solid var(--accentcolor);
     border-bottom: .5em solid var(--accentcolor);
 }
 
