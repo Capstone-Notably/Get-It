@@ -1004,7 +1004,9 @@ div.ui-widget {
     align-content: flex-end;
     font-size: 4em;
     font-family: var(--font1);
-    margin: 3em;
+    padding-bottom: 1em;
+    background-color: var(--bannergreen);
+    border-bottom: .5em solid var(--accentcolor);
 }
 
 p.total {
