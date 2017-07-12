@@ -700,7 +700,7 @@ strong.select {
     font-size: 2em;
 }
 
-form.popover-body {
+form.popover-body.add-to-list {
     grid-area: c;
     grid-row: 2;
     /*grid-column-start: 0;*/
