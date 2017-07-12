@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head th:replace="fragments::head('Create Item')"></head>
+<head th:replace="fragments::head('Create/Edit Item')"></head>
 <body>
 <div class="home-grid">
     <div th:replace="fragments::hidden-search"></div>
@@ -11,19 +11,19 @@
             <h1 id="item-header">Create a New Item</h1>
         </div>
 
-        <form id="create-item-form" th:method="post" th:action="@{/items/create}" th:object="${item}" enctype="multipart/form-data">
+        <form id="create-item-form" th:method="post" th:action="@{/items/create}" th:object="${newItem}" enctype="multipart/form-data">
             <div class="create-name form-group">
                 <label for="name">Item Name</label>
-                <input type="text" class="form-control" id="name" th:field="*{name}" />
+                <input type="text" class="form-control" id="name" th:field="*{name}" th:value="${newItem.name}" />
             </div>
 
             <div class="choose-category">
-                <input class="menu-in" name="categoryName" type="hidden" value="Uncategorized"/>
+                <input class="menu-in" name="categoryName" type="hidden" th:value="${categoryName}"/>
                 <p>Category</p>
                 <div class="btn-group" style="display: block">
                     <button type="button" class="menu btn btn-lg dropdown-toggle form-control" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                        <span class="caret"></span> Uncategorized
+                        <span class="caret" /> <span th:text="${categoryName}" />
                     </button>
                     <ul class="dropdown-menu">
                         <div th:each="category:${categories}">
@@ -34,17 +34,16 @@
                 </div>
             </div>
 
-
             <div class="row create-first">
                 <div class="quantity col-xs-6">
                     <p>Quantity</p>
                     <div class="glyphicon glyphicon-plus glyphicon-plus-minus btn-plus"></div>
-                    <input type="text" class="qty-price-input qty-input" th:field="*{quantity}" th:value="0" />
+                    <input type="text" class="qty-price-input qty-input" th:field="*{quantity}" th:value="${newItem.quantity}" />
                     <div class="glyphicon glyphicon-minus glyphicon-plus-minus btn-minus"></div>
                 </div>
                 <div class="price col-xs-6">
                     <p>Price</p>
-                    <input type="hidden" id="price-in" value="0.0" th:field="*{price}" />
+                    <input type="hidden" id="price-in" value="0.0" th:field="*{price}" th:value="${newItem.price}" />
                     <input type="text" class="qty-price-input currency" />
                 </div>
             </div>
