@@ -67,7 +67,7 @@
      items/create
 ----------------------------------------------------------------------------------------------------------------------*/
     var $input = $('.qty-input');
-    var $currency = $('.currency');
+var $currency = $('.currency');
     var $fav = $('#fav-input');
 
     $('.btn-minus').click(function () {
@@ -100,7 +100,7 @@
     var $viewItems = $('.view-items');
     var $scannerInput = $('#scanner_input');
 
-    function addItem() {
+    function addItemToView(item) {
         var html = 0;
         html += "<div class='item-all'>";
         html += "<div class='item-name'>";
@@ -125,13 +125,13 @@
         return html;
     }
 
-    function sendJsonToController(item_json) {
+    function sendJsonToController(item_json, url) {
         var token = $('#csrf-token').attr("content");
         var header = $('#csrf-header').attr("content");
 
         // send json to the controller
         $.ajax({
-            url:"/lists/items",
+            url: url,
             type:"POST",
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(item_json), //Stringified Json Object
@@ -161,6 +161,7 @@
         $tags.autocomplete({
             source: availableTags
         });
+        // console.log(json[0]);
     });
 
 $('#search-submit').click(function (e) {
@@ -174,7 +175,7 @@ $('#search-submit').click(function (e) {
         });
         json.forEach(function(item) {
             if(item.name === $tags.val()) {
-                html += adddItem();
+                html += addItemToView(item);
 
                 $viewItems.each(function () {
                     if($(this).hasClass('active')){
@@ -187,13 +188,24 @@ $('#search-submit').click(function (e) {
             }
         });
 
-        sendJsonToController(item_json);
+        sendJsonToController(item_json, "/lists/items");
         $tags.val("");
     }
 });
 
-    $('.currency').change(function () {
-        console.log("test");
+    //update price in database
+    $currency.change(function () {
+        var item_id = parseInt($(this).attr("data-item"));
+        var item_json;
+        var price = $(this).maskMoney('unmasked')[0];
+        json.forEach(function(item) {
+            if(item.id === item_id) {
+                item_json = item;
+                item_json.price = price;
+                sendJsonToController(item_json, "/lists/items/setPrice");
+                console.log(item_json);
+            }
+        });
     });
 
 
