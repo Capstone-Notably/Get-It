@@ -5,6 +5,7 @@
 <div class="home-grid">
 
     <div th:replace="fragments::hidden-search"></div>
+
     <nav th:replace="fragments::my-navbar"></nav>
     <div class="category-create-body">
         <form th:method="post" th:action="@{/categories/create}" th:object="${categories}" enctype="multipart/form-data">
