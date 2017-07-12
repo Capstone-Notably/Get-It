@@ -957,7 +957,7 @@ p.total {
     width: 10%;
 }
 
-.modal-price-input {
+.modal-price-input, .modal-input-qty {
     display: flex;
     justify-content: center;
     align-self: center;
@@ -967,6 +967,20 @@ p.total {
     font-size: 3em;
     width: 100%;
     margin-bottom: 15px;
+}
+
+.modal-input-qty > input  {
+    font-size: 3em;
+    width: 40%;
+    margin-right: 3%;
+    align-items: center;
+    align-self: center;
+}
+
+.modal-input-qty > div {
+    font-size: 3em;
+    display: flex;
+    flex-direction: column;
 }
 
 .btn-modal-cancel {

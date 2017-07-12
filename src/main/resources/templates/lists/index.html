@@ -122,7 +122,7 @@
                                     <li><a href="#">Edit</a></li>
                                     <li><a href="#">Delete</a></li>
                                     <li class="dropdown-price-qty"><a data-toggle="modal" th:href="'#itemSetPrice' + ${item.id}">Set Price</a></li>
-                                    <li class="dropdown-price-qty"><a href="#">Set Quantity</a></li>
+                                    <li class="dropdown-price-qty"><a data-toggle="modal" th:href="'#itemSetQty' + ${item.id}">Set Quantity</a></li>
                                 </ul>
                             </div>
 
@@ -137,6 +137,30 @@
                                         <div class="modal-body">
                                             <div class="modal-price-input">
                                                 <input type="text" th:attr="data-item=${item.id}" class="qty-price-input currency price" th:value="'$ ' +${item.price} " />
+                                            </div>
+                                            <div class="btn-ok-cancel">
+                                                <button class="btn btn-danger glyphicon glyphicon-remove btn-modal-cancel" data-dismiss="modal"></button>
+                                                <button type="submit" class="btn btn-success glyphicon glyphicon-ok btn-modal-ok" data-dismiss="modal"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal to set quantity-->
+                            <div class="modal fade" th:id="'itemSetQty' + ${item.id}" tabindex="-1" role="dialog" aria-labelledby="modalQty">
+                                <div class="modal-dialog modal-sm" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="modalQty">Enter Item Quantity</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="modal-input-qty">
+                                                <input type="text" th:attr="data-itemqty=${item.id}" class="item-list-qty" th:value="${item.quantity}" />
+                                                <div>
+                                                    <div class="glyphicon glyphicon-plus glyphicon-plus-minus btn-plus-qty" />
+                                                    <div class="glyphicon glyphicon-minus glyphicon-plus-minus btn-minus-qty" />
+                                                </div>
                                             </div>
                                             <div class="btn-ok-cancel">
                                                 <button class="btn btn-danger glyphicon glyphicon-remove btn-modal-cancel" data-dismiss="modal"></button>
