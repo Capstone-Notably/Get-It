@@ -1206,8 +1206,9 @@ canvas {
 
 .users-info {
     grid-row: info;
-    display: inline-grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .user-profile-image {
@@ -1216,7 +1217,12 @@ canvas {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
 
+.user-image-profile {
+    height: 20em;
+    width: auto;
+    z-index: 2;
 }
 
 .user-account-details {
@@ -1227,6 +1233,7 @@ canvas {
     align-items: center;
     font-family: var(--font1);
     font-size: 3em;
+    text-align: center;
 }
 
 .user-profile {
