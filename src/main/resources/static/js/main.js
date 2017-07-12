@@ -130,8 +130,8 @@
         html += "<ul class='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenu'" + item.id + "'>";
         html += "<li><a href='#'>Edit</a></li>";
         html += '<li><a href="#">Delete</a></li>';
-        html += '<li><a href="#">Set Price</a></li>';
-        html += '<li><a href="#">Set Quantity</a></li>';
+        html += '<li class="dropdown-price-qty"><a href="#">Set Price</a></li>';
+        html += '<li class="dropdown-price-qty"><a href="#">Set Quantity</a></li>';
         html += '</ul>';
         html += "</div>";
         html += "</div>";
@@ -265,6 +265,10 @@ $('#search-submit').click(function (e) {
         content: function() {
             return $("#popover-content").html();
         }
+    });
+
+    $('btn-modal-cancel').click(function () {
+
     });
 
 

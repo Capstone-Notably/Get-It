@@ -957,9 +957,33 @@ p.total {
     width: 10%;
 }
 
+.modal-price-input {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.modal-price-input > input {
+    font-size: 3em;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.btn-modal-cancel {
+    margin-left: 5px;
+}
+
+.btn-modal-ok {
+    margin-right: 5px;
+}
+
 .price, .quantity {
     text-align: center;
     font-family: var(--font1);
+}
+
+.dropdown-price-qty {
+    display: none;
 }
 
 .btn {
@@ -1504,5 +1528,9 @@ canvas {
 @media screen and (max-width: 768px) {
     .item-price-qty {
         display: none;
+    }
+
+    .dropdown-price-qty {
+        display: block;
     }
 }
