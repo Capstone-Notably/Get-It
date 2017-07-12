@@ -12,4 +12,5 @@ import java.util.List;
 @Repository
 public interface ListItemsRepository extends CrudRepository<ListItem, Long> {
     public List<ListItem> findByGlist_Id(long glist_id);
+    public List<ListItem> findByGlist_IdAndItem_Id(long glist_id, long item_id);
 }

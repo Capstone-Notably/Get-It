@@ -94,6 +94,15 @@ public class GroceryListsController {
         userItemsRepository.save(userItem);
     }
 
+    @GetMapping("/list/items/delete")
+    public String deleteListItem(@RequestParam("list_id") long list_id, @RequestParam("item_id") long item_id) {
+        List<ListItem> listItems = listItemsRepository.findByGlist_IdAndItem_Id(list_id, item_id);
+        for (ListItem listItem : listItems) {
+            listItemsRepository.delete(listItem.getId());
+        }
+        return "redirect:/lists";
+    }
+
     @PostMapping("/list/share")
     public String shareList(@RequestParam("phone") String phone, @RequestParam("listId") long listId) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
