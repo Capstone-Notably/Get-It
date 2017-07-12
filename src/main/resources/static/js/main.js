@@ -108,6 +108,18 @@
         html += "<input type='checkbox' value='false' class='item-property' />";
         html += "<span class='item-property'>" + item.name + "</span>";
         html += "</div>";
+        html += '<div class="item-price-qty">';
+        html += '<div class="item-price">';
+        html += '<input type="text" class="qty-price-input currency price" data-item="' + item.id + '" value="$ ' + item.price.toFixed(2) + '" />';
+        html += "</div>";
+        html += '<div class="item-quantity">';
+        html += '<input type="text" class="item-list-qty" data-itemqty="' + item.id + '" value="' + item.quantity + '" />';
+        html += '<div>';
+        html += '<div class="glyphicon glyphicon-plus glyphicon-plus-minus btn-plus-qty" />';
+        html += '<div class="glyphicon glyphicon-minus glyphicon-plus-minus btn-minus-qty" />';
+        html += "</div>";
+        html += "</div>";
+        html += "</div>";
         html += "<div class='item-img'>";
         html += "<img src='/uploads/items/" + item.imgUrl + "'/>";
         html += "</div>";
@@ -208,20 +220,6 @@ $('#search-submit').click(function (e) {
     });
 
     //update qty in database
-    // $itemQty.change(function () {
-    //     var item_id = parseInt($(this).attr("data-itemqty"));
-    //     console.log(item_id);
-    //     var qty = $(this).val();
-    //     json.forEach(function(item) {
-    //         if(item.id === item_id) {
-    //             item.qty = qty;
-    //             // sendJsonToController(item, "/lists/items/setQty");
-    //             console.log(item);
-    //         }
-    //     });
-    // });
-
-
     function updateQty($qty_input) {
         var item_id = parseInt($qty_input.attr("data-itemqty"));
         json.forEach(function(item) {
@@ -385,16 +383,7 @@ $('#search-submit').click(function (e) {
         });
         json.forEach(function(item) {
             if(item.barcode === $input.val()) {
-                html += "<div class='item-all'>";
-                html += "<div class='item-name'>";
-                html += "<input type='checkbox' value='false' class='item-property' />";
-                html += "<span class='item-property'>" + item.name + "</span>";
-                html += "</div>";
-                html += "<div class='item-img'>";
-                html += "<img src='/uploads/items/" + item.imgUrl + "'/>";
-                html += "</div>";
-                html += "</div>";
-
+                html += addItemToView(item);
                 $viewItems.each(function () {
                     if($(this).hasClass('active')){
                         item.listId = parseInt($(this).children().val());
@@ -406,7 +395,7 @@ $('#search-submit').click(function (e) {
             }
         });
         console.log(item_barcode_json);
-        sendJsonToController(item_barcode_json);
+        sendJsonToController(item_barcode_json, "/lists/items");
     }
 
 
