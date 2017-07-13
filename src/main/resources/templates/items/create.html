@@ -43,8 +43,8 @@
                 </div>
                 <div class="price col-xs-6">
                     <p>Price</p>
-                    <input type="hidden" id="price-in" value="0.0" th:field="*{price}" th:value="${newItem.price}" />
-                    <input type="text" class="qty-price-input currency" />
+                    <input type="hidden" id="price-in" value="0.0" th:field="*{price}" />
+                    <input type="text" class="qty-price-input currency" th:value="${newItem.price}" />
                 </div>
             </div>
 

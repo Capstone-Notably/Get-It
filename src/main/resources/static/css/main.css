@@ -760,13 +760,9 @@ div.radio {
 
 #create-item-form {
     grid-row: form;
-    display: inline-grid;
-    grid: "name" "category" "first" "second" "submit";
-    grid-template-rows: 1fr 1fr 1.5fr 1.5fr 1fr;
-    justify-content: center;
-    align-items: center;
+    grid-row: form;
     font-family: var(--font1);
-    font-size: 2.5em;
+    font-size: 1.5em;
     text-align: center;
 }
 
@@ -803,11 +799,13 @@ div.radio {
 }
 
 .create-first {
-    grid-row: first;
+    /*display: flex;*/
 }
 
 .create-second {
-    grid-row: second;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 0.5em;
 }
 
 .pic {
@@ -820,7 +818,7 @@ div.radio {
 
 #img-btn-item-create {
     font-size: .7em;
-    width: 50%;
+    width: 20%;
     align-self: center;
 }
 
@@ -859,11 +857,10 @@ label#pic-label {
 .qty-price-input {
     height: 33px;
     width: 100px;
-    margin-left: 5px;
-    margin-right: 5px;
     border-top-width: 0;
     margin-top: 1px;
     text-align: right;
+    margin-bottom: 0.2em;
 }
 
 .star {
@@ -1155,16 +1152,14 @@ p.total {
     font-family: var(--font1);
 }
 
+
+
 .dropdown-price-qty {
     display: none;
 }
 
 .btn {
     border-radius: 0;
-}
-
-.quantity {
-    margin-left: .2em;
 }
 
 .glist-item {

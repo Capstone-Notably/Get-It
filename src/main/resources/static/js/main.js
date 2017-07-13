@@ -70,7 +70,7 @@
     });
 
 /*----------------------------------------------------------------------------------------------------------------------
-     items/create
+     Items edit/create
 ----------------------------------------------------------------------------------------------------------------------*/
     var $input = $('.qty-input');
     var $currency = $('.currency');
@@ -84,18 +84,39 @@
 
     $('.btn-plus').click(function () {
         $input.val(parseInt($input.val()) + 1);
+        console.log("test");
+
     });
 
     $currency.maskMoney({prefix:'$ ', allowZero:true});
 
-    $currency.keyup(function() {
+    // $currency.keyup(function() {
+    //     $('#price-in').val($(this).maskMoney('unmasked')[0]);
+    // });
+
+    $("body").on("keyup", ".currency", function(){
         $('#price-in').val($(this).maskMoney('unmasked')[0]);
     });
+
+
 
     $('.star').click(function () {
         $(this).toggleClass('glyphicon-star-empty glyphicon-star');
         $fav.each(function () { this.checked = !this.checked; });
     });
+
+
+    $('#add-item-button').click(function () {
+        var targetList;
+        $viewItems.each(function () {
+            if($(this).hasClass('active')){
+                targetList = "#itemCreate" + $(this).children().val();
+            }
+        });
+        console.log(targetList);
+        $(this).attr("data-target", targetList);
+    });
+
 
 
 /*----------------------------------------------------------------------------------------------------------------------
@@ -106,86 +127,103 @@
     var $viewItems = $('.view-items');
     var $scannerInput = $('#scanner_input');
     var $itemQty = $('.item-list-qty');
+    var $itemProperty = $('.item-property');
+    var $btnPlusQty = $('.btn-plus-qty');
+    var $btnMinusQty = $('.btn-minus-qty');
 
-    function addItemToView(item) {
-        var html = 0;
-        html += "<div class='item-all'>";
-        html += "<div class='item-name'>";
-        html += "<input type='checkbox' value='false' class='item-property' />";
-        html += "<span class='item-property'>" + item.name + "</span>";
-        html += "</div>";
-        html += '<div class="item-price-qty">';
-        html += '<div class="item-price">';
-        html += '<input type="text" data-item="' + item.id + '" class="qty-price-input currency price" value="$ ' + item.price.toFixed(2) + '" />';
-        html += "</div>";
-        html += '<div class="item-quantity">';
-        html += '<input type="text" class="item-list-qty" data-itemqty="' + item.id + '" value="' + item.quantity + '" />';
+    function createItem(item, listId) {
+        var html = '';
         html += '<div>';
-        html += '<div class="glyphicon glyphicon-plus glyphicon-plus-minus btn-plus-qty" />';
-        html += '<div class="glyphicon glyphicon-minus glyphicon-plus-minus btn-minus-qty" />';
-        html += "</div>";
-        html += "</div>";
-        html += "</div>";
-        html += "<div class='item-img'>";
-        html += "<img src='/uploads/items/" + item.imgUrl + "'/>";
-        html += "</div>";
-        html += "<div class='glist-item dropdown'>";
-        html += "<button class='btn btn-default dropdown-toggle item-edit' type='button' id='dropdownMenu" + item.id + "' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true'>";
-        html += "<span class='caret-size caret'></span>";
-        html += "</button>";
-        html += "<ul class='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenu'" + item.id + "'>";
-        html += "<li><a href='#'>Edit</a></li>";
-        html += '<li><a href="#">Delete</a></li>';
-        html += '<li class="dropdown-price-qty"><a data-toggle="modal" href="#itemSetPrice' + item.id + '">Set Price</a></li>';
-        html += '<li class="dropdown-price-qty"><a data-toggle="modal" href="#itemSetQty' + item.id + '">Set Quantity</a></li>';
-        html += '</ul>';
-        html += "</div>";
-        html += "</div>";
+        html += '<div class="item-all">';
+        html +=     '<div class="item-name">';
+        html +=         '<input type="checkbox" value="false" class="item-property" />';
+        html +=         "<span class='item-property property-name'>" + item.name + "</span>";
+        html +=     "</div>";
+        html +=     '<div class="item-price-qty">';
+        html +=         '<div class="item-price">';
+        html +=             '<input type="text" data-item="' + item.id + '" class="qty-price-input currency price" value="$ ' + item.price.toFixed(2) + '" />';
+        html +=         '</div>';
+        html +=         '<div class="item-quantity">';
+        html +=             '<input type="text" class="item-list-qty" data-itemqty="' + item.id + '" value="' + item.quantity + '" />';
+        html +=             '<div>';
+        html +=                 '<div class="glyphicon glyphicon-plus glyphicon-plus-minus btn-plus-qty" />';
+        html +=                 '<div class="glyphicon glyphicon-minus glyphicon-plus-minus btn-minus-qty" />';
+        html +=             '</div>';
+        html +=         '</div>';
+        html +=     '</div>';
+        html +=     '<div class="item-img img-responsive">';
+        html +=         "<img src='/uploads/items/" + item.imgUrl + "'/>";
+        html +=     '</div>';
+        html +=     '<div class="glist-item dropdown">';
+        html +=         "<button class='btn btn-default dropdown-toggle item-edit' type='button' id='dropdownMenu" + item.id + "' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true'>";
+        html +=             '<span class="caret-size caret"></span>';
+        html +=         '</button>';
+        html +=         "<ul class='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenu'" + item.id + "'>";
+        html +=             '<li><a href="/list/items/edit?item_id=' + item.id + '">Edit</a></li>';
+        html +=             '<li><a href="/list/items/delete?list_id=' + listId + '&item_id=' + item.id + '">Delete</a></li>';
+        html +=             '<li class="dropdown-price-qty"><a data-toggle="modal" href="#itemSetPrice' + item.id + '">Set Price</a></li>';
+        html +=             '<li class="dropdown-price-qty"><a data-toggle="modal" href="#itemSetQty' + item.id + '">Set Quantity</a></li>';
+        html +=         '</ul>';
+        html +=     "</div>";
 
-        html += '<div class="modal fade" id="itemSetPrice' + item.id +'" tabindex="-1" role="dialog" aria-labelledby="modalPrice">';
-        html += '<div class="modal-dialog modal-sm" role="document">';
-        html += '<div class="modal-content">';
-        html += '<div class="modal-header">';
-        html += '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-        html += '<h4 class="modal-title" id="modalPrice">Enter Item Price</h4>';
-        html += '</div>';
-        html += '<div class="modal-body">';
-        html += '<div class="modal-price-input">';
-        html += '<input type="text" class="qty-price-input currency price" data-item="' + item.id +'" value="' + item.price.toFixed(2) + '" />';
-        html += '</div>';
-        html += '<div class="btn-ok-cancel">';
-        html += '<button class="btn btn-danger glyphicon glyphicon-remove btn-modal-cancel" data-dismiss="modal"></button>';
-        html += '<button type="submit" class="btn btn-success glyphicon glyphicon-ok btn-modal-ok" data-dismiss="modal"></button>';
-        html += "</div>";
-        html += "</div>";
-        html += "</div>";
-        html += "</div>";
-        html += "</div>";
+        html +=     '<div class="modal fade" id="itemSetPrice' + item.id +'" tabindex="-1" role="dialog" aria-labelledby="modalPrice">';
+        html +=         '<div class="modal-dialog modal-sm" role="document">';
+        html +=             '<div class="modal-content">';
+        html +=                 '<div class="modal-header">';
+        html +=                     '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+        html +=                     '<h4 class="modal-title" id="modalPrice">Enter Item Price</h4>';
+        html +=                 '</div>';
+        html +=                 '<div class="modal-body">';
+        html +=                     '<div class="modal-price-input">';
+        html +=                         '<input type="text" class="qty-price-input currency price" data-item="' + item.id +'" value="' + item.price.toFixed(2) + '" />';
+        html +=                     '</div>';
+        html +=                     '<div class="btn-ok-cancel">';
+        html +=                         '<button class="btn btn-danger glyphicon glyphicon-remove btn-modal-cancel" data-dismiss="modal"></button>';
+        html +=                         '<button type="submit" class="btn btn-success glyphicon glyphicon-ok btn-modal-ok" data-dismiss="modal"></button>';
+        html +=                     "</div>";
+        html +=                 "</div>";
+        html +=             "</div>";
+        html +=         "</div>";
+        html +=     "</div>";
 
-        html += '<div class="modal fade" id="itemSetQty' + item.id +'" tabindex="-1" role="dialog" aria-labelledby="modalQty">';
-        html += '<div class="modal-dialog modal-sm" role="document">';
-        html += '<div class="modal-content">';
-        html += '<div class="modal-header">';
-        html += '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-        html += '<h4 class="modal-title" id="modalQty">Enter Item Price</h4>';
-        html += '</div>';
-        html += '<div class="modal-body">';
-        html += '<div class="modal-input-qty">';
-        html += '<input type="text" class="item-list-qty" data-itemqty="' + item.id + '" value="' + item.quantity + '" />';
-        html += '<div>';
-        html += '<div class="glyphicon glyphicon-plus glyphicon-plus-minus btn-plus-qty" />';
-        html += '<div class="glyphicon glyphicon-minus glyphicon-plus-minus btn-minus-qty" />';
-        html += '</div>';
-        html += '</div>';
-        html += '<div class="btn-ok-cancel">';
-        html += '<button class="btn btn-danger glyphicon glyphicon-remove btn-modal-cancel" data-dismiss="modal"></button>';
-        html += '<button type="submit" class="btn btn-success glyphicon glyphicon-ok btn-modal-ok" data-dismiss="modal"></button>';
-        html += "</div>";
-        html += "</div>";
-        html += "</div>";
+        html +=     '<div class="modal fade" id="itemSetQty' + item.id +'" tabindex="-1" role="dialog" aria-labelledby="modalQty">';
+        html +=         '<div class="modal-dialog modal-sm" role="document">';
+        html +=             '<div class="modal-content">';
+        html +=                 '<div class="modal-header">';
+        html +=                     '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+        html +=                     '<h4 class="modal-title" id="modalQty">Enter Item Price</h4>';
+        html +=                 '</div>';
+        html +=                 '<div class="modal-body">';
+        html +=                     '<div class="modal-input-qty">';
+        html +=                         '<input type="text" class="item-list-qty" data-itemqty="' + item.id + '" value="' + item.quantity + '" />';
+        html +=                     '<div>';
+        html +=                         '<div class="glyphicon glyphicon-plus glyphicon-plus-minus btn-plus-qty" />';
+        html +=                         '<div class="glyphicon glyphicon-minus glyphicon-plus-minus btn-minus-qty" />';
+        html +=                     '</div>';
+        html +=                 '</div>';
+        html +=                 '<div class="btn-ok-cancel">';
+        html +=                     '<button class="btn btn-danger glyphicon glyphicon-remove btn-modal-cancel" data-dismiss="modal"></button>';
+        html +=                     '<button type="submit" class="btn btn-success glyphicon glyphicon-ok btn-modal-ok" data-dismiss="modal"></button>';
+        html +=                 "</div>";
+        html +=             "</div>";
+        html +=         "</div>";
+        html +=     "</div>";
+        html +=     "</div>";
         html += "</div>";
         html += "</div>";
         return html;
+    }
+
+    function appendItem(item) {
+        $viewItems.each(function () {
+            if($(this).hasClass('active')){
+                var listId = parseInt($(this).children().val());
+                item.listId = listId;
+                $(this).append(createItem(item, listId));
+            }
+        });
+
+        $currency.maskMoney({prefix:'$ ', allowZero:true});
     }
 
     function sendJsonToController(item_json, url) {
@@ -228,58 +266,24 @@
         // console.log(json[0]);
     });
 
-$('#search-submit').click(function (e) {
-    e.preventDefault();
-    // $('.item-property').off("click");
-    // $('.item-property').on("click", itemClick);
-    // $money = $('.currency');
-    // $money.on('change', currencyFormatting);
-    //
-    // $money.maskMoney({prefix:'$ ', allowZero:true});
-    //
-    // $money.keyup(function() {
-    //     $('#price-in').val($(this).maskMoney('unmasked')[0]);
-    // });
+    $('#search-submit').click(function (e) {
+        e.preventDefault();
 
-    if($tags.val() !== "") {
-        var html;
-        $viewItems.each(function () {
-            if($(this).hasClass('active')){
-                html = $(this).html();
-            }
-        });
-        json.forEach(function(item) {
-            if(item.name === $tags.val()) {
-                html += addItemToView(item);
+        if($tags.val() !== "") {
+            json.forEach(function(item) {
+                if(item.name === $tags.val()) {
+                    appendItem(item);
+                    item_json = item;
+                }
+            });
+            sendJsonToController(item_json, "/lists/items");
+            $tags.val("");
+        }
+    });
 
-                $viewItems.each(function () {
-                    if($(this).hasClass('active')){
-                        item.listId = parseInt($(this).children().val());
-                        $(this).html(html);
-                    }
-                });
-
-                item_json = item;
-            }
-        });
-        $('.item-property').off("click");
-        $('.item-property').on("click", itemClick);
-        $money = $('.currency');
-        $money.on('change', currencyFormatting);
-
-        $money.maskMoney({prefix:'$ ', allowZero:true});
-
-        $money.keyup(function() {
-            $('#price-in').val($(this).maskMoney('unmasked')[0]);
-        });
-
-        sendJsonToController(item_json, "/lists/items");
-        $tags.val("");
-    }
-});
 
     //update price in database
-    $currency.on('change', currencyFormatting);
+    $viewItems.on( "change", '.currency', currencyFormatting);
 
     function currencyFormatting() {
         var item_id = parseInt($(this).attr("data-item"));
@@ -305,19 +309,21 @@ $('#search-submit').click(function (e) {
         });
     }
 
-    $('.btn-minus-qty').click(function () {
+    function btnMinusQty() {
         var $qty_input = $(this).parent().parent().children();
         if ($qty_input.val() > 1) {
             $qty_input.val(parseInt($qty_input.val()) - 1);
         }
         updateQty($qty_input);
-    });
+    }
+    $viewItems.on( "click", '.btn-minus-qty', btnMinusQty);
 
-    $('.btn-plus-qty').click(function () {
+    function btnPlusQty() {
         var $qty_input = $(this).parent().parent().children();
         $qty_input.val(parseInt($qty_input.val()) + 1);
         updateQty($qty_input);
-    });
+    }
+    $viewItems.on( "click", '.btn-plus-qty', btnPlusQty);
 
 
     $('.ul-tabs li').first().addClass('active');
@@ -341,17 +347,13 @@ $('#search-submit').click(function (e) {
         }
     });
 
-    $('btn-modal-cancel').click(function () {
-
-    });
 
     //Checkout
-    $('.item-property').on('click', itemClick);
+    $viewItems.on( "click", '.item-property', itemClick);
 
     function itemClick(){
         var $inputPrice = $(this).parent().next().children().children();
         var qty = parseInt($inputPrice.parent().next().children().val());
-        // console.log($inputQty.val());
         var price = $inputPrice.maskMoney('unmasked')[0];
         var $total = $('.calculated-total');
         var currentTotal = parseFloat($total.html());
@@ -369,10 +371,12 @@ $('#search-submit').click(function (e) {
             $btnsQty.fadeIn().css("background-color", "#bbd366");
         }
         $total.html(currentTotal.toFixed(2));
-    };
+    }
 
 
-    // Scan a barcode
+/*----------------------------------------------------------------------------------------------------------------------
+    Scan a barcode
+ ----------------------------------------------------------------------------------------------------------------------*/
     // Create the QuaggaJS config object for the live stream
     var liveStreamConfig = {
         inputStream: {
@@ -467,6 +471,17 @@ $('#search-submit').click(function (e) {
         }
     });
 
+    function adddItem($input) {
+        json.forEach(function(item) {
+            if(item.barcode === $input.val()) {
+                appendItem(item);
+                item_barcode_json = item;
+            }
+        });
+        console.log(item_barcode_json);
+        sendJsonToController(item_barcode_json, "/lists/items");
+    }
+
     // Call Quagga.decodeSingle() for every file selected in the
     // file input
     $("#livestream_scanner input:file").on("change", function(e) {
@@ -476,33 +491,6 @@ $('#search-submit').click(function (e) {
     });
 
     $('video').css('width', '100%');
-
-
-    function adddItem($input) {
-        var html;
-        $viewItems.each(function () {
-            if($(this).hasClass('active')){
-                html = $(this).html();
-            }
-        });
-        json.forEach(function(item) {
-            if(item.barcode === $input.val()) {
-                html += addItemToView(item);
-                $viewItems.each(function () {
-                    if($(this).hasClass('active')){
-                        item.listId = parseInt($(this).children().val());
-                        $(this).html(html);
-                    }
-                });
-
-                item_barcode_json = item;
-            }
-        });
-        console.log(item_barcode_json);
-        sendJsonToController(item_barcode_json, "/lists/items");
-    }
-
-
 
     $('.hero-text1').hide();
     $('.hero-text2').hide();
