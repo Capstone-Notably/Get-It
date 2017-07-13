@@ -1182,25 +1182,25 @@ canvas {
     background-color: var(--bannergreen);
     border-bottom: 1em solid var(--accentcolor);
     border-top: 1em solid var(--accentcolor);
-    display: inline-grid;
-    grid: "header" "info" "profile";
-    grid-template-rows: 15em 1fr 2fr;
+    /*display: inline-grid;*/
+    /*grid: "header" "info" "profile";*/
+    /*grid-template-rows: 15em 1fr 2fr;*/
 }
 
-.account-details {
-    grid-row: header;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url("/uploads/others/wood-board.jpeg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-bottom: 1em solid var(--accentcolor);
-}
+/*.account-details {*/
+    /*grid-row: header;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    /*background-image: url("/uploads/others/wood-board.jpeg");*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: cover;*/
+    /*border-bottom: 1em solid var(--accentcolor);*/
+/*}*/
 
 .profile-header {
-    font-size: 5em;
-    text-align: center;
+    /*font-size: 5em;*/
+    /*text-align: center;*/
     font-family: var(--font1);
 }
 
@@ -1236,9 +1236,9 @@ canvas {
     text-align: center;
 }
 
-.user-profile {
-    grid-row: profile;
-}
+/*.user-profile {*/
+    /*grid-row: profile;*/
+/*}*/
 
 /*----------------------------------------------------------------------------------------------------------------------
    About Devs
