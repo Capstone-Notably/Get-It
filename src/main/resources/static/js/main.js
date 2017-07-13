@@ -77,18 +77,53 @@
 
     $('.btn-plus').click(function () {
         $input.val(parseInt($input.val()) + 1);
+        console.log("test");
+
     });
 
     $currency.maskMoney({prefix:'$ ', allowZero:true});
 
-    $currency.keyup(function() {
+    // $currency.keyup(function() {
+    //     $('#price-in').val($(this).maskMoney('unmasked')[0]);
+    // });
+
+    $("body").on("keyup", ".currency", function(){
         $('#price-in').val($(this).maskMoney('unmasked')[0]);
     });
+
+
 
     $('.star').click(function () {
         $(this).toggleClass('glyphicon-star-empty glyphicon-star');
         $fav.each(function () { this.checked = !this.checked; });
     });
+
+    // $('#add-item-button').popover({
+    //     html : true,
+    //     content: function() {
+    //         return $("#popover-item").html();
+    //     }
+    // });
+
+    // $('.btn-cancel-create').click(function () {
+    //     $('#add-item-button').popover('hide');
+    // });
+
+
+    // $( "#popover-item" ).on( "click", '.btn-plus', function () {
+    //     console.log("test");
+    //
+    //     // $input.val(parseInt($input.val()) + 1);
+    // });
+
+
+    // $(".home-grid").on("change", ".qty-input", function(){
+    //     console.log("test")
+    // });
+    //
+    // $(".home-grid").on("click", ".btn-plus", function(){
+    //     console.log(parseInt($input.val()))
+    // });
 
 
 /*----------------------------------------------------------------------------------------------------------------------
@@ -194,23 +229,9 @@
                 $(this).append(createItem(item, listId));
             }
         });
-        // bind event handlers
-        $itemProperty.on("click", function () {
-            console.log("test")
-        });
-        $btnPlusQty.on('click', btnPlusQty);
-        $btnMinusQty.on('click', btnMinusQty);
 
-        $currency.on('change', currencyFormatting);
         $currency.maskMoney({prefix:'$ ', allowZero:true});
-        $currency.keyup(function() {
-            $('#price-in').val($(this).maskMoney('unmasked')[0]);
-        });
     }
-
-$(".item-name").on("click", "input", function(){
-    console.log("this is a text")
-});
 
     function sendJsonToController(item_json, url) {
         var token = $('#csrf-token').attr("content");
@@ -269,7 +290,7 @@ $(".item-name").on("click", "input", function(){
 
 
     //update price in database
-    $currency.on('change', currencyFormatting);
+    $viewItems.on( "change", '.currency', currencyFormatting);
 
     function currencyFormatting() {
         var item_id = parseInt($(this).attr("data-item"));
@@ -302,14 +323,14 @@ $(".item-name").on("click", "input", function(){
         }
         updateQty($qty_input);
     }
-    $btnMinusQty.on('click', btnMinusQty);
+    $viewItems.on( "click", '.btn-minus-qty', btnMinusQty);
 
     function btnPlusQty() {
         var $qty_input = $(this).parent().parent().children();
         $qty_input.val(parseInt($qty_input.val()) + 1);
         updateQty($qty_input);
     }
-    $btnPlusQty.on('click', btnPlusQty);
+    $viewItems.on( "click", '.btn-plus-qty', btnPlusQty);
 
 
     $('.ul-tabs li').first().addClass('active');
@@ -335,7 +356,7 @@ $(".item-name").on("click", "input", function(){
 
 
     //Checkout
-    $itemProperty.on('click', itemClick);
+    $viewItems.on( "click", '.item-property', itemClick);
 
     function itemClick(){
         var $inputPrice = $(this).parent().next().children().children();
