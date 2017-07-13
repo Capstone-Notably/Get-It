@@ -11,12 +11,12 @@
     <div class="index-body">
         <div class="image">
             <h1 class="hero-text1">Organized, simplified and built around the essentials!</h1>
-            <h1 class="hero-text2">Forget the pen and paper and just <strong id="brand">Get It!</strong> </h1>
+            <h1 class="hero-text2">Forget the pen and paper.. </h1><h1 class="brand">Get It!</h1>
         </div>
 
         <div class="features">
 
-            <h1 class="features-header">Intuitive, User-Friendly and Sharable.<br/> Always on-hand!</h1>
+            <h1 class="features-header">Intuitive, Sharable, and<br/> Always on-hand!</h1>
 
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
@@ -59,11 +59,11 @@
                 </a>
             </div>
 
-            <p class="features-text">Start with built-in, common items and recipes, <br/> customize your own database based on YOUR dietary preferences.</p>
+            <p class="features-text">Use built-in items and recipes, or<br/>customize your own database based on YOUR dietary preferences.</p>
         </div>
 
         <div class="row categories" id="categories">
-            <h2 id="category-header">Categories
+            <h2 id="category-header">CATEGORIES
                 <span sec:authorize="isAuthenticated()" id="popover-category" class="glyphicon glyphicon-plus add-category" data-placement="bottom" ></span>
             </h2>
 
@@ -100,7 +100,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body category-items-modal">
                                     <div th:each="item:${items}">
                                         <div class="category-items" th:if="${item.categoryId} == ${category.id}">
                                             <p class="items-name"><span th:text="${item.name}"/></p>
@@ -132,7 +132,7 @@
         </div>
 
         <div class="row recipes" id="recipes">
-            <h2 id="recipe-header">Recipes
+            <h2 id="recipe-header">RECIPES
                 <span sec:authorize="isAuthenticated()"
                       class="glyphicon glyphicon-plus add-recipe" aria-hidden="true"
                       data-container="body" data-toggle="popover"

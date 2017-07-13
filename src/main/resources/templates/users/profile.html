@@ -5,29 +5,52 @@
 <div class="home-grid">
     <div th:replace="fragments::hidden-search"></div>
     <nav th:replace="fragments::my-navbar"></nav>
-    <div class="user-profile-body">
 
-        <div class="account-details">
-            <h2 class="profile-header">Profile Details</h2>
-        </div>
+    <div class="modal-content profile-home">
 
+        <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content profile-body">
 
-        <div class="users-info">
-            <div class="user-profile-image">
-                <img class="img-responsive user-image-profile" th:src="'/uploads/users/' + ${#authentication.principal.imgUrl}"/>
+                    <div class="modal-header div-header-profile">
+                        <h4 class="modal-title profile-header" id="myModalLabel">Profile Details</h4>
+                        <button id="close-profile-modal" type="submit" class="close" data-dismiss="modal" aria-label="Close">
+                            <a href="/" aria-hidden="true">&times;</a>
+                        </button>
+                    </div>
+
+                    <div class="modal-body modal-profile-body">
+                        <div class="modal-content">
+                            <div class="users-info">
+                                <div class="user-profile-image">
+                                    <img class="img-responsive user-image-profile" th:src="'/uploads/users/' + ${#authentication.principal.imgUrl}"/>
+                                </div>
+                                <form id="profile-form">
+                                    <div class="user-account-details">
+                                        <p>Username: <span class="" th:text="${#authentication.principal.username}"/></p>
+                                        <p>Email: <span class="" th:text="${#authentication.principal.email}"/></p>
+                                        <p>Phone: <span class="" th:text="${#authentication.principal.phone}"/></p>
+                                        <button type="submit" class="edit-profile-button btn btn-default">Edit Details</button>
+                                    </div>
+                                    <div class="user-details-edit">
+                                        <label for="username">Username</label>
+                                        <input id="username" name="username" type="text"/>
+                                        <label for="email">Email</label>
+                                        <input id="email" name="email" type="email"/>
+                                        <label for="phone">Phone</label>
+                                        <input id="phone" name="phone" type="phone"/>
+                                        <button type="submit" class="submit-profile-button btn btn-default">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <div class="user-account-details">
-                <p>Username: <span class="" th:text="${#authentication.principal.username}"/></p>
-                <p>Email: <span class="" th:text="${#authentication.principal.email}"/></p>
-                <p>Phone: <span class="" th:text="${#authentication.principal.phone}"/></p>
-            </div>
         </div>
-
-        <div class="user-profile">
-
-        </div>
-
     </div>
+
     <div th:replace="fragments::my-footer"></div>
 </div>
 <div th:replace="fragments::scripts"></div>
