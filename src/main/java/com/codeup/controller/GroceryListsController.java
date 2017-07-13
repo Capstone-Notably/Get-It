@@ -46,6 +46,7 @@ public class GroceryListsController {
     @GetMapping("/lists")
     public String viewLists(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Category> categories = CategoriesController.findAll(categoriesRepository, userCategoryRepository);
         List<CustomItem> customItems = new ArrayList<>();
         List<UserGList> userGLists = userGListRepository.findByUser_Id(user.getId());
         List<GroceryList> glists = new ArrayList<>();
@@ -69,6 +70,7 @@ public class GroceryListsController {
         model.addAttribute("items", customItems);
         model.addAttribute("lists", glists);
         model.addAttribute("newItem", new CustomItem());
+        model.addAttribute("categories", categories);
         return "lists/index";
     }
 
@@ -93,7 +95,6 @@ public class GroceryListsController {
         model.addAttribute("newItem", customItem);
         model.addAttribute("categories", categories);
         model.addAttribute("categoryName", category.getName());
-
         return "items/create";
     }
 
