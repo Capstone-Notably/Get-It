@@ -216,7 +216,7 @@
             }
         });
 
-        $currency.maskMoney({prefix:'$ ', allowZero:true});
+        $('.currency').maskMoney({prefix:'$ ', allowZero:true});
     }
 
     function sendJsonToController(item_json, url) {
