@@ -8,6 +8,7 @@
     <div class="register-body">
         <h1 class="register-header">Get Started and Get It!</h1>
         <form class="register-form" th:method="post" th:action="@{/users/register}" th:object="${user}" enctype="multipart/form-data">
+
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" th:field="*{username}"/>
@@ -15,18 +16,31 @@
                     <div th:replace="fragments :: validation-alert('username')" />
                 </span>
             </div>
+
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="text" class="form-control" id="email" th:field="*{email}"/>
+                <span th:if="${#fields.hasErrors('email')}">
+                    <div th:replace="fragments :: validation-alert('email')" />
+                </span>
             </div>
+
             <div class="form-group">
                 <label for="phone">Phone Number</label>
                 <input type="text" class="form-control" id="phone" th:field="*{phone}"/>
+                <span th:if="${#fields.hasErrors('phone')}">
+                    <div th:replace="fragments :: validation-alert('phone')" />
+                </span>
             </div>
+
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" th:field="*{password}"/>
+                <span th:if="${#fields.hasErrors('password')}">
+                    <div th:replace="fragments :: validation-alert('password')" />
+                </span>
             </div>
+
             <div class="form-group">
                 <label for="file">Image</label>
                 <input type="file" class="form-control" name="file" id="file"/>

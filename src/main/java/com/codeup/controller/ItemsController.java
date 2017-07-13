@@ -48,10 +48,12 @@ public class ItemsController {
     }
 
     @PostMapping("/items/create")
-    public String createItem(@ModelAttribute CustomItem item, @RequestParam(name = "file") MultipartFile uploadedFile, @RequestParam(name = "categoryName") String categoryName, Model model) {
+    public String createItem(@ModelAttribute CustomItem item, @RequestParam(name = "file") MultipartFile uploadedFile,
+                             @RequestParam(name = "categoryName") String categoryName, Model model, @RequestParam("list_id") long list_id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String filename = UsersController.transferUploadedFile(uploadedFile, itemsImgPath, model);
         Category category = categoriesRepository.findByName(categoryName);
+        GroceryList glist = groceryListsRepository.findOne(list_id);
         String preference = String.valueOf(userCategoryRepository.findByUser_Id(user.getId()).get(0).getPreference().getId());
 
         if(filename.isEmpty()) {
@@ -59,9 +61,10 @@ public class ItemsController {
         }
         Item defaultItem = new Item(item.getName(), filename, preference, category, user);
         UserItem userItem = new UserItem(item.getPrice(), item.getQuantity(), item.getBarcode(), item.isFavorite(), user, defaultItem);
-        itemsRepository.save(defaultItem);
+        Item savedItem = itemsRepository.save(defaultItem);
         userItemsRepository.save(userItem);
-        return "redirect:/";
+        listItemsRepository.save(new ListItem(glist, savedItem));
+        return "redirect:/lists";
     }
 
     @GetMapping("/items.json")

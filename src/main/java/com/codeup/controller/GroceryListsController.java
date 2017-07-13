@@ -24,11 +24,14 @@ public class GroceryListsController {
     private final UserGListRepository userGListRepository;
     private final UsersRepository usersRepository;
     private final TwilioSvc twilioSvc;
+    private final CategoriesRepository categoriesRepository;
+    private final UserCategoryRepository userCategoryRepository;
 
     @Autowired
     public GroceryListsController(GroceryListsRepository groceryListsRepository, ItemsRepository itemsRepository,
                                   UserItemsRepository userItemsRepository, ListItemsRepository listItemsRepository,
-                                  UserGListRepository userGListRepository, TwilioSvc twilioSvc, UsersRepository usersRepository) {
+                                  UserGListRepository userGListRepository, TwilioSvc twilioSvc, UsersRepository usersRepository,
+                                  CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository) {
         this.groceryListsRepository = groceryListsRepository;
         this.itemsRepository = itemsRepository;
         this.userItemsRepository = userItemsRepository;
@@ -36,11 +39,14 @@ public class GroceryListsController {
         this.userGListRepository = userGListRepository;
         this.twilioSvc = twilioSvc;
         this.usersRepository = usersRepository;
+        this.categoriesRepository = categoriesRepository;
+        this.userCategoryRepository = userCategoryRepository;
     }
 
     @GetMapping("/lists")
     public String viewLists(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Category> categories = CategoriesController.findAll(categoriesRepository, userCategoryRepository);
         List<CustomItem> customItems = new ArrayList<>();
         List<UserGList> userGLists = userGListRepository.findByUser_Id(user.getId());
         List<GroceryList> glists = new ArrayList<>();
@@ -63,6 +69,8 @@ public class GroceryListsController {
 
         model.addAttribute("items", customItems);
         model.addAttribute("lists", glists);
+        model.addAttribute("newItem", new CustomItem());
+        model.addAttribute("categories", categories);
         return "lists/index";
     }
 
@@ -74,6 +82,20 @@ public class GroceryListsController {
         Item item = itemsRepository.findByName(name);
         ListItem listItem = new ListItem(glist, item);
         listItemsRepository.save(listItem);
+    }
+
+    @GetMapping ("/list/items/edit")
+    public String editItem(@RequestParam("item_id") long item_id, Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Item item = itemsRepository.findOne(item_id);
+        UserItem userItem = userItemsRepository.findByUser_IdAndItem_Id(user.getId(), item_id);
+        CustomItem customItem = new CustomItem(item, userItem);
+        List<Category> categories = CategoriesController.findAll(categoriesRepository, userCategoryRepository);
+        Category category = categoriesRepository.findOne(customItem.getCategoryId());
+        model.addAttribute("newItem", customItem);
+        model.addAttribute("categories", categories);
+        model.addAttribute("categoryName", category.getName());
+        return "items/create";
     }
 
     @PostMapping("/lists/items/setPrice")
@@ -92,6 +114,15 @@ public class GroceryListsController {
         UserItem userItem = userItemsRepository.findByUser_IdAndItem_Id(user.getId(), item_id);
         userItem.setQuantity(jsonString.getQuantity());
         userItemsRepository.save(userItem);
+    }
+
+    @GetMapping("/list/items/delete")
+    public String deleteListItem(@RequestParam("list_id") long list_id, @RequestParam("item_id") long item_id) {
+        List<ListItem> listItems = listItemsRepository.findByGlist_IdAndItem_Id(list_id, item_id);
+        for (ListItem listItem : listItems) {
+            listItemsRepository.delete(listItem.getId());
+        }
+        return "redirect:/lists";
     }
 
     @PostMapping("/list/share")
