@@ -24,6 +24,7 @@ body {
     --bannergreen: rgba(141, 182, 0, .6);
     --accentcolor: rgb(235, 253, 212);
     --grey: #DADFE1;
+    --accentcolor2: rgba(0, 0, 0, .4)
 }
 
 ul, li, a, a:hover {
@@ -122,8 +123,8 @@ ul, li, a, a:hover {
     padding-right: .5em;
 }
 .user-icon {
-    max-height: 3em;
-    max-width: 3em;
+    max-height: 4em;
+    max-width: 6em;
 }
 
 .hamburger {
@@ -348,11 +349,14 @@ h1.register-header {
 
 .image {
     grid-row: image;
-    display: flex;
-    flex-direction: column;
+    display: inline-grid;
+    grid: "text1" "text2 brand";
+    grid-template-rows: 1fr 2fr;
+    grid-template-columns: 60% 40%;
     width: 100%;
+    max-width: 100%;
     height: 100%;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background-image: url("/uploads/others/market.jpg");
     background-size: cover;
@@ -364,31 +368,46 @@ h1.register-header {
     position: relative;
 }
 
-.hero-text1, .hero-text2 {
+.hero-text1, .hero-text2, .brand {
     z-index: 2;
     position: relative;
+    display: flex;
     font-family: var(--font1);
     color: var(--accentcolor);
-    font-size: 5em;
     width: auto;
     height: auto;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--bannergreen);
+    font-weight: 900;
+    /*background-color: var(--bannergreen);*/
 }
 
 .hero-text1 {
-    top: 10%;
+    grid-area: text1;
+    font-size: 6em;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row: 1;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero-text2 {
-    bottom: 10%;
+    grid-area: text2;
+    font-size: 6em;
+    grid-column: 1;
+    grid-row: 2;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
 }
 
-#brand {
-    font-size: 3em;
-    color: var(--accentcolor);
+.brand {
+    grid-area: brand;
+    font-size: 12em;
+    grid-column: 2;
+    grid-row: 2;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 #recipe-header, #category-header {
@@ -400,8 +419,8 @@ h1.register-header {
     height: 2em;
     background-color: var(--green);
     color: black;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border-top: .1em solid var(--accentcolor);
+    border-bottom: .1em solid var(--accentcolor);
 }
 
 
@@ -466,8 +485,8 @@ span.category-name, span.recipe-name {
     z-index: 1;
     font-family: var(--font1);
     font-weight: 800;
-    color: black;
-    background-color: var(--bannergreen);
+    color: var(--maincolor);
+    background-color: rgba(0,0,0, .4);
     bottom: .5em;
     width: 80%;
     max-width: 80%;
@@ -480,7 +499,7 @@ span.category-name, span.recipe-name {
     position: relative;
     font-size: 2em;
     z-index: 0;
-    border: .5px solid black;
+    border: .5px solid var(--bannergreen);
 }
 
 .category-image > img, .recipe-image > img {
@@ -529,13 +548,17 @@ span.category-name, span.recipe-name {
    Item Index
 ----------------------------------------------------------------------------------------------------------------------*/
 
+.category-items-modal {
+    background-color: var(--bannergreen);
+}
+
 .category-items {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     font-family: var(--font1);
     width: 100%;
-    border-bottom: 1px solid var(--bannergreen);
+    border-bottom: 1px solid var(--accentcolor2);
 }
 
 .items-name {
@@ -647,7 +670,7 @@ div.recipe-flex {
     align-items: center;
     font-family: var(--font1);
     width: 100%;
-    border-bottom: 1px solid var(--bannergreen);
+    border-bottom: 1px solid var(--accentcolor2);
 }
 
 .recipe-items-name {
@@ -875,8 +898,8 @@ label#pic-label {
     background-image: url("/uploads/others/wood-board.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
-    border-top: 1em solid var(--accentcolor);
-    border-bottom: 1em solid var(--accentcolor);
+    border-top: .3em solid var(--accentcolor2);
+    border-bottom: .3em solid var(--accentcolor2);
     width: 100vw;
     height: 100%;
     /*margin-top: 2.5em;*/
@@ -972,7 +995,7 @@ div.ui-widget {
     padding: 3em;
     width: 100vw;
     margin-right: 0;
-    background-color: var(--bannergreen);
+    background-color: white;
     padding-right: 4.5em;
 }
 
@@ -980,6 +1003,11 @@ div.ui-widget {
     font-size: 1.5em;
     font-family: var(--font1);
 }
+
+/*.nav-tabs>li.active>a {*/
+    /*color: white;*/
+    /*background-color: var(--accentcolor2);*/
+/*}*/
 
 .tabs {
     display: flex;
@@ -997,7 +1025,7 @@ div.ui-widget {
 }
 
 .lists-view {
-    border: 3px solid var(--accentcolor);
+    border: 3px solid var(--bannergreen);
     padding: 3em;
     min-height: 75em;
     max-height: inherit;
@@ -1012,9 +1040,9 @@ div.ui-widget {
     font-family: var(--font1);
     padding-bottom: 1em;
     padding-top: 1em;
-    background-color: var(--maincolor);
-    border-top: .5em solid var(--accentcolor);
-    border-bottom: .5em solid var(--accentcolor);
+    background-color: var(--green);
+    border-top: .05em solid var(--accentcolor2);
+    border-bottom: .05em solid var(--accentcolor2);
 }
 
 p.total {
@@ -1209,6 +1237,7 @@ canvas {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--accentcolor);
 }
 
 .user-profile-image {
@@ -1223,6 +1252,7 @@ canvas {
     height: 20em;
     width: auto;
     z-index: 2;
+    border: 2px solid var(--accentcolor2);
 }
 
 .user-account-details {
@@ -1232,6 +1262,7 @@ canvas {
     justify-content: center;
     align-items: center;
     font-family: var(--font1);
+    color: var(--accentcolor2);
     font-size: 3em;
     text-align: center;
 }
