@@ -63,7 +63,7 @@
     });
 
 /*----------------------------------------------------------------------------------------------------------------------
-     items/create
+     Items edit/create
 ----------------------------------------------------------------------------------------------------------------------*/
     var $input = $('.qty-input');
     var $currency = $('.currency');
@@ -98,32 +98,18 @@
         $fav.each(function () { this.checked = !this.checked; });
     });
 
-    // $('#add-item-button').popover({
-    //     html : true,
-    //     content: function() {
-    //         return $("#popover-item").html();
-    //     }
-    // });
 
-    // $('.btn-cancel-create').click(function () {
-    //     $('#add-item-button').popover('hide');
-    // });
+    $('#add-item-button').click(function () {
+        var targetList;
+        $viewItems.each(function () {
+            if($(this).hasClass('active')){
+                targetList = "#itemCreate" + $(this).children().val();
+            }
+        });
+        console.log(targetList);
+        $(this).attr("data-target", targetList);
+    });
 
-
-    // $( "#popover-item" ).on( "click", '.btn-plus', function () {
-    //     console.log("test");
-    //
-    //     // $input.val(parseInt($input.val()) + 1);
-    // });
-
-
-    // $(".home-grid").on("change", ".qty-input", function(){
-    //     console.log("test")
-    // });
-    //
-    // $(".home-grid").on("click", ".btn-plus", function(){
-    //     console.log(parseInt($input.val()))
-    // });
 
 
 /*----------------------------------------------------------------------------------------------------------------------
