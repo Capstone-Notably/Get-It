@@ -1039,7 +1039,7 @@ div.ui-widget {
     align-self: flex-end;
     justify-content: center;
     align-content: flex-end;
-    font-size: 4em;
+    font-size: 4.5em;
     font-family: var(--font1);
     padding-bottom: 1em;
     padding-top: 1em;
@@ -1052,6 +1052,7 @@ p.total {
     display: inline-flex;
     align-self: flex-end;
     color: white;
+    font-weight: 800;
 }
 
 .caret-size-lists {
@@ -1214,39 +1215,47 @@ canvas {
 /*----------------------------------------------------------------------------------------------------------------------
    User Profile
 ----------------------------------------------------------------------------------------------------------------------*/
-.user-profile-body {
+.profile-home {
     grid-row: body;
-    background-color: var(--bannergreen);
-    border-bottom: 1em solid var(--accentcolor);
-    border-top: 1em solid var(--accentcolor);
-    /*display: inline-grid;*/
-    /*grid: "header" "info" "profile";*/
-    /*grid-template-rows: 15em 1fr 2fr;*/
+    background-image: url("/uploads/others/market.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-/*.account-details {*/
-    /*grid-row: header;*/
-    /*display: flex;*/
-    /*align-items: center;*/
-    /*justify-content: center;*/
-    /*background-image: url("/uploads/others/wood-board.jpeg");*/
-    /*background-repeat: no-repeat;*/
-    /*background-size: cover;*/
-    /*border-bottom: 1em solid var(--accentcolor);*/
-/*}*/
+.profile-body {
+    border: 2px solid var(--accentcolor);
+    background-color: var(--bannergreen);
+}
 
 .profile-header {
-    /*font-size: 5em;*/
-    /*text-align: center;*/
+    font-size: 3em;
+    align-content: center;
+    justify-content: center;
     font-family: var(--font1);
+    font-weight: 500;
+    height: 100%;
+    width: 80%;
+}
+.div-header-profile {
+    height: 100%;
+    background-color: white;
+}
+
+#close-profile-modal {
+    height: 100%;
+    align-content: flex-start;
+    justify-content: flex-start;
 }
 
 .users-info {
     grid-row: info;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: .5em;
     background-color: var(--accentcolor);
+    border: 3px solid var(--accentcolor2);
 }
 
 .user-profile-image {
@@ -1255,6 +1264,7 @@ canvas {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: .5em;
 }
 
 .user-image-profile {
@@ -1271,14 +1281,46 @@ canvas {
     justify-content: center;
     align-items: center;
     font-family: var(--font1);
-    color: var(--accentcolor2);
+    color: black;
     font-size: 3em;
+    font-weight: 800;
     text-align: center;
 }
 
-/*.user-profile {*/
-    /*grid-row: profile;*/
-/*}*/
+.user-account-details.hide {
+    display: none;
+}
+
+.user-details-edit {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font1);
+    color: black;
+    font-size: 3em;
+    font-weight: 800;
+    text-align: center;
+}
+
+.user-details-edit.show-edit-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font1);
+    color: black;
+    font-size: 3em;
+    font-weight: 800;
+    text-align: center;
+}
+
+.edit-profile-button, .submit-profile-button {
+    border: 1px solid var(--maincolor);
+    background-color: var(--bannergreen);
+    font-size: 1em;
+    margin-top: .5em;
+}
 
 /*----------------------------------------------------------------------------------------------------------------------
    About Devs

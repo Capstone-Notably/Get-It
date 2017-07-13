@@ -489,3 +489,8 @@ $('#search-submit').click(function (e) {
     });
 
 
+    $('.edit-profile-button').click(function(e){
+        e.preventDefault();
+        $('.user-details-edit').addClass('show-edit-profile');
+        $('.user-account-details').addClass('hide');
+    });
