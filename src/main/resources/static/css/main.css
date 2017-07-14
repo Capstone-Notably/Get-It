@@ -1334,6 +1334,7 @@ canvas {
     padding: .5em;
     background-color: var(--accentcolor);
     border: 3px solid var(--accentcolor2);
+    position: relative;
 }
 
 .user-profile-image {
@@ -1343,7 +1344,6 @@ canvas {
     justify-content: center;
     align-items: center;
     padding-top: .5em;
-    position: relative;
 }
 
 .user-image-profile {
@@ -1403,8 +1403,8 @@ canvas {
 
 #img-user {
     position: absolute;
-    right: 0;
-    top: 5px;
+    top: 2%;
+    left: 68%;
     display: none;
 }
 
