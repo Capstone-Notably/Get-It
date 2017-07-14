@@ -23,7 +23,7 @@
                         <div class="modal-content">
                             <div class="users-info">
                                 <div class="user-profile-image">
-                                    <img class="img-responsive user-image-profile" th:src="'/uploads/users/' + ${#authentication.principal.imgUrl}"/>
+                                    <img class="img-responsive user-image-profile" th:src="'/uploads/users/' + ${user.imgUrl}"/>
                                 </div>
                                 <form id="profile-form" th:method="post" th:action="@{/users/profile}" th:object="${user}" enctype="multipart/form-data">
                                     <div class="user-account-details">

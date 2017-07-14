@@ -1347,9 +1347,9 @@ canvas {
 }
 
 .user-image-profile {
-    height: 20em;
-    width: auto;
-    z-index: 2;
+    height: auto;
+    width: 20em;
+    /*z-index: 2;*/
     border: 2px solid var(--accentcolor2);
 }
 

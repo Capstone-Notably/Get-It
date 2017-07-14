@@ -54,6 +54,13 @@ public class CategoriesController {
         List<CustomItem> recipeItems = RecipesController.findAllItems(recipesRepository, userRecipeRepository, recipeItemsRepository, itemsRepository);
         List<CustomItem> customItems = ItemsController.findByUser(itemsRepository, userItemsRepository);
         List<GroceryList> groceryLists = GroceryListsController.groceryLists(groceryListsRepository, userGListRepository);
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (!principal.equals("anonymousUser")) {
+            User user = (User) principal;
+            model.addAttribute("user", user);
+        }
+
         model.addAttribute("items", customItems);
         model.addAttribute("categories", categories);
         model.addAttribute("recipes", recipes);
