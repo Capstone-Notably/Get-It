@@ -213,23 +213,28 @@
                          aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="recipe-title">
-                                        <span th:text="${recipe.name}"/>
-                                    </h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
                                 <div class="recipe-body">
-                                    <div class="recipe-details">
 
-                                        <span class="recipe-icon glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-                                        <p class="recipe-directions"><span th:text="${recipe.directions}"/></p>
-                                        <span class="recipe-icon glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                                    <div class="recipe-details" th:style="'background:url(/uploads/recipes/' + ${recipe.imgUrl} + '); background-size: cover'">
+
+                                        <button class="recipe-close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+
+                                        <h4 class="recipe-title">
+                                            <span th:text="${recipe.name}"/>
+                                        </h4>
+
                                         <p class="recipe-time"><span th:text="${recipe.time}"/></p>
 
                                     </div>
+
+                                    <div class="recipe-directions">
+                                        <span class="recipe-icon glyphicon glyphicon-menu-right"
+                                              aria-hidden="true"></span>
+                                        <p class="r-directions"><span th:text="${recipe.directions}"/></p>
+                                    </div>
+
                                     <div class="recipe-flex">
                                         <div class="" th:each="recipeItem:${recipeItems}">
                                             <div class="recipe-items" th:if="${recipeItem.recipeId} == ${recipe.id}">

@@ -308,7 +308,7 @@
     });
 
     function appendItemRecipe(item) {
-        var html = "<li>" + item.name + "</li>";
+        var html = "<li class='recipe-items-create'>" + item.name + "</li>";
         $('.recipe-append-items').append(html);
     }
     //search item / recipes
