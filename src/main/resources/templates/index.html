@@ -121,10 +121,32 @@
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-right"
                                                     th:attr="aria-labelledby='\'category-items' + ${item.id} +'\''">
-                                                    <li><a href="#">Add to List</a></li>
+                                                    <li><a role="button" data-toggle="collapse" th:href="'#collapseGLists' + ${item.id}" aria-controls="collapseExample">Add to List</a></li>
                                                     <li><a th:href="@{/item/delete(item_id=${item.id})}">Delete</a></li>
                                                 </ul>
                                             </div>
+
+                                            <div class="collapse" th:id="'collapseGLists' + ${item.id}">
+                                                <div class="well">
+
+                                                    <button type="button" class="close" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+
+                                                    <strong class="select">Select Grocery List</strong>
+
+                                                    <form class="popover-body add-to-list" th:method="post" th:action="@{/items/addToList}">
+                                                        <div class="radio">
+                                                            <label th:each="groceryList : ${groceryLists}">
+                                                                <input type="radio" name="glist_id" th:value="${groceryList.id}" th:text="${groceryList.name}" />
+                                                                <input type="hidden" name="item_id" th:value="${item.id}" />
+                                                            </label>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-success">SEND</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
