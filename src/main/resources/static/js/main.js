@@ -496,9 +496,9 @@
     $('.hero-text2').hide();
     $('.brand').hide();
     $('.hero-text1').delay(2500).fadeIn(2000);
-    $('.hero-text2').delay(4000).effect("slide", 3000);
-    $('.brand').delay(7100).fadeIn(500).animate({
-        color: "yellow"
+    $('.hero-text2').delay(4000).fadeIn(2000);
+    $('.brand').delay(6100).effect("slide", 1000).animate({
+        color: "#ffcc33"
     });
 
 
