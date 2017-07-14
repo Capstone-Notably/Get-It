@@ -26,6 +26,17 @@
         $('#popover-category').popover('hide');
     });
 
+    $('#popover-recipe').popover({
+        html : true,
+        content: function() {
+            return $("#popover-recipe-content").html();
+        }
+    });
+
+    $('.btn-cancel-recipe').click(function () {
+        $('#popover-recipe').popover('hide');
+    });
+
 /*----------------------------------------------------------------------------------------------------------------------
     Login
  ----------------------------------------------------------------------------------------------------------------------*/
