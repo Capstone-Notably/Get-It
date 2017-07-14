@@ -136,26 +136,6 @@
                 <span sec:authorize="isAuthenticated()" class="glyphicon glyphicon-plus add-category" data-toggle="modal" data-target="#create-recipe" ></span>
             </h2>
 
-            <!--<div id="popover-recipe-content" class="hide">-->
-                <!--<form class="popover-body" th:method="post" th:action="@{/recipies/create}"-->
-                      <!--th:object="${newRecipe}"-->
-                      <!--enctype="multipart/form-data">-->
-                    <!--<div class="create-recipes">-->
-                        <!--<input type="text" id="recipe-name" th:field="*{name}" placeholder="Enter Recipe Name &hellip;" />-->
-                        <!--<label for="img-file" class="btn btn-success glyphicon glyphicon-picture"></label>-->
-                        <!--<input id="img-file-recipe" type="file" name="file" style="visibility:hidden"  />-->
-                    <!--</div>-->
-                    <!--<textarea id="recipe-description" th:field="*{directions}" cols="30" rows="5" placeholder="Enter Description &hellip;"></textarea>-->
-                    <!--<div class="ui-widget">-->
-                        <!--<input id="tags" type="text" class="form-control" placeholder="Search `"/>-->
-                    <!--</div>-->
-                    <!--<div class="btn-ok-cancel">-->
-                        <!--<button class="btn btn-danger glyphicon glyphicon-remove btn-cancel-recipe"></button>-->
-                        <!--<button type="submit" class="btn btn-success glyphicon glyphicon-ok"></button>-->
-                    <!--</div>-->
-                <!--</form>-->
-            <!--</div>-->
-
             <!-- Modal to create recipe-->
             <div class="modal fade" id="create-recipe" tabindex="-1" role="dialog" aria-labelledby="modalCreateRecipe">
                 <div class="modal-dialog" role="document">
@@ -171,7 +151,7 @@
                                 </div>
                                 <input type="text" id="recipe-time" th:field="*{time}" placeholder="Ready in &hellip;" />
                                 <label id="img-recipe" for="img-file-recipe" class="btn btn-success glyphicon glyphicon-picture"></label>
-                                <input id="img-file-recipe" type="file" name="file" style="visibility:hidden"  />
+                                <input id="img-file-recipe" type="file" name="file" style="visibility:hidden" />
                                 <textarea id="recipe-description" th:field="*{directions}" cols="30" rows="5" placeholder="Enter recipe description &hellip;"></textarea>
 
                                 <div id="div-search-item">
@@ -181,20 +161,21 @@
                                     <button id="search-recipe-item" class="btn btn-success glyphicon glyphicon-ok"></button>
                                 </div>
 
-                                <div class="recipe-append-items"></div>
+                                <div>
+                                    <ul class="recipe-append-items"></ul>
+                                </div>
 
                                 <div id="div-create-recipe">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                                     <button type="submit" class="btn btn-primary">Create</button>
                                 </div>
-
-
-
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <input type="text" th:value="${newRecipeId}" />
 
 
             <div th:each="recipe:${recipes}">

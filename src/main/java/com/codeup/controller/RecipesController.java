@@ -5,6 +5,9 @@ import com.codeup.repositories.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +22,33 @@ public class RecipesController {
     private final UserRecipeRepository userRecipeRepository;
     private final ItemsRepository itemsRepository;
 
+    @Value("${recipes-img-path}")
+    private String recipesImgPath;
+
     @Autowired
     public RecipesController(RecipesRepository recipesRepository, RecipeItemsRepository recipeItemsRepository, UserRecipeRepository userRecipeRepository,ItemsRepository itemsRepository) {
         this.recipesRepository = recipesRepository;
         this.recipeItemsRepository = recipeItemsRepository;
         this.userRecipeRepository = userRecipeRepository;
         this.itemsRepository = itemsRepository;
+    }
+
+    @PostMapping("/recipes/create")
+    public String createRecipe(@ModelAttribute Recipe recipe, @RequestParam(name = "file") MultipartFile uploadedFile, Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String filename = UsersController.transferUploadedFile(uploadedFile, recipesImgPath, model);
+
+        if (filename.isEmpty()) {
+            filename = "recipe_default.png";
+        }
+        recipe.setImgUrl(filename);
+        recipe.setUser(user);
+        Recipe savedRecipe = recipesRepository.save(recipe);
+
+        // update users_recipes table
+        userRecipeRepository.save(new UserRecipe(savedRecipe, user));
+        model.addAttribute("newRecipeId", savedRecipe.getId());
+        return "redirect:/";
     }
 
     public static List<Recipe> findAll(RecipesRepository recipesRepository, UserRecipeRepository userRecipeRepository) {

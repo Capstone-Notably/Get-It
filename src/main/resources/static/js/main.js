@@ -134,6 +134,8 @@
      Groceries Lists
 ----------------------------------------------------------------------------------------------------------------------*/
     var json, item_json, item_barcode_json;
+    var items_recipe_json = [];
+    var counter_items = 0;
     var $tags = $( "#tags" );
     var $viewItems = $('.view-items');
     var $scannerInput = $('#scanner_input');
@@ -277,6 +279,7 @@
         // console.log(json[0]);
     });
 
+    //search item / grocery lists
     $('#search-submit').click(function (e) {
         e.preventDefault();
 
@@ -292,6 +295,33 @@
         }
     });
 
+    function appendItemRecipe(item) {
+        var html = "<li>" + item.name + "</li>";
+        $('.recipe-append-items').append(html);
+    }
+    //search item / recipes
+    $('#search-recipe-item').click(function (e) {
+        e.preventDefault();
+
+        if($tags.val() !== "") {
+            json.forEach(function(item) {
+                if(item.name === $tags.val()) {
+                    items_recipe_json[counter_items] = item;
+                    counter_items++;
+                    console.log(items_recipe_json);
+                    appendItemRecipe(item)
+                }
+            });
+            // sendJsonToController(item_json, "/lists/items");
+            $tags.val("");
+        }
+    });
+
+    $('#img-file-recipe').change(function () {
+        // console.log($(this)[0].files[0].name);
+        // var url = "url(/uploads/others/" + $(this)[0].files[0].name + ")";
+        // $('.recipe-header').css("background-image", url);
+    });
 
     //update price in database
     $viewItems.on( "change", '.currency', currencyFormatting);
