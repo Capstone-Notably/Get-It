@@ -91,14 +91,6 @@ public class ItemsController {
         return "redirect:/";
     }
 
-//    @PostMapping("/items/toList")
-//    public String addToListFromCategories(@RequestParam("item_id") long item_id, @RequestParam("glist_id") long glist_id) {
-//        GroceryList glist = groceryListsRepository.findOne(glist_id);
-//        Item item = itemsRepository.findOne(item_id);
-//        listItemsRepository.save(new ListItem(glist, item));
-//        return "redirect:/";
-//    }
-
     public static List<CustomItem> findByCategory(ItemsRepository itemsRepository, UserItemsRepository userItemsRepository, long category_id) {
         List<CustomItem> customItems = new ArrayList<>();
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
