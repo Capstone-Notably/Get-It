@@ -760,7 +760,6 @@ div.radio {
 
 #create-item-form {
     grid-row: form;
-    grid-row: form;
     font-family: var(--font1);
     font-size: 1.5em;
     text-align: center;
@@ -804,8 +803,13 @@ div.radio {
 
 .create-second {
     display: flex;
-    justify-content: flex-end;
-    margin-right: 0.5em;
+    flex-flow: row nowrap;
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+    /*margin-right: 0.5em;*/
+    width: 20vw;
+
 }
 
 .pic {
@@ -814,6 +818,7 @@ div.radio {
     justify-content: center;
     align-content: center;
     text-align: center;
+
 }
 
 #img-btn-item-create {
@@ -860,7 +865,7 @@ label#pic-label {
     border-top-width: 0;
     margin-top: 1px;
     text-align: right;
-    margin-bottom: 0.2em;
+    margin-bottom: 0;
 }
 
 .star {
@@ -869,6 +874,20 @@ label#pic-label {
     cursor: pointer;
 }
 
+.create-item-modal {
+    background-color: var(--bannergreen);
+    font-size: 2em;
+    width: 100%;
+}
+
+.modal-title-create-item {
+    font-size: 2.5em;
+}
+
+.create-i-modal {
+    width: 30vw;
+    left: 12%;
+}
 /*----------------------------------------------------------------------------------------------------------------------
    Grocery List
 ----------------------------------------------------------------------------------------------------------------------*/
