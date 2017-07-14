@@ -547,9 +547,10 @@ span.category-name, span.recipe-name {
 .recipe-header {
     background-image: url(/uploads/others/market.jpg);
     width: 100%;
-    height: 150px;
+    height: 160px;
     display: inline-flex;
     justify-content: center;
+    position: relative;
 }
 
 #recipe-name {
@@ -570,12 +571,21 @@ span.category-name, span.recipe-name {
     font-size: 1.8em;
 }
 
+#recipe-time {
+    position: absolute;
+    left: 2em;
+    top: 6.5em;
+    font-size: 2em;
+    width: 20%;
+}
+
 .ui-autocomplete-input, .ui-menu, .ui-menu-item {  z-index: 2006; }
 
 #div-search-item{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 1em;
 }
 
 #create-item-button {
@@ -585,6 +595,12 @@ span.category-name, span.recipe-name {
 #div-create-recipe {
     display: flex;
     justify-content: space-between;
+}
+
+#img-recipe {
+    position: absolute;
+    top: 2em;
+    right: 2em;
 }
 
 /*----------------------------------------------------------------------------------------------------------------------

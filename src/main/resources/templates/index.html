@@ -167,8 +167,11 @@
                         <div class="modal-body">
                             <form id="recipe-form" th:method="post" th:action="@{/recipes/create}" th:object="${newRecipe}" enctype="multipart/form-data">
                                 <div class="recipe-header">
-                                    <input type="text" id="recipe-name" class="" th:field="*{name}" placeholder="Enter recipe name &hellip;" />
+                                    <input type="text" id="recipe-name" th:field="*{name}" placeholder="Enter recipe name &hellip;" />
                                 </div>
+                                <input type="text" id="recipe-time" th:field="*{time}" placeholder="Ready in &hellip;" />
+                                <label id="img-recipe" for="img-file-recipe" class="btn btn-success glyphicon glyphicon-picture"></label>
+                                <input id="img-file-recipe" type="file" name="file" style="visibility:hidden"  />
                                 <textarea id="recipe-description" th:field="*{directions}" cols="30" rows="5" placeholder="Enter recipe description &hellip;"></textarea>
 
                                 <div id="div-search-item">
