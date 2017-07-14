@@ -24,8 +24,10 @@
                             <div class="users-info">
                                 <div class="user-profile-image">
                                     <img class="img-responsive user-image-profile" th:src="'/uploads/users/' + ${#authentication.principal.imgUrl}"/>
+                                    <label id="img-user" for="img-file-user" class="btn btn-success glyphicon glyphicon-picture"></label>
+                                    <input id="img-file-user" type="file" name="file" style="visibility:hidden" />
                                 </div>
-                                <form id="profile-form">
+                                <form id="profile-form" th:method="post" th:action="@{/users/profile}" th:object="${user}" enctype="multipart/form-data">
                                     <div class="user-account-details">
                                         <p>Username: <span class="" th:text="${#authentication.principal.username}"/></p>
                                         <p>Email: <span class="" th:text="${#authentication.principal.email}"/></p>
@@ -34,11 +36,11 @@
                                     </div>
                                     <div class="user-details-edit">
                                         <label for="username">Username</label>
-                                        <input id="username" name="username" type="text"/>
+                                        <input id="username" type="text" th:field="*{username}"/>
                                         <label for="email">Email</label>
-                                        <input id="email" name="email" type="email"/>
+                                        <input id="email" type="email" th:field="*{email}" />
                                         <label for="phone">Phone</label>
-                                        <input id="phone" name="phone" type="phone"/>
+                                        <input id="phone" type="number" th:field="*{phone}" />
                                         <button type="submit" class="submit-profile-button btn btn-default">Submit</button>
                                     </div>
                                 </form>

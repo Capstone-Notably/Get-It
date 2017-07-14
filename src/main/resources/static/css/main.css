@@ -1343,6 +1343,7 @@ canvas {
     justify-content: center;
     align-items: center;
     padding-top: .5em;
+    position: relative;
 }
 
 .user-image-profile {
@@ -1398,6 +1399,13 @@ canvas {
     background-color: var(--bannergreen);
     font-size: 1em;
     margin-top: .5em;
+}
+
+#img-user {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    display: none;
 }
 
 /*----------------------------------------------------------------------------------------------------------------------

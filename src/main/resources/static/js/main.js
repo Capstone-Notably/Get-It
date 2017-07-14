@@ -21,7 +21,7 @@
     });
 
 
-$('#popover-category').popover({
+    $('#popover-category').popover({
         html : true,
         content: function() {
             return $("#popover-content").html();
@@ -56,6 +56,7 @@ $('#popover-category').popover({
 
     $('.edit-profile-button').click(function(e){
         e.preventDefault();
+        $('#img-user').fadeIn();
         $('.user-details-edit').addClass('show-edit-profile');
         $('.user-account-details').addClass('hide');
     });
