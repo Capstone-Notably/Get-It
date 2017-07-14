@@ -4,6 +4,7 @@ import com.codeup.models.*;
 import com.codeup.repositories.*;
 import com.codeup.svcs.TwilioSvc;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -132,7 +133,25 @@ public class UsersController {
     }
 
     @GetMapping("/users/profile")
-    public String profile() {
+    public String profile(Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", user);
+        return "users/profile";
+    }
+
+    @PostMapping("/users/profile")
+    public String updateProfile(@ModelAttribute User user, @RequestParam(name = "file") MultipartFile uploadedFile, Model model) {
+        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String filename = transferUploadedFile(uploadedFile, usersImgPath, model);
+        if(filename.isEmpty()) {
+            user.setImgUrl(principal.getImgUrl());
+        } else {
+            user.setImgUrl(filename);
+        }
+        user.setId(principal.getId());
+        user.setPassword(principal.getPassword());
+        usersRepository.save(user);
+        model.addAttribute("user", user);
         return "users/profile";
     }
 

@@ -2,19 +2,25 @@
 /*----------------------------------------------------------------------------------------------------------------------
     Navbar
  ----------------------------------------------------------------------------------------------------------------------*/
-    $('#search-trigger').click(function() {
-        $('div.search').addClass('show');
-    });
 
-
-    $('#search-trigger2').click(function() {
-        $('div.search').addClass('show');
-        console.log("test");
-    });
 
 /*----------------------------------------------------------------------------------------------------------------------
     Home
  ----------------------------------------------------------------------------------------------------------------------*/
+    var $heroText1 = $('.hero-text1');
+    var $heroText2 = $('.hero-text2');
+    var $brand = $('.brand');
+
+    $heroText1.hide();
+    $heroText2.hide();
+    $brand.hide();
+    $heroText1.delay(2500).fadeIn(2000);
+    $heroText2.delay(4000).fadeIn(2000);
+    $brand.delay(6100).effect("slide", 1000).animate({
+        color: "#ffcc33"
+    });
+
+
     $('#popover-category').popover({
         html : true,
         content: function() {
@@ -48,6 +54,12 @@
  ----------------------------------------------------------------------------------------------------------------------*/
     $('#profileModal').modal('show');
 
+    $('.edit-profile-button').click(function(e){
+        e.preventDefault();
+        $('#img-user').fadeIn();
+        $('.user-details-edit').addClass('show-edit-profile');
+        $('.user-account-details').addClass('hide');
+    });
 
 
 /*----------------------------------------------------------------------------------------------------------------------
@@ -533,18 +545,5 @@
 
     $('video').css('width', '100%');
 
-    $('.hero-text1').hide();
-    $('.hero-text2').hide();
-    $('.brand').hide();
-    $('.hero-text1').delay(2500).fadeIn(2000);
-    $('.hero-text2').delay(4000).fadeIn(2000);
-    $('.brand').delay(6100).effect("slide", 1000).animate({
-        color: "#ffcc33"
-    });
 
 
-    $('.edit-profile-button').click(function(e){
-        e.preventDefault();
-        $('.user-details-edit').addClass('show-edit-profile');
-        $('.user-account-details').addClass('hide');
-    });

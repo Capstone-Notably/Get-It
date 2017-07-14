@@ -67,6 +67,7 @@ public class GroceryListsController {
             }
         }
 
+        model.addAttribute("user", user);
         model.addAttribute("items", customItems);
         model.addAttribute("lists", glists);
         model.addAttribute("newItem", new CustomItem());
