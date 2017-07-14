@@ -67,6 +67,15 @@ public class ItemsController {
         return "redirect:/lists";
     }
 
+    @GetMapping("/item/delete")
+    public String deleteItem(@RequestParam("item_id") long item_id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserItem userItem = userItemsRepository.findByUser_IdAndItem_Id(user.getId(), item_id);
+        userItemsRepository.delete(userItem.getId());
+        itemsRepository.delete(item_id);
+        return "redirect:/";
+    }
+
     @GetMapping("/items.json")
     public @ResponseBody String findItems() {
         List<CustomItem> items = findByUser(itemsRepository, userItemsRepository);

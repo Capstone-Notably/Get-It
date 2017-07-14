@@ -62,7 +62,6 @@ public class CategoriesController {
         model.addAttribute("newRecipe", new Recipe());
         model.addAttribute("groceryLists", groceryLists);
         return "index";
-
     }
 
     @PostMapping("/categories/create")

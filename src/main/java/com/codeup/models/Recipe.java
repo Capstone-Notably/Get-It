@@ -42,6 +42,13 @@ public class Recipe {
         this.time = time;
     }
 
+    public Recipe(String name, String imgUrl, String directions, User user) {
+        this.name = name;
+        this.imgUrl = imgUrl;
+        this.directions = directions;
+        this.user = user;
+    }
+
     public long getId() {
         return id;
     }

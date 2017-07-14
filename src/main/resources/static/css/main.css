@@ -507,13 +507,13 @@ span.category-name, span.recipe-name {
     height: 12em;
 }
 
-.create-categories {
+.create-categories, .create-recipes {
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
 }
 
-#categories-name {
+#categories-name, #recipe-name {
     height: 2.1em;
     font-size: 1.2em;
     margin-right: 10px;
@@ -542,6 +542,69 @@ span.category-name, span.recipe-name {
     font-size: .7em;
     margin-left: .5em;
     color: var(--accentcolor);
+}
+
+.recipe-header {
+    background-image: url(/uploads/others/market.jpg);
+    width: 100%;
+    height: 160px;
+    display: inline-flex;
+    justify-content: center;
+    position: relative;
+}
+
+.recipe-append-items {
+    font-size: 2em;
+}
+
+#recipe-name {
+    width: 40%;
+    height: 40px;
+    font-size: 2em;
+    margin: auto;
+}
+
+#recipe-description {
+    width: 100%;
+    font-size: 2em;
+    padding-top: 0.5em;
+}
+
+.search-item-recipe {
+    width: 50%;
+    font-size: 1.8em;
+}
+
+#recipe-time {
+    position: absolute;
+    left: 2em;
+    top: 6.5em;
+    font-size: 2em;
+    width: 20%;
+}
+
+.ui-autocomplete-input, .ui-menu, .ui-menu-item {  z-index: 2006; }
+
+#div-search-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+}
+
+#create-item-button {
+    margin-right: 2em;
+}
+
+#div-create-recipe {
+    display: flex;
+    justify-content: space-between;
+}
+
+#img-recipe {
+    position: absolute;
+    top: 2em;
+    right: 2em;
 }
 
 /*----------------------------------------------------------------------------------------------------------------------
