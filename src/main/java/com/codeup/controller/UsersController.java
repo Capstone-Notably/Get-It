@@ -109,7 +109,7 @@ public class UsersController {
 
         //update table users_recipes
         //create temporal recipe to save items when user create a new recipe
-        Recipe temporalRecipe = recipesRepository.save(new Recipe("temporal recipe", user));
+        Recipe temporalRecipe = recipesRepository.save(new Recipe("temporal recipe", "recipe_default.png", "", user));
         List<Recipe> recipes = recipesRepository.findByUser_Id(1);
         for (Recipe recipe : recipes) {
            userRecipeRepository.save(new UserRecipe(recipe, user));

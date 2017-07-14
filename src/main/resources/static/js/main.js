@@ -306,13 +306,13 @@
         if($tags.val() !== "") {
             json.forEach(function(item) {
                 if(item.name === $tags.val()) {
-                    items_recipe_json[counter_items] = item;
-                    counter_items++;
-                    console.log(items_recipe_json);
-                    appendItemRecipe(item)
+                    // items_recipe_json[counter_items] = item;
+                    // counter_items++;
+                    console.log(item);
+                    appendItemRecipe(item);
+                    sendJsonToController(item, "/recipes/items");
                 }
             });
-            // sendJsonToController(item_json, "/lists/items");
             $tags.val("");
         }
     });

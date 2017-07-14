@@ -47,8 +47,27 @@ public class RecipesController {
 
         // update users_recipes table
         userRecipeRepository.save(new UserRecipe(savedRecipe, user));
-        model.addAttribute("newRecipeId", savedRecipe.getId());
+
+        // update recipe_items table
+        // find items for temporal recipe and update recipe_id
+        Recipe temporalRecipe = recipesRepository.findByUser_IdAndName(user.getId(), "temporal recipe");
+        List<RecipeItem> recipeItems = recipeItemsRepository.findByRecipe_Id(temporalRecipe.getId());
+        for (RecipeItem recipeItem : recipeItems) {
+            recipeItem.setRecipe(savedRecipe);
+            recipeItemsRepository.save(recipeItem);
+        }
+
         return "redirect:/";
+    }
+
+    @PostMapping("/recipes/items")
+    public void saveItems(@RequestBody CustomItem jsonString) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        //find id of temporal recipe
+        Recipe temporalRecipe = recipesRepository.findByUser_IdAndName(user.getId(), "temporal recipe");
+        Item item = itemsRepository.findOne(jsonString.getId());
+        RecipeItem recipeItem = new RecipeItem("", temporalRecipe, item);
+        recipeItemsRepository.save(recipeItem);
     }
 
     public static List<Recipe> findAll(RecipesRepository recipesRepository, UserRecipeRepository userRecipeRepository) {

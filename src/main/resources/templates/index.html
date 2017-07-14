@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head th:replace="fragments::head(Home)"/>
+<head th:replace="fragments::head(Home)">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
 <body>
+
+<input type="hidden" id="csrf-token" th:name="${_csrf.parameterName}" th:content="${_csrf.token}"/>
+<input type="hidden" id="csrf-header" th:name="${_csrf.parameterName}" th:content="${_csrf.headerName}"/>
+
 <div class="home-grid">
-
     <div th:replace="fragments::hidden-search"></div>
-
     <nav th:replace="fragments::my-navbar"></nav>
 
     <div class="index-body">
@@ -174,9 +179,6 @@
                     </div>
                 </div>
             </div>
-
-            <input type="text" th:value="${newRecipeId}" />
-
 
             <div th:each="recipe:${recipes}">
                 <div class="col-sm-6 col-md-4 recipe">
