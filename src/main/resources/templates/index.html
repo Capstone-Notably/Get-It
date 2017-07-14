@@ -97,11 +97,11 @@
                          aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <div class="modal-header">
+                                <div class="modal-header category-modal-header"  th:style="'background:url(/uploads/categories/' + ${category.imgUrl} + '); background-size: cover'">
                                     <h4 class="category-title">
                                         <span th:text="${category.name}"/>
                                     </h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="category-close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
