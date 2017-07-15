@@ -140,7 +140,7 @@
                                             </div>
 
                                             <div class="collapse" th:id="'collapseGLists' + ${item.id}">
-                                                <div class="well">
+                                                <div class="well well-category">
 
                                                     <button class="close-collapse close" type="button">
                                                         <span aria-hidden="true">&times;</span>
@@ -155,7 +155,7 @@
                                                                 <input type="hidden" name="item_id" th:value="${item.id}" />
                                                             </label>
                                                         </div>
-                                                        <button type="submit" class="btn btn-success">SEND</button>
+                                                        <button type="submit" class="btn btn-success btn-success-lists">SEND</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -227,13 +227,13 @@
                                 <span class="caret-size-recipes caret" aria-hidden="true"></span>
                             </span>
 
-                            <ul class="dropdown-menu recipe-custom-dropdown" th:attr="aria-labelledby='\'dropdown-recipes' + ${recipe.id} +'\''">
+                            <ul class="dropdown-menu recipe-custom-dropdown" th:attr="aria-labelledby='\'dropdown-recipes' + ${recipe.id} +'\''" >
                                 <li><a role="button" data-toggle="collapse" th:href="'#collapseListsRecipes' + ${recipe.id}" aria-controls="collapseExample">Add Items to List</a></li>
                                 <li><a th:href="@{/recipe/delete(recipe_id=${recipe.id})}">Delete</a></li>
                             </ul>
 
                             <div class="collapse" th:id="'collapseListsRecipes' + ${recipe.id}">
-                                <div class="well">
+                                <div class="well well-recipes-items">
 
                                     <button type="button" class="close-collapse close" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -250,7 +250,7 @@
                                             </label>
                                         </div>
 
-                                        <button type="submit" class="btn btn-success">SEND</button>
+                                        <button type="submit" class="btn btn-success btn-success-lists">SEND</button>
                                     </form>
                                 </div>
                             </div>
@@ -295,18 +295,16 @@
                                                         <span class="caret-size caret"></span>
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu"
-                                                        th:attr="aria-labelledby='\'recipe-items' + ${recipeItem.id} +'\''" >
+                                                        th:attr="aria-labelledby='\'recipe-items' + ${recipeItem.id} +'\''" style="left: -6.6em">
                                                         <li>
                                                             <a role="button" data-toggle="collapse" th:href="'#collapseLists' + ${recipeItem.id}" aria-controls="collapseExample">Add to List</a>
                                                         </li>
                                                     </ul>
                                                     <div class="collapse" th:id="'collapseLists' + ${recipeItem.id}">
-                                                        <div class="well">
-
+                                                        <div class="well well-recipe-item">
                                                             <button type="button" class="close-collapse close" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
-
                                                             <strong class="select">Select Grocery List</strong>
 
                                                             <form class="popover-body add-to-list" th:method="post" th:action="@{/items/addToList}">
@@ -318,7 +316,7 @@
                                                                     </label>
                                                                 </div>
 
-                                                                <button type="submit" class="btn btn-success">SEND</button>
+                                                                <button type="submit" class="btn btn-success btn-success-lists">SEND</button>
                                                             </form>
                                                         </div>
                                                     </div>

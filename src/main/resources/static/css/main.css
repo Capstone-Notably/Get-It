@@ -861,16 +861,23 @@ div.well {
     background-color: white;
     border-radius: 0;
     padding: 1em;
-    width: 20vw;
+    width: 225px;
     height: auto;
-    margin-bottom: 0;
     z-index: 3;
     position: absolute;
-    /*top: 40%;*/
-    display: grid;
-    grid: "a b" "c c";
-    grid-template-columns: 60% 40%;
-    grid-template-rows: 20% 80%;
+}
+
+
+.well-recipes-items {
+    left: -22em;
+}
+
+.well-recipe-item {
+    left: -29em;
+}
+
+.well-category {
+    left: -35em;
 }
 
 button.close {
@@ -882,6 +889,7 @@ button.close {
     align-items: center;
 }
 
+
 strong.select {
     grid-row: 1;
     grid-column: 1;
@@ -889,6 +897,10 @@ strong.select {
     text-align: center;
     font-family: var(--font1);
     font-size: 2em;
+}
+
+.btn-success-lists {
+    padding: 2px;
 }
 
 form.popover-body.add-to-list {
@@ -1026,10 +1038,6 @@ button.close.create, .modal-title-create-item {
     margin: 0;
     text-align: left;
     font-weight: 700;
-}
-
-button.close.create-item-modal {
-
 }
 
 .rows > input {
