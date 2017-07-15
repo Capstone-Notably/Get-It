@@ -93,9 +93,9 @@
                     <div class="modal fade" th:id="'shareModal'+${list.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <div class="modal-header">
+                                <div class="modal-header share-list-header">
                                     <h4 class="share-title modal-title" id="myModalLabel">Share List</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <button type="button" class="close share" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
                                 <div class="modal-body">
                                     <form th:action="@{/list/share}" th:method="post">

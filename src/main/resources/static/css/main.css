@@ -1134,6 +1134,36 @@ div.ui-widget {
     position: relative;
 }
 
+.share-list-header {
+    background-image: url("/uploads/others/brussels.jpeg");
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+}
+
+button.close.share, .share-title {
+    color: white;
+    font-size: 3em;
+    opacity: 1;
+}
+
+h4.share-title {
+    width: 95%;
+    margin: 0;
+    text-align: left;
+    font-weight: 700;
+}
+
+.share-number-input {
+    width: 100%;
+    font-size: 2.5em;
+}
+
+#invites {
+    color: black;
+    font-size: 2em;
+}
+
 .grocery-lists {
     grid-row: lists;
     padding: 3em;
@@ -1333,20 +1363,6 @@ canvas {
 
 #interactive {
     position: relative;
-}
-
-.share-title {
-    width: 90%;
-    text-align: left;
-}
-
-.share-number-input {
-    width: 100%;
-    font-size: 2em;
-}
-
-#invites {
-    color: black;
 }
 
 .btn-plus-qty, .btn-minus-qty {
@@ -1778,6 +1794,14 @@ canvas {
 
     .brand {
         font-size: 6em;
+    }
+
+    .about-body {
+        grid-row: body;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
 
