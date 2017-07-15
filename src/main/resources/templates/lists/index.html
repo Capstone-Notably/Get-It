@@ -205,7 +205,10 @@
 
                                 <ul class="dropdown-menu dropdown-menu-right" th:attr="aria-labelledby='\'dropdownMenu' + ${item.id} +'\''">
                                     <!--<li><a th:href="@{/list/items/edit(item_id=${item.id})}">Edit</a></li>-->
-                                    <li><a th:href="@{/list/items/delete(list_id=${list.id},item_id=${item.id})}">Delete</a></li>
+                                    <li>
+                                        <a href="#" class="delete-item">Delete</a>
+                                        <a th:href="@{/list/items/delete(list_id=${list.id},item_id=${item.id})}" style="display: none">Delete</a>
+                                    </li>
                                     <li class="dropdown-price-qty"><a data-toggle="modal" th:href="'#itemSetPrice' + ${item.id}">Set Price</a></li>
                                     <li class="dropdown-price-qty"><a data-toggle="modal" th:href="'#itemSetQty' + ${item.id}">Set Quantity</a></li>
                                 </ul>

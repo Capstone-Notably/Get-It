@@ -54,6 +54,11 @@
         displaySwal("recipe", $(this));
     });
 
+    $('.delete-item').click(function (e) {
+        e.preventDefault();
+        displaySwal("item", $(this));
+    });
+
     function displaySwal(name, link) {
         swal({
                 title: "Are you sure?",
