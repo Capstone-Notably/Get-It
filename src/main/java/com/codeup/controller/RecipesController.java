@@ -70,6 +70,16 @@ public class RecipesController {
         recipeItemsRepository.save(recipeItem);
     }
 
+    @GetMapping("/recipe/delete")
+    public String deleteRecipe(@RequestParam("recipe_id") long recipe_id){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserRecipe userRecipe = userRecipeRepository.findByUser_IdAndRecipe_Id(user.getId(), recipe_id);
+        userRecipeRepository.delete(userRecipe);
+        Recipe recipe = recipesRepository.findOne(recipe_id);
+        recipesRepository.delete(recipe);
+        return "redirect:/";
+    }
+
     public static List<Recipe> findAll(RecipesRepository recipesRepository, UserRecipeRepository userRecipeRepository) {
         List<Recipe> recipes = new ArrayList<>();
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

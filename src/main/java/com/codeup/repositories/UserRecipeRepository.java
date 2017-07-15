@@ -12,4 +12,6 @@ import java.util.List;
 @Repository
 public interface UserRecipeRepository extends CrudRepository<UserRecipe, Long> {
     public List<UserRecipe> findByUser_Id(long user_id);
+    public UserRecipe findByUser_IdAndRecipe_Id(long user_id, long recipe_id);
+
 }

@@ -215,7 +215,7 @@
                         </span>
 
                         <ul class="dropdown-menu recipe-custom-dropdown" th:attr="aria-labelledby='\'dropdown-recipes' + ${recipe.id} +'\''">
-                            <li><a th:href="@{/recipe/addItems(recipe_id=${recipe.id})}">Add Items to List</a></li>
+                            <!--<li><a th:href="@{/recipe/addItems(recipe_id=${recipe.id})}">Add Items to List</a></li>-->
                             <li><a th:href="@{/recipe/delete(recipe_id=${recipe.id})}">Delete</a></li>
                         </ul>
                     </div>
