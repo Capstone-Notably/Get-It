@@ -27,7 +27,7 @@ body {
     --bannergreen: rgba(141, 182, 0, .6);
     --accentcolor: rgb(235, 253, 212);
     --grey: #DADFE1;
-    --accentcolor2: rgba(0, 0, 0, .4)
+    --accentcolor2: rgba(0, 0, 0, .4);
 }
 
 ul, li, a, a:hover {
@@ -103,6 +103,7 @@ ul, li, a, a:hover {
     justify-content: center;
     align-items: center;
     font-size: 1.5em;
+    padding-right: 1em;
 }
 
 .dropdown-nav {
@@ -110,6 +111,17 @@ ul, li, a, a:hover {
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+}
+
+ul.dropdown-menu {
+    font-size: 1.5em;
+    font-family: var(--font1);
+}
+
+button.dropdown-links {
+    font-size: 1em;
+    font-family: var(--font1);
+    text-indent: 9px;
 }
 
 #search-trigger2 {
