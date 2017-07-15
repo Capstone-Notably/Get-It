@@ -11,7 +11,7 @@
 
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" th:field="*{username}"/>
+                <input class="register-icon-name form-control" style="text-indent:17px;" type="text" id="username" th:field="*{username}" />
                 <span th:if="${#fields.hasErrors('username')}">
                     <div th:replace="fragments :: validation-alert('username')" />
                 </span>
@@ -19,7 +19,7 @@
 
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" class="form-control" id="email" th:field="*{email}"/>
+                <input class="register-icon-email form-control" style="text-indent:17px;" type="text" id="email" th:field="*{email}"/>
                 <span th:if="${#fields.hasErrors('email')}">
                     <div th:replace="fragments :: validation-alert('email')" />
                 </span>
@@ -27,7 +27,7 @@
 
             <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input type="text" class="form-control" id="phone" th:field="*{phone}"/>
+                <input class="register-icon-number form-control" style="text-indent:17px;" type="text" id="phone" th:field="*{phone}"/>
                 <span th:if="${#fields.hasErrors('phone')}">
                     <div th:replace="fragments :: validation-alert('phone')" />
                 </span>
@@ -35,7 +35,7 @@
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" th:field="*{password}"/>
+                <input class="register-icon-password form-control" style="text-indent:17px;" type="password" id="password" th:field="*{password}"/>
                 <span th:if="${#fields.hasErrors('password')}">
                     <div th:replace="fragments :: validation-alert('password')" />
                 </span>
