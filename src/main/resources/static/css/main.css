@@ -1442,24 +1442,33 @@ canvas {
 }
 
 .profile-header {
-
     font-size: 3em;
     align-content: center;
     justify-content: center;
     font-family: var(--font1);
     font-weight: 500;
     height: 100%;
-    width: 80%;
+    width: 95%;
+    color: white;
 }
 .div-header-profile {
     height: 100%;
-    background-color: white;
+    background-image: url("/uploads/others/brussels.jpeg");
+    display: flex;
+    flex-direction: row;
 }
 
-#close-profile-modal {
+button.close.profile > a {
     height: 100%;
-    align-content: flex-start;
-    justify-content: flex-start;
+    color: white;
+    font-size: 1.5em;
+    /*align-content: flex-start;*/
+    /*justify-content: flex-start;*/
+
+}
+
+button.close.profile {
+    opacity: 1;
 }
 
 .users-info {
