@@ -830,7 +830,7 @@ button.recipe-close, button.category-close {
 }
 
 div.collapse.in {
-    z-index: 2;
+    z-index: 2006;
     position: relative;
 }
 
@@ -2220,6 +2220,11 @@ canvas {
     .share-number-input {
         width: 100%;
         font-size: 1.5em;
+    }
+
+    .ui-autocomplete-input, .ui-menu, .ui-menu-item {
+        z-index: 2006;
+        font-size: 1em;
     }
 
 }
