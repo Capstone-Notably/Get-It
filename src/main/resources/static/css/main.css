@@ -490,20 +490,23 @@ h1.register-header {
     margin-top: 2em;
 }
 
-span.category-name, span.recipe-name {
+.category-name, .recipe-name {
     position: absolute;
-    font-size: 4em;
+    top: 43%;
+    right: 0;
+    font-size: 2.2em;
     z-index: 1;
     font-family: var(--font1);
     font-weight: 800;
     color: var(--maincolor);
     background-color: rgba(0,0,0, .4);
-    bottom: .5em;
-    width: 80%;
-    max-width: 80%;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    max-width: 18em;
     text-align: center;
+}
+
+.recipe-name {
+    top: 35%;
 }
 
 .category-image, .recipe-image {
@@ -696,8 +699,9 @@ span.category-name, span.recipe-name {
     background-color: var(--accentcolor2);
 }
 
-.category-name {
-    font-size: 4em;
+.categories-all {
+    display: flex;
+    justify-content: center;
 }
 
 /*----------------------------------------------------------------------------------------------------------------------
@@ -1656,12 +1660,6 @@ canvas {
    Media Queries
 ----------------------------------------------------------------------------------------------------------------------*/
 
-@media screen and (min-width: 2560px) {
-    span.category-name, span.recipe-name {
-        width: 15.2vw;
-    }
-}
-
 @media screen and (min-width: 1020px) and (max-width: 1430px) {
 
     .hero-text1, .hero-text2 {
@@ -1820,10 +1818,6 @@ canvas {
 
     .features {
         display: none;
-    }
-
-    span.category-name, span.recipe-name {
-        width: 100%;
     }
 
     #recipe-header, #category-header {
@@ -2003,10 +1997,6 @@ canvas {
     .index-body {
         grid: "image" "space" "categories" "recipes";
         grid-template-rows: 95vh 1em minmax(30em, auto) minmax(30em, auto);
-    }
-
-    span.category-name, span.recipe-name {
-        width: 100vw;
     }
 
     .features {
@@ -2195,10 +2185,6 @@ canvas {
     .index-body {
         grid: "image" "space1" "categories" "recipes";
         grid-template-rows: 95vh 1em minmax(30em, auto) minmax(30em, auto);
-    }
-
-    span.category-name, span.recipe-name {
-        width: 100vw;
     }
 
     .features {

@@ -75,8 +75,8 @@ public class RecipesController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserRecipe userRecipe = userRecipeRepository.findByUser_IdAndRecipe_Id(user.getId(), recipe_id);
         userRecipeRepository.delete(userRecipe);
-        Recipe recipe = recipesRepository.findOne(recipe_id);
-        recipesRepository.delete(recipe);
+//        Recipe recipe = recipesRepository.findOne(recipe_id);
+//        recipesRepository.delete(recipe);
         return "redirect:/";
     }
 
