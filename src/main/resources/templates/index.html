@@ -100,7 +100,11 @@
                                 </span>
 
                             <ul class="dropdown-menu recipe-custom-dropdown" th:attr="aria-labelledby='\'dropdown-recipes' + ${category.id} +'\''">
-                                <li><a th:href="@{/category/delete(category_id=${category.id})}">Delete</a></li>
+                                <!--<li><a class="a-delete-category" th:href="@{/category/delete(category_id=${category.id})}">Delete</a></li>-->
+                                <li>
+                                    <a href="#" class="delete-category">Delete</a>
+                                    <a th:href="@{/category/delete(category_id=${category.id})}" style="display: none">Delete</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -334,6 +338,19 @@
         </div>
 
     </div>
+
+    <!--&lt;!&ndash; modal to delete category &ndash;&gt;-->
+    <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".delete-category">Small modal</button>-->
+
+    <!--<div class="modal fade delete-category" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">-->
+        <!--<div class="modal-dialog modal-sm" role="document">-->
+            <!--<div class="modal-content">-->
+                <!--...-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<button type="button" class="btn btn-danger delete-category">Delete</button>-->
 
     <div th:replace="fragments::my-footer">Footer</div>
 </div>

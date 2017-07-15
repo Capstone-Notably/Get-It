@@ -880,6 +880,10 @@ div.well {
     left: -35em;
 }
 
+/*.a-delete-category {*/
+    /*display: none;*/
+/*}*/
+
 button.close {
     grid-row: 1;
     grid-column: 2;
