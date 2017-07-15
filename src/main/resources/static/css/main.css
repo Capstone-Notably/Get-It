@@ -594,7 +594,10 @@ span.category-name, span.recipe-name {
     width: 20%;
 }
 
-.ui-autocomplete-input, .ui-menu, .ui-menu-item {  z-index: 2006; }
+.ui-autocomplete-input, .ui-menu, .ui-menu-item {
+    z-index: 2006;
+    font-size: 1.5em;
+}
 
 #div-search-item{
     display: flex;
@@ -604,7 +607,7 @@ span.category-name, span.recipe-name {
 }
 
 #create-item-button {
-    margin-right: 2em;
+    /*margin-right: 2em;*/
 }
 
 #div-create-recipe {
@@ -982,6 +985,30 @@ label#pic-label {
     background-color: var(--accentcolor);
 }
 
+div.modal-header.create {
+    background-image: url("/uploads/others/brussels.jpeg");
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+}
+
+button.close.create, .modal-title-create-item {
+    color: white;
+    font-size: 3em;
+    opacity: 1;
+}
+
+.modal-title-create-item {
+    width: 95%;
+    margin: 0;
+    text-align: left;
+    font-weight: 700;
+}
+
+button.close.create-item-modal {
+
+}
+
 .rows > input {
     display: inline-flex;
     justify-content: center;
@@ -1103,7 +1130,6 @@ label#pic-label {
     margin-top: 1px;
     text-align: right;
 }
-
 
 #lists-search-items {
     display: grid;
