@@ -811,6 +811,21 @@ button.recipe-close, button.category-close {
     height: 6em;
 }
 
+.recipe-custom-dropdown {
+    top: 9px;
+    left: -10em;
+}
+
+.caret-size-recipes {
+    border-width: 7px;
+    cursor: pointer;
+}
+
+.recipes-all {
+    display: flex;
+    justify-content: center;
+}
+
 div.collapse.in {
     z-index: 2;
     position: relative;
