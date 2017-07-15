@@ -99,6 +99,14 @@ public class CategoriesController {
         return "redirect:/";
     }
 
+    @GetMapping("/category/delete")
+    public String deleteCategory(@RequestParam("category_id") long category_id){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserCategory userCategory = userCategoryRepository.findByUser_IdAndCategory_Id(user.getId(), category_id);
+        userCategoryRepository.delete(userCategory);
+        return "redirect:/";
+    }
+
     public static List<Category> findAll(CategoriesRepository categoriesRepository, UserCategoryRepository userCategoryRepository) {
         List<Category> categories = new ArrayList<>();
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

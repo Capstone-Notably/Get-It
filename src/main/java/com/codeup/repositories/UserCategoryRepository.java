@@ -12,4 +12,5 @@ import java.util.List;
 @Repository
 public interface UserCategoryRepository extends CrudRepository<UserCategory, Long> {
     public List<UserCategory> findByUser_Id(long user_id);
+    public UserCategory findByUser_IdAndCategory_Id(long user_id, long category_id);
 }
