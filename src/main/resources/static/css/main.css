@@ -434,8 +434,10 @@ h1.register-header {
     font-size: 16em;
     font-weight: 900;
     grid-row: 3;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
+    width: 3em;
+    margin-left: 3em;
 }
 
 #recipe-header, #category-header {
