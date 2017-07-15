@@ -1805,7 +1805,7 @@ canvas {
     }
 }
 
-@media screen and (min-width: 420px) and (max-width: 720px) {
+@media screen and (min-width: 425px) and (max-width: 720px) {
 
     .navbar {
         grid-template-columns: 50% 50%;
@@ -1984,7 +1984,7 @@ canvas {
     }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 425px) {
 
     /*Navbar*/
     .navbar {
@@ -2174,6 +2174,12 @@ canvas {
     .brand {
         font-size: 4em;
     }
+
+    .share-number-input {
+        width: 100%;
+        font-size: 1.5em;
+    }
+
 }
 
 @media screen and (max-width: 400px) {
