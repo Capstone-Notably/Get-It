@@ -128,7 +128,13 @@ public class UsersController {
     }
 
     @GetMapping("/about")
-    public String about() {
+    public String about(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (!principal.equals("anonymousUser")) {
+            User user = (User) principal;
+            model.addAttribute("user", user);
+        }
         return "about";
     }
 
