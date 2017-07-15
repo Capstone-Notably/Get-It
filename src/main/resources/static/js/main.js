@@ -49,6 +49,11 @@
         displaySwal("category", $(this));
     });
 
+    $('.delete-recipe').click(function (e) {
+        e.preventDefault();
+        displaySwal("recipe", $(this));
+    });
+
     function displaySwal(name, link) {
         swal({
                 title: "Are you sure?",

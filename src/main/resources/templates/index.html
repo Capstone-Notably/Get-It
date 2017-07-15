@@ -100,7 +100,6 @@
                                 </span>
 
                             <ul class="dropdown-menu recipe-custom-dropdown" th:attr="aria-labelledby='\'dropdown-recipes' + ${category.id} +'\''">
-                                <!--<li><a class="a-delete-category" th:href="@{/category/delete(category_id=${category.id})}">Delete</a></li>-->
                                 <li>
                                     <a href="#" class="delete-category">Delete</a>
                                     <a th:href="@{/category/delete(category_id=${category.id})}" style="display: none">Delete</a>
@@ -233,7 +232,10 @@
 
                             <ul class="dropdown-menu recipe-custom-dropdown" th:attr="aria-labelledby='\'dropdown-recipes' + ${recipe.id} +'\''" >
                                 <li><a role="button" data-toggle="collapse" th:href="'#collapseListsRecipes' + ${recipe.id}" aria-controls="collapseExample">Add Items to List</a></li>
-                                <li><a th:href="@{/recipe/delete(recipe_id=${recipe.id})}">Delete</a></li>
+                                <li>
+                                    <a href="#" class="delete-recipe">Delete</a>
+                                    <a th:href="@{/recipe/delete(recipe_id=${recipe.id})}" style="display: none">Delete</a>
+                                </li>
                             </ul>
 
                             <div class="collapse" th:id="'collapseListsRecipes' + ${recipe.id}">
