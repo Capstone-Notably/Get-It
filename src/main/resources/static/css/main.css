@@ -123,6 +123,11 @@ ul.dropdown-menu.fm {
     font-family: var(--font1);
 }
 
+ul.dropdown-menu.rs {
+    font-size: .75em;
+    font-family: var(--font1);
+}
+
 button.dropdown-links {
     font-size: 1em;
     font-family: var(--font1);

@@ -53,7 +53,7 @@
                             aria-haspopup="true" aria-expanded="false">
                         <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu rs">
                         <div th:each="preference:${preferences}">
                             <li><a class="menu-li" href="#"><span th:text="${preference.name}"/></a></li>
                             <li th:if="${preferences.size()} != ${preference.id}" role="separator" class="divider"></li>
