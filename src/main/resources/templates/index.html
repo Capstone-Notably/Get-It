@@ -204,8 +204,22 @@
             <div th:each="recipe:${recipes}">
                 <div class="col-sm-6 col-md-4 recipe">
                     <span class="recipe-name" th:text="${recipe.name}"></span>
-                    <a class="recipe-image" data-toggle="modal" th:href="'#recipeModal'+${recipe.id}"><img
-                            th:src="'/uploads/recipes/' + ${recipe.imgUrl}" class="img-responsive"/></a>
+                    <div class="recipes-all">
+                    <a class="recipe-image" data-toggle="modal" th:href="'#recipeModal'+${recipe.id}">
+                        <img th:src="'/uploads/recipes/' + ${recipe.imgUrl}" class="img-responsive"/>
+                    </a>
+                    <div sec:authorize="isAuthenticated()" class="dropdown">
+                        <span class="dropdown-toggle" type="button" th:id="'dropdown-recipes' + ${recipe.id}"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret-size-recipes caret" aria-hidden="true"></span>
+                        </span>
+
+                        <ul class="dropdown-menu recipe-custom-dropdown" th:attr="aria-labelledby='\'dropdown-recipes' + ${recipe.id} +'\''">
+                            <li><a th:href="@{/recipe/addItems(recipe_id=${recipe.id})}">Add Items to List</a></li>
+                            <li><a th:href="@{/recipe/delete(recipe_id=${recipe.id})}">Delete</a></li>
+                        </ul>
+                    </div>
+                    </div>
 
 
                     <!-- Modal to show recipe details -->
