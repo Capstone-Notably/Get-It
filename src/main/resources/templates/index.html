@@ -89,8 +89,20 @@
             <div th:each="category:${categories}">
                 <div class="col-sm-6 col-md-4 category">
                     <span class="category-name" th:text="${category.name}"></span>
-                    <a class="category-image" data-toggle="modal" th:href="'#itemModal'+${category.id}"><img
-                            th:src="'/uploads/categories/' + ${category.imgUrl}" class="img-responsive"/></a>
+                    <div class="categories-all">
+                        <a class="category-image" data-toggle="modal" th:href="'#itemModal'+${category.id}"><img
+                                th:src="'/uploads/categories/' + ${category.imgUrl}" class="img-responsive"/></a>
+                        <div sec:authorize="isAuthenticated()" class="dropdown">
+                                <span class="dropdown-toggle" type="button" th:id="'dropdown-recipes' + ${category.id}"
+                                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="caret-size-recipes caret" aria-hidden="true"></span>
+                                </span>
+
+                            <ul class="dropdown-menu recipe-custom-dropdown" th:attr="aria-labelledby='\'dropdown-recipes' + ${category.id} +'\''">
+                                <li><a th:href="@{/category/delete(category_id=${category.id})}">Delete</a></li>
+                            </ul>
+                        </div>
+                    </div>
 
                     <!-- Modal to show items -->
                     <div class="modal fade" th:id="'itemModal' + ${category.id}" tabindex="-1" role="dialog"
@@ -205,20 +217,20 @@
                 <div class="col-sm-6 col-md-4 recipe">
                     <span class="recipe-name" th:text="${recipe.name}"></span>
                     <div class="recipes-all">
-                    <a class="recipe-image" data-toggle="modal" th:href="'#recipeModal'+${recipe.id}">
-                        <img th:src="'/uploads/recipes/' + ${recipe.imgUrl}" class="img-responsive"/>
-                    </a>
-                    <div sec:authorize="isAuthenticated()" class="dropdown">
-                        <span class="dropdown-toggle" type="button" th:id="'dropdown-recipes' + ${recipe.id}"
-                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <span class="caret-size-recipes caret" aria-hidden="true"></span>
-                        </span>
+                        <a class="recipe-image" data-toggle="modal" th:href="'#recipeModal'+${recipe.id}">
+                            <img th:src="'/uploads/recipes/' + ${recipe.imgUrl}" class="img-responsive"/>
+                        </a>
+                        <div sec:authorize="isAuthenticated()" class="dropdown">
+                            <span class="dropdown-toggle" type="button" th:id="'dropdown-recipes' + ${recipe.id}"
+                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span class="caret-size-recipes caret" aria-hidden="true"></span>
+                            </span>
 
-                        <ul class="dropdown-menu recipe-custom-dropdown" th:attr="aria-labelledby='\'dropdown-recipes' + ${recipe.id} +'\''">
-                            <!--<li><a th:href="@{/recipe/addItems(recipe_id=${recipe.id})}">Add Items to List</a></li>-->
-                            <li><a th:href="@{/recipe/delete(recipe_id=${recipe.id})}">Delete</a></li>
-                        </ul>
-                    </div>
+                            <ul class="dropdown-menu recipe-custom-dropdown" th:attr="aria-labelledby='\'dropdown-recipes' + ${recipe.id} +'\''">
+                                <!--<li><a th:href="@{/recipe/addItems(recipe_id=${recipe.id})}">Add Items to List</a></li>-->
+                                <li><a th:href="@{/recipe/delete(recipe_id=${recipe.id})}">Delete</a></li>
+                            </ul>
+                        </div>
                     </div>
 
 
@@ -230,17 +242,13 @@
                                 <div class="recipe-body">
 
                                     <div class="recipe-details" th:style="'background:url(/uploads/recipes/' + ${recipe.imgUrl} + '); background-size: cover'">
-
                                         <button class="recipe-close" type="button" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
-
                                         <h4 class="recipe-title">
                                             <span th:text="${recipe.name}"/>
                                         </h4>
-
                                         <p class="recipe-time"><span th:text="${recipe.time}"/></p>
-
                                     </div>
 
                                     <div class="recipe-directions">
