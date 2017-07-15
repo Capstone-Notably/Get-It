@@ -88,10 +88,11 @@
 
             <div th:each="category:${categories}">
                 <div class="col-sm-6 col-md-4 category">
-                    <span class="category-name" th:text="${category.name}"></span>
                     <div class="categories-all">
-                        <a class="category-image" data-toggle="modal" th:href="'#itemModal'+${category.id}"><img
-                                th:src="'/uploads/categories/' + ${category.imgUrl}" class="img-responsive"/></a>
+                        <a class="category-image" data-toggle="modal" th:href="'#itemModal'+${category.id}">
+                            <img th:src="'/uploads/categories/' + ${category.imgUrl}" class="img-responsive"/>
+                            <span class="category-name" th:text="${category.name}"></span>
+                        </a>
                         <div sec:authorize="isAuthenticated()" class="dropdown">
                                 <span class="dropdown-toggle" type="button" th:id="'dropdown-recipes' + ${category.id}"
                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -215,10 +216,10 @@
 
             <div th:each="recipe:${recipes}">
                 <div class="col-sm-6 col-md-4 recipe">
-                    <span class="recipe-name" th:text="${recipe.name}"></span>
                     <div class="recipes-all">
                         <a class="recipe-image" data-toggle="modal" th:href="'#recipeModal'+${recipe.id}">
                             <img th:src="'/uploads/recipes/' + ${recipe.imgUrl}" class="img-responsive"/>
+                            <span class="recipe-name" th:text="${recipe.name}"></span>
                         </a>
                         <div sec:authorize="isAuthenticated()" class="dropdown">
                             <span class="dropdown-toggle" type="button" th:id="'dropdown-recipes' + ${recipe.id}"
