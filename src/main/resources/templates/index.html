@@ -228,9 +228,32 @@
                             </span>
 
                             <ul class="dropdown-menu recipe-custom-dropdown" th:attr="aria-labelledby='\'dropdown-recipes' + ${recipe.id} +'\''">
-                                <!--<li><a th:href="@{/recipe/addItems(recipe_id=${recipe.id})}">Add Items to List</a></li>-->
+                                <li><a role="button" data-toggle="collapse" th:href="'#collapseListsRecipes' + ${recipe.id}" aria-controls="collapseExample">Add Items to List</a></li>
                                 <li><a th:href="@{/recipe/delete(recipe_id=${recipe.id})}">Delete</a></li>
                             </ul>
+
+                            <div class="collapse" th:id="'collapseListsRecipes' + ${recipe.id}">
+                                <div class="well">
+
+                                    <button type="button" class="close-collapse close" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+
+                                    <strong class="select">Select Grocery List</strong>
+
+                                    <form class="popover-body add-to-list" th:method="post" th:action="@{/recipe/addItemsToList}">
+
+                                        <div class="radio">
+                                            <label th:each="groceryList : ${groceryLists}">
+                                                <input type="radio" name="glist_id" th:value="${groceryList.id}" th:text="${groceryList.name}" />
+                                                <input type="hidden" name="recipe_id" th:value="${recipe.id}" />
+                                            </label>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-success">SEND</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

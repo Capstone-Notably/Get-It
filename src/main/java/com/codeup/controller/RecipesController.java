@@ -21,16 +21,22 @@ public class RecipesController {
     private final RecipeItemsRepository recipeItemsRepository;
     private final UserRecipeRepository userRecipeRepository;
     private final ItemsRepository itemsRepository;
+    private final GroceryListsRepository groceryListsRepository;
+    private final ListItemsRepository listItemsRepository;
 
     @Value("${recipes-img-path}")
     private String recipesImgPath;
 
     @Autowired
-    public RecipesController(RecipesRepository recipesRepository, RecipeItemsRepository recipeItemsRepository, UserRecipeRepository userRecipeRepository,ItemsRepository itemsRepository) {
+    public RecipesController(RecipesRepository recipesRepository, RecipeItemsRepository recipeItemsRepository,
+                             UserRecipeRepository userRecipeRepository,ItemsRepository itemsRepository,
+                             GroceryListsRepository groceryListsRepository, ListItemsRepository listItemsRepository) {
         this.recipesRepository = recipesRepository;
         this.recipeItemsRepository = recipeItemsRepository;
         this.userRecipeRepository = userRecipeRepository;
         this.itemsRepository = itemsRepository;
+        this.groceryListsRepository = groceryListsRepository;
+        this.listItemsRepository = listItemsRepository;
     }
 
     @PostMapping("/recipes/create")
@@ -78,6 +84,21 @@ public class RecipesController {
 //        Recipe recipe = recipesRepository.findOne(recipe_id);
 //        recipesRepository.delete(recipe);
         return "redirect:/";
+    }
+
+    @PostMapping("/recipe/addItemsToList")
+    public String addItemsToList(@RequestParam("recipe_id") long recipe_id, @RequestParam("glist_id") long glist_id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<RecipeItem> recipeItems = recipeItemsRepository.findByRecipe_Id(recipe_id);
+        List<ListItem> listItems = new ArrayList<>();
+        for (RecipeItem recipeItem : recipeItems) {
+            GroceryList list = groceryListsRepository.findOne(glist_id);
+            Item item = itemsRepository.findOne(recipeItem.getItem().getId());
+            listItems.add(new ListItem(list, item));
+        }
+        listItemsRepository.save(listItems);
+
+        return "redirect:/lists";
     }
 
     public static List<Recipe> findAll(RecipesRepository recipesRepository, UserRecipeRepository userRecipeRepository) {
