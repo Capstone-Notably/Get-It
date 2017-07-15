@@ -1,3 +1,7 @@
+
+/*@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css");*/
+/*@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");*/
+
 /* ---------------------------------------------------------------------------------------------------------------------
     CSS Reset
 ----------------------------------------------------------------------------------------------------------------------*/
@@ -10,7 +14,6 @@ body {
     text-decoration: none;
     overflow-x: hidden;
 }
-
 
 /* ---------------------------------------------------------------------------------------------------------------------
     General Styles
@@ -311,8 +314,15 @@ h1.register-header {
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-    width: 40em;
+    width: 30em;
     font-size: 2.5em;
+}
+
+.register-icon-name:before {
+    /*font-family: 'Glyphicons Halflings';*/
+    /*content: "\f015";*/
+    background-repeat: no-repeat;
+    background-position: 2px 3px;
 }
 
 .menu {
@@ -1906,9 +1916,22 @@ canvas {
         font-size: 1.2em;
     }
 
+    div.ui-widget {
+        width: 7.75em;
+    }
+
     #tags {
         height: 1.5em;
         font-size: .5em;
+        left: 30px;
+    }
+
+    button#search-submit {
+        right: 30px;
+    }
+
+    #search-submit {
+        right: 30px;
     }
 
     .index-body {
@@ -2033,6 +2056,38 @@ canvas {
         border-bottom: .2em solid var(--accentcolor);
     }
 
+    .grocery-title {
+        font-size: 1.2em;
+    }
+
+    #search-submit {
+        grid-row: 1;
+        height: 1.7em;
+        font-size: .5em;
+        padding: 0;
+        right: 30px;
+    }
+
+    div.ui-widget {
+        width: 6em;
+    }
+
+    #tags {
+        height: 1.5em;
+        font-size: .5em;
+        left: 50px;
+    }
+
+    button#search-submit {
+        right: 50px;
+        width: 45px;
+    }
+
+    #barcode, #add-item-button {
+        margin-left: 1.5em;
+        left: 1em;
+    }
+
     form.lists-search {
         margin-top: .5em;
     }
@@ -2071,22 +2126,6 @@ canvas {
         padding: 0;
     }
 
-    .grocery-title {
-        font-size: 1.2em;
-    }
-
-    #search-submit {
-        grid-row: 1;
-        height: 1.5em;
-        font-size: .5em;
-        padding: 0;
-    }
-
-    #tags {
-        height: 1.5em;
-        font-size: .5em;
-    }
-
     .index-body {
         grid: "image" "space1" "categories" "recipes";
         grid-template-rows: 95vh 1em minmax(30em, auto) minmax(30em, auto);
@@ -2110,6 +2149,26 @@ canvas {
 
     .brand {
         font-size: 4em;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #barcode, #add-item-button {
+        margin-left: 1.5em;
+        left: 1em;
+        right: 1em;
+    }
+}
+
+@media screen and (max-width: 321px) {
+    #barcode, #add-item-button {
+        margin-left: 10px;
+        left: 1em;
+        right: 1em;
+    }
+
+    div.ui-widget {
+        width: 5.5em;
     }
 }
 

@@ -16,7 +16,7 @@
     $brand.hide();
     $heroText1.delay(2500).fadeIn(2000);
     $heroText2.delay(4000).fadeIn(2000);
-    $brand.delay(6100).effect("slide", 1000).animate({
+    $brand.delay(6100).fadeIn(1000).animate({
         color: "#ffcc33"
     });
 
@@ -90,6 +90,10 @@
             var content = $(this).attr("data-popover-content");
             return $(content).children(".popover-body").html();
     }
+    });
+
+    $('.close-collapse').click(function () {
+        $('.collapse').collapse('hide');
     });
 
 /*----------------------------------------------------------------------------------------------------------------------
@@ -544,6 +548,7 @@
     });
 
     $('video').css('width', '100%');
+
 
 
 
