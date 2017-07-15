@@ -27,7 +27,7 @@ body {
     --bannergreen: rgba(141, 182, 0, .6);
     --accentcolor: rgb(235, 253, 212);
     --grey: #DADFE1;
-    --accentcolor2: rgba(0, 0, 0, .4)
+    --accentcolor2: rgba(0, 0, 0, .4);
 }
 
 ul, li, a, a:hover {
@@ -103,6 +103,7 @@ ul, li, a, a:hover {
     justify-content: center;
     align-items: center;
     font-size: 1.5em;
+    padding-right: 1em;
 }
 
 .dropdown-nav {
@@ -110,6 +111,22 @@ ul, li, a, a:hover {
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+}
+
+ul.dropdown-menu {
+    font-size: 1.5em;
+    font-family: var(--font1);
+}
+
+ul.dropdown-menu.fm {
+    font-size: 1em;
+    font-family: var(--font1);
+}
+
+button.dropdown-links {
+    font-size: 1em;
+    font-family: var(--font1);
+    text-indent: 9px;
 }
 
 #search-trigger2 {
@@ -417,8 +434,10 @@ h1.register-header {
     font-size: 16em;
     font-weight: 900;
     grid-row: 3;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
+    width: 3em;
+    margin-left: 3em;
 }
 
 #recipe-header, #category-header {
@@ -597,7 +616,10 @@ h1.register-header {
     width: 20%;
 }
 
-.ui-autocomplete-input, .ui-menu, .ui-menu-item {  z-index: 2006; }
+.ui-autocomplete-input, .ui-menu, .ui-menu-item {
+    z-index: 2006;
+    font-size: 1.5em;
+}
 
 #div-search-item{
     display: flex;
@@ -607,7 +629,7 @@ h1.register-header {
 }
 
 #create-item-button {
-    margin-right: 2em;
+    /*margin-right: 2em;*/
 }
 
 #div-create-recipe {
@@ -831,7 +853,7 @@ button.recipe-close, button.category-close {
 }
 
 div.collapse.in {
-    z-index: 2;
+    z-index: 2006;
     position: relative;
 }
 
@@ -986,6 +1008,30 @@ label#pic-label {
     background-color: var(--accentcolor);
 }
 
+div.modal-header.create {
+    background-image: url("/uploads/others/brussels.jpeg");
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+}
+
+button.close.create, .modal-title-create-item {
+    color: white;
+    font-size: 3em;
+    opacity: 1;
+}
+
+.modal-title-create-item {
+    width: 95%;
+    margin: 0;
+    text-align: left;
+    font-weight: 700;
+}
+
+button.close.create-item-modal {
+
+}
+
 .rows > input {
     display: inline-flex;
     justify-content: center;
@@ -1107,7 +1153,6 @@ label#pic-label {
     margin-top: 1px;
     text-align: right;
 }
-
 
 #lists-search-items {
     display: grid;
@@ -1393,7 +1438,7 @@ canvas {
 ----------------------------------------------------------------------------------------------------------------------*/
 .profile-home {
     grid-row: body;
-    background-image: url("/uploads/others/market.jpg");
+    background-image: url("/uploads/others/fruity.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -1404,24 +1449,33 @@ canvas {
 }
 
 .profile-header {
-
     font-size: 3em;
     align-content: center;
     justify-content: center;
     font-family: var(--font1);
     font-weight: 500;
     height: 100%;
-    width: 80%;
+    width: 95%;
+    color: white;
 }
 .div-header-profile {
     height: 100%;
-    background-color: white;
+    background-image: url("/uploads/others/brussels.jpeg");
+    display: flex;
+    flex-direction: row;
 }
 
-#close-profile-modal {
+button.close.profile > a {
     height: 100%;
-    align-content: flex-start;
-    justify-content: flex-start;
+    color: white;
+    font-size: 1.5em;
+    /*align-content: flex-start;*/
+    /*justify-content: flex-start;*/
+
+}
+
+button.close.profile {
+    opacity: 1;
 }
 
 .users-info {
@@ -1531,7 +1585,7 @@ canvas {
     justify-content: flex-end;
     align-items: center;
     text-align: center;
-    background-color: var(--green);
+    background-image: url("/uploads/others/wood-board.jpeg");
     border: 3px solid var(--accentcolor);
 }
 
@@ -1642,6 +1696,7 @@ canvas {
 
     .brand {
         font-size: 5em;
+        margin-left: 9em;
     }
 }
 
@@ -1804,6 +1859,7 @@ canvas {
 
     .brand {
         font-size: 6em;
+        margin-left: 4.8em;
     }
 
     .about-body {
@@ -1812,6 +1868,26 @@ canvas {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+
+    .about-header {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .t {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .r {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .m {
+        margin-top: 1em;
+        margin-bottom: 1em;
     }
 }
 
@@ -1987,6 +2063,35 @@ canvas {
 
     .brand {
         font-size: 4em;
+        margin-left: 3.9em;
+    }
+
+    .about-body {
+        grid-row: body;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .about-header {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .t {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .r {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .m {
+        margin-top: 1em;
+        margin-bottom: 1em;
     }
 }
 
@@ -2175,6 +2280,7 @@ canvas {
 
     .brand {
         font-size: 4em;
+        margin-left: 3.7em;
     }
 
     .share-number-input {
@@ -2182,6 +2288,38 @@ canvas {
         font-size: 1.5em;
     }
 
+    .ui-autocomplete-input, .ui-menu, .ui-menu-item {
+        z-index: 2006;
+        font-size: 1em;
+    }
+
+    .about-body {
+        grid-row: body;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .about-header {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .t {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .r {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .m {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -2189,6 +2327,10 @@ canvas {
         margin-left: 1.5em;
         left: 1em;
         right: 1em;
+    }
+
+    .brand {
+        margin-left: 3em;
     }
 }
 

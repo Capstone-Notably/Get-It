@@ -16,8 +16,9 @@
     $brand.hide();
     $heroText1.delay(2500).fadeIn(2000);
     $heroText2.delay(4000).fadeIn(2000);
-    $brand.delay(6100).fadeIn(1000).animate({
-        color: "#ffcc33"
+    $brand.delay(6100).fadeIn().animate({
+        color: "rgb(235, 253, 212)",
+        backgroundColor: "rgba(0, 0, 0, .4)"
     });
 
 
