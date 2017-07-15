@@ -643,11 +643,39 @@ h1.register-header {
     right: 2em;
 }
 
-.recipe-items-create {
-
+div.modal-header.create-recipe {
+    background-image: url("/uploads/others/brussels.jpeg");
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
 }
 
+h4.modal-title.recipe {
+    width: 95%;
+    text-align: left;
+    align-items: flex-start;
+}
 
+h4.modal-title.recipe, button.close.recipe {
+    color: white;
+    font-size: 3em;
+    opacity: 1;
+    margin: 0;
+    justify-content: flex-start;
+}
+
+button.close.recipe {
+    margin: 0;
+    height: 100%;
+}
+
+div.modal-body.create-recipe {
+    background-color: var(--accentcolor);
+}
+
+button.btn.recipe {
+    font-size: 2.5em;
+}
 /*----------------------------------------------------------------------------------------------------------------------
    Item Index
 ----------------------------------------------------------------------------------------------------------------------*/
