@@ -44,6 +44,38 @@
         $('#popover-recipe').popover('hide');
     });
 
+    $('.delete-category').click(function (e) {
+        e.preventDefault();
+        displaySwal("category", $(this));
+    });
+
+    $('.delete-recipe').click(function (e) {
+        e.preventDefault();
+        displaySwal("recipe", $(this));
+    });
+
+    $('.delete-item').click(function (e) {
+        e.preventDefault();
+        displaySwal("item", $(this));
+    });
+
+    function displaySwal(name, link) {
+        swal({
+                title: "Are you sure?",
+                text: "Your will not be able to recover this " + name + "!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            },
+            function(){
+                swal("Deleted!", "Your " + name + " has been deleted.", "success");
+                console.log("test");
+                link.next()[0].click();
+            });
+    }
+
 /*----------------------------------------------------------------------------------------------------------------------
     Login
  ----------------------------------------------------------------------------------------------------------------------*/
