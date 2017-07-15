@@ -88,7 +88,7 @@ public class ItemsController {
         GroceryList glist = groceryListsRepository.findOne(glist_id);
         Item item = itemsRepository.findOne(item_id);
         listItemsRepository.save(new ListItem(glist, item));
-        return "redirect:/";
+        return "redirect:/lists";
     }
 
     public static List<CustomItem> findByCategory(ItemsRepository itemsRepository, UserItemsRepository userItemsRepository, long category_id) {
