@@ -118,6 +118,11 @@ ul.dropdown-menu {
     font-family: var(--font1);
 }
 
+ul.dropdown-menu.fm {
+    font-size: 1em;
+    font-family: var(--font1);
+}
+
 button.dropdown-links {
     font-size: 1em;
     font-family: var(--font1);
@@ -1578,7 +1583,7 @@ button.close.profile {
     justify-content: flex-end;
     align-items: center;
     text-align: center;
-    background-color: var(--green);
+    background-image: url("/uploads/others/wood-board.jpeg");
     border: 3px solid var(--accentcolor);
 }
 

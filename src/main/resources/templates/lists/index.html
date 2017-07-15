@@ -132,7 +132,7 @@
                                                         aria-haspopup="true" aria-expanded="false">
                                                     <span class="caret" /> <span th:text="${categoryName}" />
                                                 </button>
-                                                <ul class="dropdown-menu">
+                                                <ul class="dropdown-menu fm">
                                                     <div th:each="category:${categories}">
                                                         <li><a class="menu-li" href="#"><span th:text="${category.name}"/></a></li>
                                                         <li th:if="${categories.size()} != ${category.id}" role="separator" class="divider"></li>
