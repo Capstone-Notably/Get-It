@@ -130,6 +130,10 @@ insert into recipes (name, directions, img_url, time, user_id, preference_id) VA
 insert into recipes (name, directions, img_url, time, user_id, preference_id) VALUES('Tomato Basil Salmon', 'How to Make It: 1. Preheat oven to 375 degrees F. 2. Line a baking sheet with aluminum foil and spray with nonstick cooking spray.  3. Place the salmon fillets onto the foil, sprinkle with basil, top with tomato slices, drizzle with olive oil, and sprinkle with the Parmesan cheese.  4. Bake in the preheated oven until the salmon is opaque in the center, and the Parmesan cheese is lightly browned on top.  5. Serve with a side of sauteed spinach. ','3_tomato_basil_salmon.jpg','Cook for approx. 20 minutes.',1,1);
 insert into recipes (name, directions, img_url, time, user_id, preference_id) VALUES('Cilantro Lime Rice - Vegan', 'How to Make It:  1. Combine the rice, chicken broth, salt and ground cumin in a large saucepan or skillet. Bring to a boil over medium-high heat. Cover with lid then reduce heat to medium-low. Let simmer 20 minutes. 2. Remove from heat, but keep lid on. Let stand with lid on for 10 minutes. Remove lid and add in lime juice and chopped cilantro. Fluff with a fork and serve warm.','4_cilantro_lime_rice_vegan.jpg','Cook for approx. 30 minutes',1,3);
 insert into recipes (name, directions, img_url, time, user_id, preference_id) VALUES('Garlic Chicken', 'How to Make It: 1. Melt butter in a large skillet over medium high heat. 2. Add chicken and sprinkle with garlic powder, seasoning salt and onion powder. 3. Saute approx. 10 to 15 minutes on each side, or until chicken is cooked through and juices run clear.','5_garlic_chicken.jpg','Cook for approx. 25 minutes.',1,1);
+insert into recipes (name, directions, img_url, time, user_id, preference_id) VALUES('Veggie Burgers', 'How to Make It: 1. Heat veggie burger patty over medium heat. 2. Toast vegan bread. 3. Add veggie burger to vegan bread with avocado, lettuce and cheese', '6_veggie_burger_vegetarian.jpg', 'Cook for approx. 25 minutes.',1,2);
+insert into recipes (name, directions, img_url, time, user_id, preference_id) VALUES('Veggie Spaghetti', 'How to Make It: 1. Heat water to boil and add noodles. Cook until al dente. 2. Simmer tomatoes and veggies with spices. 3. Combine and add parmesan cheese on top', '7_veggie_spaghetti_vegetarian.jpg', 'Cook for approx. 35 minutes.',1,2);
+insert into recipes (name, directions, img_url, time, user_id, preference_id) VALUES('Vegan Tofu Curry', 'How to Make It: 1. Slice tofu into squares and bake in oven until crispy. 2. Cook white rice for 20 min. 3. Simmer vegetables in coconut milk and spices until soft. 4. Combine and serve.', '8_curry_tofu_vegan.jpg', 'Cook for approx. 55 minutes.',1,3);
+insert into recipes (name, directions, img_url, time, user_id, preference_id) VALUES('Vegan Tofu Scramble', 'How to Make It: 1. Slice tofu into chunks and pan fry until slightly toasted. 2. Add sliced avocado and tomatoes the last 2 minutes. 3. Serve over chips.', '9_tofu_scramble_vegan.jpg', 'Cook for approx. 25 minutes.',1,3);
 
 -- recipe_items
 -- -----------------------------------------------------------------------------------
@@ -159,6 +163,26 @@ insert into recipe_items (recipe_id, quantity, item_id) VALUES(5,'4 pcs.',37);
 insert into recipe_items (recipe_id, quantity, item_id) VALUES(5,'2 tsp.',9);
 insert into recipe_items (recipe_id, quantity, item_id) VALUES(5,'1 tsp.',60);
 insert into recipe_items (recipe_id, quantity, item_id) VALUES(5,'1 tsp.',56);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(6,'1 patty',97);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(6,'2 slices',101);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(6,'1 tbsp.',5);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(6,'1 leaf',11);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(6,'1 slice',27);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(7,'1 cup',18);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(7,'1 can',47);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(7,'1 tbsp.',61);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(7,'1 tbsp.',30);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(8,'1 cup',19);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(8,'1 cup',94);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(8,'1 cup',96);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(8,'1 cup',48);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(8,'1 tbsp.',61);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(8,'1 tbsp.',7);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(8,'1 tbsp.',8);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(9,'1 block',96);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(9,'1',5);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(9,'1 tbsp.',99);
+insert into recipe_items (recipe_id, quantity, item_id) VALUES(9,'1 cup',64);
 
 -- preferences
 -- -----------------------------------------------------------------------------------
