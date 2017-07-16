@@ -1,3 +1,8 @@
+-- admin user
+-- -------------------------------------------------------------------------------------------
+insert into users (username, email, password, img_url, phone) VALUES('admin', 'admin@get-it.press','getit','default_user.png', '000');
+
+
 -- categories
 -- -------------------------------------------------------------------------------------------
 
