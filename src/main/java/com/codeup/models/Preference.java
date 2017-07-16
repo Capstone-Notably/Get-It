@@ -19,6 +19,9 @@ public class Preference {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "preference")
     private List<UserCategory> userCategories;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "preference")
+    private List<Recipe> recipes;
+
     public Preference(String name) {
         this.name = name;
     }
@@ -48,5 +51,13 @@ public class Preference {
 
     public void setUserCategories(List<UserCategory> userCategories) {
         this.userCategories = userCategories;
+    }
+
+    public List<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
     }
 }
