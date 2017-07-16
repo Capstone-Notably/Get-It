@@ -45,7 +45,7 @@ insert into items ( img_url, name, category_id, user_id, preferences) VALUES('bu
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('cheese.jpg', 'cheese',3,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('cheeseDip.jpeg', 'cheese dip',3,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('cheeseShredded.jpeg', 'cheese shredded',3,1,'1 2');
-insert into items ( img_url, name, category_id, user_id, preferences) VALUES('cheese slices', 'cheese slices',3,1,'1 2');
+insert into items ( img_url, name, category_id, user_id, preferences) VALUES('cheeseSlices.jpeg', 'cheese slices',3,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('eggs.jpeg', 'eggs',3,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('milk.jpg', 'milk',3,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('parmesanCheese.jpeg', 'parmesan cheese',3,1,'1 2');
