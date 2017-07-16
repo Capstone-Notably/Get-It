@@ -1,6 +1,7 @@
--- admin user (create manually an user admin)
+-- admin user
 -- -------------------------------------------------------------------------------------------
-insert into users (username, email, password, img_url, phone) VALUES('admin', 'admin@get-it.press','getit','default_user.png', 'admin');
+insert into users (username, email, password, img_url, phone) VALUES('admin', 'admin@get-it.press','getit','default_user.png', '$2a$10$Gx7j9RFJDwA/WgTshqn4D.0jX64XWq83z815EVi21H1w9T/3nz3Li');
+insert into user_roles (role, user_id) VALUES('ROLE_ADMIN', 1);
 
 
 -- categories
