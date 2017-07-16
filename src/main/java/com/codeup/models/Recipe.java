@@ -25,6 +25,10 @@ public class Recipe {
     @Column
     private String time;
 
+    @ManyToOne
+    @JoinColumn(name = "preference_id")
+    private Preference preference;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private List<RecipeItem> recipeItems;
 
@@ -46,6 +50,15 @@ public class Recipe {
         this.name = name;
         this.imgUrl = imgUrl;
         this.directions = directions;
+        this.user = user;
+    }
+
+    public Recipe(String name, String imgUrl, String directions, String time, Preference preference, User user) {
+        this.name = name;
+        this.imgUrl = imgUrl;
+        this.directions = directions;
+        this.time = time;
+        this.preference = preference;
         this.user = user;
     }
 
@@ -103,5 +116,13 @@ public class Recipe {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Preference getPreference() {
+        return preference;
+    }
+
+    public void setPreference(Preference preference) {
+        this.preference = preference;
     }
 }

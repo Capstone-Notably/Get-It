@@ -1,6 +1,6 @@
--- admin user
+-- admin user (create manually an user admin)
 -- -------------------------------------------------------------------------------------------
-insert into users (username, email, password, img_url, phone) VALUES('admin', 'admin@get-it.press','getit','default_user.png', '000');
+insert into users (username, email, password, img_url, phone) VALUES('admin', 'admin@get-it.press','getit','default_user.png', 'admin');
 
 
 -- categories
@@ -37,7 +37,7 @@ insert into items ( img_url, name, category_id, user_id, preferences) VALUES('ce
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('crackers.jpeg', 'crackers',2,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('pancakeMix.jpeg', 'pancake mix',2,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('pastas.jpeg', 'pastas',2,1,'1 2');
-insert into items ( img_url, name, category_id, user_id, preferences) VALUES('riceWhite.jpg', 'white rice',2,1,'1 2');
+insert into items ( img_url, name, category_id, user_id, preferences) VALUES('riceWhite.jpg', 'white rice',2,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('rolls.jpeg', 'rolls',2,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('spaghetti.jpeg', 'spaghetti',2,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('torillas.jpeg', 'tortillas',2,1,'1 2');
@@ -45,7 +45,7 @@ insert into items ( img_url, name, category_id, user_id, preferences) VALUES('bu
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('cheese.jpg', 'cheese',3,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('cheeseDip.jpeg', 'cheese dip',3,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('cheeseShredded.jpeg', 'cheese shredded',3,1,'1 2');
-insert into items ( img_url, name, category_id, user_id, preferences) VALUES('cheese slices', 'cheese slices',3,1,'1 2');
+insert into items ( img_url, name, category_id, user_id, preferences) VALUES('cheeseSlices.jpeg', 'cheese slices',3,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('eggs.jpeg', 'eggs',3,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('milk.jpg', 'milk',3,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('parmesanCheese.jpeg', 'parmesan cheese',3,1,'1 2');
@@ -124,11 +124,11 @@ insert into items ( img_url, name, category_id, user_id, preferences) VALUES('no
 
 -- recipes
 -- -----------------------------------------------------------------------------------
-insert into recipes (name, directions, img_url, time, user_id) VALUES('Roasted Broccoli with Parmesan', 'How to Make It:  1. Place broccoli and garlic into baking pan. Drizzle with oil and toss.  2. Bake at 450°, stirring occasionally, 20 to 25 minutes or until lightly browned. Sprinkle with salt, pepper, and cheese.','1_roasted_broccoli_cauliflower.jpg','Bake: 25 minutes.',1);
-insert into recipes (name, directions, img_url, time, user_id) VALUES('Lemon Pepper Chicken', 'How to Make It:  1. Combine all ingredients except chicken in a large ziplock bag.  2. Add chicken to the bag. Seal it shut and chill it in the fridge for half an hour.  3. Heat a grill to medium high. Cook chicken on grill and monitor internal temperature. ','2_lemon_pepper_chicken.jpg','Cook: Until internal temp is 165 degrees F.',1);
-insert into recipes (name, directions, img_url, time, user_id) VALUES('Tomato Basil Salmon', 'How to Make It: 1. Preheat oven to 375 degrees F. 2. Line a baking sheet with aluminum foil and spray with nonstick cooking spray.  3. Place the salmon fillets onto the foil, sprinkle with basil, top with tomato slices, drizzle with olive oil, and sprinkle with the Parmesan cheese.  4. Bake in the preheated oven until the salmon is opaque in the center, and the Parmesan cheese is lightly browned on top.  5. Serve with a side of sauteed spinach. ','3_tomato_basil_salmon.jpg','Cook for approx. 20 minutes.',1);
-insert into recipes (name, directions, img_url, time, user_id) VALUES('Cilantro Lime Rice - Vegan', 'How to Make It:  1. Combine the rice, chicken broth, salt and ground cumin in a large saucepan or skillet. Bring to a boil over medium-high heat. Cover with lid then reduce heat to medium-low. Let simmer 20 minutes. 2. Remove from heat, but keep lid on. Let stand with lid on for 10 minutes. Remove lid and add in lime juice and chopped cilantro. Fluff with a fork and serve warm.','4_cilantro_lime_rice_vegan.jpg','Cook for approx. 30 minutes',1);
-insert into recipes (name, directions, img_url, time, user_id) VALUES('Garlic Chicken', 'How to Make It: 1. Melt butter in a large skillet over medium high heat. 2. Add chicken and sprinkle with garlic powder, seasoning salt and onion powder. 3. Saute approx. 10 to 15 minutes on each side, or until chicken is cooked through and juices run clear.','5_garlic_chicken.jpg','Cook for approx. 25 minutes.',1);
+insert into recipes (name, directions, img_url, time, user_id, preference_id) VALUES('Roasted Broccoli with Parmesan', 'How to Make It:  1. Place broccoli and garlic into baking pan. Drizzle with oil and toss.  2. Bake at 450°, stirring occasionally, 20 to 25 minutes or until lightly browned. Sprinkle with salt, pepper, and cheese.','1_roasted_broccoli_cauliflower.jpg','Bake: 25 minutes.',1,2);
+insert into recipes (name, directions, img_url, time, user_id, preference_id) VALUES('Lemon Pepper Chicken', 'How to Make It:  1. Combine all ingredients except chicken in a large ziplock bag.  2. Add chicken to the bag. Seal it shut and chill it in the fridge for half an hour.  3. Heat a grill to medium high. Cook chicken on grill and monitor internal temperature. ','2_lemon_pepper_chicken.jpg','Cook: Until internal temp is 165 degrees F.',1,1);
+insert into recipes (name, directions, img_url, time, user_id, preference_id) VALUES('Tomato Basil Salmon', 'How to Make It: 1. Preheat oven to 375 degrees F. 2. Line a baking sheet with aluminum foil and spray with nonstick cooking spray.  3. Place the salmon fillets onto the foil, sprinkle with basil, top with tomato slices, drizzle with olive oil, and sprinkle with the Parmesan cheese.  4. Bake in the preheated oven until the salmon is opaque in the center, and the Parmesan cheese is lightly browned on top.  5. Serve with a side of sauteed spinach. ','3_tomato_basil_salmon.jpg','Cook for approx. 20 minutes.',1,1);
+insert into recipes (name, directions, img_url, time, user_id, preference_id) VALUES('Cilantro Lime Rice - Vegan', 'How to Make It:  1. Combine the rice, chicken broth, salt and ground cumin in a large saucepan or skillet. Bring to a boil over medium-high heat. Cover with lid then reduce heat to medium-low. Let simmer 20 minutes. 2. Remove from heat, but keep lid on. Let stand with lid on for 10 minutes. Remove lid and add in lime juice and chopped cilantro. Fluff with a fork and serve warm.','4_cilantro_lime_rice_vegan.jpg','Cook for approx. 30 minutes',1,3);
+insert into recipes (name, directions, img_url, time, user_id, preference_id) VALUES('Garlic Chicken', 'How to Make It: 1. Melt butter in a large skillet over medium high heat. 2. Add chicken and sprinkle with garlic powder, seasoning salt and onion powder. 3. Saute approx. 10 to 15 minutes on each side, or until chicken is cooked through and juices run clear.','5_garlic_chicken.jpg','Cook for approx. 25 minutes.',1,1);
 
 -- recipe_items
 -- -----------------------------------------------------------------------------------
@@ -165,3 +165,21 @@ insert into preferences (name) VALUES('omnivore');
 insert into preferences (name) VALUES('vegetarian');
 insert into preferences (name) VALUES('vegan');
 
+
+
+-- -----------------------------------------------------------------------------------
+-- clean database
+-- -----------------------------------------------------------------------------------
+drop table users_recipes;
+drop table users_items;
+drop table users_glists;
+drop table users_categories;
+drop table user_roles;
+drop table recipe_items;
+drop table recipes;
+drop table list_items;
+drop table items;
+drop table grocery_lists;
+drop table categories;
+drop table users;
+drop table preferences;

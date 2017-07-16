@@ -23,6 +23,7 @@ public class RecipesController {
     private final ItemsRepository itemsRepository;
     private final GroceryListsRepository groceryListsRepository;
     private final ListItemsRepository listItemsRepository;
+    private final UserItemsRepository userItemsRepository;
 
     @Value("${recipes-img-path}")
     private String recipesImgPath;
@@ -30,13 +31,15 @@ public class RecipesController {
     @Autowired
     public RecipesController(RecipesRepository recipesRepository, RecipeItemsRepository recipeItemsRepository,
                              UserRecipeRepository userRecipeRepository,ItemsRepository itemsRepository,
-                             GroceryListsRepository groceryListsRepository, ListItemsRepository listItemsRepository) {
+                             GroceryListsRepository groceryListsRepository, ListItemsRepository listItemsRepository,
+                             UserItemsRepository userItemsRepository) {
         this.recipesRepository = recipesRepository;
         this.recipeItemsRepository = recipeItemsRepository;
         this.userRecipeRepository = userRecipeRepository;
         this.itemsRepository = itemsRepository;
         this.groceryListsRepository = groceryListsRepository;
         this.listItemsRepository = listItemsRepository;
+        this.userItemsRepository = userItemsRepository;
     }
 
     @PostMapping("/recipes/create")
