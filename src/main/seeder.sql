@@ -1,6 +1,6 @@
--- admin user
+-- admin user (create manually an user admin)
 -- -------------------------------------------------------------------------------------------
-insert into users (username, email, password, img_url, phone) VALUES('admin', 'admin@get-it.press','getit','default_user.png', '000');
+insert into users (username, email, password, img_url, phone) VALUES('admin', 'admin@get-it.press','getit','default_user.png', 'admin');
 
 
 -- categories
@@ -165,3 +165,21 @@ insert into preferences (name) VALUES('omnivore');
 insert into preferences (name) VALUES('vegetarian');
 insert into preferences (name) VALUES('vegan');
 
+
+
+-- -----------------------------------------------------------------------------------
+-- clean database
+-- -----------------------------------------------------------------------------------
+drop table users_recipes;
+drop table users_items;
+drop table users_glists;
+drop table users_categories;
+drop table user_roles;
+drop table recipe_items;
+drop table recipes;
+drop table list_items;
+drop table items;
+drop table grocery_lists;
+drop table categories;
+drop table users;
+drop table preferences;
