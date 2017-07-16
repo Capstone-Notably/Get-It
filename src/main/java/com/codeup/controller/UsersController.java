@@ -124,7 +124,7 @@ public class UsersController {
 
 //        // send a welcome text
 //        String message = "Hello " + user.getUsername() + "from Get It";
-//        twilioSvc.sendMessage("+12104219757","+18304200837",message);
+//        twilioSvc.sendMessage("+12104219757",message);
 
         return "redirect:/login";
     }

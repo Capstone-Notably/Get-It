@@ -137,7 +137,7 @@ public class GroceryListsController {
 
         // send text to share list
         String message = user.getUsername() + "wants to share \"" + glist.getName() + "\" with you";
-        twilioSvc.sendMessage(phone,"+18304200837",message);
+        twilioSvc.sendMessage(phone,message);
         return "redirect:/lists";
     }
 

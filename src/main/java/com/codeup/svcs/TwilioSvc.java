@@ -15,7 +15,8 @@ public class TwilioSvc {
     @Value("${twilio-auth-token}")
     private String authToken;
 
-    public void sendMessage(String toPhone, String fromPhone, String text){
+    public void sendMessage(String toPhone, String text){
+        String fromPhone = "+18304200837";
         Twilio.init(accountSID, authToken);
 
         Message message = Message.creator(
