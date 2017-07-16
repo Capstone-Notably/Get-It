@@ -126,6 +126,7 @@ insert into recipes (name, directions, img_url, time, user_id) VALUES('Cilantro 
 insert into recipes (name, directions, img_url, time, user_id) VALUES('Garlic Chicken', 'How to Make It: 1. Melt butter in a large skillet over medium high heat. 2. Add chicken and sprinkle with garlic powder, seasoning salt and onion powder. 3. Saute approx. 10 to 15 minutes on each side, or until chicken is cooked through and juices run clear.','5_garlic_chicken.jpg','Cook for approx. 25 minutes.',1);
 
 -- recipe_items
+-- -----------------------------------------------------------------------------------
 insert into recipe_items (recipe_id, quantity, item_id) VALUES(1,'2 cups',7);
 insert into recipe_items (recipe_id, quantity, item_id) VALUES(1,'5 cloves',9);
 insert into recipe_items (recipe_id, quantity, item_id) VALUES(1,'1 tbsp.',55);
@@ -152,3 +153,9 @@ insert into recipe_items (recipe_id, quantity, item_id) VALUES(5,'4 pcs.',37);
 insert into recipe_items (recipe_id, quantity, item_id) VALUES(5,'2 tsp.',9);
 insert into recipe_items (recipe_id, quantity, item_id) VALUES(5,'1 tsp.',60);
 insert into recipe_items (recipe_id, quantity, item_id) VALUES(5,'1 tsp.',56);
+
+-- preferences
+-- -----------------------------------------------------------------------------------
+insert into preferences (name) VALUES('omnivore');
+insert into preferences (name) VALUES('vegetarian');
+insert into preferences (name) VALUES('vegan');
