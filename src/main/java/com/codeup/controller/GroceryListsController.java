@@ -136,7 +136,7 @@ public class GroceryListsController {
         userGListRepository.save(new UserGList(glist, user1));
 
         // send text to share list
-        String message = user.getUsername() + "wants to share \"" + glist.getName() + "\" with you";
+        String message = user.getUsername() + " wants to share grocery shopping list \"" + glist.getName() + "\" with you";
         twilioSvc.sendMessage(phone,message);
         return "redirect:/lists";
     }
