@@ -1768,6 +1768,17 @@ button.close.profile {
         width: 40vw;
         left:16%;
     }
+
+    .create-second {
+        display: flex;
+        flex-flow: column nowrap;
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+        /*margin-right: 0.5em;*/
+        width: 100vw;
+
+    }
 }
 
 @media screen and (min-width: 720px) and (max-width: 1020px) {
@@ -1963,6 +1974,17 @@ button.close.profile {
     .create-i-modal {
         width: 79vw;
         left: 0;
+    }
+
+    .create-second {
+        display: flex;
+        flex-flow: column nowrap;
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+        /*margin-right: 0.5em;*/
+        width: 100vw;
+
     }
 }
 
@@ -2172,6 +2194,17 @@ button.close.profile {
     .create-i-modal {
         width: 95vw;
         left: 0;
+    }
+
+    .create-second {
+        display: flex;
+        flex-flow: column nowrap;
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+        /*margin-right: 0.5em;*/
+        width: 100vw;
+
     }
 }
 
@@ -2405,6 +2438,17 @@ button.close.profile {
         width: 95vw;
         left: 0;
     }
+
+    .create-second {
+        display: flex;
+        flex-flow: column nowrap;
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+        /*margin-right: 0.5em;*/
+        width: 100vw;
+
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -2422,6 +2466,17 @@ button.close.profile {
         width: 94.5vw;
         left: 0;
     }
+
+    .create-second {
+        display: flex;
+        flex-flow: column nowrap;
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+        /*margin-right: 0.5em;*/
+        width: 100vw;
+
+    }
 }
 
 @media screen and (max-width: 321px) {
@@ -2438,6 +2493,17 @@ button.close.profile {
     .create-i-modal {
         width: 93vw;
         left: 0;
+    }
+
+    .create-second {
+        display: flex;
+        flex-flow: column nowrap;
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+        /*margin-right: 0.5em;*/
+        width: 100vw;
+
     }
 }
 
