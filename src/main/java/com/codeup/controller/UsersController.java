@@ -113,7 +113,9 @@ public class UsersController {
         Recipe temporalRecipe = recipesRepository.save(new Recipe("temporal recipe", "recipe_default.png", "", user));
         List<Recipe> recipes = recipesRepository.findByUser_Id(1);
         for (Recipe recipe : recipes) {
-           userRecipeRepository.save(new UserRecipe(recipe, user));
+            if(recipe.getPreference().getId() == prefByName.getId()) {
+                userRecipeRepository.save(new UserRecipe(recipe, user));
+            }
         }
 
         //update table users_glists
