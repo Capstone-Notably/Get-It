@@ -37,7 +37,7 @@ insert into items ( img_url, name, category_id, user_id, preferences) VALUES('ce
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('crackers.jpeg', 'crackers',2,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('pancakeMix.jpeg', 'pancake mix',2,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('pastas.jpeg', 'pastas',2,1,'1 2');
-insert into items ( img_url, name, category_id, user_id, preferences) VALUES('riceWhite.jpg', 'white rice',2,1,'1 2');
+insert into items ( img_url, name, category_id, user_id, preferences) VALUES('riceWhite.jpg', 'white rice',2,1,'1 2 3');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('rolls.jpeg', 'rolls',2,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('spaghetti.jpeg', 'spaghetti',2,1,'1 2');
 insert into items ( img_url, name, category_id, user_id, preferences) VALUES('torillas.jpeg', 'tortillas',2,1,'1 2');
