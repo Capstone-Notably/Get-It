@@ -164,3 +164,4 @@ insert into recipe_items (recipe_id, quantity, item_id) VALUES(5,'1 tsp.',56);
 insert into preferences (name) VALUES('omnivore');
 insert into preferences (name) VALUES('vegetarian');
 insert into preferences (name) VALUES('vegan');
+
