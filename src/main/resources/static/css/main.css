@@ -1205,7 +1205,7 @@ button.close.create, .modal-title-create-item {
     grid-row: 1;
     grid-column: 1;
     justify-content: center;
-    /*height: 1.3em;*/
+    height: auto;
     font-size: 2.8em;
     border: 1px solid var(--accentcolor);
     align-items: center;
@@ -1257,6 +1257,7 @@ button.close.create, .modal-title-create-item {
     grid-column: 2;
     /*height: 75%;*/
     /*top: .45em;*/
+    font-size:2.5em;
 }
 
 div.ui-widget {
@@ -1304,7 +1305,7 @@ h4.share-title {
     width: 100vw;
     margin-right: 0;
     background-color: var(--bannergreen);
-    padding-right: 4.5em;
+    /*padding-right: 4.5em;*/
 }
 
 .grocery-list-tab {
@@ -1433,6 +1434,7 @@ p.total {
     font-size: 3em;
     width: 100%;
     margin-bottom: 15px;
+    height:auto;
 }
 
 .modal-input-qty > input  {
@@ -1873,6 +1875,11 @@ button.close.profile {
         font-size: 2em;
     }
 
+    .ui-widget button{
+        font-size:.5em;
+
+    }
+
     .grocery-header {
         font-size: 4em;
     }
@@ -1921,8 +1928,9 @@ button.close.profile {
     }
 
     #tags {
-        height: 1.5em;
+        /*height: 1.5em;*/
         font-size: .5em;
+        height:auto;
     }
 
     .index-body {
@@ -1989,6 +1997,15 @@ button.close.profile {
         /*margin-right: 0.5em;*/
         width: 100vw;
 
+    }
+
+    #search-submit{
+        font-size:.5em;
+    }
+
+    #barcode, #add-item-button {
+        margin-left: 1.5em;
+        left: -.7em;
     }
 
     /*.qty-price-input {*/
@@ -2136,13 +2153,15 @@ button.close.profile {
     }
 
     #tags {
-        height: 1.5em;
+        height: auto;
         font-size: .5em;
         left: 30px;
     }
 
     button#search-submit {
-        right: 30px;
+        position: relative;
+        left: 30px;
+        font-size: .5em;
     }
 
     #search-submit {
@@ -2322,7 +2341,7 @@ button.close.profile {
 
     #search-submit {
         grid-row: 1;
-        height: 1.7em;
+        height: 100%;
         font-size: .5em;
         padding: 0;
         right: 30px;
@@ -2333,19 +2352,21 @@ button.close.profile {
     }
 
     #tags {
-        height: 1.5em;
+        height: auto;
         font-size: .5em;
         left: 50px;
     }
 
     button#search-submit {
-        right: 50px;
-        width: 45px;
+        left: 50px;
+        position: relative;
+        width: 50px;
+        font-size: .7em;
     }
 
     #barcode, #add-item-button {
         margin-left: 1.5em;
-        left: 1em;
+        left: 0;
     }
 
     form.lists-search {
@@ -2484,7 +2505,7 @@ button.close.profile {
 @media screen and (max-width: 400px) {
     #barcode, #add-item-button {
         margin-left: 1.5em;
-        left: 1em;
+        left: -.7em;
         right: 1em;
     }
 
@@ -2516,7 +2537,7 @@ button.close.profile {
 @media screen and (max-width: 321px) {
     #barcode, #add-item-button {
         margin-left: 10px;
-        left: 1em;
+        left: 0;
         right: 1em;
     }
 
