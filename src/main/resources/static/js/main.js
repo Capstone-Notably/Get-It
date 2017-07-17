@@ -215,7 +215,6 @@
         html +=             '<span class="caret-size caret"></span>';
         html +=         '</button>';
         html +=         "<ul class='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenu'" + item.id + "'>";
-        html +=             '<li><a href="/list/items/edit?item_id=' + item.id + '">Edit</a></li>';
         html +=             '<li><a href="/list/items/delete?list_id=' + listId + '&item_id=' + item.id + '">Delete</a></li>';
         html +=             '<li class="dropdown-price-qty"><a data-toggle="modal" href="#itemSetPrice' + item.id + '">Set Price</a></li>';
         html +=             '<li class="dropdown-price-qty"><a data-toggle="modal" href="#itemSetQty' + item.id + '">Set Quantity</a></li>';
