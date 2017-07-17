@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="'Ooops, ' + ${error}"></title>
+</head>
+<body style="display: flex; flex-direction: column; justify-content: center; align-items: center; background-image: url('/uploads/others/error.jpeg'); background-size: cover; padding-top: 15%">
+
+<th:block th:switch="${error}">
+    <div th:case="'Not Found'" style="justify-content: center; align-items: center">
+        <h1 style="text-align: center; font-size: 3em; color: white">Oops, You Didn't Get It!</h1>
+        <a href="/login" style="justify-content: center; align-items: center; color: orangered">Return to Get It!</a>
+    </div>
+    <div th:case="'Forbidden'" style="justify-content: center; align-items: center">
+        <h1 style="text-align: center; font-size: 3em; color: white">You don't have permission to view this page</h1>
+        <a href="/" style="justify-content: center; align-items: center; color: orangered">Return to Get It!</a>
+    </div>
+</th:block>
+
+</body>
+</html>
