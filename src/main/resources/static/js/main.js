@@ -150,10 +150,6 @@
 
     $currency.maskMoney({prefix:'$ ', allowZero:true});
 
-    // $currency.keyup(function() {
-    //     $('#price-in').val($(this).maskMoney('unmasked')[0]);
-    // });
-
     $("body").on("keyup", ".currency", function(){
         $('#price-in').val($(this).maskMoney('unmasked')[0]);
     });
@@ -182,9 +178,7 @@
 /*----------------------------------------------------------------------------------------------------------------------
      Groceries Lists
 ----------------------------------------------------------------------------------------------------------------------*/
-    var json, item_json, item_barcode_json;
-    var items_recipe_json = [];
-    var counter_items = 0;
+    var json;
     var $tags = $( "#tags" );
     var $viewItems = $('.view-items');
     var $scannerInput = $('#scanner_input');
@@ -257,7 +251,7 @@
         html +=                 '</div>';
         html +=                 '<div class="modal-body">';
         html +=                     '<div class="modal-input-qty">';
-        html +=                         '<input type="text" class="item-list-qty" data-itemqty="' + item.id + '" value="' + item.quantity + '" />';
+        html +=                         '<input t.ype="text" class="item-list-qty" data-itemqty="' + item.id + '" value="' + item.quantity + '" />';
         html +=                     '<div>';
         html +=                         '<div class="glyphicon glyphicon-plus glyphicon-plus-minus btn-plus-qty" />';
         html +=                         '<div class="glyphicon glyphicon-minus glyphicon-plus-minus btn-minus-qty" />';
@@ -276,12 +270,34 @@
         return html;
     }
 
+    function isItemInList($htmlItems, item) {
+        var result = false;
+        $htmlItems.each(function () {
+            var itemName = $(this).children().children().children().next().html();
+            console.log(itemName);
+            if(itemName === item.name) {
+                var $qty = $(this).children().children().next().children().next().children();
+                var newQty = parseInt($qty.val())+1;
+                $qty.val(parseInt(newQty));
+                item.quantity = newQty;
+                sendJsonToController(item, "/lists/items/setQty");
+                console.log(item);
+                result = true;
+            }
+        });
+        return result;
+    }
+
     function appendItem(item) {
         $viewItems.each(function () {
             if($(this).hasClass('active')){
                 var listId = parseInt($(this).children().val());
                 item.listId = listId;
-                $(this).append(createItem(item, listId));
+                var $htmlItems = $(this).children().next().next().next().next();
+                if(!isItemInList($htmlItems, item)) {
+                    $(this).append(createItem(item, listId));
+                    sendJsonToController(item, "/lists/items");
+                }
             }
         });
 
@@ -335,11 +351,10 @@
         if($tags.val() !== "") {
             json.forEach(function(item) {
                 if(item.name === $tags.val()) {
+                    var $htmlItems = $(this).children().next().next().next().next();
                     appendItem(item);
-                    item_json = item;
                 }
             });
-            sendJsonToController(item_json, "/lists/items");
             $tags.val("");
         }
     });
@@ -355,8 +370,6 @@
         if($tags.val() !== "") {
             json.forEach(function(item) {
                 if(item.name === $tags.val()) {
-                    // items_recipe_json[counter_items] = item;
-                    // counter_items++;
                     console.log(item);
                     appendItemRecipe(item);
                     sendJsonToController(item, "/recipes/items");
@@ -366,11 +379,6 @@
         }
     });
 
-    $('#img-file-recipe').change(function () {
-        // console.log($(this)[0].files[0].name);
-        // var url = "url(/uploads/others/" + $(this)[0].files[0].name + ")";
-        // $('.recipe-header').css("background-image", url);
-    });
 
     //update price in database
     $viewItems.on( "change", '.currency', currencyFormatting);
@@ -564,12 +572,10 @@
     function adddItem($input) {
         json.forEach(function(item) {
             if(item.barcode === $input.val()) {
-                appendItem(item);
-                item_barcode_json = item;
+                appendItemRecipe(item);
+                sendJsonToController(item, "/recipes/items");
             }
         });
-        console.log(item_barcode_json);
-        sendJsonToController(item_barcode_json, "/lists/items");
     }
 
     // Call Quagga.decodeSingle() for every file selected in the
