@@ -506,8 +506,8 @@ h1.register-header {
 }
 
 .carousel-image {
-    width: 90em;
-    height: 90em;
+    width: 70em;
+    height: 70em;
 
 }
 
@@ -1986,6 +1986,10 @@ button.close.profile {
         width: 100vw;
 
     }
+
+    .qty-price-input {
+        font-size: .5em;
+    }
 }
 
 @media screen and (min-width: 425px) and (max-width: 720px) {
@@ -2205,6 +2209,10 @@ button.close.profile {
         /*margin-right: 0.5em;*/
         width: 100vw;
 
+    }
+
+    .qty-price-input {
+        font-size: .5em;
     }
 }
 
@@ -2449,6 +2457,10 @@ button.close.profile {
         width: 100vw;
 
     }
+
+    .qty-price-input {
+        font-size: .5em;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -2477,6 +2489,10 @@ button.close.profile {
         width: 100vw;
 
     }
+
+    .qty-price-input {
+        font-size: .5em;
+    }
 }
 
 @media screen and (max-width: 321px) {
@@ -2504,6 +2520,10 @@ button.close.profile {
         /*margin-right: 0.5em;*/
         width: 100vw;
 
+    }
+
+    .qty-price-input {
+        font-size: .5em;
     }
 }
 
