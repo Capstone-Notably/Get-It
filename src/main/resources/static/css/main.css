@@ -1211,7 +1211,7 @@ button.close.create, .modal-title-create-item {
 }
 
 .item-list-qty {
-    height: 33px;
+    height: auto;
     width: 50px;
     margin-left: 5px;
     margin-right: 5px;
