@@ -378,6 +378,10 @@ h1.register-header {
     border-radius: 5px;
 }
 
+.menu-li {
+    padding-left: 10px;
+}
+
 .cart-icon {
     margin-top: 2em;
     margin-bottom: 1em;
