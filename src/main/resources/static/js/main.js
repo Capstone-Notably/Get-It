@@ -572,7 +572,8 @@
     function adddItem($input) {
         json.forEach(function(item) {
             if(item.barcode === $input.val()) {
-                appendItemRecipe(item);
+                console.log(item);
+                appendItem(item);
                 sendJsonToController(item, "/recipes/items");
             }
         });
