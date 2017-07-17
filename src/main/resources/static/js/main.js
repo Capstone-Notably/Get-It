@@ -326,22 +326,29 @@
     }
 
     //receive json file from the controller
-    request = $.ajax({
-        'url': '/items.json'
-    });
-    request.done(function (items) {
-        var availableTags = ["itemName"];
-        var i= 0;
-        json = items;
-        items.forEach(function(item) {
-            availableTags[i] = item.name;
-            i++;
+    var update = function() {
+        $.ajax({
+            'url': '/items.json',
+            success : function (items) {
+            var availableTags = ["itemName"];
+            var i = 0;
+            json = items;
+            items.forEach(function (item) {
+                availableTags[i] = item.name;
+                i++;
+            });
+            $tags.autocomplete({
+                source: availableTags
+            });
+            // console.log(json[0]);
+        }
         });
-        $tags.autocomplete({
-            source: availableTags
-        });
-        // console.log(json[0]);
-    });
+    };
+
+    update();
+    var refInterval = window.setInterval('update()', 10000); // 10 seconds
+
+
 
     //search item / grocery lists
     $('#search-submit').click(function (e) {
