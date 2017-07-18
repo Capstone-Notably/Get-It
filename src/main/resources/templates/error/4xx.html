@@ -9,11 +9,11 @@
 <th:block th:switch="${error}">
     <div th:case="'Not Found'" style="justify-content: center; align-items: center">
         <h1 style="text-align: center; font-size: 3em; color: white">Oops, You Didn't Get It!</h1>
-        <a href="/login" style="justify-content: center; align-items: center; color: orangered">Return to Get It!</a>
+        <a href="/login" style="justify-content: center; align-items: center; color: orangered; text-align: center;">Return to Get It!</a>
     </div>
     <div th:case="'Forbidden'" style="justify-content: center; align-items: center">
         <h1 style="text-align: center; font-size: 3em; color: white">You don't have permission to view this page</h1>
-        <a href="/" style="justify-content: center; align-items: center; color: orangered">Return to Get It!</a>
+        <a href="/" style="justify-content: center; align-items: center; color: orangered; text-align: center;">Return to Get It!</a>
     </div>
 </th:block>
 
