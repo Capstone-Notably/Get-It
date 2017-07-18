@@ -569,13 +569,18 @@
     });
 
     function adddItem($input) {
+        var isBarcode = false;
         json.forEach(function(item) {
             if(item.barcode === $input.val()) {
                 console.log(item);
                 appendItem(item);
                 sendJsonToController(item, "/recipes/items");
+                isBarcode = true;
             }
         });
+        if(!isBarcode) {
+            swal("Sorry... try again!");
+        }
     }
 
     // Call Quagga.decodeSingle() for every file selected in the
