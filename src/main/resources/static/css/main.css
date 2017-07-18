@@ -1852,7 +1852,6 @@ button.close.profile {
         /*font-size: 1.5em;*/
         display: none;
         justify-content: flex-end;
-
     }
 
     .hamburger {
@@ -2274,7 +2273,7 @@ button.close.profile {
         align-items: center;
         padding-right: .2em;
         font-family: var(--font1);
-        font-size: 1.5em;
+        /*font-size: 1.5em;*/
     }
 
     .nav-links-logged-out {
