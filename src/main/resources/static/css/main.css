@@ -1658,6 +1658,7 @@ button.close.profile {
     align-items: center;
     text-align: center;
     background-image: url("/uploads/others/wood-board.jpeg");
+    background-size: cover;
     border: 3px solid var(--accentcolor);
 }
 
