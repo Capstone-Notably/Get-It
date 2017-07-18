@@ -15,9 +15,11 @@
 
     <div class="index-body">
         <div class="image">
-            <h1 class="hero-text1">Organized, simplified and built around the essentials!</h1>
-            <h1 class="hero-text2">Forget the pen and paper.. </h1>
-            <h1 class="brand">Get It!</h1>
+            <h1 sec:authorize="!isAuthenticated()" class="hero-text1">Organized, simplified and built around the essentials!</h1>
+            <h1 sec:authorize="!isAuthenticated()" class="hero-text2">Forget the pen and paper.. </h1>
+            <h1 sec:authorize="!isAuthenticated()" class="brand">Get It!</h1>
+            <h1 sec:authorize="isAuthenticated()" class="hero-text1">Welcome  <span style="padding-left: .2em;" th:text="${user.username}"></span>!</h1>
+            <h1 sec:authorize="isAuthenticated()" class="brand">You Got It!</h1>
         </div>
 
         <div class="features">
