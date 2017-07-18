@@ -1866,7 +1866,7 @@ button.close.profile {
     }
 
     #user-icon {
-        display: none;
+        display: flex;
     }
 
     #nav-search-input, .nav-search-button {
@@ -2092,7 +2092,7 @@ button.close.profile {
     }
 
     #user-icon {
-        display: none;
+        display: flex;
     }
 
     #nav-search-input, .nav-search-button {
@@ -2307,10 +2307,11 @@ button.close.profile {
 
     #user-hello-hide-mobile-nav {
         display: none;
+        /*font-size: 1em;*/
     }
 
     #user-icon {
-        display: none;
+        display: flex;
     }
 
     .hamburger {
