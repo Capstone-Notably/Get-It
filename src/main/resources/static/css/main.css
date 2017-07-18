@@ -317,13 +317,21 @@ form>input {
     width: 100vw;
     font-family: var(--font1);
     /*font-size: 1em;*/
-    background-color: var(--bannergreen);
-    border-top: 1em solid var(--accentcolor);
-    border-bottom: 1em solid var(--accentcolor);
+    background-color: var(--accentcolor);
+    border-top: 1em solid var(--accentcolor2);
+    border-bottom: 1em solid var(--accentcolor2);
 }
 
 h1.register-header {
     font-size: 4em;
+}
+
+
+.button.register {
+    border: 1px solid var(--accentcolor2);
+    background-color: var(--bannergreen);
+    font-size: 1em;
+    margin-top: .5em;
 }
 
 .form-group input {
