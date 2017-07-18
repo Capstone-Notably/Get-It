@@ -346,7 +346,11 @@
     };
 
     update();
-    var refInterval = window.setInterval('update()', 10000); // 10 seconds
+    var intervalId = setInterval(function () {
+        update();
+        // location.reload(true);
+
+    }, 10000); // 10 seconds
 
 
 
