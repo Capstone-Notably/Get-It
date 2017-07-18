@@ -501,6 +501,10 @@ h1.register-header {
     font-size: 3em;
 }
 
+.carousel-caption {
+    background-color: var(--accentcolor2);
+}
+
 .carousel-inner {
     height: 100%;
 }
