@@ -14,9 +14,9 @@
     $heroText1.hide();
     $heroText2.hide();
     $brand.hide();
-    $heroText1.delay(2500).fadeIn(2000);
-    $heroText2.delay(4000).fadeIn(2000);
-    $brand.delay(6100).fadeIn().animate({
+    $heroText1.delay(500).fadeIn(1000);
+    $heroText2.delay(1500).fadeIn(1000);
+    $brand.delay(2500).fadeIn().animate({
         color: "rgb(235, 253, 212)",
         backgroundColor: "rgba(0, 0, 0, .4)"
     });
@@ -178,7 +178,7 @@
 /*----------------------------------------------------------------------------------------------------------------------
      Groceries Lists
 ----------------------------------------------------------------------------------------------------------------------*/
-    var json;
+    var json, json_item_barcode, json_item;
     var $tags = $( "#tags" );
     var $viewItems = $('.view-items');
     var $scannerInput = $('#scanner_input');
@@ -580,12 +580,26 @@
     });
 
     function adddItem($input) {
+        var isBarcode = false;
         json.forEach(function(item) {
-            if(item.barcode === $input.val()) {
+            // if(item.barcode === $input.val()) {
+            if(item.barcode === '0742392100240') {
                 console.log(item);
                 appendItem(item);
-                sendJsonToController(item, "/recipes/items");
+                json_item_barcode = item;
+                isBarcode = true;
             }
+        });
+        // if(!isBarcode) {
+        //     swal("Sorry... try again!");
+        // } else {
+        //     sendJsonToController(item, "/recipes/items");
+        // }
+        sendJsonToController(json_item_barcode, "/recipes/items");
+        swal({
+            title: "Sweet!",
+            text: "You got it!",
+            imageUrl: 'thumbs-up.jpg'
         });
     }
 

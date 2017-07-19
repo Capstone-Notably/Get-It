@@ -317,13 +317,21 @@ form>input {
     width: 100vw;
     font-family: var(--font1);
     /*font-size: 1em;*/
-    background-color: var(--bannergreen);
-    border-top: 1em solid var(--accentcolor);
-    border-bottom: 1em solid var(--accentcolor);
+    background-color: var(--accentcolor);
+    border-top: 1em solid var(--accentcolor2);
+    border-bottom: 1em solid var(--accentcolor2);
 }
 
 h1.register-header {
     font-size: 4em;
+}
+
+
+.button.register {
+    border: 1px solid var(--accentcolor2);
+    background-color: var(--bannergreen);
+    font-size: 1em;
+    margin-top: .5em;
 }
 
 .form-group input {
@@ -505,14 +513,17 @@ h1.register-header {
     font-size: 3em;
 }
 
-.carousel-inner {
-    height: 100%;
+.carouselCaption {
+    font-size: 25px;
+    background-color: var(--accentcolor2);
+    color: white;
 }
 
-.carousel-image {
-    width: 70em;
-    height: 70em;
 
+.carousel-inner {
+    width: 90em;
+    height: 55em;
+    background-color: antiquewhite;
 }
 
 .categories {
@@ -1215,7 +1226,7 @@ button.close.create, .modal-title-create-item {
 }
 
 .item-list-qty {
-    height: 33px;
+    height: auto;
     width: 50px;
     margin-left: 5px;
     margin-right: 5px;
@@ -1658,6 +1669,7 @@ button.close.profile {
     align-items: center;
     text-align: center;
     background-image: url("/uploads/others/wood-board.jpeg");
+    background-size: cover;
     border: 3px solid var(--accentcolor);
 }
 
@@ -1843,7 +1855,6 @@ button.close.profile {
         /*font-size: 1.5em;*/
         display: none;
         justify-content: flex-end;
-
     }
 
     .hamburger {
@@ -1857,7 +1868,7 @@ button.close.profile {
     }
 
     #user-icon {
-        display: none;
+        display: flex;
     }
 
     #nav-search-input, .nav-search-button {
@@ -2083,7 +2094,7 @@ button.close.profile {
     }
 
     #user-icon {
-        display: none;
+        display: flex;
     }
 
     #nav-search-input, .nav-search-button {
@@ -2265,7 +2276,7 @@ button.close.profile {
         align-items: center;
         padding-right: .2em;
         font-family: var(--font1);
-        font-size: 1.5em;
+        /*font-size: 1.5em;*/
     }
 
     .nav-links-logged-out {
@@ -2298,10 +2309,11 @@ button.close.profile {
 
     #user-hello-hide-mobile-nav {
         display: none;
+        /*font-size: 1em;*/
     }
 
     #user-icon {
-        display: none;
+        display: flex;
     }
 
     .hamburger {
