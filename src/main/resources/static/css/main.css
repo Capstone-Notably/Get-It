@@ -2384,9 +2384,13 @@ button.close.profile {
     #tags {
         height: auto;
         font-size: .5em;
-        /*left: 50px;*/
+        left: 50px;
         padding-top: 4px;
         padding-bottom: 4px;
+    }
+
+    #tags.search-item-recipe {
+        left: 30px;
     }
 
     button#search-submit {
@@ -2542,9 +2546,7 @@ button.close.profile {
         left: 10px;
     }
 
-    .tags {
-        left: 0;
-    }
+
 }
 
 @media screen and (max-width: 400px) {
@@ -2578,7 +2580,7 @@ button.close.profile {
         font-size: .5em;
     }
 
-    .tags {
+    #tags.search-item-recipe {
         left: 0;
     }
 
@@ -2624,7 +2626,7 @@ button.close.profile {
         font-size: .5em;
     }
 
-    .tags {
+    #tags.search-item-recipe {
         left: 0;
     }
 
