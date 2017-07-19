@@ -599,7 +599,7 @@
         swal({
             title: "Sweet!",
             text: "You got it!",
-            imageUrl: 'thumbs-up.jpg'
+            imageUrl: '/uploads/others/ThumbUp.png'
         });
     }
 
