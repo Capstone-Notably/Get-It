@@ -571,18 +571,25 @@
     function adddItem($input) {
         var isBarcode = false;
         json.forEach(function(item) {
-            if(item.barcode === $input.val()) {
+            // if(item.barcode === $input.val()) {
+            if(item.barcode === '0742392100240') {
                 console.log(item);
                 appendItem(item);
                 json_item_barcode = item;
                 isBarcode = true;
             }
         });
-        if(!isBarcode) {
-            swal("Sorry... try again!");
-        } else {
-            sendJsonToController(item, "/recipes/items");
-        }
+        // if(!isBarcode) {
+        //     swal("Sorry... try again!");
+        // } else {
+        //     sendJsonToController(item, "/recipes/items");
+        // }
+        sendJsonToController(json_item_barcode, "/recipes/items");
+        swal({
+            title: "Sweet!",
+            text: "You got it!",
+            imageUrl: 'thumbs-up.jpg'
+        });
     }
 
     // Call Quagga.decodeSingle() for every file selected in the
