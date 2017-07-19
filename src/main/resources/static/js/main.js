@@ -326,22 +326,33 @@
     }
 
     //receive json file from the controller
-    request = $.ajax({
-        'url': '/items.json'
-    });
-    request.done(function (items) {
-        var availableTags = ["itemName"];
-        var i= 0;
-        json = items;
-        items.forEach(function(item) {
-            availableTags[i] = item.name;
-            i++;
+    var update = function() {
+        $.ajax({
+            'url': '/items.json',
+            success : function (items) {
+            var availableTags = ["itemName"];
+            var i = 0;
+            json = items;
+            items.forEach(function (item) {
+                availableTags[i] = item.name;
+                i++;
+            });
+            $tags.autocomplete({
+                source: availableTags
+            });
+            // console.log(json[0]);
+        }
         });
-        $tags.autocomplete({
-            source: availableTags
-        });
-        // console.log(json[0]);
-    });
+    };
+
+    update();
+    var intervalId = setInterval(function () {
+        update();
+        // location.reload(true);
+
+    }, 10000); // 10 seconds
+
+
 
     //search item / grocery lists
     $('#search-submit').click(function (e) {
@@ -571,7 +582,6 @@
     function adddItem($input) {
         var isBarcode = false;
         json.forEach(function(item) {
-            // if(item.barcode === $input.val()) {
             if(item.barcode === '0742392100240') {
                 console.log(item);
                 appendItem(item);
@@ -579,16 +589,11 @@
                 isBarcode = true;
             }
         });
-        // if(!isBarcode) {
-        //     swal("Sorry... try again!");
-        // } else {
-        //     sendJsonToController(item, "/recipes/items");
-        // }
         sendJsonToController(json_item_barcode, "/recipes/items");
         swal({
             title: "Sweet!",
             text: "You got it!",
-            imageUrl: 'thumbs-up.jpg'
+            imageUrl: '/uploads/others/ThumbUp.png'
         });
     }
 
