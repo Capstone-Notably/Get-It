@@ -515,15 +515,25 @@ h1.register-header {
 
 .carouselCaption {
     font-size: 25px;
-    background-color: var(--accentcolor2);
+    background-color: black;
     color: white;
+    font-weight: bolder;
 }
 
+.carousel-control {
+    background-color: transparent;
+    opacity: 0;
+}
+
+a.right.carousel-control:hover, a.left.carousel-control:hover {
+    background-color: transparent;
+    opacity: 0;
+}
 
 .carousel-inner {
     width: 90em;
     height: 55em;
-    background-color: antiquewhite;
+    background-color: ghostwhite;
 }
 
 .categories {
