@@ -8,18 +8,13 @@
     Home
  ----------------------------------------------------------------------------------------------------------------------*/
     var $heroText1 = $('.hero-text1');
-    var $heroText2 = $('.hero-text2');
     var $brand = $('.brand');
 
     $heroText1.hide();
-    $heroText2.hide();
     $brand.hide();
     $heroText1.delay(500).fadeIn(1000);
-    $heroText2.delay(1500).fadeIn(1000);
-    $brand.delay(2500).fadeIn().animate({
-        color: "rgb(235, 253, 212)",
-        backgroundColor: "rgba(0, 0, 0, .4)"
-    });
+    $brand.delay(1500).fadeIn();
+
 
 
     $('#popover-category').popover({
