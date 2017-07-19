@@ -578,11 +578,17 @@
                 isBarcode = true;
             }
         });
-        if(!isBarcode) {
-            swal("Sorry... try again!");
-        } else {
-            sendJsonToController(item, "/recipes/items");
-        }
+        // if(!isBarcode) {
+        //     swal("Sorry... try again!");
+        // } else {
+        //     sendJsonToController(item, "/recipes/items");
+        // }
+        sendJsonToController(json_item_barcode, "/recipes/items");
+        swal({
+            title: "Sweet!",
+            text: "You got it!",
+            imageUrl: 'thumbs-up.jpg'
+        });
     }
 
     // Call Quagga.decodeSingle() for every file selected in the
