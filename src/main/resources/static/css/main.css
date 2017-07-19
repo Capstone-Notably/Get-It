@@ -642,6 +642,8 @@ a.right.carousel-control:hover, a.left.carousel-control:hover {
 
 .recipe-append-items {
     font-size: 2em;
+    margin-top: 1em;
+    padding-left: 8em;
 }
 
 #recipe-name {
@@ -692,7 +694,7 @@ div.ui-widget.r-create {
 
 #div-create-recipe {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 #img-recipe {
@@ -969,6 +971,10 @@ div.well {
 /*.a-delete-category {*/
     /*display: none;*/
 /*}*/
+
+.recipe-items-create {
+    list-style: inherit;
+}
 
 button.close {
     grid-row: 1;
