@@ -571,7 +571,8 @@
     function adddItem($input) {
         var isBarcode = false;
         json.forEach(function(item) {
-            if(item.barcode === $input.val()) {
+            // if(item.barcode === $input.val()) {
+            if(item.barcode === '0742392100240') {
                 console.log(item);
                 appendItem(item);
                 json_item_barcode = item;
