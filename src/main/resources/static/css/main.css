@@ -537,7 +537,7 @@ a.right.carousel-control:hover, a.left.carousel-control:hover {
 .carousel-inner {
     width: 90em;
     height: 55em;
-    background-color: ghostwhite;
+    background-color: #FCFEFF;
 }
 
 .categories {
@@ -668,6 +668,10 @@ a.right.carousel-control:hover, a.left.carousel-control:hover {
     top: 6.5em;
     font-size: 2em;
     width: 20%;
+}
+
+div.ui-widget.r-create {
+    width: auto;
 }
 
 .ui-autocomplete-input, .ui-menu, .ui-menu-item {
@@ -2380,7 +2384,9 @@ button.close.profile {
     #tags {
         height: auto;
         font-size: .5em;
-        left: 50px;
+        /*left: 50px;*/
+        padding-top: 4px;
+        padding-bottom: 4px;
     }
 
     button#search-submit {
@@ -2526,6 +2532,19 @@ button.close.profile {
     .qty-price-input {
         font-size: .5em;
     }
+
+    div.ui-widget.r-create {
+        width: auto;
+        right: 20px;
+    }
+
+    button#search-recipe-item {
+        left: 10px;
+    }
+
+    .tags {
+        left: 0;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -2558,6 +2577,20 @@ button.close.profile {
     .qty-price-input {
         font-size: .5em;
     }
+
+    .tags {
+        left: 0;
+    }
+
+    div.ui-widget.r-create {
+        width: auto;
+        left: 3px;
+        font-size: 1em;
+    }
+
+    button#search-recipe-item {
+        left: 3px;
+    }
 }
 
 @media screen and (max-width: 321px) {
@@ -2589,6 +2622,22 @@ button.close.profile {
 
     .qty-price-input {
         font-size: .5em;
+    }
+
+    .tags {
+        left: 0;
+    }
+
+    div.ui-widget.r-create {
+        width: auto;
+        left: 3px;
+        font-size: 1em;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    button#search-recipe-item {
+        left: 3px;
     }
 }
 
