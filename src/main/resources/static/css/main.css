@@ -513,18 +513,17 @@ h1.register-header {
     font-size: 3em;
 }
 
-.carousel-caption {
+.carouselCaption {
+    font-size: 25px;
     background-color: var(--accentcolor2);
+    color: white;
 }
+
 
 .carousel-inner {
-    height: 100%;
-}
-
-.carousel-image {
-    width: 70em;
-    height: 70em;
-
+    width: 90em;
+    height: 55em;
+    background-color: antiquewhite;
 }
 
 .categories {

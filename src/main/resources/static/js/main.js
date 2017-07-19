@@ -178,7 +178,7 @@
 /*----------------------------------------------------------------------------------------------------------------------
      Groceries Lists
 ----------------------------------------------------------------------------------------------------------------------*/
-    var json;
+    var json, json_item_barcode, json_item;
     var $tags = $( "#tags" );
     var $viewItems = $('.view-items');
     var $scannerInput = $('#scanner_input');
@@ -574,12 +574,14 @@
             if(item.barcode === $input.val()) {
                 console.log(item);
                 appendItem(item);
-                sendJsonToController(item, "/recipes/items");
+                json_item_barcode = item;
                 isBarcode = true;
             }
         });
         if(!isBarcode) {
             swal("Sorry... try again!");
+        } else {
+            sendJsonToController(item, "/recipes/items");
         }
     }
 
