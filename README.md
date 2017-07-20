@@ -2,7 +2,7 @@
 
 ## What is Get-It….
 
- - Get-It is a grocery shopping list and recipe management tool.
+ - Get-It is a grocery shopping list and recipe management tool where users can create shareable groceries shopping lists picking from 100’s of built-in items from 10 categories, scan a barcode using a webcam and create their own items. Users can also save recipes to the website, and then import those ingredients to any existing grocery list.
 ---
 
 ## Why use Get-It….
