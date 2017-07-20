@@ -28,15 +28,15 @@
  - A registered user has more customization ability. During registration user can select their dietary preference which will affect the basic categories they will see.
 
  - When user enters the CATEGORY section; there are approximately 10 preset categories listed and 1 untitled custom category. A registered user is able to:
-  - create multiple shopping lists for each store they want to visit
-  - add new categories 
-  - add more items within a category manually or by barcode scanner
-  - when adding new items, user can add price and image to the database.
+   - create multiple shopping lists for each store they want to visit
+   - add new categories 
+   - add more items within a category manually or by barcode scanner
+   - when adding new items, user can add price and image to the database.
 		
  - When user enters the RECIPE section; there are approximately 9 preset recipes listed. The ingredients are shown as well as the preparation instructions, cooking time, and image. A registered user is able to:
-  - add new recipes
-  - add recipe ingredients
-  - add preparation instructions and a photo image
-  - user can add recipe items to their shopping list from the recipe area.
+   - add new recipes
+   - add recipe ingredients
+   - add preparation instructions and a photo image
+   - user can add recipe items to their shopping list from the recipe area.
 
 ## Get-It can help a user stay organized and be more efficient with their shopping tasks.
