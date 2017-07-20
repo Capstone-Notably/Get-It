@@ -15,16 +15,16 @@
 
     <div class="index-body">
         <div class="image">
-            <h1 sec:authorize="!isAuthenticated()" class="hero-text1">Organized, simplified and built around the essentials!</h1>
-            <h1 sec:authorize="!isAuthenticated()" class="hero-text2">Forget the pen and paper.. </h1>
+            <h1 sec:authorize="!isAuthenticated()" class="hero-text1">Smart Grocery List!</h1>
             <h1 sec:authorize="!isAuthenticated()" class="brand">Get It!</h1>
+
             <h1 sec:authorize="isAuthenticated()" class="hero-text1">Welcome  <span style="padding-left: .2em;" th:text="${user.username}"></span>!</h1>
             <h1 sec:authorize="isAuthenticated()" class="brand">You Got It!</h1>
         </div>
 
         <div class="features">
 
-            <h1 class="features-header">Intuitive, Sharable, and<br/> Always on-hand!</h1>
+            <h1 class="features-header">Intuitive, Shareable, and<br/> Always on-hand!</h1>
 
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
@@ -201,14 +201,14 @@
                                 <textarea id="recipe-description" th:field="*{directions}" cols="30" rows="5" placeholder="Enter recipe description &hellip;"></textarea>
 
                                 <div id="div-search-item">
-                                    <div class="ui-widget">
+                                    <div class="ui-widget r-create">
                                         <input id="tags" type="text" class="search-item-recipe" placeholder="Search item &hellip;" style="font-size: 2em; width:100%"/>
                                     </div>
                                     <button id="search-recipe-item" class="btn btn-success glyphicon glyphicon-ok"></button>
                                 </div>
 
                                 <div>
-                                    <ul class="recipe-append-items"></ul>
+                                    <ol class="recipe-append-items"></ol>
                                 </div>
 
                                 <div id="div-create-recipe">

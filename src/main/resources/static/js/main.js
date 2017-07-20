@@ -8,18 +8,13 @@
     Home
  ----------------------------------------------------------------------------------------------------------------------*/
     var $heroText1 = $('.hero-text1');
-    var $heroText2 = $('.hero-text2');
     var $brand = $('.brand');
 
     $heroText1.hide();
-    $heroText2.hide();
     $brand.hide();
     $heroText1.delay(500).fadeIn(1000);
-    $heroText2.delay(1500).fadeIn(1000);
-    $brand.delay(2500).fadeIn().animate({
-        color: "rgb(235, 253, 212)",
-        backgroundColor: "rgba(0, 0, 0, .4)"
-    });
+    $brand.delay(1500).fadeIn();
+
 
 
     $('#popover-category').popover({
@@ -326,22 +321,33 @@
     }
 
     //receive json file from the controller
-    request = $.ajax({
-        'url': '/items.json'
-    });
-    request.done(function (items) {
-        var availableTags = ["itemName"];
-        var i= 0;
-        json = items;
-        items.forEach(function(item) {
-            availableTags[i] = item.name;
-            i++;
+    var update = function() {
+        $.ajax({
+            'url': '/items.json',
+            success : function (items) {
+            var availableTags = ["itemName"];
+            var i = 0;
+            json = items;
+            items.forEach(function (item) {
+                availableTags[i] = item.name;
+                i++;
+            });
+            $tags.autocomplete({
+                source: availableTags
+            });
+            // console.log(json[0]);
+        }
         });
-        $tags.autocomplete({
-            source: availableTags
-        });
-        // console.log(json[0]);
-    });
+    };
+
+    update();
+    var intervalId = setInterval(function () {
+        update();
+        // location.reload(true);
+
+    }, 10000); // 10 seconds
+
+
 
     //search item / grocery lists
     $('#search-submit').click(function (e) {
